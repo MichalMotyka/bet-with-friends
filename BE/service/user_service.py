@@ -1,6 +1,7 @@
 from entity.users import Users
 from shared.base import session_factory
 import bcrypt
+import uuid
 from sqlalchemy import update
 from service.email_service import send_activation_mail
 from service.activation_service import create_activation,activate
@@ -14,6 +15,7 @@ def create_user(user:Users,password:str):
         user.admin = False
         user.salt = salt
         user.isActive = False
+        user.public_id = str(uuid.uuid4())
     with session_factory() as session:
         session.add(user)
         session.commit()
