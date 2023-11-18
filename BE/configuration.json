@@ -1,0 +1,9 @@
+{
+  "smtp":{
+    "password":"ovff xcok daua qhml",
+    "email":"testerapi715@gmail.com"
+  },
+  "external":{
+    "url":"http://localhost:5000"
+  }
+}

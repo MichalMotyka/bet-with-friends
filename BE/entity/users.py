@@ -12,3 +12,4 @@ class Users(Base):
      password = Column(String(50))
      salt = Column(String(255))
      admin = Column(Boolean)
+     isActive = Column(Boolean)

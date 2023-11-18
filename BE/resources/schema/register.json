@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "properties": {
+        "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Adres e-mail",
+            "errorMessage": "Email ma nieprawidłowe format."
+        },
+        "name": {
+            "type": "string",
+            "minLength": 5,
+            "description": "Username",
+            "errorMessage": "Nazwa musi mieć co najmniej 5 znaków."
+        },
+        "password": {
+            "type": "string",
+            "minLength": 8,
+            "description": "password",
+            "errorMessage": "Hasło musi mieć co najmniej 8 znaków."
+        }
+    },
+    "required": ["email", "name", "password"]
+}
