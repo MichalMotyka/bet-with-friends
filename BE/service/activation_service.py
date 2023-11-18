@@ -11,12 +11,18 @@ def create_activation(user_id:int):
         session.add(activation)
         session.commit()
 
-def activate(code:str,user_id:int):
+def activate(code:str):
     with session_factory() as session:
-        activation = session.query(Activation).filter_by(code=code,user_id=user_id).first()
+        activation = session.query(Activation).filter_by(code=code).first()
         if activation:
-            session.delete(activation)
-            session.commit()
-            return activation.expire > datetime.now()
+            if activation.expire > datetime.now():
+                user_id = activation.user.id
+                session.delete(activation)
+                session.commit()
+                return user_id
+            else:
+                session.delete(activation)
+                session.commit()
+                return None
         else:
-            return False
+            return None

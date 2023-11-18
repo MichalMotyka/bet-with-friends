@@ -11,5 +11,10 @@ user_blueprint = Blueprint('user_blueprint', __name__)
 def register():
     data = request.get_json()
     new_user = Users(public_id=str(uuid.uuid4()),email=data['email'], name=data['name'], password='', admin=False)
-    user_service.createUser(user=new_user,password=data['password'])
+    user_service.create_user(user=new_user,password=data['password'])
     return make_response(Response(message='Pomyślnie utworzono użytkownika',code=200,time_stamp=datetime.utcnow().timestamp()).__dict__)
+
+@user_blueprint.route('/activate/<code>', methods=['POST'])
+def activate(code:str):
+    user_service.activate_user(code=code)
+    return ''
