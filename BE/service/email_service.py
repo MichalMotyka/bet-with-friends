@@ -2,9 +2,13 @@ from email.message import EmailMessage
 import ssl
 import smtplib
 import os
+import re
+from configuration.configuration_manager import Configuration_Manager
 
-password = 'ovff xcok daua qhml'
-email = 'testerapi715@gmail.com'
+configuration = Configuration_Manager.get_instance()
+
+password = configuration.get_config_by_key('smtp.password')
+email = configuration.get_config_by_key('smtp.email')
 
 def send_activation_mail(reciver:str):
     directory = os.path.dirname(__file__)
@@ -12,6 +16,7 @@ def send_activation_mail(reciver:str):
     file_path = os.path.join(directory, 'resources', 'templates', 'activation', 'index.html')
     with open(file_path, "r", encoding='utf-8') as f:
         body= f.read()
+    body = setUrl(body)
     em = EmailMessage()
     em['From'] = email
     em['To'] = reciver
@@ -23,3 +28,10 @@ def send_activation_mail(reciver:str):
     with smtplib.SMTP_SSL('smtp.gmail.com',465, context=context) as smtp:
         smtp.login(email,password)
         smtp.sendmail(email,reciver,em.as_string())
+
+
+
+def setUrl(body:str):
+    template = re.compile(r'\(url\)')
+    new_url = configuration.get_config_by_key('external.url')
+    return template.sub(new_url, body)
