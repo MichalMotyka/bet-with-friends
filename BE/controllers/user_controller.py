@@ -1,11 +1,12 @@
 from flask import Blueprint, request, make_response
-import uuid
+from configuration.configuration_manager import Configuration_Manager
 from entity.users import Users
 from entity.response import Response
 from service import user_service,request_validator
-from datetime import datetime
+from datetime import datetime, timedelta
 
 user_blueprint = Blueprint('user_blueprint', __name__)
+config = Configuration_Manager.get_instance()
 
 @user_blueprint.route('/register', methods=['POST'])
 def register():
@@ -17,4 +18,21 @@ def register():
 @user_blueprint.route('/activate/<code>', methods=['POST'])
 def activate(code:str):
     user_service.activate_user(code=code)
-    return ''
+    return make_response(Response(message='Pomyślnie aktywowano użytkownika',code=200,time_stamp=datetime.utcnow().timestamp()).__dict__)
+
+
+@user_blueprint.route('/login', methods=['POST'])
+def login():
+    user = request_validator.login_validation()
+    jwtTokens = user_service.login(user)
+    if jwtTokens:
+        authorize, refresh = jwtTokens
+        response = make_response(Response(message='Pomyślnie zalogowano użytkownika',code=200,time_stamp=datetime.utcnow().timestamp()).__dict__)
+        expiration = datetime.utcnow() + timedelta(minutes=config.get_config_by_key("jwt.exp.authorization"))
+        response.set_cookie('Authorization',authorize,expires=expiration,httponly=True)
+        expiration = datetime.utcnow() + timedelta(minutes=config.get_config_by_key("jwt.exp.refresh"))
+        response.set_cookie('Refresh',refresh,expires=expiration,httponly=True)
+        return response
+    return make_response(Response(message='Użytkownik nie posiada konta lub hasło jest nieprawidłowe',code=200,time_stamp=datetime.utcnow().timestamp()).__dict__)
+        
+    
