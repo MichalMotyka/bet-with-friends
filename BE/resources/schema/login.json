@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "minLength": 5,
+            "description": "Username",
+            "errorMessage": "Nazwa musi mieć co najmniej 5 znaków."
+        },
+        "password": {
+            "type": "string",
+            "minLength": 8,
+            "description": "password",
+            "errorMessage": "Hasło musi mieć co najmniej 8 znaków."
+        }
+    },
+    "required": ["name", "password"]
+}
