@@ -6,6 +6,7 @@ from service import user_service,request_validator
 from datetime import datetime, timedelta
 
 user_blueprint = Blueprint('user_blueprint', __name__)
+config = Configuration_Manager.get_instance()
 
 @user_blueprint.route('/register', methods=['POST'])
 def register():
@@ -17,7 +18,9 @@ def register():
 @user_blueprint.route('/activate/<code>', methods=['POST'])
 def activate(code:str):
     user_service.activate_user(code=code)
-    return ''
+    return make_response(Response(message='Pomyślnie aktywowano użytkownika',code=200,time_stamp=datetime.utcnow().timestamp()).__dict__)
+
+
 @user_blueprint.route('/login', methods=['POST'])
 def login():
     user = request_validator.login_validation()
