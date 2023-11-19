@@ -3,8 +3,14 @@ import { Link } from 'react-router-dom'
 function Nav () {
   return (
     <nav>
-      <Link to='/'>BET WITH FRIENDS</Link>
-
+      <Link to='/'>
+        BET WITH{' '}
+        <span
+        // stwórz global style dla koloru czcionki
+        >
+          FRIENDS
+        </span>
+      </Link>
       <ul>
         <li>
           <Link to='/'>Home</Link>
