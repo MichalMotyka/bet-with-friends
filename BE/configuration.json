@@ -5,5 +5,13 @@
   },
   "external":{
     "url":"http://localhost:5000"
+  },
+  "SECRET_KEY":"Th1s1ss3cr3t"
+  ,
+  "jwt":{
+    "exp":{
+      "authorization":"30",
+      "refresh":"240"
+    }
   }
 }
