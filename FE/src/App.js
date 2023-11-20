@@ -1,14 +1,18 @@
-import Nav from './components/common/nav/Nav'
-import Routing from './components/common/routing/Routing'
-import Footer from './components/common/footer/Footer'
+import React from 'react'
+import Nav from './components/pages/preLogin/common/nav/Nav'
+import Routing from './components/pages/preLogin/common/routing/Routing'
+import Footer from './components/pages/preLogin/common/footer/Footer'
+import './App.css' // Zaimportuj plik stylów
 
 function App () {
   return (
-    <>
-      <Nav />
-      <Routing />
+    <div className='wrapper'>
+      <div className='content-wrapper'>
+        <Nav />
+        <Routing />
+      </div>
       <Footer />
-    </>
+    </div>
   )
 }
 

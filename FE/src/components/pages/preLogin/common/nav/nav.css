@@ -1,0 +1,9 @@
+/* span {
+    color: var(--brand-color);
+} */
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
