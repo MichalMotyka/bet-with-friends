@@ -1,15 +1,11 @@
 import { Link } from 'react-router-dom'
+import './nav.css'
 
 function Nav () {
   return (
     <nav>
       <Link to='/'>
-        BET WITH{' '}
-        <span
-        // stwórz global style dla koloru czcionki
-        >
-          FRIENDS
-        </span>
+        Bet With <span className='span-brand'>Friends</span>
       </Link>
       <ul>
         <li>
@@ -25,7 +21,7 @@ function Nav () {
           <Link to='/leaderboard'>Leaderboard</Link>
         </li>
         <li>
-          <Link to='/login'>Log in</Link>
+          <Link to='/login'>Log In</Link>
         </li>
         <li>
           <Link to='/singUp'>Sign Up</Link>
