@@ -11,10 +11,10 @@ from datetime import datetime, timedelta
 
 
 config = Configuration_Manager.get_instance()
-def create_user(user:Users,password:str):
+def create_user(user:Users):
     if password:
         salt = bcrypt.gensalt()
-        password = password.encode('utf-8')
+        password = user.password.encode('utf-8')
         hashed_password = bcrypt.hashpw(password, salt)
         user.password = hashed_password
         user.admin = False
