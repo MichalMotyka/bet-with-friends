@@ -2,7 +2,7 @@ import React from 'react'
 import Nav from './components/pages/preLogin/common/nav/Nav'
 import Routing from './components/pages/preLogin/common/routing/Routing'
 import Footer from './components/pages/preLogin/common/footer/Footer'
-import './App.css' // Zaimportuj plik stylów
+import './App.css'
 
 function App () {
   return (

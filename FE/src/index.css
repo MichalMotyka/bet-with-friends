@@ -33,16 +33,16 @@ body {
   width: 1200px;
 }
 
-
-hr {
-  width: 1000px;
-  height: 7px;
-  border: none;
-  background: rgba(229, 229, 229, 0.40);
-}
-
 .content-wrapper {
   flex: 1;
+}
+
+hr {
+  max-width: 1000px;
+  height: 7px;
+  border: none;
+  border-radius: 20%;
+  background: rgba(229, 229, 229, 0.40);
 }
 
 .span-brand{
@@ -69,5 +69,3 @@ h3{
 footer {
   margin-top: auto;
 }
-
-

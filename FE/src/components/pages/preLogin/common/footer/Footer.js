@@ -39,13 +39,13 @@ function Footer () {
               </Link>
             </li>
             <li>
-              <Link to='/about' onClick={scrollToTop}>
-                O nas
+              <Link to='/leaderboard' onClick={scrollToTop}>
+                Leaderboard
               </Link>
             </li>
             <li>
-              <Link to='/leaderboard' onClick={scrollToTop}>
-                Leaderboard
+              <Link to='/about' onClick={scrollToTop}>
+                O nas
               </Link>
             </li>
             <li>

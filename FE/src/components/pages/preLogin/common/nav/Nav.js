@@ -15,10 +15,10 @@ function Nav () {
           <Link to='/matches'>Mecze</Link>
         </li>
         <li>
-          <Link to='/about'>O nas</Link>
+          <Link to='/leaderboard'>Leaderboard</Link>
         </li>
         <li>
-          <Link to='/leaderboard'>Leaderboard</Link>
+          <Link to='/about'>O nas</Link>
         </li>
         <li>
           <Link to='/login'>Log In</Link>
