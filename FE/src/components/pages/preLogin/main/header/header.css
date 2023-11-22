@@ -1,0 +1,49 @@
+.header-front {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   
+    flex-wrap: wrap;
+    margin: 70px 0;
+}
+
+.header-front-text{
+   width: 40%;
+}
+
+.header-front-btn{ 
+    display: inline-block;
+    margin-top: 28px;
+    padding: 15px 20px;
+    border: 1px solid transparent;
+    border-radius: 12px;   
+    background: #2C2D5B;  
+    font-weight: bold; 
+    color: white; 
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s; 
+}
+
+.header-front-btn:hover{    
+    border: 1px solid var(--brand-alt-color);
+    background-color: #ffffff;     
+    color: var(--brand-alt-color); 
+}
+
+@media (max-width: 575.98px) {
+  
+  
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+   
+  
+    
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+ 
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+ 
+}

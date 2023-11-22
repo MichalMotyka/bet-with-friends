@@ -1,9 +1,65 @@
-/* span {
-    color: var(--brand-color);
-} */
+.nav-front {
+    display: flex;   
+    list-style: none;
+}
 
-nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.nav-menu-item {     
+    color: black;
+    padding: 15px 30px;
+    font-weight: bold;
+    transition: color 0.3s;
+    font-size: 18px;
+}
+
+.nav-front li a:hover {
+    color: var(--brand-color);
+}
+
+.nav-front-login-btn {
+    color: black;
+    padding: 15px 30px;
+    border-radius: 12px;
+    border: 1px solid var(--brand-alt-color);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nav-front-signup-btn {
+    color: white;
+    font-weight: bold;
+    margin-left: 20px;
+    padding: 15px 30px;
+    border-radius: 12px;
+    border: 1px solid var(--brand-alt-color);
+    background: var(--brand-alt-color);  
+    font-size: 18px;
+}
+
+.active {
+    color: var(--brand-color);    
+}
+
+
+/* Styl dla większych ekranów */
+
+@media (max-width: 575.98px) {
+    .front-main-nav{
+        background-color: silver;
+    }
+  .nav-front{
+    display: none;
+  }
+  
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+ 
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+ 
 }

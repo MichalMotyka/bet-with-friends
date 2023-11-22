@@ -1,6 +1,6 @@
 function About () {
   return (
-    <section>
+    <section className="app-wrap">
       <h2> O nas </h2>
       <p>
         Bet With Friends to platforma, która umożliwia obstawianie wyników

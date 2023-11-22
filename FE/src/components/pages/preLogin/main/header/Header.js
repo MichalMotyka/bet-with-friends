@@ -1,13 +1,15 @@
-import mainLogo from '../../../../../assets/images/front/raccoon-header1.webp'
+import { Link } from 'react-router-dom'
+import mainLogo from '../../../../../assets/images/front/raccoon-header2.webp'
+import './header.css'
 
 function Header () {
   return (
-    <header>
-      <div>
-        <div>
+    <header className='app-wrap'>
+      <div className='header-front'>
+        <div className='header-front-text'>
           <h1>
-            Obstawiaj wyniki rozgrywek{' '}
-            <span className='span-brand'>Euro 2024</span> i porównuj się ze
+            Obstawiaj wyniki rozgrywek
+            <span className='span-brand'> Euro 2024</span> i porównuj się ze
             znajomymi!
           </h1>
           <p>
@@ -16,10 +18,18 @@ function Header () {
             sprawdzaj swoją punktację i zobacz, jakie miejsce zajmujesz w tabeli
             zwycięzców.
           </p>
-          <button>Dołącz Teraz</button>
+          <Link to='/singUp' className='header-front-btn'>
+            Dołącz Teraz
+          </Link>
         </div>
-        <div>
-          <img src={mainLogo} alt='Bet With Friends main logo' />
+
+        <div className='header-front-logo'>
+          <img
+            src={mainLogo}
+            alt='Bet With Friends main logo'
+            width={500}
+            height={500}
+          />
         </div>
       </div>
     </header>

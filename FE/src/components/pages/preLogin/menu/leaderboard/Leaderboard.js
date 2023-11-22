@@ -21,7 +21,7 @@ function Leaderboard () {
   return (
     leadersData &&
     leadersData.length > 0 && (
-      <section>
+      <section className='app-wrap'>
         <h2 className='section-title'>
           <span className='span-brand'> Leader</span>board
         </h2>

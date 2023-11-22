@@ -1,6 +1,6 @@
 function Matches () {
   return (
-    <section>
+    <section className='app-wrap'>
       <h2>Tabela Meczów</h2>
 
       <p>
@@ -25,7 +25,7 @@ export default Matches
 //       const headers = { 'X-Auth-Token': '2e5640899c95458992402923bfb45b69' }
 
 //       try {
-//         const response = await fetch(uri, { method: 'GET', headers })
+//         const response = await fetch(uri, { method: 'POST}', headers })
 //         const data = await response.json()
 
 //         // Assuming the response structure has a 'matches' property
