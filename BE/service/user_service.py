@@ -4,15 +4,18 @@ from shared.base import session_factory
 import bcrypt
 import uuid
 from sqlalchemy import update
+from sqlalchemy.exc import IntegrityError
 from service.email_service import send_activation_mail
 from service.activation_service import create_activation,activate
 from configuration.configuration_manager import Configuration_Manager
 from datetime import datetime, timedelta
+from exceptions.user_alredy_exist_email_exception import User_Alredy_Exist_Email_Exception
+from exceptions.user_alredy_exist_name_exception import User_Alredy_Exist_Name_Exception
 
 
 config = Configuration_Manager.get_instance()
 def create_user(user:Users):
-    if password:
+    if user.password:
         salt = bcrypt.gensalt()
         password = user.password.encode('utf-8')
         hashed_password = bcrypt.hashpw(password, salt)
@@ -22,11 +25,19 @@ def create_user(user:Users):
         user.isActive = False
         user.public_id = str(uuid.uuid4())
     with session_factory() as session:
-        session.add(user)
-        session.commit()
-        session.refresh(user)
-        create_activation(user_id=user.id)
-        send_activation_mail(user.email)
+        try:
+            session.add(user)
+            session.commit()
+            session.refresh(user)
+            create_activation(user_id=user.id)
+            send_activation_mail(user.email)
+        except IntegrityError as e:
+             if 'UNIQUE constraint failed' in str(e.orig):
+                if 'users.name' in str(e.orig):
+                    raise User_Alredy_Exist_Name_Exception(user.name)
+                elif 'users.email' in str(e.orig):
+                    raise User_Alredy_Exist_Email_Exception(user.email)
+            
 
 def activate_user(code:str):
     user_id = activate(code)

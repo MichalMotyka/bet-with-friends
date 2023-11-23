@@ -3,5 +3,5 @@ from dataclasses import dataclass
 @dataclass(order=True,frozen=True)
 class Response():
     message:str
-    code:int
+    code:str
     time_stamp:float
