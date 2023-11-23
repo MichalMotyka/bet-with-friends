@@ -1,8 +1,8 @@
 function SingUp () {
   return (
-    <>
-      <p>Sign Up</p>
-    </>
+    <section className='app-wrap'>
+      <p>Sing Up</p>
+    </section>
   )
 }
 
