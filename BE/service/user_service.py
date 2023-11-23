@@ -43,11 +43,10 @@ def create_user(user:Users):
 
 def activate_user(code:str):
     user_id = activate(code)
-    if user_id:
-        with session_factory() as session:
-            stmt = update(Users).where(Users.id == user_id).where(Users.isActive == False).values(isActive=True)
-            session.execute(stmt)
-            session.commit()
+    with session_factory() as session:
+        stmt = update(Users).where(Users.id == user_id).where(Users.isActive == False).values(isActive=True)
+        session.execute(stmt)
+        session.commit()
 
 def login(user:Users):
     with session_factory() as session:
