@@ -1,13 +1,112 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --brand-color: #f75a4c;
+  --brand-font: 24px;
+  --brand-alt-color: #2C2D5B;   
+  --white-color: #ffffff;
+  --black-color: #000000;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body { 
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  overflow-y: scroll;
 }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+}
+
+a {
+  text-decoration: none; 
+}
+
+h1{
+  /* 48px */
+  font-size: 3rem; 
+}
+h2{
+  /* 40px */
+  font-size: 2.5rem;
+}
+/* TYTUŁY w HiW zrób globalnie pod h3 */
+h3{
+  font-size: 2.5rem;
+}
+
+hr {
+  max-width: 1000px;
+  height: 5px;
+  border: none;
+  border-radius: 20%;
+  background: rgba(229, 229, 229, 0.40);
+}
+
+.wrapper { 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+.app-wrap{
+  box-sizing: border-box;
+  padding: 0 10px;
+  max-width: 1200px;
+  width: 100%;  
+  margin: 0 auto; 
+ 
+}
+
+.span-brand{
+  color: var(--brand-color)
+}
+
+.brand{
+color: #000;
+font-size: 24px;
+font-style: normal;
+font-weight: 900;
+line-height: normal;
+}
+
+.section-title{
+text-align: center;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 575.98px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    overflow-x: hidden;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+ 
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+ 
+}
+
+
+

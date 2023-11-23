@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
 
-import Main from '../../frontPages/main/Main'
-import About from '../../frontPages/menu/about/About'
-import Matches from '../../frontPages/menu/matches/Matches'
-import Leaderboard from '../../frontPages/menu/leaderboard/Leaderboard'
-import Login from '../../auth/login/Login'
-import SingUp from '../../auth/signup/SignUp'
+import Main from '../../main/Main'
+import Matches from '../../menu/matches/Matches'
+import About from '../../menu/about/About'
+import Leaderboard from '../../menu/leaderboard/Leaderboard'
+import Login from '../../../../auth/login/Login'
+import SingUp from '../../../../auth/signup/SignUp'
 
 function Routing () {
   return (
