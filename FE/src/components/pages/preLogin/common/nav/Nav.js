@@ -98,7 +98,7 @@ function Nav () {
           <img
             style={{ width: '50px' }}
             src={hamClose}
-            alt='open hamburger menu icon'
+            alt='closed hamburger menu icon'
           />
         )}
       </button>

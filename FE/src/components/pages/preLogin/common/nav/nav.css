@@ -102,9 +102,7 @@
         font-weight: bold;
         transition: color 0.3s;
         font-size: 24px;
-    }    
-
-   
+    }       
     
     .nav-front-signup-btn {
         margin-left: 0px; 
@@ -170,7 +168,7 @@
     }      
     
     .nav-front-signup-btn {
-        margin-left: 0px; 
+        margin-left: 0px;    
     }   
 }
 

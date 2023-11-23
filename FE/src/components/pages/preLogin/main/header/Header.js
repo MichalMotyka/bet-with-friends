@@ -7,7 +7,7 @@ function Header () {
     <header className='app-wrap'>
       <div className='header-front'>
         <div className='header-front-text'>
-          <h1>
+          <h1 className='header-h1'>
             Obstawiaj wyniki rozgrywek
             <span className='span-brand'> Euro 2024</span> i porównuj się ze
             znajomymi!
@@ -23,7 +23,8 @@ function Header () {
           </Link>
         </div>
 
-        <div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
           <img
             className='header-front-logo'
             src={mainLogo}
