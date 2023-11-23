@@ -1,7 +1,6 @@
 .nav-front {
     display: flex;
-    list-style: none;
-   
+    list-style: none;   
 }
 
 .nav-menu-item {
@@ -40,73 +39,215 @@
     color: var(--brand-color);
 }
 
-
 /* //HAMBURGER MENU  */
 
 .hamburger-btn{
     display: none;
 }
 
-.display-hamburger-true{
-    display: flex;
-}
-
-.display-hamburger-false{
-    display: none;
-}
-
-
-
-
-
 /* Styl dla większych ekranów */
 
 @media (max-width: 575.98px) {
 
-     /* //HAMBURGER MENU */
-     
+     /* //HAMBURGER MENU */   
 
     .hamburger-btn{
         z-index: 99;
-        display: block;
-        padding: 25px;       
+        display: block;    
     }
 
     .nav-front{    
         position: absolute;
+        padding: 0;
         left: 0;
         right: 0;
-        top: 25px;
+        top: 55px;
         bottom: 0;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
-        height: 400px;
+        height: 500px;
         background-color: var(--white-color);
+        animation: expandNav 0.3s ease forwards; 
     }
+
+    @keyframes expandNav {
+        from {
+          height: 0; 
+        }
+        to {
+          height: 500px; 
+        }
+      }
 
     .hamburger-display-flex{
         display: flex;
+        align-items: center;
     }
     
     .hamburger-display-none{
         display: none;
-    }
+    } 
+
+    /* // NAV MOBILE */
 
     .front-brand-logo{          
         z-index: 99;        
-        font-size: 16px;
+        font-size: 18px;
     }
 
+    .nav-menu-item {     
+        margin: 10px;
+        font-weight: bold;
+        transition: color 0.3s;
+        font-size: 24px;
+    }    
 
-    
    
+    
+    .nav-front-signup-btn {
+        margin-left: 0px; 
+    }   
 
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    
+     /* //HAMBURGER MENU */   
 
-@media (min-width: 768px) and (max-width: 991.98px) {}
+     .hamburger-btn{
+        z-index: 99;
+        display: block;    
+    }
 
-@media (min-width: 992px) and (max-width: 1199.98px) {}
+    .nav-front{    
+        position: absolute;
+        padding: 0;
+        left: 0;
+        right: 0;
+        top: 55px;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 500px;
+        background-color: var(--white-color);
+        animation: expandNav 0.3s ease forwards; 
+    }
+
+    @keyframes expandNav {
+        from {
+          height: 0; 
+        }
+        to {
+          height: 500px; 
+        }
+      }
+
+    .hamburger-display-flex{
+        display: flex;
+        align-items: center;
+    }
+    
+    .hamburger-display-none{
+        display: none;
+    } 
+
+    /* // NAV MOBILE */
+
+    .front-brand-logo{          
+        z-index: 99;        
+        font-size: 20px;
+    }
+
+    .nav-menu-item {     
+        margin: 10px;
+        font-weight: bold;
+        transition: color 0.3s;
+        font-size: 24px;
+    }    
+
+   
+  
+    
+    .nav-front-signup-btn {
+        margin-left: 0px; 
+    }   
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    .hamburger-btn{
+        z-index: 99;
+        display: none;    
+    }  
+
+    /* // NAV MOBILE */
+
+    .front-brand-logo{          
+        z-index: 99;        
+        font-size: 22px;
+    }
+
+   
+
+    .nav-menu-item {     
+        /* margin: 0 10px; */
+        font-weight: bold;
+        transition: color 0.3s;
+        font-size: 16px;
+      
+        padding: 0 8px;
+    }    
+
+   
+
+    .nav-front-login-btn {
+        font-size: 16px;
+    }
+  
+    
+    .nav-front-signup-btn {
+        font-size: 16px;
+        margin-left: 10px; 
+    }   
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {     
+
+    /* // NAV MOBILE */
+
+    .hamburger-btn{
+        z-index: 99;
+        display: none;    
+    }  
+
+    /* // NAV MOBILE */
+
+    .front-brand-logo{          
+        z-index: 99;        
+        font-size: 22px;
+    }
+
+   
+
+    .nav-menu-item {     
+        /* margin: 0 10px; */
+        font-weight: bold;
+        transition: color 0.3s;
+       
+      
+    }    
+
+   
+
+   
+  
+    
+    .nav-front-signup-btn {
+    
+        margin-left: 10px; 
+    }   
+}

@@ -11,7 +11,6 @@ function Nav () {
     setOpen(!open)
   }
 
-  console.log(open)
   return (
     <nav className='app-wrap'>
       <Link to='/' className='brand front-brand-logo'>
@@ -77,7 +76,7 @@ function Nav () {
           <NavLink
             to='/singUp'
             className='nav-front-signup-btn'
-            activeClassName='active'
+            activeclassname='active'
           >
             Sign Up
           </NavLink>
