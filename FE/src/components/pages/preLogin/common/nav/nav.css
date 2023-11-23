@@ -1,10 +1,11 @@
 .nav-front {
-    display: flex;   
+    display: flex;
     list-style: none;
+   
 }
 
-.nav-menu-item {     
-    color: black;
+.nav-menu-item {
+    color: var(--black-color);
     padding: 15px 30px;
     font-weight: bold;
     transition: color 0.3s;
@@ -16,7 +17,7 @@
 }
 
 .nav-front-login-btn {
-    color: black;
+    color: var(--black-color);
     padding: 15px 30px;
     border-radius: 12px;
     border: 1px solid var(--brand-alt-color);
@@ -25,41 +26,87 @@
 }
 
 .nav-front-signup-btn {
-    color: white;
+    color: var(--white-color);
     font-weight: bold;
     margin-left: 20px;
     padding: 15px 30px;
     border-radius: 12px;
     border: 1px solid var(--brand-alt-color);
-    background: var(--brand-alt-color);  
+    background: var(--brand-alt-color);
     font-size: 18px;
 }
 
 .active {
-    color: var(--brand-color);    
+    color: var(--brand-color);
 }
+
+
+/* //HAMBURGER MENU  */
+
+.hamburger-btn{
+    display: none;
+}
+
+.display-hamburger-true{
+    display: flex;
+}
+
+.display-hamburger-false{
+    display: none;
+}
+
+
+
 
 
 /* Styl dla większych ekranów */
 
 @media (max-width: 575.98px) {
-    .front-main-nav{
-        background-color: silver;
+
+     /* //HAMBURGER MENU */
+     
+
+    .hamburger-btn{
+        z-index: 99;
+        display: block;
+        padding: 25px;       
     }
-  .nav-front{
-    display: none;
-  }
-  
+
+    .nav-front{    
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 25px;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 400px;
+        background-color: var(--white-color);
+    }
+
+    .hamburger-display-flex{
+        display: flex;
+    }
+    
+    .hamburger-display-none{
+        display: none;
+    }
+
+    .front-brand-logo{          
+        z-index: 99;        
+        font-size: 16px;
+    }
+
+
+    
+   
+
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {
-}
+@media (min-width: 576px) and (max-width: 767.98px) {}
 
-@media (min-width: 768px) and (max-width: 991.98px) {
+@media (min-width: 768px) and (max-width: 991.98px) {}
 
- 
-}
-
-@media (min-width: 992px) and (max-width: 1199.98px) {
- 
-}
+@media (min-width: 992px) and (max-width: 1199.98px) {}

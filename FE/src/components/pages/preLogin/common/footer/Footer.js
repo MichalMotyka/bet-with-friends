@@ -13,7 +13,7 @@ function Footer () {
   }
 
   return (
-    <footer className='front-footer '>
+    <footer className='front-footer'>
       <div className='app-wrap'>
         <div className='footer-front-box footer-front-text '>
           <div className='footer-front-item'>
@@ -26,8 +26,8 @@ function Footer () {
             </Link>
             <p>
               Dołącz do społeczności typujących! Przewiduj wyniki meczów,
-              rywalizuj z innymi i zdobywaj punkty. © [2023] [Best With Friends]
-              Wszelkie prawa zastrzeżone.
+              rywalizuj z innymi i zdobywaj punkty. <br />
+              [2023] [Best With Friends ©] Wszelkie prawa zastrzeżone.
             </p>
           </div>
 

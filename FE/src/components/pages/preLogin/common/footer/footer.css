@@ -1,8 +1,9 @@
 .front-footer {
     background-color: var(--brand-alt-color);
-    color: white; 
-     width: 100%;
+    color: var(--white-color); 
+    width: 100%;
     margin-top: auto;
+    box-sizing: border-box;
 }
 
 .footer-front-box{
@@ -17,7 +18,7 @@
 }
 
 .footer-menu-item{
-    color: white;    
+    color: var(--white-color);    
     transition: color .3s;
 }
 
@@ -34,13 +35,10 @@
     padding: 5px 0;   
 }
 
-
 .footer-brand{
-
-    color: white;
-  
- 
+    color: var(--white-color); 
 }
+
 .footer-top-brand {
 display: block;
 margin: 24px 0;

@@ -6,13 +6,11 @@ import './index.css'
 
 function App () {
   return (
-    <>
-      <div className='wrapper'>
-        <Nav />
-        <Routing />
-        <Footer />
-      </div>
-    </>
+    <div className='wrapper'>
+      <Nav />
+      <Routing />
+      <Footer />
+    </div>
   )
 }
 

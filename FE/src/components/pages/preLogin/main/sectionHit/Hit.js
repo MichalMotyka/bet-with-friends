@@ -30,7 +30,7 @@ function Hit () {
           </div>
 
           <div>
-            <img
+            <img  className='hit-image'
               src={createAccount}
               width={500}
               height={500}
@@ -43,7 +43,7 @@ function Hit () {
 
         <div className='hit-item'>
           <div>
-            <img
+            <img className='hit-image'
               src={getPoints}
               width={500}
               height={500}
@@ -81,7 +81,7 @@ function Hit () {
           </div>
 
           <div>
-            <img
+            <img className='hit-image'
               src={beLeader}
               width={500}
               height={500}

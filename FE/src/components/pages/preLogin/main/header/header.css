@@ -18,18 +18,32 @@
     border-radius: 12px;   
     background: #2C2D5B;  
     font-weight: bold; 
-    color: white; 
+    color: var(--white-color); 
     transition: color 0.3s, background-color 0.3s, border-color 0.3s; 
 }
 
 .header-front-btn:hover{    
     border: 1px solid var(--brand-alt-color);
-    background-color: #ffffff;     
+    background-color: var(--white-color);     
     color: var(--brand-alt-color); 
 }
 
 @media (max-width: 575.98px) {
-  
+
+
+  .header-front{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-front-text{
+    width: 100%;
+ }
+
+  .header-front-logo{
+    width: 250px;
+    height: 250px;
+  }
   
 }
 

@@ -2,16 +2,12 @@
   --brand-color: #f75a4c;
   --brand-font: 24px;
   --brand-alt-color: #2C2D5B;   
+  --white-color: #ffffff;
+  --black-color: #000000;
 }
+/* var(--white-color)
+var(--black-color) */
 
-* {
-  box-sizing: inherit;  
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-}
 
 body { 
   box-sizing: border-box;
@@ -32,7 +28,7 @@ nav {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none; 
 }
 
 h1{
@@ -56,23 +52,20 @@ hr {
   background: rgba(229, 229, 229, 0.40);
 }
 
-.wrapper {
+.wrapper { 
   display: flex;
   flex-direction: column;
-  min-height: 100vh;  
-  margin: 0 auto;
-  /* Dodaj paddingi po bokach */
+  min-height: 100vh; 
 }
 
 .app-wrap{
+  box-sizing: border-box;
+  padding: 0 10px;
   max-width: 1200px;
   width: 100%;  
   margin: 0 auto; 
-  padding: 0 10px;
+ 
 }
-
-
-
 
 .span-brand{
   color: var(--brand-color)
@@ -96,9 +89,14 @@ text-align: center;
 
 
 
-/* 
+
 @media (max-width: 575.98px) {
-  
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    overflow-x: hidden;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -111,7 +109,7 @@ text-align: center;
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
  
-} */
+}
 
 
 

@@ -23,8 +23,9 @@ function Header () {
           </Link>
         </div>
 
-        <div className='header-front-logo'>
+        <div>
           <img
+            className='header-front-logo'
             src={mainLogo}
             alt='Bet With Friends main logo'
             width={500}
