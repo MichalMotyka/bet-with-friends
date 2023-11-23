@@ -3,9 +3,9 @@ import ssl
 import smtplib
 import os
 import re
-from configuration.configuration_manager import Configuration_Manager
+from configuration.configuration_manager import ConfigurationManager
 
-configuration = Configuration_Manager.get_instance()
+configuration = ConfigurationManager.get_instance()
 
 password = configuration.get_config_by_key('smtp.password')
 email = configuration.get_config_by_key('smtp.email')
