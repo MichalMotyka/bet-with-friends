@@ -5,13 +5,15 @@
             "type": "string",
             "minLength": 5,
             "description": "Username",
-            "errorMessage": "Nazwa musi mieć co najmniej 5 znaków."
+            "errorMessage": "The name must have at least 5 characters.",
+            "code":"L3"
         },
         "password": {
             "type": "string",
             "minLength": 8,
-            "description": "password",
-            "errorMessage": "Hasło musi mieć co najmniej 8 znaków."
+            "description": "Password",
+            "errorMessage": "The password must have at least 8 characters.",
+            "code":"L4"
         }
     },
     "required": ["name", "password"]
