@@ -167,10 +167,7 @@
         font-weight: bold;
         transition: color 0.3s;
         font-size: 24px;
-    }    
-
-   
-  
+    }      
     
     .nav-front-signup-btn {
         margin-left: 0px; 
@@ -197,8 +194,7 @@
         /* margin: 0 10px; */
         font-weight: bold;
         transition: color 0.3s;
-        font-size: 16px;
-      
+        font-size: 16px;      
         padding: 0 8px;
     }    
 
@@ -230,24 +226,13 @@
         z-index: 99;        
         font-size: 22px;
     }
-
-   
-
     .nav-menu-item {     
         /* margin: 0 10px; */
         font-weight: bold;
-        transition: color 0.3s;
+        transition: color 0.3s;     
        
-      
     }    
-
-   
-
-   
-  
-    
-    .nav-front-signup-btn {
-    
-        margin-left: 10px; 
+    .nav-front-signup-btn {    
+        margin-left: 20px;         
     }   
 }
