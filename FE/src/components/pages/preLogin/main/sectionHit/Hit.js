@@ -29,27 +29,27 @@ function Hit () {
             </p>
           </div>
 
-          <div>
-            <img  className='hit-image'
-              src={createAccount}
-              width={500}
-              height={500}
-              alt='Cartoon Raccon Creating an Account'
-            />
-          </div>
+          <img
+            className='hit-image'
+            src={createAccount}
+            loading='lazy'
+            width={500}
+            height={500}
+            alt='Cartoon Raccon Creating an Account'
+          />
         </div>
 
         <img className='arrow-one' src={arrowOne} alt='' />
 
         <div className='hit-item'>
-          <div>
-            <img className='hit-image'
-              src={getPoints}
-              width={500}
-              height={500}
-              alt='Cartoon Raccon Creating an Account'
-            />
-          </div>
+          <img
+            className='hit-image hit-image-mid'
+            src={getPoints}
+            loading='lazy'
+            width={500}
+            height={500}
+            alt='Cartoon Raccon Creating an Account'
+          />
           <div className='hit-text'>
             <div>
               <h3 className='span-brand'>
@@ -62,6 +62,15 @@ function Hit () {
               trafności Twoich przewidywań.
             </p>
           </div>
+
+          <img
+            className='hit-image hit-image-mid-bot'
+            src={getPoints}
+            loading='lazy'
+            width={500}
+            height={500}
+            alt='Cartoon Raccon Creating an Account'
+          />
         </div>
 
         <img className='arrow-two' src={arrowTwo} alt='' />
@@ -74,20 +83,21 @@ function Hit () {
               </h3>
             </div>
             <p>
-              Po zakończeniu rozgrywek nasz system automatycznie przydzieli
-              odpowiednią ilość punktów do Twojego profilu w zależności od
-              trafności Twoich przewidywań
+              Tabela wyników będzie regularnie aktualizowana, prezentując
+              punktację innych użytkowników serwisu. Sprawdź, jak dobrze radzisz
+              sobie w porównaniu z innymi i zobacz, na której pozycji aktualnie
+              się znajdujesz.
             </p>
           </div>
 
-          <div>
-            <img className='hit-image'
-              src={beLeader}
-              width={500}
-              height={500}
-              alt='Cartoon Raccon checking leaderboard'
-            />
-          </div>
+          <img
+            className='hit-image'
+            src={beLeader}
+            loading='lazy'
+            width={500}
+            height={500}
+            alt='Cartoon Raccon checking leaderboard'
+          />
         </div>
       </div>
     </section>
