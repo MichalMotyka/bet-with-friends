@@ -97,8 +97,7 @@ text-align: center;
   }
   h3{
     font-size: 1.9rem; 
-  }
-    
+  }    
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -136,6 +135,3 @@ text-align: center;
     font-size: 2.275rem; 
   }
 }
-
-
-

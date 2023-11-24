@@ -130,15 +130,10 @@
         padding: 0;     
     }
     
-   
-    
-  
-  
-    
     .footer-bot-brand {
         font-size: 20px;
         text-align: center;
     }
 }
 
-@media (min-width: 992px) and (max-width: 1199.98px) {}
+/* @media (min-width: 992px) and (max-width: 1199.98px) {} */
