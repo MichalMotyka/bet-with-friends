@@ -14,7 +14,6 @@ from exceptions.user_alredy_exist_name_exception import UserAlredyExistNameExcep
 from exceptions.user_not_activated_exception import UserNotActivatedException
 from exceptions.password_or_login_incorrect_exception import PasswordOrLoginIncorrectException
 
-
 config = ConfigurationManager.get_instance()
 def create_user(user:Users):
     if user.password:
@@ -38,16 +37,14 @@ def create_user(user:Users):
                 if 'users.name' in str(e.orig):
                     raise UserAlredyExistNameException(user.name)
                 elif 'users.email' in str(e.orig):
-                    raise UserAlredyExistEmailException(user.email)
-            
+                    raise UserAlredyExistEmailException(user.email)            
 
 def activate_user(code:str):
     user_id = activate(code)
-    if user_id:
-        with session_factory() as session:
-            stmt = update(Users).where(Users.id == user_id).where(Users.isActive == False).values(isActive=True)
-            session.execute(stmt)
-            session.commit()
+    with session_factory() as session:
+        stmt = update(Users).where(Users.id == user_id).where(Users.isActive == False).values(isActive=True)
+        session.execute(stmt)
+        session.commit()
 
 def login(user:Users):
     with session_factory() as session:

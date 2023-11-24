@@ -2,6 +2,7 @@ from entity.activation import Activation
 from shared.base import session_factory
 import uuid
 from datetime import datetime, timedelta
+from exceptions.activation_code_invalid_exception import ActivationCodeInvalidException
 
 def create_activation(user_id:int):
     now = datetime.now()
@@ -23,6 +24,6 @@ def activate(code:str):
             else:
                 session.delete(activation)
                 session.commit()
-                return None
-        else:
-            return None
+                raise ActivationCodeInvalidException()
+        raise ActivationCodeInvalidException()
+            
