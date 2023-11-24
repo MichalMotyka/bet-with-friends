@@ -19,28 +19,25 @@ def register():
     new_user = request_validator.register_validation()
     try:
         user_service.create_user(user=new_user)
-        response = make_response(Response(message='The user has been created successfully.',code='OK',time_stamp=datetime.utcnow().timestamp()).__dict__)
+        response = make_response(Response(message='The user has been created successfully.',code='OK').__dict__)
         response.status_code = 200
     except (UserAlredyExistEmailException, UserAlredyExistNameException) as e:
-        response = make_response(Response(message=e.message,code=e.code,time_stamp=datetime.utcnow().timestamp()).__dict__)
+        response = make_response(Response(message=e.message,code=e.code).__dict__)
         response.status_code = 400
     except ValidationError as e:
-        response = make_response(Response(message=e.schema['errorMessage'],code=e.schema['code'],time_stamp=datetime.utcnow().timestamp()).__dict__)
+        response = make_response(Response(message=e.schema['errorMessage'],code=e.schema['code']).__dict__)
         response.status_code = 400
     return response 
-    
 
 @user_blueprint.route('/activate/<code>', methods=['POST'])
 def activate(code:str):
     try:
         user_service.activate_user(code=code)
-        response = make_response(Response(message='The user has been successfully activated.',code='OK',time_stamp=datetime.utcnow().timestamp()).__dict__)
+        response = make_response(Response(message='The user has been successfully activated.',code='OK').__dict__)
     except ActivationCodeInvalidException as e:
-        response = make_response(Response(message=e.message,code=e.code,time_stamp=datetime.utcnow().timestamp()).__dict__)
+        response = make_response(Response(message=e.message,code=e.code).__dict__)
         response.status_code = 400
     return response
-    
-
 
 @user_blueprint.route('/login', methods=['POST'])
 def login():
@@ -49,17 +46,15 @@ def login():
         jwtTokens = user_service.login(user)
         if jwtTokens:
             authorize, refresh = jwtTokens
-            response = make_response(Response(message='The user has been successfully logged in.',code='OK',time_stamp=datetime.utcnow().timestamp()).__dict__)
+            response = make_response(Response(message='The user has been successfully logged in.',code='OK').__dict__)
             expiration = datetime.utcnow() + timedelta(minutes=config.get_config_by_key("jwt.exp.authorization"))
             response.set_cookie('Authorization',authorize,expires=expiration,httponly=True)
             expiration = datetime.utcnow() + timedelta(minutes=config.get_config_by_key("jwt.exp.refresh"))
             response.set_cookie('Refresh',refresh,expires=expiration,httponly=True)
     except (PasswordOrLoginIncorrectException, UserNotActivatedException) as e:
-         response = make_response(Response(message=e.message,code=e.code,time_stamp=datetime.utcnow().timestamp()).__dict__)
+         response = make_response(Response(message=e.message,code=e.code).__dict__)
          response.status_code = 400
     except ValidationError as e:
-        response = make_response(Response(message=e.schema['errorMessage'],code=e.schema['code'],time_stamp=datetime.utcnow().timestamp()).__dict__)
+        response = make_response(Response(message=e.schema['errorMessage'],code=e.schema['code']).__dict__)
         response.status_code = 400
     return response
-        
-    
