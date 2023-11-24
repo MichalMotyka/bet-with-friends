@@ -26,8 +26,8 @@ function Footer () {
             </Link>
             <p>
               Dołącz do społeczności typujących! Przewiduj wyniki meczów,
-              rywalizuj z innymi i zdobywaj punkty. <br />
-              [2023] [Best With Friends ©] Wszelkie prawa zastrzeżone.
+              rywalizuj z innymi i zdobywaj punkty. [Best With Friends ©] [2023]
+              Wszelkie prawa zastrzeżone.
             </p>
           </div>
 
@@ -88,7 +88,7 @@ function Footer () {
           </div>
 
           <img
-            className='footer-front-item'
+            className='footer-front-item footer-front-img'
             src={footerLogo}
             width={250}
             height={250}

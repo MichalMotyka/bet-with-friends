@@ -1,5 +1,6 @@
 :root {
   --brand-color: #f75a4c;
+  /* --brand-color: rgb(241, 57, 40); */
   --brand-font: 24px;
   --brand-alt-color: #2C2D5B;   
   --white-color: #ffffff;
@@ -60,8 +61,7 @@ hr {
   padding: 0 10px;
   max-width: 1200px;
   width: 100%;  
-  margin: 0 auto; 
- 
+  margin: 0 auto;  
 }
 
 .span-brand{
@@ -80,32 +80,61 @@ line-height: normal;
 text-align: center;
 }
 
-
-
-
-
-
-
+/* GLOBAL RESPONSIVE STYLES  */
 
 @media (max-width: 575.98px) {
-  .wrapper {
+  /* .wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh; 
     overflow-x: hidden;
+  } */
+  h1{
+    font-size: 2.375rem; 
   }
+  h2{
+    font-size: 2rem; 
+  }
+  h3{
+    font-size: 1.9rem; 
+  }
+    
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
+  h1{   
+    font-size: 2.625rem; 
+  }
+  h2{
+    font-size: 2.125rem; 
+  }
+  h3{
+    font-size: 2.025rem; 
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-
- 
+  h1{  
+    font-size: 2.75rem; 
+  } 
+  h2{
+    font-size: 2.25rem;
+  }
+  h2{
+    font-size: 2.15rem;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
- 
+  h1{  
+    font-size: 2.875rem; 
+  }  
+  h2{
+    font-size: 2.375rem; 
+  }
+  h2{
+    font-size: 2.275rem; 
+  }
 }
 
 

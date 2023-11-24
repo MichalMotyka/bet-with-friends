@@ -90,13 +90,15 @@ function Nav () {
       >
         {open === false ? (
           <img
-            style={{ width: '50px' }}
+            width={50}
+            height={50}
             src={hamOpen}
             alt='open hamburger menu icon'
           />
         ) : (
           <img
-            style={{ width: '50px' }}
+            width={50}
+            height={50}
             src={hamClose}
             alt='closed hamburger menu icon'
           />
