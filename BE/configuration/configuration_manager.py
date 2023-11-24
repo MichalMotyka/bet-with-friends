@@ -1,7 +1,7 @@
 import json
 import os
 
-class Configuration_Manager():
+class ConfigurationManager():
     __instance = None
     __config_map = None
     
