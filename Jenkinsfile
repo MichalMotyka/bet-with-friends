@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout Backend') {
-            steps {
-                // Sklonowanie repozytorium backendowego
-                git 'https://github.com/MichalMotyka/bet-with-friends.git'
-            }
-        }
         stage('Build Backend Docker Image') {
             steps {
                 // Zbudowanie obrazu Dockera dla backendu
