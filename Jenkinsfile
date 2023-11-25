@@ -21,10 +21,10 @@ pipeline {
         stage('Remove containers'){
             steps{
                 script{
-                    sh "docker stop bfw_be:latest || true"
-                    sh "docker rm bfw_be:latest || true"
-                    sh "docker stop bfw_fe:latest || true"
-                    sh "docker rm bfw_fe:latest || true"
+                    sh "docker stop bfw_be || true"
+                    sh "docker rm bfw_be || true"
+                    sh "docker stop bfw_fe || true"
+                    sh "docker rm bfw_fe || true"
                 }
             }
         }
@@ -32,8 +32,8 @@ pipeline {
             steps {
                 // Uruchomienie kontenerów na serwerze
                 script {
-                    sh 'docker run -d -p 5000:5000 bfw_be:latest'
-                     sh 'docker run -d -p 3000:000 bfw_fe:latest'
+                    sh 'docker run -d -p 5000:5000 --name bfw_be bfw_be:latest'
+                     sh 'docker run -d -p 3000:000 --name bfw_fe bfw_fe:latest'
                 }
             }
         }
