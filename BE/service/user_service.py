@@ -13,6 +13,7 @@ from exceptions.user_alredy_exist_email_exception import UserAlredyExistEmailExc
 from exceptions.user_alredy_exist_name_exception import UserAlredyExistNameException
 from exceptions.user_not_activated_exception import UserNotActivatedException
 from exceptions.password_or_login_incorrect_exception import PasswordOrLoginIncorrectException
+from exceptions.user_dont_exist_exception import UserDontExistException
 
 config = ConfigurationManager.get_instance()
 def create_user(user:Users):
@@ -55,13 +56,22 @@ def login(user:Users):
             raise UserNotActivatedException()
         password = user.password.encode('utf-8')
         password = bcrypt.hashpw(password,userdb.salt)
-        expiry_time = datetime.utcnow() + timedelta(minutes=config.get_config_by_key("jwt.exp.authorization"))
-        expiry_refresh = datetime.utcnow() + timedelta(minutes=config.get_config_by_key("jwt.exp.refresh"))
+        expiry_time = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
+        expiry_refresh = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
         if password == userdb.password:
             authorize = jwt.encode({'exp':expiry_time,'user_uid': userdb.public_id,'isAdmin':userdb.admin,'isActive':userdb.isActive,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
             refresh = jwt.encode({'exp':expiry_refresh,'user_uid': userdb.public_id,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
             return authorize, refresh
         raise PasswordOrLoginIncorrectException()
+
+def find_user_by_uid(uuid):
+    with session_factory() as session:
+        user = session.query(Users).filter_by(public_id=uuid).first()
+        if not user:
+           raise UserDontExistException()
+        elif not user.isActive:
+            raise UserNotActivatedException()
+        return user
 
 
 
