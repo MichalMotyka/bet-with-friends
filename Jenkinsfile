@@ -33,7 +33,7 @@ pipeline {
                 // Uruchomienie kontenerów na serwerze
                 script {
                     sh 'docker run -d -p 5000:5000 --name bfw_be bfw_be:latest'
-                     sh 'docker run -d -p 3000:3000 --name bfw_fe bfw_fe:latest'
+                     sh 'docker run -d -p 80:80 --name bfw_fe bfw_fe:latest'
                 }
             }
         }
