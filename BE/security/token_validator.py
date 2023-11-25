@@ -2,9 +2,12 @@ from functools import wraps
 from flask import make_response, request
 import jwt
 from entity.response import Response
-from BE.entity.users import Users
+from entity.users import Users
 from configuration.configuration_manager import ConfigurationManager
 from datetime import datetime, timedelta
+from service.user_service import find_user_by_uid
+from exceptions.user_not_activated_exception import UserNotActivatedException
+from exceptions.user_dont_exist_exception import UserDontExistException
 
 config = ConfigurationManager.get_instance()
 
@@ -13,8 +16,6 @@ def token_required(f):
     def decorator(*args, **kwargs):
         token = None
         refresh_token= None
-        authorize = None
-        refresh = None
         if 'Authorization' in request.headers:
             token = request.headers['Authorization']
         elif 'Refresh' in request.headers:
@@ -25,24 +26,33 @@ def token_required(f):
                 expiry_refresh = datetime.utcnow() + timedelta(minutes=config.get_config_by_key("jwt.exp.refresh"))
                 authorize = jwt.encode({'exp':expiry_time,'user_uid': userdb.public_id,'isAdmin':userdb.admin,'isActive':userdb.isActive,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
                 refresh = jwt.encode({'exp':expiry_refresh,'user_uid': userdb.public_id,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
+                response = make_response()
+                expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
+                response.set_cookie('Authorization',authorize,expires=expiration,httponly=True)
+                expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
+                response.set_cookie('Refresh',refresh,expires=expiration,httponly=True)
+            except (UserNotActivatedException, UserDontExistException) as e:
+                response = make_response(Response(e.message,e.code).__dict__)
+                response.status_code = 401
+                return response
             except:
-                response = make_response(Response('Session expired','T1'))
+                response = make_response(Response('Session expired','T1').__dict__)
                 response.status_code = 401
                 return response
         if not token and not refresh_token:
-            response = make_response(Response('Session expired','T1'))
+            response = make_response(Response('Session expired','T1').__dict__)
             response.status_code = 401
             return response
         try:
             current_user = validate_token(token)
         except:
-            response = make_response(Response('Token is incorrect','T2'))
+            response = make_response(Response('Token is incorrect','T2').__dict__)
             response.status_code = 401
             return response
-        return f(current_user,authorize,refresh *args, **kwargs)
+        return f(current_user,response, *args, **kwargs)
     
     return decorator
 
 def validate_token(token):
-    data = jwt.decode(token, config.get_config_by_key('SECRET_KEY'))
-    return Users.query.filter_by(public_id=data['user_uid']).first()
+    data = jwt.decode(token, config.get_config_by_key('SECRET_KEY'),algorithms="HS256")
+    return find_user_by_uid(uuid=data['user_uid'])
