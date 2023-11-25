@@ -18,7 +18,7 @@ function Header () {
             sprawdzaj swoją punktację i zobacz, jakie miejsce zajmujesz w tabeli
             zwycięzców.
           </p>
-          <Link to='/singUp' className='header-front-btn'>
+          <Link to='/signup' className='header-front-btn'>
             Dołącz Teraz
           </Link>
         </div>
