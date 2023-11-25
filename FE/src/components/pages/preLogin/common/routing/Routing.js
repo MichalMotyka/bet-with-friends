@@ -15,7 +15,7 @@ function Routing () {
       <Route path='/About' element={<About />} />
       <Route path='/Leaderboard' element={<Leaderboard />} />
       <Route path='/Login' element={<Login />} />
-      <Route path='/SingUp' element={<SingUp />} />
+      <Route path='/SignUp' element={<SingUp />} />
     </Routes>
   )
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import validate from '../validation/SignUpValidation'
-function SingUp () {
-  
+function SignUp () {
   const handleSubmit = async (userData, { resetForm }) => {
     try {
+      console.log(userData)
       // Wysyłanie danych do backendu
       const response = await fetch('/api/register', {
         method: 'POST',
@@ -103,4 +103,4 @@ function SingUp () {
   )
 }
 
-export default SingUp
+export default SignUp

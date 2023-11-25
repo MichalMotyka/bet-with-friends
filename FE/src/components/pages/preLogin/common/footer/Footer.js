@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import footerLogo from '../../../../../assets/images/front/footer-logo.webp'
+import footerLogo from './images/footer-logo.webp'
 import './footer.css'
 
 function Footer () {
@@ -78,7 +78,7 @@ function Footer () {
               <li>
                 <Link
                   className='footer-menu-item'
-                  to='/singUp'
+                  to='/signup'
                   onClick={scrollToTop}
                 >
                   Sign Up

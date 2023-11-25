@@ -1,8 +1,8 @@
-import createAccount from '../../../../../assets/images/front/raccoon-account.webp'
-import getPoints from '../../../../../assets/images/front/raccoon-points.webp'
-import beLeader from '../../../../../assets/images/front/raccoon-leader.webp'
-import arrowOne from '../../../../../assets/images/front/arrow1.webp'
-import arrowTwo from '../../../../../assets/images/front/arrow2.webp'
+import createAccount from './images/raccoon-account.webp'
+import getPoints from './images/raccoon-points.webp'
+import beLeader from './images/raccoon-leader.webp'
+import arrowOne from './images/arrow1.webp'
+import arrowTwo from './images/arrow2.webp'
 import './hit.css'
 
 function Hit () {
