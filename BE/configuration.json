@@ -13,5 +13,12 @@
       "authorization":"1",
       "refresh":"240"
     }
+  },
+  "database":{
+    "user":"postgres",
+    "password":"RsnSVveeUY8Pxrq",
+    "name":"postgres",
+    "port":"5432",
+    "host":"130.162.44.103"
   }
 }
