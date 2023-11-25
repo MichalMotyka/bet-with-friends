@@ -7,7 +7,6 @@ pipeline {
                 // Zbudowanie obrazu Dockera dla backendu
                 script {
                     docker.build("bfw_be:latest", "./BE") // Ścieżka do katalogu backendowego
-                    docker.push("bfw_be:latest")
                 }
             }
         }
@@ -25,7 +24,6 @@ pipeline {
                 // Uruchomienie kontenerów na serwerze
                 script {
                     sshScript remote: remoteServer, script: '''
-                        docker pull bfw_be:latest
                         docker run -d -p 5000:5000 bfw_be:latest
                     '''
                 }
