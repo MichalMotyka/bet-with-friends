@@ -23,9 +23,7 @@ pipeline {
             steps {
                 // Uruchomienie kontenerów na serwerze
                 script {
-                    sshScript remote: remoteServer, script: '''
-                        docker run -d -p 5000:5000 bfw_be:latest
-                    '''
+                    sh 'docker run -d -p 5000:5000 bfw_be:latest'
                 }
             }
         }
