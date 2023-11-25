@@ -4,6 +4,8 @@ import hamOpen from '../../../../../assets/images/hamburger/hamOpen.webp'
 import hamClose from '../../../../../assets/images/hamburger/hamClose.webp'
 import './nav.css'
 
+// activeClassName='active'
+
 function Nav () {
   const [open, setOpen] = useState(false)
 
@@ -11,8 +13,10 @@ function Nav () {
     setOpen(!open)
   }
 
+  // <div className='app-wrap'>
+
   return (
-    <nav className='app-wrap'>
+    <nav className='app-wrap nav-box'>
       <Link to='/' className='brand front-brand-logo'>
         Bet With <span className='span-brand'>Friends</span>
       </Link>
@@ -27,57 +31,32 @@ function Nav () {
           {/* link jest aktywny tylko wtedy, gdy ścieżka URL jest identyczna z określoną ścieżką. 
             NavLink posiadafunkcje która za pomocą atrybutu activeClassName nadaje klasę active do aktualnie otwartego elementu menu.
           */}
-          <NavLink
-            className='nav-menu-item'
-            exact
-            to='/'
-            activeClassName='active'
-          >
+          <NavLink className='nav-menu-item' to='/'>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink
-            className='nav-menu-item'
-            to='/matches'
-            activeClassName='active'
-          >
+          <NavLink className='nav-menu-item' to='/matches'>
             Mecze
           </NavLink>
         </li>
         <li>
-          <NavLink
-            className='nav-menu-item'
-            to='/leaderboard'
-            activeClassName='active'
-          >
+          <NavLink className='nav-menu-item' to='/leaderboard'>
             Leaderboard
           </NavLink>
         </li>
         <li>
-          <NavLink
-            className='nav-menu-item'
-            to='/about'
-            activeClassName='active'
-          >
+          <NavLink className='nav-menu-item' to='/about'>
             O nas
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to='/login'
-            className='nav-front-login-btn'
-            activeClassName='active'
-          >
+          <NavLink to='/login' className='nav-front-login-btn'>
             Log In
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to='/singUp'
-            className='nav-front-signup-btn'
-            activeclassname='active'
-          >
+          <NavLink to='/signup' className='nav-front-signup-btn'>
             Sign Up
           </NavLink>
         </li>

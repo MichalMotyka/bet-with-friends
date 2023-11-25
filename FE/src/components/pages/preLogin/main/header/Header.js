@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import mainLogo from '../../../../../assets/images/front/raccoon-header2.webp'
+import headerLogo from './images/raccoon-header2.webp'
 import './header.css'
 
 function Header () {
@@ -23,11 +23,16 @@ function Header () {
           </Link>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
           <img
             className='header-front-logo'
-            src={mainLogo}
+            src={headerLogo}
             alt='Bet With Friends main logo'
             width={500}
             height={500}
