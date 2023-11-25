@@ -18,6 +18,16 @@ pipeline {
                 }
             }
         }
+        stage('Remove containers'){
+            steps{
+                script{
+                    sh "docker stop bfw_be:latest || true"
+                    sh "docker rm bfw_be:latest || true"
+                    sh "docker stop bfw_fe:latest || true"
+                    sh "docker rm bfw_fe:latest || true"
+                }
+            }
+        }
         stage('Deploy Containers') {
             steps {
                 // Uruchomienie kontenerów na serwerze
