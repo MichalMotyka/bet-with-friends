@@ -5,6 +5,7 @@
   --brand-alt-color: #2C2D5B;   
   --white-color: #ffffff;
   --black-color: #000000;
+  --signup-error: tomato;
 }
 
 body { 
