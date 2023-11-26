@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import validate from '../validation/SignUpValidation'
-import RaccoonLogin from './images/raccoon-login.webp'
+import RaccoonSignUp from './images/raccoon-signup.webp'
 import './signup.css'
 
 function SignUp () {
@@ -58,14 +58,14 @@ function SignUp () {
           Sign <span className='span-brand'>Up</span>
         </h2>
 
-        <link rel='preload' as='image' href={RaccoonLogin} />
+        <link rel='preload' as='image' href={RaccoonSignUp} />
 
         <img
-          className='raccon-login-img'
-          src={RaccoonLogin}
+          className='raccon-signup-img'
+          src={RaccoonSignUp}
           alt=''
-          width={200}
-          height={200}
+          width={250}
+          height={250}
         />
 
         <Formik
@@ -164,9 +164,7 @@ function SignUp () {
               </button>
 
               {formError && (
-                <div className='signup-error-msg form-back-error'>
-                  {formError}
-                </div>
+                <div className='signup-error-msg '>{formError}</div>
               )}
             </Form>
           )}

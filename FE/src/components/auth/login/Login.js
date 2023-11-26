@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import validate from '../validation/LogInValidations'
+import RaccoonLogin from './images/raccoon-login3.webp'
+import './login.css'
 
 function Login () {
+  const [loginError, setLoginError] = useState(null)
+
   const handleSubmit = async (userData, { resetForm }) => {
     try {
       // Wysyłanie danych do backendu
@@ -19,63 +24,113 @@ function Login () {
         const responseData = await response.json()
         console.log('Response from server:', responseData)
 
-        // Resetowanie formularza
+        // Resetowanie formularza po udanym logowaniu
         resetForm({
           values: {
             email: '',
             password: ''
           }
         })
+
+        // Wyczyszczenie błędu po udanym logowaniu
+        setLoginError(null)
       } else {
         // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
-        console.error('Error sending data to server:', response.statusText)
+        const errorData = await response.json() // Zakładam, że serwer zwraca JSON
+        console.error('Error sending data to server:', errorData)
+
+        // Ustawienie błędu, który zostanie wyświetlony użytkownikowi
+        setLoginError(errorData.message || 'Wystąpił błąd podczas logowania.')
       }
     } catch (error) {
       // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
       console.error('Error sending data to server:', error)
+
+      // Ustawienie błędu, który zostanie wyświetlony użytkownikowi
+      setLoginError('Wystąpił błąd podczas logowania.')
     }
   }
+
   return (
     <section className='app-wrap'>
-      <Formik
-        initialValues={{
-          email: '',
-          password: ''
-        }}
-        validate={validate}
-        onSubmit={handleSubmit}
-      >
-        {formik => (
-          <Form
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              textAlign: 'center'
-            }}
-          >
-            <h2>Log in</h2>
+      <div className='login'>
+        <h2 className='section-title'>
+          Log <span className='span-brand'>in</span>
+        </h2>
 
-            <label htmlFor='email'>Email</label>
-            <Field type='email' id='email' name='email' placeholder='Email' />
-            <ErrorMessage name='email' component='div' />
+        <link rel='preload' as='image' href={RaccoonLogin} />
+        <img
+          className='raccon-login-img'
+          src={RaccoonLogin}
+          alt=''
+          width={250}
+          height={250}
+        />
 
-            <label htmlFor='password'>Hasło</label>
-            <Field
-              type='password'
-              id='password'
-              name='password'
-              placeholder='********'
-            />
-            <ErrorMessage name='password' component='div' />
+        <Formik
+          initialValues={{
+            email: '',
+            password: ''
+          }}
+          validate={validate}
+          onSubmit={handleSubmit}
+        >
+          {formik => (
+            <Form className='form-login'>
+              <p className='form-parag'>Zaloguj się i dołącz do zabawy!</p>
+              <label htmlFor='email'>Email</label>
+              <Field
+                type='email'
+                id='email'
+                name='email'
+                placeholder='Email'
+                className={
+                  formik.touched.email && formik.errors.email
+                    ? 'login-input-error'
+                    : ''
+                }
+              />
+              <ErrorMessage
+                name='email'
+                component='span'
+                className='signup-error-msg'
+              />
 
-            <button type='submit' disabled={!(formik.dirty && formik.isValid)}>
-              Submit
-            </button>
-          </Form>
-        )}
-      </Formik>
+              <label htmlFor='password'>Hasło</label>
+              <Field
+                type='password'
+                id='password'
+                name='password'
+                placeholder='*********'
+              />
+              <ErrorMessage
+                name='password'
+                component='span'
+                className='signup-error-msg'
+              />
+
+              <button
+                className='login-submit-button'
+                type='submit'
+                disabled={!(formik.dirty && formik.isValid)}
+              >
+                Submit
+              </button>
+
+              {loginError && (
+                <div className='login-error-msg'>{loginError}</div>
+              )}
+            </Form>
+          )}
+        </Formik>
+
+        <div className='form-to-signup'>
+          Nie posiadasz konta?
+          <Link to='/signup' className='signup-login'>
+            Zarejestruj się
+          </Link>
+        </div>
+      </div>
     </section>
   )
 }

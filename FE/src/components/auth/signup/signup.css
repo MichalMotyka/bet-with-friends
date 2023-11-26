@@ -1,19 +1,23 @@
-.raccon-login-img {
+.raccon-signup-img {
     margin: 0 auto;
 }
 
 .signup {
-    display: flex;
+    display: flex;  
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 18px; 
+    font-size: 18px;  
 }
 
 .form-signup {
     display: flex;
     flex-direction: column;
-    justify-content: center;   
+    justify-content: center;
+    font-weight: bold;
+    width: 100%;
+    max-width: 310px; 
+    margin: 0 auto; 
 }
 
 .signup-error-msg {  
@@ -26,7 +30,7 @@
 
 .form-signup label {
     padding: 5px 0;
-    font-weight: bold;
+   
     text-align-last: left;
 }
 
@@ -82,11 +86,7 @@
 }
 
 
-.signup-login{
-    padding: 10px; 
-    color: var(--brand-color);
-    transition: color .3s;
-}
+
 
 .signup-login:hover{  
     color: var(--brand-alt-color);

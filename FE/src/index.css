@@ -81,6 +81,16 @@ line-height: normal;
 text-align: center;
 }
 
+.form-parag{
+  text-align: center;
+}
+
+.signup-login{
+  padding: 10px; 
+  color: var(--brand-color);
+  transition: color .3s;
+}
+
 /* GLOBAL RESPONSIVE STYLES  */
 
 @media (max-width: 575.98px) {
