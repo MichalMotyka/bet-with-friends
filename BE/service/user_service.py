@@ -14,6 +14,7 @@ from exceptions.user_alredy_exist_name_exception import UserAlredyExistNameExcep
 from exceptions.user_not_activated_exception import UserNotActivatedException
 from exceptions.password_or_login_incorrect_exception import PasswordOrLoginIncorrectException
 from exceptions.user_dont_exist_exception import UserDontExistException
+import asyncio
 
 config = ConfigurationManager.get_instance()
 def create_user(user:Users):
@@ -32,12 +33,12 @@ def create_user(user:Users):
             session.commit()
             session.refresh(user)
             create_activation(user_id=user.id)
-            send_activation_mail(user.email)
+            asyncio.run(send_activation_mail(user.email))
         except IntegrityError as e:
-             if 'UNIQUE constraint failed' in str(e.orig):
-                if 'users.name' in str(e.orig):
+             if 'duplicate key value violates unique constraint' in str(e.orig):
+                if '(name)' in str(e.orig):
                     raise UserAlredyExistNameException(user.name)
-                elif 'users.email' in str(e.orig):
+                elif '(email)' in str(e.orig):
                     raise UserAlredyExistEmailException(user.email)            
 
 def activate_user(code:str):
