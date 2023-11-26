@@ -115,7 +115,7 @@ function Login () {
                 type='submit'
                 disabled={!(formik.dirty && formik.isValid)}
               >
-                Submit
+                Zaloguj
               </button>
 
               {loginError && (

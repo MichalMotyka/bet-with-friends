@@ -166,7 +166,7 @@ isValid: Jest to flaga mówiąca o tym, czy cały formularz jest aktualnie ważn
                 // bez dirty button były enabled, stad koniecznosc interakcji z formularzem.
                 disabled={!(dirty && isValid)}
               >
-                Submit
+                Stwórz konto
               </button>
 
               {formError && (
