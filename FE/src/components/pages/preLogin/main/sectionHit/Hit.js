@@ -1,6 +1,9 @@
 import createAccount from './images/raccoon-account.webp'
+import createAccountSmall from './images/raccoon-account-small.webp'
 import getPoints from './images/raccoon-points.webp'
+import getPointsSmall from './images/raccoon-points-small.webp'
 import beLeader from './images/raccoon-leader.webp'
+import beLeaderSmall from './images/raccoon-leader-small.webp'
 import arrowOne from './images/arrow1.webp'
 import arrowTwo from './images/arrow2.webp'
 import './hit.css'
@@ -30,25 +33,46 @@ function Hit () {
           </div>
 
           <img
+            srcSet={`
+    ${createAccountSmall} 350w,  
+    ${createAccount} 500w
+  `}
+            sizes='
+            (max-width: 576px) 200px,
+    (max-width: 767px) 290px,
+    (min-width: 768px) and (max-width: 991.98px) 290px,
+    500px
+  '
+            src={createAccount}
+            alt='Description'
+          />
+
+          {/* <img
             className='hit-image'
             src={createAccount}
             loading='lazy'
             width={500}
             height={500}
             alt='Cartoon Raccon Creating an Account'
-          />
+          /> */}
         </div>
 
         <img className='arrow-one' src={arrowOne} alt='' />
 
         <div className='hit-item'>
           <img
-            className='hit-image hit-image-mid'
-            src={getPoints}
-            loading='lazy'
-            width={500}
-            height={500}
-            alt='Cartoon Raccon Creating an Account'
+            srcSet={`
+    ${getPointsSmall} 350w,  
+    ${getPoints} 500w
+  `}
+            sizes='
+            (max-width: 576px) 200px,
+    (max-width: 767px) 290px,
+    (min-width: 768px) and (max-width: 991.98px) 290px,
+    500px
+  '
+            src={createAccount}
+            alt='Description'
           />
           <div className='hit-text'>
             <div>
@@ -62,15 +86,6 @@ function Hit () {
               trafności Twoich przewidywań.
             </p>
           </div>
-
-          <img
-            className='hit-image hit-image-mid-bot'
-            src={getPoints}
-            loading='lazy'
-            width={500}
-            height={500}
-            alt='Cartoon Raccon Creating an Account'
-          />
         </div>
 
         <img className='arrow-two' src={arrowTwo} alt='' />
@@ -91,12 +106,18 @@ function Hit () {
           </div>
 
           <img
-            className='hit-image'
-            src={beLeader}
-            loading='lazy'
-            width={500}
-            height={500}
-            alt='Cartoon Raccon checking leaderboard'
+            srcSet={`
+    ${beLeaderSmall} 350w,  
+    ${beLeader} 500w
+  `}
+            sizes='
+            (max-width: 576px) 200px,
+    (max-width: 767px) 290px,
+    (min-width: 768px) and (max-width: 991.98px) 290px,
+    500px
+  '
+            src={createAccount}
+            alt='Description'
           />
         </div>
       </div>
