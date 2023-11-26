@@ -47,6 +47,15 @@
     display: none;
 }
 
+@keyframes expandNav {
+    from {
+      height: 0; 
+    }
+    to {
+      height: 500px; 
+    }
+  }
+
 /* Styl dla większych ekranów */
 
 @media (max-width: 575.98px) {
@@ -74,14 +83,7 @@
         animation: expandNav 0.3s ease forwards; 
     }
 
-    @keyframes expandNav {
-        from {
-          height: 0; 
-        }
-        to {
-          height: 500px; 
-        }
-      }
+   
 
     .hamburger-display-flex{
         display: flex;
@@ -135,16 +137,7 @@
         height: 500px;
         background-color: var(--white-color);
         animation: expandNav 0.3s ease forwards; 
-    }
-
-    @keyframes expandNav {
-        from {
-          height: 0; 
-        }
-        to {
-          height: 500px; 
-        }
-      }
+    }      
 
     .hamburger-display-flex{
         display: flex;

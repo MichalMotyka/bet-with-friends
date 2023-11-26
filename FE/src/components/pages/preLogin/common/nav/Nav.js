@@ -1,7 +1,7 @@
 import { NavLink, Link } from 'react-router-dom'
 import { useState } from 'react'
-import hamOpen from '../../../../../assets/images/hamburger/hamOpen.webp'
-import hamClose from '../../../../../assets/images/hamburger/hamClose.webp'
+import hamOpen from '../../../../../assets/images/hamburger/hamOpen.svg'
+import hamClose from '../../../../../assets/images/hamburger/hamClose.svg'
 import './nav.css'
 
 // activeClassName='active'
@@ -69,17 +69,17 @@ function Nav () {
       >
         {open === false ? (
           <img
-            width={50}
-            height={50}
+            width={60}
+            height={60}
             src={hamOpen}
             alt='open hamburger menu icon'
           />
         ) : (
           <img
-            width={50}
-            height={50}
+            width={60}
+            height={60}
             src={hamClose}
-            alt='closed hamburger menu icon'
+            alt='close hamburger menu icon'
           />
         )}
       </button>

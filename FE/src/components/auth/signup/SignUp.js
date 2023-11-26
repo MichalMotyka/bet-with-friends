@@ -10,8 +10,6 @@ import './signup.css'
 function SignUp () {
   const [formError, setFormError] = useState(null)
 
-  
-
   const handleSubmit = async (userData, { resetForm }) => {
     try {
       const userDataSending = {
