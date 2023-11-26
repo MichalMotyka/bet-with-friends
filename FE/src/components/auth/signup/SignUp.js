@@ -4,31 +4,37 @@ import { useState } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import validate from '../validation/SignUpValidation'
 import RaccoonSignUp from './images/raccoon-signup.webp'
+import { ScrollToTop } from '../../utilities/ScrollToTop'
 import './signup.css'
 
 function SignUp () {
   const [formError, setFormError] = useState(null)
 
+  
+
   const handleSubmit = async (userData, { resetForm }) => {
     try {
-      // Wysyłanie danych do backendu
+      const userDataSending = {
+        name: userData.name,
+        password: userData.password,
+        email: userData.email
+      }
+
       const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userDataSending)
       })
 
-      // Sprawdzenie, czy odpowiedź jest udana
       if (response.ok) {
         const responseData = await response.json()
         console.log('Response from server:', responseData)
 
-        // Resetowanie formularza
         resetForm({
           values: {
-            username: '',
+            name: '',
             password: '',
             confirmPassword: '',
             email: ''
@@ -38,16 +44,13 @@ function SignUp () {
           'Rejestracja zakończona sukcesem. Możesz się teraz zalogować.'
         ])
       } else {
-        // W przypadku błędu, pobierz informacje o błędzie z serwera
         const errorData = await response.text()
         console.error('Error sending data to server:', errorData)
-
-        // Ustaw błąd, który zostanie wyświetlony użytkownikowi
         setFormError(errorData.message || 'Wystąpił błąd podczas rejestracji.')
       }
     } catch (error) {
-      // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
       console.error('Error sending data to server:', error)
+      setFormError('Wystąpił błąd podczas rejestracji.')
     }
   }
 
@@ -70,7 +73,7 @@ function SignUp () {
 
         <Formik
           initialValues={{
-            username: '',
+            name: '',
             password: '',
             confirmPassword: '',
             email: ''
@@ -78,7 +81,16 @@ function SignUp () {
           validate={validate}
           onSubmit={handleSubmit}
         >
-          {formik => (
+          {/* 
+touched:czy dane pole formularza zostało dotknięte przez użytkownika 
+
+errors: Jest to obiekt, który przechowuje błędy dla poszczególnych pól formularza. Jeśli pole jest błędne, to błąd zostanie przechowany w tym obiekcie.
+
+dirty: Jest to flaga mówiąca o tym, czy formularz został zmieniony. Jeśli chociaż jedno pole zostało dotknięte (zmienione), dirty będzie true.
+
+isValid: Jest to flaga mówiąca o tym, czy cały formularz jest aktualnie ważny (czyli czy wszystkie walidacje zwracają pozytywny wynik). Jeśli wszystko jest poprawne, isValid będzie true. */}
+
+          {({ touched, errors, dirty, isValid }) => (
             <Form className='form-signup'>
               <p>Stwórz konto i dołącz do społeczności!</p>
 
@@ -89,9 +101,7 @@ function SignUp () {
                 name='email'
                 placeholder='Email'
                 className={
-                  formik.touched.email && formik.errors.email
-                    ? 'signup-input-error'
-                    : ''
+                  touched.email && errors.email ? 'signup-input-error' : ''
                 }
               />
               <ErrorMessage
@@ -100,20 +110,18 @@ function SignUp () {
                 className='signup-error-msg'
               />
 
-              <label htmlFor='username'>Nickname</label>
+              <label htmlFor='name'>Nazwa użytkownika</label>
               <Field
                 type='text'
-                id='username'
-                name='username'
-                placeholder='Nickname'
+                id='name'
+                name='name'
+                placeholder='Nazwa użytkownika'
                 className={
-                  formik.touched.username && formik.errors.username
-                    ? 'signup-input-error'
-                    : ''
+                  touched.name && errors.name ? 'signup-input-error' : ''
                 }
               />
               <ErrorMessage
-                name='username'
+                name='name'
                 component='span'
                 className='signup-error-msg'
               />
@@ -125,7 +133,7 @@ function SignUp () {
                 name='password'
                 placeholder='*********'
                 className={
-                  formik.touched.password && formik.errors.password
+                  touched.password && errors.password
                     ? 'signup-input-error'
                     : ''
                 }
@@ -143,8 +151,7 @@ function SignUp () {
                 name='confirmPassword'
                 placeholder='*********'
                 className={
-                  formik.touched.confirmPassword &&
-                  formik.errors.confirmPassword
+                  touched.confirmPassword && errors.confirmPassword
                     ? 'signup-input-error'
                     : ''
                 }
@@ -158,7 +165,8 @@ function SignUp () {
               <button
                 type='submit'
                 className='signup-submit-button'
-                disabled={!(formik.dirty && formik.isValid)}
+                // bez dirty button były enabled, stad koniecznosc interakcji z formularzem.
+                disabled={!(dirty && isValid)}
               >
                 Submit
               </button>
@@ -172,7 +180,7 @@ function SignUp () {
 
         <div className='form-to-login'>
           Posiadasz już konto?
-          <Link to='/login' className='signup-login'>
+          <Link to='/login' className='signup-login' onClick={ScrollToTop}>
             Zaloguj się
           </Link>
         </div>

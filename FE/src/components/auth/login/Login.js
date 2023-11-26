@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import validate from '../validation/LogInValidations'
 import RaccoonLogin from './images/raccoon-login3.webp'
+import { ScrollToTop } from '../../utilities/ScrollToTop'
 import './login.css'
 
 function Login () {
@@ -126,7 +127,7 @@ function Login () {
 
         <div className='form-to-signup'>
           Nie posiadasz konta?
-          <Link to='/signup' className='signup-login'>
+          <Link to='/signup' className='signup-login' onClick={ScrollToTop}>
             Zarejestruj się
           </Link>
         </div>
