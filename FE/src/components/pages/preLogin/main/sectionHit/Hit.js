@@ -61,27 +61,6 @@ function Hit () {
 
         <div className='hit-item'>
           <img
-            className='hit-image hit-image-mid'
-            src={getPoints}
-            loading='lazy'
-            width={500}
-            height={500}
-            alt='Cartoon Raccon Creating an Account'
-          />
-          <div className='hit-text'>
-            <div>
-              <h3 className='span-brand'>
-                <span className='hit-span-number'> 2 </span> Zbieraj Punkty
-              </h3>
-            </div>
-            <p>
-              Po zakończeniu rozgrywek nasz system automatycznie przydzieli
-              odpowiednią ilość punktów do Twojego profilu w zależności od
-              trafności Twoich przewidywań.
-            </p>
-          </div>
-
-          <img
             srcSet={`
     ${getPointsSmall} 350w,  
     ${getPoints} 500w
@@ -95,6 +74,18 @@ function Hit () {
             src={createAccount}
             alt='Description'
           />
+          <div className='hit-text'>
+            <div>
+              <h3 className='span-brand'>
+                <span className='hit-span-number'> 2 </span> Zbieraj Punkty
+              </h3>
+            </div>
+            <p>
+              Po zakończeniu rozgrywek nasz system automatycznie przydzieli
+              odpowiednią ilość punktów do Twojego profilu w zależności od
+              trafności Twoich przewidywań.
+            </p>
+          </div>
         </div>
 
         <img className='arrow-two' src={arrowTwo} alt='' />

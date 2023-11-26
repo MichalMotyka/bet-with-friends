@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import validate from '../validation/SignUpValidation'
@@ -7,7 +7,7 @@ import RaccoonLogin from './images/raccoon-login.webp'
 import './signup.css'
 
 function SignUp () {
-  const [errors, setErrors] = useState(null)
+  const [formError, setFormError] = useState(null)
 
   const handleSubmit = async (userData, { resetForm }) => {
     try {
@@ -34,7 +34,7 @@ function SignUp () {
             email: ''
           }
         })
-        setErrors([
+        setFormError([
           'Rejestracja zakończona sukcesem. Możesz się teraz zalogować.'
         ])
       } else {
@@ -43,7 +43,7 @@ function SignUp () {
         console.error('Error sending data to server:', errorData)
 
         // Ustaw błąd, który zostanie wyświetlony użytkownikowi
-        setErrors(errorData.message || 'Wystąpił błąd podczas rejestracji.')
+        setFormError(errorData.message || 'Wystąpił błąd podczas rejestracji.')
       }
     } catch (error) {
       // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
@@ -57,6 +57,8 @@ function SignUp () {
         <h2 className='section-title'>
           Sign <span className='span-brand'>Up</span>
         </h2>
+
+        <link rel='preload' as='image' href={RaccoonLogin} />
 
         <img
           className='raccon-login-img'
@@ -161,16 +163,20 @@ function SignUp () {
                 Submit
               </button>
 
-              {errors && <div className='signup-error-msg'>{errors}</div>}
+              {formError && (
+                <div className='signup-error-msg form-back-error'>
+                  {formError}
+                </div>
+              )}
             </Form>
           )}
         </Formik>
 
         <div className='form-to-login'>
-          Posiadasz już konto?{' '}
-          <NavLink to='/login' className='signup-login'>
+          Posiadasz już konto?
+          <Link to='/login' className='signup-login'>
             Zaloguj się
-          </NavLink>
+          </Link>
         </div>
       </div>
     </section>

@@ -16,8 +16,10 @@
   <!-- bez zmian poniższe: -->
   <meta property="og:type" content="website">
 
-  <meta property="og:url" content="https://www.example.com/">
-  <meta property="og:image" content="https://www.example.com/image.jpg">
+  <meta property="og:url" content="bet-with-friends.tech">
+  <meta property="og:image" content={process.env.PUBLIC_URL + "/images/your-image.jpg" }>
+
+  <!-- <meta property="og:image" content="https://www.example.com/image.jpg"> -->
   <!-- dodatkowe  -->
   <meta property="og:description" content="Bet With Friends - obstawiaj mecze piłki nożnej ze znajomymi.">
   <meta property="og:locale" content="pl_PL">
@@ -28,6 +30,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap"
     media="print" onload="this.media='all'">
 
+  <link rel="preload" as="image" href="../src//components//auth//signup//images/raccoon-login.webp" />
 
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
   <!--
