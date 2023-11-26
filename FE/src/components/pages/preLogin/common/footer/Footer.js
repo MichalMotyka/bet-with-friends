@@ -1,16 +1,10 @@
 import { Link } from 'react-router-dom'
 import footerLogo from './images/footer-logo.webp'
+import { ScrollToTop } from '../../../../utilities/ScrollToTop'
 import './footer.css'
 
 function Footer () {
   const currentYear = new Date().getFullYear()
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }
 
   return (
     <footer className='front-footer'>
@@ -19,7 +13,7 @@ function Footer () {
           <div className='footer-front-item'>
             <Link
               to='/'
-              onClick={scrollToTop}
+              onClick={ScrollToTop}
               className='brand footer-brand footer-top-brand'
             >
               Bet With <span className='span-brand'>Friends</span>
@@ -35,7 +29,7 @@ function Footer () {
             <p style={{ fontSize: '24px' }}>Navigation</p>
             <ul className='footer-front-nav'>
               <li>
-                <Link className='footer-menu-item' to='/' onClick={scrollToTop}>
+                <Link className='footer-menu-item' to='/' onClick={ScrollToTop}>
                   Home
                 </Link>
               </li>
@@ -43,7 +37,7 @@ function Footer () {
                 <Link
                   className='footer-menu-item'
                   to='/matches'
-                  onClick={scrollToTop}
+                  onClick={ScrollToTop}
                 >
                   Mecze
                 </Link>
@@ -52,7 +46,7 @@ function Footer () {
                 <Link
                   className='footer-menu-item'
                   to='/leaderboard'
-                  onClick={scrollToTop}
+                  onClick={ScrollToTop}
                 >
                   Leaderboard
                 </Link>
@@ -61,7 +55,7 @@ function Footer () {
                 <Link
                   className='footer-menu-item'
                   to='/about'
-                  onClick={scrollToTop}
+                  onClick={ScrollToTop}
                 >
                   O nas
                 </Link>
@@ -70,7 +64,7 @@ function Footer () {
                 <Link
                   className='footer-menu-item'
                   to='/login'
-                  onClick={scrollToTop}
+                  onClick={ScrollToTop}
                 >
                   Log In
                 </Link>
@@ -79,7 +73,7 @@ function Footer () {
                 <Link
                   className='footer-menu-item'
                   to='/signup'
-                  onClick={scrollToTop}
+                  onClick={ScrollToTop}
                 >
                   Sign Up
                 </Link>

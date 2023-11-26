@@ -1,17 +1,16 @@
 const validate = values => {
   const errors = {}
 
-  if (!values.username) {
-    errors.username = 'Required'
-  } else if (values.username.length < 3 || values.username.length >= 30) {
-    errors.username = 'Nick musi mieć od 3 do 30 znaków'
+  if (!values.name) {
+    errors.name = 'Pole wymagane'
+  } else if (values.name.length < 3 || values.name.length >= 30) {
+    errors.name = 'Nick musi mieć od 3 do 30 znaków'
   }
 
   if (values.password.length < 8) {
     errors.password = 'Hasło musi mieć co najmniej 8 znaków'
   } else if (!/(?=.*[!@#$%^&*])/.test(values.password)) {
-    errors.password =
-      'Hasło musi zawierać co najmniej jeden znak specjalny (!@#$%^&*)'
+    errors.password = `Hasło musi zawierać co najmniej jeden znak specjalny (!@#$%^&*)`
   }
 
   if (values.password !== values.confirmPassword) {

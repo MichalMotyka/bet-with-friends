@@ -5,6 +5,7 @@
   --brand-alt-color: #2C2D5B;   
   --white-color: #ffffff;
   --black-color: #000000;
+  --signup-error: tomato;
 }
 
 body { 
@@ -78,6 +79,16 @@ line-height: normal;
 
 .section-title{
 text-align: center;
+}
+
+.form-parag{
+  text-align: center;
+}
+
+.signup-login{
+  padding: 10px; 
+  color: var(--brand-color);
+  transition: color .3s;
 }
 
 /* GLOBAL RESPONSIVE STYLES  */

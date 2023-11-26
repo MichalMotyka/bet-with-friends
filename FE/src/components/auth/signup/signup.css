@@ -1,4 +1,8 @@
-.login{
+.raccon-signup-img {
+    margin: 0 auto;
+}
+
+.signup {
     display: flex;  
     flex-direction: column;
     align-items: center;
@@ -6,7 +10,7 @@
     font-size: 18px; 
 }
 
-.form-login {
+.form-signup {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,36 +20,7 @@
     margin: 0 auto; 
 }
 
-.form-login label {
-    padding: 5px 0;
-    font-weight: bold;
-    text-align-last: left;
-}
-
-.form-login input {
-    padding: 12px;
-    margin-bottom: 5px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    transition: border-color 0.3s;
-}
-
-.form-login input:hover {
-    border-color: var(--brand-alt-color);
-}
-
-.form-login input:focus {
-    outline: none;
-    border-color: var(--brand-alt-color);
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
-}
-
-.form-login input.login-input-error {
-    border-color: var(--signup-error);
-}
-
-
-.login-error-msg {  
+.signup-error-msg {  
     font-weight: bold;
     font-size: 1rem;
     color: tomato;
@@ -53,8 +28,21 @@
     max-width: 300px;
 }
 
+.form-signup label {
+    padding: 5px 0;
+   
+    text-align-last: left;
+}
 
-.login-submit-button {
+.form-signup input {
+    padding: 12px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+}
+
+.signup-submit-button {
     align-self: center;
     margin: 12px;
     padding: 10px 30px;
@@ -69,7 +57,7 @@
     cursor: pointer;
 }
 
-.login-submit-button:disabled {
+.signup-submit-button:disabled {
     color: rgb(128, 127, 127);
     border: rgb(0, 0, 0);
     background: silver;
@@ -77,15 +65,29 @@
     cursor: auto;
 }
 
-.login-error-msg{
-    font-weight: bold;
-    font-size: 1rem;
-    color: tomato;
-    margin-bottom: 10px;
-    max-width: 300px;
+.form-signup input:hover {
+    border-color: var(--brand-alt-color);
 }
 
-.form-to-signup{
+.form-signup input:focus {
+    outline: none;
+    border-color: var(--brand-alt-color);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
+}
+
+
+.form-signup input.signup-input-error {
+    border-color: var(--signup-error);
+}
+
+.form-to-login{
     font-weight: bold;
     padding: 30px 0;
 }
+
+
+
+
+.signup-login:hover{  
+    color: var(--brand-alt-color);
+} 
