@@ -6,10 +6,10 @@ from shared.base import Base
 class Users(Base):
      __tablename__ = 'users'
      id = Column(Integer, primary_key=True)
-     public_id = Column(Integer)
-     email = Column(String(50),unique=True)
-     name = Column(String(50),unique=True)
-     password = Column(String(50))
-     salt = Column(String(255))
+     public_id = Column(String)
+     email = Column(String,unique=True)
+     name = Column(String,unique=True)
+     password = Column(String)
+     salt = Column(String)
      admin = Column(Boolean)
      isActive = Column(Boolean)
