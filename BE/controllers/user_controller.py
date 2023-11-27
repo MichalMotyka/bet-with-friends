@@ -10,11 +10,14 @@ from exceptions.user_alredy_exist_name_exception import UserAlredyExistNameExcep
 from exceptions.password_or_login_incorrect_exception import PasswordOrLoginIncorrectException
 from exceptions.user_not_activated_exception import UserNotActivatedException
 from exceptions.activation_code_invalid_exception import ActivationCodeInvalidException
+from flask_cors import CORS, cross_origin
+
 
 user_blueprint = Blueprint('user_blueprint', __name__)
 config = ConfigurationManager.get_instance()
 
 @user_blueprint.route('/register', methods=['POST'])
+@cross_origin()
 def register():
     new_user = request_validator.register_validation()
     try:
@@ -30,6 +33,7 @@ def register():
     return response 
 
 @user_blueprint.route('/activate/<code>', methods=['POST'])
+@cross_origin()
 def activate(code:str):
     try:
         user_service.activate_user(code=code)
@@ -40,6 +44,7 @@ def activate(code:str):
     return response
 
 @user_blueprint.route('/login', methods=['POST'])
+@cross_origin()
 def login():
     try:
         user = request_validator.login_validation()
@@ -48,9 +53,9 @@ def login():
             authorize, refresh = jwtTokens
             response = make_response(Response(message='The user has been successfully logged in.',code='OK').__dict__)
             expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
-            response.set_cookie('Authorization',authorize,expires=expiration,httponly=True)
+            response.set_cookie('Authorization',authorize,expires=expiration.timestamp(),httponly=True)
             expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
-            response.set_cookie('Refresh',refresh,expires=expiration,httponly=True)
+            response.set_cookie('Refresh',refresh,expires=expiration.timestamp(),httponly=True)
     except (PasswordOrLoginIncorrectException, UserNotActivatedException) as e:
          response = make_response(Response(message=e.message,code=e.code).__dict__)
          response.status_code = 400

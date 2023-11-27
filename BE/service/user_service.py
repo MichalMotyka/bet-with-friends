@@ -21,7 +21,7 @@ def create_user(user:Users):
         salt = bcrypt.gensalt()
         password = user.password.encode('utf-8')
         hashed_password = bcrypt.hashpw(password, salt)
-        user.password = hashed_password
+        user.password = hashed_password.decode('utf-8')
         user.admin = False
         user.salt = salt
         user.isActive = False
@@ -55,12 +55,12 @@ def login(user:Users):
         elif not userdb.isActive:
             raise UserNotActivatedException()
         password = user.password.encode('utf-8')
-        password = bcrypt.hashpw(password,userdb.salt)
-        expiry_time = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
-        expiry_refresh = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
-        if password == userdb.password:
-            authorize = jwt.encode({'exp':expiry_time,'user_uid': userdb.public_id,'isAdmin':userdb.admin,'isActive':userdb.isActive,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
-            refresh = jwt.encode({'exp':expiry_refresh,'user_uid': userdb.public_id,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
+       
+        if bcrypt.checkpw(password, userdb.password.encode('utf-8')):
+            expiry_time = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
+            expiry_refresh = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
+            authorize = jwt.encode({'exp':expiry_time.timestamp(),'user_uid': userdb.public_id,'isAdmin':userdb.admin,'isActive':userdb.isActive,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
+            refresh = jwt.encode({'exp':expiry_refresh.timestamp(),'user_uid': userdb.public_id,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
             return authorize, refresh
         raise PasswordOrLoginIncorrectException()
 
