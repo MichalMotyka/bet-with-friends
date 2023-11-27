@@ -28,7 +28,6 @@ pipeline {
                 }
             }
         }
-   feature/be_profile
         stage('Remove images') {
             steps {
                 script {
