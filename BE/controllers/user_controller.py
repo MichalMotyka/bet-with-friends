@@ -48,9 +48,9 @@ def login():
             authorize, refresh = jwtTokens
             response = make_response(Response(message='The user has been successfully logged in.',code='OK').__dict__)
             expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
-            response.set_cookie('Authorization',authorize,expires=expiration,httponly=True)
+            response.set_cookie('Authorization',authorize,expires=expiration.timestamp(),httponly=True)
             expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
-            response.set_cookie('Refresh',refresh,expires=expiration,httponly=True)
+            response.set_cookie('Refresh',refresh,expires=expiration.timestamp(),httponly=True)
     except (PasswordOrLoginIncorrectException, UserNotActivatedException) as e:
          response = make_response(Response(message=e.message,code=e.code).__dict__)
          response.status_code = 400
