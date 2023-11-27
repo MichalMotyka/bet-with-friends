@@ -28,19 +28,19 @@ pipeline {
                 }
             }
         }
-        stage('Remove images'){
-            steps{
-                script{
-                     sh 'docker rmi $(docker images -a | grep "<none>" | awk \'{print $3}\')'
-                }
-            }
-        }
         stage('Deploy Containers') {
             steps {
                 // Uruchomienie kontenerów na serwerze
                 script {
                     sh 'docker run -d -p 5000:5000 --name bfw_be bfw_be:latest'
                      sh 'docker run -d -p 80:80 --name bfw_fe bfw_fe:latest'
+                }
+            }
+        }
+         stage('Remove images'){
+            steps{
+                script{
+                     sh 'docker system prune --all'
                 }
             }
         }

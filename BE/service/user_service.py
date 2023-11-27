@@ -34,10 +34,10 @@ def create_user(user:Users):
             create_activation(user_id=user.id)
             send_activation_mail(user.email)
         except IntegrityError as e:
-             if 'UNIQUE constraint failed' in str(e.orig):
-                if 'users.name' in str(e.orig):
+             if 'already exists.' in str(e.orig):
+                if 'name' in str(e.orig):
                     raise UserAlredyExistNameException(user.name)
-                elif 'users.email' in str(e.orig):
+                elif 'email' in str(e.orig):
                     raise UserAlredyExistEmailException(user.email)            
 
 def activate_user(code:str):
