@@ -1,7 +1,6 @@
 pipeline {
     agent any
-    
-    stages{
+    stages {
         stage('Run test backend'){
             steps{
                 script{
@@ -9,9 +8,6 @@ pipeline {
                 }
             }
         }
-    }
-
-    stages {
         stage('Build Backend Docker Image') {
             steps {
                 // Zbudowanie obrazu Dockera dla backendu
