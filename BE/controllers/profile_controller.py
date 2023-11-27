@@ -1,7 +1,7 @@
 from flask import Blueprint, request, Response, make_response
 from security.token_validator import token_required
 from entity.profile import Profile
-from service.profile_service import get_profile_by_uid, get_profile_by_id
+from service.profile_service import get_profile_by_uid, get_profile_by_id,update_avatar, update_name
 from entity.users import Users
 from entity.response import Response as CustomResponse
 from exceptions.profile_dont_exist_exception import ProfileDontExistException
@@ -24,3 +24,25 @@ def get_matches(current_user:Users,response:Response):
     response.set_data(profile.to_json())
     return response
 
+
+@profile_blueprint.route('/profile', methods=['PATCH'])
+@token_required
+def update_profile(current_user:Users, response:Response):
+    data = request.get_json()
+    if not data.get('name') and not data.get('avatar'):
+        response.set_data(CustomResponse("One field is required name or field","PR1").to_json())
+        return response
+    if data.get('avatar'):
+        try:
+            update_avatar(data.get('avatar'),user_id=current_user.id)
+        except ProfileDontExistException as e:
+            response.set_data(CustomResponse(e.message,e.code).to_json())
+            return response
+    else:
+        try:
+            update_name(data.get('name'),user_id=current_user.id)
+        except ProfileDontExistException as e:
+            response.set_data(CustomResponse(e.message,e.code).to_json())
+            return response
+    response.set_data(CustomResponse("Profile has been updated","OK").to_json())
+    return response

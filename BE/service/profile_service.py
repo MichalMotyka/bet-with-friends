@@ -2,6 +2,7 @@ from entity.profile import Profile
 from shared.base import session_factory
 from sqlalchemy import update
 from exceptions.profile_dont_exist_exception import ProfileDontExistException
+from sqlalchemy.orm.exc import NoResultFound
 from service.raiting_service import create_raiting
 from service.ranking_service import create_ranking
 from entity.users import Users
@@ -36,3 +37,25 @@ def get_profile_by_id(id:int):
         if profile:
             return profile
         raise ProfileDontExistException()
+    
+
+def update_avatar(avatar:str,user_id:int):
+    with session_factory() as session:
+        try:
+            session.query(Profile).filter(Profile.user_id == user_id).one()
+            stmt = update(Profile).where(Profile.user_id == user_id).values(avatar=avatar)
+            session.execute(stmt)
+            session.commit()
+        except NoResultFound:
+            raise ProfileDontExistException()
+        
+def update_name(name:str,user_id:int):
+    with session_factory() as session:
+        try:
+            session.query(Profile).filter(Profile.user_id == user_id).one()
+            stmt = update(Profile).where(Profile.user_id == user_id).values(avatar=name)
+            session.execute(stmt)
+            session.commit()
+        except NoResultFound:
+            raise ProfileDontExistException()
+    
