@@ -14,7 +14,6 @@ from exceptions.user_alredy_exist_name_exception import UserAlredyExistNameExcep
 from exceptions.user_not_activated_exception import UserNotActivatedException
 from exceptions.password_or_login_incorrect_exception import PasswordOrLoginIncorrectException
 from exceptions.user_dont_exist_exception import UserDontExistException
-import asyncio
 
 config = ConfigurationManager.get_instance()
 def create_user(user:Users):
@@ -22,7 +21,7 @@ def create_user(user:Users):
         salt = bcrypt.gensalt()
         password = user.password.encode('utf-8')
         hashed_password = bcrypt.hashpw(password, salt)
-        user.password = hashed_password
+        user.password = hashed_password.decode('utf-8')
         user.admin = False
         user.salt = salt
         user.isActive = False
@@ -33,12 +32,12 @@ def create_user(user:Users):
             session.commit()
             session.refresh(user)
             create_activation(user_id=user.id)
-            asyncio.run(send_activation_mail(user.email))
+            send_activation_mail(user.email)
         except IntegrityError as e:
-             if 'duplicate key value violates unique constraint' in str(e.orig):
-                if '(name)' in str(e.orig):
+             if 'UNIQUE constraint failed' in str(e.orig):
+                if 'users.name' in str(e.orig):
                     raise UserAlredyExistNameException(user.name)
-                elif '(email)' in str(e.orig):
+                elif 'users.email' in str(e.orig):
                     raise UserAlredyExistEmailException(user.email)            
 
 def activate_user(code:str):
@@ -56,12 +55,12 @@ def login(user:Users):
         elif not userdb.isActive:
             raise UserNotActivatedException()
         password = user.password.encode('utf-8')
-        password = bcrypt.hashpw(password,userdb.salt)
-        expiry_time = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
-        expiry_refresh = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
-        if password == userdb.password:
-            authorize = jwt.encode({'exp':expiry_time,'user_uid': userdb.public_id,'isAdmin':userdb.admin,'isActive':userdb.isActive,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
-            refresh = jwt.encode({'exp':expiry_refresh,'user_uid': userdb.public_id,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
+       
+        if bcrypt.checkpw(password, userdb.password.encode('utf-8')):
+            expiry_time = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
+            expiry_refresh = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
+            authorize = jwt.encode({'exp':expiry_time.timestamp(),'user_uid': userdb.public_id,'isAdmin':userdb.admin,'isActive':userdb.isActive,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
+            refresh = jwt.encode({'exp':expiry_refresh.timestamp(),'user_uid': userdb.public_id,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
             return authorize, refresh
         raise PasswordOrLoginIncorrectException()
 

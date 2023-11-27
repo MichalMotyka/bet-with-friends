@@ -10,8 +10,8 @@
   ,
   "jwt":{
     "exp":{
-      "authorization":"1",
-      "refresh":"240"
+      "authorization":"1200",
+      "refresh":"2400"
     }
   },
   "database":{
