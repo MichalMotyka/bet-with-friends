@@ -36,13 +36,11 @@ def create_user(user:Users):
             send_activation_mail(user.email)
             create_profile(user=user)
         except IntegrityError as e:
-            print('--------')
-            print(e) 
             if 'already exists.' in str(e.orig):
                 if 'name' in str(e.orig):
                     raise UserAlredyExistNameException(user.name)
                 elif 'email' in str(e.orig):
-                    raise UserAlredyExistEmailException(user.email)               
+                    raise UserAlredyExistEmailException(user.email)
 
 def activate_user(code:str):
     user_id = activate(code)

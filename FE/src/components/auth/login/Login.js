@@ -10,9 +10,10 @@ function Login () {
   const [loginError, setLoginError] = useState(null)
 
   const handleSubmit = async (userData, { resetForm }) => {
+    setLoginError(null)
     try {
       // Wysyłanie danych do backendu
-      const response = await fetch('/api/login', {
+      const response = await fetch('http://130.162.44.103:5000/api/v1/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -20,15 +21,14 @@ function Login () {
         body: JSON.stringify(userData)
       })
 
-      // Sprawdzenie, czy odpowiedź jest udana
       if (response.ok) {
         const responseData = await response.json()
         console.log('Response from server:', responseData)
 
-        // Resetowanie formularza po udanym logowaniu
+        // Czyszczenie formularza po udanym logowaniu
         resetForm({
           values: {
-            email: '',
+            name: '',
             password: ''
           }
         })
@@ -37,18 +37,19 @@ function Login () {
         setLoginError(null)
       } else {
         // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
-        const errorData = await response.json() // Zakładam, że serwer zwraca JSON
-        console.error('Error sending data to server:', errorData)
 
-        // Ustawienie błędu, który zostanie wyświetlony użytkownikowi
-        setLoginError(errorData.message || 'Wystąpił błąd podczas logowania.')
+        // Spróbuj sparsować błąd jako JSON, jeśli to możliwe
+        const errorData = await response.json()
+
+        if (errorData.code === 'L1') {
+          throw new Error(`Błędne hasło lub nazwa użytkownika.`)
+        } else {
+          throw new Error(`Przed logowaniem aktywuj swoje konto.`)
+        }
       }
     } catch (error) {
-      // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
-      console.error('Error sending data to server:', error)
-
       // Ustawienie błędu, który zostanie wyświetlony użytkownikowi
-      setLoginError('Wystąpił błąd podczas logowania.')
+      setLoginError(error.message || 'Wystąpił błąd podczas logowania.')
     }
   }
 
@@ -70,7 +71,7 @@ function Login () {
 
         <Formik
           initialValues={{
-            email: '',
+            name: '',
             password: ''
           }}
           validate={validate}
@@ -79,22 +80,23 @@ function Login () {
           {formik => (
             <Form className='form-login'>
               <p className='form-parag'>Zaloguj się i dołącz do zabawy!</p>
-              <label htmlFor='email'>Email</label>
+              <label htmlFor='name'>Nazwa użytkownika</label>
               <Field
-                type='email'
-                id='email'
-                name='email'
-                placeholder='Email'
+                type='text'
+                id='name'
+                name='name'
+                maxLength={30}
+                placeholder='Nazwa użytkownika'
                 className={
-                  formik.touched.email && formik.errors.email
+                  formik.touched.name && formik.errors.name
                     ? 'login-input-error'
                     : ''
                 }
               />
               <ErrorMessage
-                name='email'
+                name='name'
                 component='span'
-                className='signup-error-msg'
+                className='login-error-msg'
               />
 
               <label htmlFor='password'>Hasło</label>
@@ -107,7 +109,7 @@ function Login () {
               <ErrorMessage
                 name='password'
                 component='span'
-                className='signup-error-msg'
+                className='login-error-msg'
               />
 
               <button
@@ -115,11 +117,11 @@ function Login () {
                 type='submit'
                 disabled={!(formik.dirty && formik.isValid)}
               >
-                Submit
+                Zaloguj
               </button>
 
               {loginError && (
-                <div className='login-error-msg'>{loginError}</div>
+                <div className='login-server-error-msg'>{loginError}</div>
               )}
             </Form>
           )}

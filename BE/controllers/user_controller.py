@@ -10,14 +10,17 @@ from exceptions.user_alredy_exist_name_exception import UserAlredyExistNameExcep
 from exceptions.password_or_login_incorrect_exception import PasswordOrLoginIncorrectException
 from exceptions.user_not_activated_exception import UserNotActivatedException
 from exceptions.activation_code_invalid_exception import ActivationCodeInvalidException
+from flask_cors import CORS, cross_origin
+
 
 user_blueprint = Blueprint('user_blueprint', __name__)
 config = ConfigurationManager.get_instance()
 
 @user_blueprint.route('/register', methods=['POST'])
+@cross_origin()
 def register():
-    new_user = request_validator.register_validation()
     try:
+        new_user = request_validator.register_validation()
         user_service.create_user(user=new_user)
         response = make_response(Response(message='The user has been created successfully.',code='OK').__dict__)
         response.status_code = 200
@@ -25,11 +28,12 @@ def register():
         response = make_response(Response(message=e.message,code=e.code).__dict__)
         response.status_code = 400
     except ValidationError as e:
-        response = make_response(Response(message=e.schema['errorMessage'],code=e.schema['code']).__dict__)
+        response = make_response(Response(message=e.message,code='R4').__dict__)
         response.status_code = 400
     return response 
 
 @user_blueprint.route('/activate/<code>', methods=['POST'])
+@cross_origin()
 def activate(code:str):
     try:
         user_service.activate_user(code=code)
@@ -40,6 +44,7 @@ def activate(code:str):
     return response
 
 @user_blueprint.route('/login', methods=['POST'])
+@cross_origin()
 def login():
     try:
         user = request_validator.login_validation()
@@ -55,6 +60,6 @@ def login():
          response = make_response(Response(message=e.message,code=e.code).__dict__)
          response.status_code = 400
     except ValidationError as e:
-        response = make_response(Response(message=e.schema['errorMessage'],code=e.schema['code']).__dict__)
+        response = make_response(Response(message=e.message,code='L4').__dict__)
         response.status_code = 400
     return response
