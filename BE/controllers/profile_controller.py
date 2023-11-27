@@ -4,7 +4,7 @@ from entity.profile import Profile
 from service.profile_service import get_profile_by_uid, get_profile_by_id
 from entity.users import Users
 from entity.response import Response as CustomResponse
-import json
+from exceptions.profile_dont_exist_exception import ProfileDontExistException
 
 profile_blueprint = Blueprint('profile_blueprint', __name__)
 
@@ -14,12 +14,13 @@ def get_matches(current_user:Users,response:Response):
     uuid = request.args.get('uuid')
     try:
         if uuid:
-            profile = get_profile_by_uid(uuid)
+            profile:Profile = get_profile_by_uid(uuid)
         else: 
-            profile = get_profile_by_id(current_user.id)
-    except:
-        response.set_data(CustomResponse("TEST",'L1').to_json())
+            profile:Profile = get_profile_by_id(current_user.id)
+    except ProfileDontExistException as e:
+        response.set_data(CustomResponse(e.message,e.code).to_json())
         return response
-    response.set_data(profile.__dict__)
+    print(profile.rating)
+    response.set_data(profile.to_json())
     return response
 

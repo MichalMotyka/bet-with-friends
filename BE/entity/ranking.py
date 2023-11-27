@@ -1,12 +1,19 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, Double
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column,String, Integer, ForeignKey
 from dataclasses import dataclass
 from shared.base import Base
+import json
 
-@dataclass(frozen=True)
+@dataclass(order=True)
 class Ranking(Base):
     __tablename__ = 'rankings'
 
     id = Column(Integer,primary_key=True)
+    public_id = Column(String,unique=True)
     place = Column(Integer)
     profile_id = Column(Integer,ForeignKey("profiles.id")) 
+
+    def to_json(self):
+        return json.dumps({
+            "public_id": self.public_id,
+            "place": self.place
+        }, indent= 4)

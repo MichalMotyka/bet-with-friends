@@ -5,6 +5,7 @@ from shared.base import Base
 from entity.users import Users
 from entity.rating import Rating
 from entity.ranking import Ranking
+import json
 
 @dataclass(order=True)
 class Profile(Base):
@@ -18,6 +19,19 @@ class Profile(Base):
     ranking_id = Column(Integer, ForeignKey("rankings.id"))
     rating_id = Column(Integer,ForeignKey('ratings.id'))
     user_id = Column(Integer,ForeignKey('users.id'))
-    ranking = relationship(Ranking,foreign_keys=[ranking_id])
+    ranking = relationship(Ranking,foreign_keys=[ranking_id],lazy='joined')
     user = relationship(Users,foreign_keys=[user_id])
-    rating = relationship(Rating,foreign_keys=[rating_id])
+    rating = relationship(Rating,foreign_keys=[rating_id],lazy='joined')
+
+
+    def to_json(self):
+        return json.dumps({
+            "public_id": self.public_id,
+            "name": self.name,
+            "points": self.points,
+            "avatar": self.avatar,
+            "ranking": json.loads(self.ranking.to_json()),
+            "rating": json.loads(self.rating.to_json()),
+        }, indent= 4)
+
+    
