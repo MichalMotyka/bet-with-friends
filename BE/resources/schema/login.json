@@ -3,9 +3,9 @@
     "properties": {
         "name": {
             "type": "string",
-            "minLength": 5,
+            "minLength": 3,
             "description": "Username",
-            "errorMessage": "The name must have at least 5 characters.",
+            "errorMessage": "The name must have at least 3 characters.",
             "code":"L3"
         },
         "password": {
