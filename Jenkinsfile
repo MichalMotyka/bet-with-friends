@@ -1,5 +1,15 @@
 pipeline {
     agent any
+    
+    stages{
+        stage('Run test backend'){
+            steps{
+                script{
+                    sh "python -m unittest discover -v ./BE/tests"
+                }
+            }
+        }
+    }
 
     stages {
         stage('Build Backend Docker Image') {
