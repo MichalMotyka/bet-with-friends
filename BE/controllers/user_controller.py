@@ -10,11 +10,14 @@ from exceptions.user_alredy_exist_name_exception import UserAlredyExistNameExcep
 from exceptions.password_or_login_incorrect_exception import PasswordOrLoginIncorrectException
 from exceptions.user_not_activated_exception import UserNotActivatedException
 from exceptions.activation_code_invalid_exception import ActivationCodeInvalidException
+from flask_cors import CORS, cross_origin
+
 
 user_blueprint = Blueprint('user_blueprint', __name__)
 config = ConfigurationManager.get_instance()
 
 @user_blueprint.route('/register', methods=['POST'])
+@cross_origin()
 def register():
     new_user = request_validator.register_validation()
     try:
@@ -30,6 +33,7 @@ def register():
     return response 
 
 @user_blueprint.route('/activate/<code>', methods=['POST'])
+@cross_origin()
 def activate(code:str):
     try:
         user_service.activate_user(code=code)
@@ -40,6 +44,7 @@ def activate(code:str):
     return response
 
 @user_blueprint.route('/login', methods=['POST'])
+@cross_origin()
 def login():
     try:
         user = request_validator.login_validation()
