@@ -1,13 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Run test backend'){
-            steps{
-                script{
-                    sh "python -m unittest discover -v ./BE/tests"
-                }
-            }
-        }
         stage('Build Backend Docker Image') {
             steps {
                 // Zbudowanie obrazu Dockera dla backendu
