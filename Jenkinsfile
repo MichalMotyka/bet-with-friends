@@ -28,10 +28,10 @@ pipeline {
                 }
             }
         }
-        stage('Remove images'){
-            steps{
-                script{
-                    sh "docker rmi $(docker images -a | grep "<none>" | awk '{print $3}')"
+        stage('Remove images') {
+            steps {
+                script {
+                    sh 'docker images -a | grep "<none>" | awk \'{print $3}\' | xargs docker rmi'
                 }
             }
         }
