@@ -28,6 +28,14 @@
     max-width: 300px;
 }
 
+.signup-success-msg {
+    font-weight: bold;
+    font-size: 1rem;
+    color: lime; 
+    margin-bottom: 10px;
+    max-width: 300px;
+  }
+
 .form-signup label {
     padding: 5px 0;
    
