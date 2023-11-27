@@ -47,7 +47,7 @@ function SignUp () {
         })
         setFormError(null)
         setSuccessMessage(
-          'Rejestracja zakończona sukcesem. Aktywuj swoje konto poprzez email.'
+          'Rejestracja zakończona sukcesem, aktywuj swoje konto poprzez email.'
         )
       } else {
         const errorData = await response.json()
