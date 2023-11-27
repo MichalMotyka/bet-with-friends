@@ -20,12 +20,30 @@
     margin: 0 auto; 
 }
 
+.signup--server-error-msg {  
+    font-weight: bold;
+    font-size: 1rem;
+    color: tomato;
+    margin-bottom: 10px;
+    max-width: 300px;
+    text-align: center;
+
+
+    margin: 0 auto; 
+    width: 100%;
+    padding: 5px 0;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.411);
+    border-radius: 6px;
+
+}
+
 .signup-error-msg {  
     font-weight: bold;
     font-size: 1rem;
     color: tomato;
     margin-bottom: 10px;
     max-width: 300px;
+    text-align: center;
 }
 
 .signup-success-msg {
@@ -34,6 +52,14 @@
     color: lime; 
     margin-bottom: 10px;
     max-width: 300px;
+    text-align: center;
+
+    margin: 0 auto; 
+    width: 100%;
+    padding: 5px 0;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.411);
+    border-radius: 6px;
+
   }
 
 .form-signup label {

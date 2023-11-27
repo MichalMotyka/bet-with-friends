@@ -8,10 +8,10 @@ const validate = values => {
       'Hasło musi zawierać co najmniej jeden znak specjalny (!@#$%^&*)'
   }
 
-  if (!values.email) {
-    errors.email = 'Pole wymagane'
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Błędny adres e-mail'
+  if (!values.name) {
+    errors.name = 'Pole wymagane'
+  } else if (values.name.length < 3 || values.name.length >= 30) {
+    errors.name = 'Nick musi mieć od 3 do 30 znaków'
   }
 
   return errors
