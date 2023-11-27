@@ -20,12 +20,11 @@ function Login () {
         body: JSON.stringify(userData)
       })
 
-      // Sprawdzenie, czy odpowiedź jest udana
       if (response.ok) {
         const responseData = await response.json()
         console.log('Response from server:', responseData)
 
-        // Resetowanie formularza po udanym logowaniu
+        // Czyszczenie formularza po udanym logowaniu
         resetForm({
           values: {
             email: '',
@@ -37,18 +36,13 @@ function Login () {
         setLoginError(null)
       } else {
         // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
-        const errorData = await response.json() // Zakładam, że serwer zwraca JSON
-        console.error('Error sending data to server:', errorData)
-
-        // Ustawienie błędu, który zostanie wyświetlony użytkownikowi
-        setLoginError(errorData.message || 'Wystąpił błąd podczas logowania.')
+        throw new Error('Wystąpił błąd podczas logowania.')
       }
     } catch (error) {
-      // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
       console.error('Error sending data to server:', error)
 
       // Ustawienie błędu, który zostanie wyświetlony użytkownikowi
-      setLoginError('Wystąpił błąd podczas logowania.')
+      setLoginError(error.message || 'Wystąpił błąd podczas logowania.')
     }
   }
 
@@ -115,7 +109,7 @@ function Login () {
                 type='submit'
                 disabled={!(formik.dirty && formik.isValid)}
               >
-                Submit
+                Zaloguj
               </button>
 
               {loginError && (

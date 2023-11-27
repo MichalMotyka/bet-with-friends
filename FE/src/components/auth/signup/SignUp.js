@@ -9,22 +9,27 @@ import './signup.css'
 
 function SignUp () {
   const [formError, setFormError] = useState(null)
+  const [successMessage, setSuccessMessage] = useState(null)
 
   const handleSubmit = async (userData, { resetForm }) => {
     try {
+      // pakiet danych do wysłania na backend
       const userDataSending = {
         name: userData.name,
         password: userData.password,
         email: userData.email
       }
 
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userDataSending)
-      })
+      const response = await fetch(
+        'http://130.162.44.103:5000/api/v1/register',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(userDataSending)
+        }
+      )
 
       if (response.ok) {
         const responseData = await response.json()
@@ -38,17 +43,18 @@ function SignUp () {
             email: ''
           }
         })
-        setFormError([
+        setFormError(null)
+        setSuccessMessage(
           'Rejestracja zakończona sukcesem. Możesz się teraz zalogować.'
-        ])
+        )
       } else {
-        const errorData = await response.text()
-        console.error('Error sending data to server:', errorData)
-        setFormError(errorData.message || 'Wystąpił błąd podczas rejestracji.')
+        throw new Error('Wystąpił błąd podczas rejestracji.')
       }
     } catch (error) {
       console.error('Error sending data to server:', error)
-      setFormError('Wystąpił błąd podczas rejestracji.')
+
+      // Ustawienie błędu, który zostanie wyświetlony użytkownikowi
+      setFormError(error.message || 'Wystąpił błąd podczas rejestracji.')
     }
   }
 
@@ -166,11 +172,12 @@ isValid: Jest to flaga mówiąca o tym, czy cały formularz jest aktualnie ważn
                 // bez dirty button były enabled, stad koniecznosc interakcji z formularzem.
                 disabled={!(dirty && isValid)}
               >
-                Submit
+                Stwórz konto
               </button>
 
-              {formError && (
-                <div className='signup-error-msg '>{formError}</div>
+              {formError && <div className='signup-error-msg'>{formError}</div>}
+              {successMessage && (
+                <div className='signup-success-msg'>{successMessage}</div>
               )}
             </Form>
           )}
