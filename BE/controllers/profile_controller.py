@@ -4,6 +4,7 @@ from entity.profile import Profile
 from service.profile_service import get_profile_by_uid, get_profile_by_id
 from entity.users import Users
 from entity.response import Response as CustomResponse
+import json
 
 profile_blueprint = Blueprint('profile_blueprint', __name__)
 
@@ -17,7 +18,7 @@ def get_matches(current_user:Users,response:Response):
         else: 
             profile = get_profile_by_id(current_user.id)
     except:
-        response.set_data("TEST")
+        response.set_data(CustomResponse("TEST",'L1').to_json())
         return response
     response.set_data(profile.__dict__)
     return response

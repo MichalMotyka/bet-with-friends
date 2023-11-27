@@ -11,6 +11,7 @@ config = ConfigurationManager.get_instance()
 init_db()
 
 app.config['SECRET_KEY']=config.get_config_by_key('SECRET_KEY')
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 api_v1_prefix = '/api/v1'
 app.register_blueprint(user_blueprint, url_prefix=f'{api_v1_prefix}')
 app.register_blueprint(image_blueprint, url_prefix=f'{api_v1_prefix}')

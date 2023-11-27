@@ -17,6 +17,7 @@ def token_required(f):
         token = None
         refresh_token= None
         response = make_response()
+        response.headers['Content-Type'] = 'application/json'
         if 'Authorization' in request.headers:
             token = request.headers['Authorization']
         if 'Refresh' in request.headers:
