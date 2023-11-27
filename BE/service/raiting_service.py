@@ -1,4 +1,7 @@
 from entity.rating import Rating
+from entity.profile import Profile
+from sqlalchemy.orm.exc import NoResultFound
+from exceptions.profile_dont_exist_exception import ProfileDontExistException
 from shared.base import session_factory
 from sqlalchemy import update
 import uuid
@@ -22,6 +25,13 @@ def update_raiting(id:int,isWin:bool):
         session.execute(stmt)
         session.commit()
 
+def get_rating(profile_id:str):
+    with session_factory() as session:
+        try:
+           profile = session.query(Profile).filter_by(public_id=profile_id).one()
+           return session.query(Rating).filter_by(id=profile.rating_id).one()
+        except NoResultFound:
+            raise ProfileDontExistException()
 
 
 def calc_rating(rating:Rating):
