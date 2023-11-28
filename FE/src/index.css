@@ -93,6 +93,21 @@ text-align: center;
   transition: color .3s;
 }
 
+/* ICONS */
+.spinner-icon {
+  margin-right: 8px;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* GLOBAL RESPONSIVE STYLES  */
 
 @media (max-width: 575.98px) {

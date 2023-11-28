@@ -44,7 +44,6 @@
     border-color: var(--signup-error);
 }
 
-
 .login-error-msg {  
     font-weight: bold;
     font-size: 1rem;
@@ -52,7 +51,6 @@
     margin-bottom: 10px;
     max-width: 300px;
 }
-
 
 .login-submit-button {
     align-self: center;
@@ -83,10 +81,8 @@
     font-size: 1rem;
     color:var(--validation-error-color);
     max-width: 300px;
-    text-align: center;
+    text-align: center; 
 }
-
-
 
 .login-server-error-msg{
     margin-bottom: 10px;

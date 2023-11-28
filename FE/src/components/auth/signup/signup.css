@@ -26,7 +26,7 @@
     color:var(--validation-error-color);
     margin-bottom: 10px;
     max-width: 300px;
-    text-align: center;      
+    text-align: center;       
 }
 
 .signup-error-msg {  
