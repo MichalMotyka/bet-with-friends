@@ -5,6 +5,7 @@ from service.profile_service import get_profile_by_uid, get_profile_by_id,update
 from entity.users import Users
 from entity.response import Response as CustomResponse
 from exceptions.profile_dont_exist_exception import ProfileDontExistException
+import json
 
 profile_blueprint = Blueprint('profile_blueprint', __name__)
 
@@ -20,8 +21,7 @@ def get_matches(current_user:Users,response:Response):
     except ProfileDontExistException as e:
         response.set_data(CustomResponse(e.message,e.code).to_json())
         return response
-    print(profile.rating)
-    response.set_data(profile.to_json())
+    response.set_data(json.dumps(profile.to_json(),indent=4))
     return response
 
 
