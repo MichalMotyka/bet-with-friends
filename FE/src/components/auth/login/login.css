@@ -44,7 +44,6 @@
     border-color: var(--signup-error);
 }
 
-
 .login-error-msg {  
     font-weight: bold;
     font-size: 1rem;
@@ -52,7 +51,6 @@
     margin-bottom: 10px;
     max-width: 300px;
 }
-
 
 .login-submit-button {
     align-self: center;
@@ -81,26 +79,18 @@
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 1rem;
-    color: tomato;
+    color:var(--validation-error-color);
     max-width: 300px;
     text-align: center; 
 }
-
-
 
 .login-server-error-msg{
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 1rem;
-    color: tomato;
+    color:var(--validation-error-color);
     max-width: 300px;
     text-align: center;
-
-    margin: 0 auto; 
-    width: 100%;
-    padding: 5px 0;
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.411);
-    border-radius: 6px;
 }
 
 .form-to-signup{

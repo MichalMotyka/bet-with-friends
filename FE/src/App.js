@@ -1,18 +1,19 @@
 import React from 'react'
-import Nav from './components/pages/preLogin/common/nav/Nav'
-import Routing from './components/pages/preLogin/common/routing/Routing'
-import Footer from './components/pages/preLogin/common/footer/Footer'
+import { Routes, Route } from 'react-router-dom'
+import MainLayout from './MainLayout'
+import Panel from './components/pages/postLogin/Panel'
+
 import './index.css'
 
 function App () {
   return (
     <div className='wrapper'>
-      <Nav />
-      <Routing />
-      <Footer />
+      <Routes>
+        <Route path='/*' element={<MainLayout />} />
+        <Route path='/panel/*' element={<Panel />} />
+      </Routes>
     </div>
   )
 }
 
 export default App
-

@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import validate from '../validation/LogInValidations'
 import RaccoonLogin from './images/raccoon-login3.webp'
 import { ScrollToTop } from '../../utilities/ScrollToTop'
+import { FaSpinner } from 'react-icons/fa'
 import './login.css'
 
 function Login () {
+  const navigate = useNavigate()
+
   const [loginError, setLoginError] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (userData, { resetForm }) => {
     setLoginError(null)
     try {
+      setLoading(true)
       // Wysyłanie danych do backendu
       const response = await fetch('http://130.162.44.103:5000/api/v1/login', {
         method: 'POST',
@@ -20,6 +25,8 @@ function Login () {
         },
         body: JSON.stringify(userData)
       })
+
+      setLoading(false)
 
       if (response.ok) {
         const responseData = await response.json()
@@ -35,6 +42,8 @@ function Login () {
 
         // Wyczyszczenie błędu po udanym logowaniu
         setLoginError(null)
+
+        navigate('/panel')
       } else {
         // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
 
@@ -113,11 +122,18 @@ function Login () {
               />
 
               <button
-                className='login-submit-button'
                 type='submit'
+                className='login-submit-button'
                 disabled={!(formik.dirty && formik.isValid)}
               >
-                Zaloguj
+                {loading ? (
+                  <>
+                    <FaSpinner className='spinner-icon' />
+                    Logowanie...
+                  </>
+                ) : (
+                  'Zaloguj'
+                )}
               </button>
 
               {loginError && (

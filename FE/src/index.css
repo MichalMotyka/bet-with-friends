@@ -5,7 +5,9 @@
   --brand-alt-color: #2C2D5B;   
   --white-color: #ffffff;
   --black-color: #000000;
-  --signup-error: tomato;
+  --signup-error: #ce0202;
+  --backend-success-color: #047904;
+  --validation-error-color: #ce0202;
 }
 
 body { 
@@ -91,15 +93,25 @@ text-align: center;
   transition: color .3s;
 }
 
+/* ICONS */
+.spinner-icon {
+  margin-right: 8px;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* GLOBAL RESPONSIVE STYLES  */
 
 @media (max-width: 575.98px) {
-  /* .wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; 
-    overflow-x: hidden;
-  } */
+
   h1{
     font-size: 2.375rem; 
   }

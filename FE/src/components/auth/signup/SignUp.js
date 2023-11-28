@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
+import { FaSpinner } from 'react-icons/fa'
 import validate from '../validation/SignUpValidation'
 import RaccoonSignUp from './images/raccoon-signup.webp'
 import { ScrollToTop } from '../../utilities/ScrollToTop'
@@ -10,12 +10,14 @@ import './signup.css'
 function SignUp () {
   const [formError, setFormError] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (userData, { resetForm }) => {
     try {
       setFormError(null)
       setSuccessMessage(null)
-      // pakiet danych do wysłania na backend
+      setLoading(true)
+
       const userDataSending = {
         name: userData.name,
         password: userData.password,
@@ -33,10 +35,9 @@ function SignUp () {
         }
       )
 
-      if (response.ok) {
-        // const responseData = await response.json()
-        // console.log('Response from server:', responseData)
+      setLoading(false) // Zakończenie ładowania po otrzymaniu odpowiedzi
 
+      if (response.ok) {
         resetForm({
           values: {
             name: '',
@@ -47,7 +48,7 @@ function SignUp () {
         })
         setFormError(null)
         setSuccessMessage(
-          'Rejestracja zakończona sukcesem. Aktywuj swoje konto poprzez email.'
+          'Rejestracja zakończona sukcesem, aktywuj swoje konto poprzez email.'
         )
       } else {
         const errorData = await response.json()
@@ -55,11 +56,10 @@ function SignUp () {
         if (errorData.code === 'R1') {
           throw new Error(`Adres email jest zajęty.`)
         } else {
-          throw new Error(`Nazwa użytkownika zajęta.`)
+          throw new Error(`Nazwa użytkownika jest zajęta.`)
         }
       }
     } catch (error) {
-      // Ustawienie błędu, który zostanie wyświetlony użytkownikowi
       setFormError(error.message || 'Wystąpił błąd podczas rejestracji.')
     }
   }
@@ -91,15 +91,6 @@ function SignUp () {
           validate={validate}
           onSubmit={handleSubmit}
         >
-          {/* 
-touched:czy dane pole formularza zostało dotknięte przez użytkownika 
-
-errors: Jest to obiekt, który przechowuje błędy dla poszczególnych pól formularza. Jeśli pole jest błędne, to błąd zostanie przechowany w tym obiekcie.
-
-dirty: Jest to flaga mówiąca o tym, czy formularz został zmieniony. Jeśli chociaż jedno pole zostało dotknięte (zmienione), dirty będzie true.
-
-isValid: Jest to flaga mówiąca o tym, czy cały formularz jest aktualnie ważny (czyli czy wszystkie walidacje zwracają pozytywny wynik). Jeśli wszystko jest poprawne, isValid będzie true. */}
-
           {({ touched, errors, dirty, isValid }) => (
             <Form className='form-signup'>
               <p>Stwórz konto i dołącz do społeczności!</p>
@@ -175,10 +166,16 @@ isValid: Jest to flaga mówiąca o tym, czy cały formularz jest aktualnie ważn
               <button
                 type='submit'
                 className='signup-submit-button'
-                // bez dirty button były enabled, stad koniecznosc interakcji z formularzem.
-                disabled={!(dirty && isValid)}
+                disabled={!(dirty && isValid) || loading}
               >
-                Stwórz konto
+                {loading ? (
+                  <>
+                    <FaSpinner className='spinner-icon' />
+                    Wysyłanie...
+                  </>
+                ) : (
+                  'Stwórz konto'
+                )}
               </button>
 
               {formError && (
