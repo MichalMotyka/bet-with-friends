@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import validate from '../validation/LogInValidations'
 import RaccoonLogin from './images/raccoon-login3.webp'
@@ -8,6 +8,8 @@ import { FaSpinner } from 'react-icons/fa'
 import './login.css'
 
 function Login () {
+  const navigate = useNavigate()
+
   const [loginError, setLoginError] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -40,6 +42,8 @@ function Login () {
 
         // Wyczyszczenie błędu po udanym logowaniu
         setLoginError(null)
+
+        navigate('/panel')
       } else {
         // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
 
