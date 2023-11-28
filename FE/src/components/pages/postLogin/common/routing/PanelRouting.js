@@ -8,10 +8,6 @@ import NotFound from '../../../../auth/NotFound'
 function PanelRounting () {
   return (
     <>
-      {/* DODAJ KOMPONENT Z TRESCIĄ 
- A W NIM DWA KOMPONENTY HEADER I TREŚĆ!!!|
- */}
-
       <Routes>
         <Route path='/' element={<Prediction />} />
         <Route path='/toptypers' element={<PanelLeaderboard />} />
