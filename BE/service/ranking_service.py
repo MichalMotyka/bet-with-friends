@@ -29,6 +29,18 @@ def update_ranking():
         except:
             session.rollback()
 
+def get_ranking(page:int,limit:int) -> Profile:
+    with session_factory() as session:
+        return (
+            session.query(Profile)
+            .join(Profile.ranking)
+            .filter(Ranking.place != 0)
+            .order_by(Ranking.place)
+            .offset((page-1)*limit)
+            .limit(limit)
+            .all()
+        )
+
 
 def create_jobs():
     sheduler = BackgroundScheduler()
