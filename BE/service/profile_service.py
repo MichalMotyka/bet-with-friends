@@ -13,7 +13,7 @@ import uuid
 def create_profile(user:Users):
     rating:Rating = create_raiting()
     with session_factory() as session:
-        profile:Profile = Profile(public_id=uuid.uuid4(),name=user.name,points=100,avatar='',rating_id=rating.id,user_id=user.id)
+        profile:Profile = Profile(public_id=uuid.uuid4(),name=user.name,points=100,avatar='ava1',rating_id=rating.id,user_id=user.id)
         session.add(profile)
         session.commit()
         session.refresh(profile)
