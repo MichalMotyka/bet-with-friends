@@ -7,6 +7,8 @@ import Leaderboard from '../../menu/leaderboard/Leaderboard'
 import Login from '../../../../auth/login/Login'
 import SingUp from '../../../../auth/signup/SignUp'
 
+import NotFound from '../../../../auth/NotFound'
+
 function Routing () {
   return (
     <Routes>
@@ -16,6 +18,7 @@ function Routing () {
       <Route path='/Leaderboard' element={<Leaderboard />} />
       <Route path='/Login' element={<Login />} />
       <Route path='/SignUp' element={<SingUp />} />
+      <Route path='*' element={<NotFound />} />
     </Routes>
   )
 }

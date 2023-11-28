@@ -25,13 +25,13 @@ class Profile(Base):
 
 
     def to_json(self):
-        return json.dumps({
+        return {
             "public_id": self.public_id,
             "name": self.name,
             "points": self.points,
             "avatar": self.avatar,
             "ranking": json.loads(self.ranking.to_json()),
             "rating": json.loads(self.rating.to_json()),
-        }, indent= 4)
+        }
 
     

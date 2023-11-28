@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import footerLogo from './images/footer-logo.webp'
 import { ScrollToTop } from '../../../../utilities/ScrollToTop'
+import { MdOutlineAlternateEmail } from 'react-icons/md'
+
 import './footer.css'
 
 function Footer () {
@@ -20,8 +22,9 @@ function Footer () {
             </Link>
             <p>
               Dołącz do społeczności typujących! Przewiduj wyniki meczów,
-              rywalizuj z innymi i zdobywaj punkty. [Best With Friends ©] [2023]
-              Wszelkie prawa zastrzeżone.
+              rywalizuj z innymi i zdobywaj punkty. [Best With Friends
+              <MdOutlineAlternateEmail /> {currentYear}] Wszelkie prawa
+              zastrzeżone.
             </p>
           </div>
 
@@ -93,7 +96,9 @@ function Footer () {
         <hr />
 
         <p className='brand footer-brand footer-bot-brand'>
-          Bet With <span className='span-brand'>Friends</span> @{currentYear}
+          Bet With <span className='span-brand'>Friends</span>{' '}
+          <MdOutlineAlternateEmail />
+          {currentYear}
         </p>
       </div>
     </footer>

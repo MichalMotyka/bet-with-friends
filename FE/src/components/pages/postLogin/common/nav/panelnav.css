@@ -1,0 +1,9 @@
+.panel-ul{
+    display: flex;
+    flex-direction: row;
+}
+
+.panel-item{
+    padding: 0 10px;
+    list-style: none;
+}
