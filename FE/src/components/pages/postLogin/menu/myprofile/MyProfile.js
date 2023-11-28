@@ -1,8 +1,10 @@
 function MyProfile () {
   return (
-    <>
-      <h2>Mój profil</h2>
-    </>
+    <section style={{ marginBottom: '30px' }} className='app-wrap'>
+      <div className='login'>
+        <h2 className='section-title'>Mój profil</h2>
+      </div>
+    </section>
   )
 }
 
