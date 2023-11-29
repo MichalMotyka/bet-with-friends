@@ -93,6 +93,11 @@ text-align: center;
   transition: color .3s;
 }
 
+.active {
+  color: var(--brand-color);
+  font-weight: bold;
+}
+
 /* ICONS */
 .spinner-icon {
   margin-right: 8px;

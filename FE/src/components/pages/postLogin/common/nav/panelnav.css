@@ -1,9 +1,35 @@
-.panel-ul{
+.nav-panel{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px;
+}
+
+.nav-panel-box{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.panel-menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0 ;  
+}
+.border{
+    width: 1px;
+height: 100px;
+margin: 0 20px;
+background-color: silver;
 }
 
 .panel-item{
     padding: 0 10px;
-    list-style: none;
 }
+
+
+
+  
