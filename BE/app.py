@@ -6,8 +6,10 @@ from controllers.profile_controller import profile_blueprint
 from controllers.ranking_controller import ranking_blueprint
 from shared.base import init_db
 from configuration.configuration_manager import ConfigurationManager
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app=app,resources={r'/api/v1/*':{'origins':'*', 'supports_credentials': True}})
 config = ConfigurationManager.get_instance()
 init_db()
 
