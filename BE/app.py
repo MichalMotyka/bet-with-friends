@@ -9,6 +9,7 @@ from configuration.configuration_manager import ConfigurationManager
 from flask_cors import CORS
 
 app = Flask(__name__)
+app.config['SESSION_COOKIE_SAMESITE'] = "None"
 cors = CORS(app=app,resources={r'/api/v1/*':{'origins':'*', 'supports_credentials': True}})
 config = ConfigurationManager.get_instance()
 init_db()
