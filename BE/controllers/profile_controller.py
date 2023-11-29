@@ -6,12 +6,10 @@ from entity.users import Users
 from entity.response import Response as CustomResponse
 from exceptions.profile_dont_exist_exception import ProfileDontExistException
 import json
-from flask_cors import CORS, cross_origin
 
 profile_blueprint = Blueprint('profile_blueprint', __name__)
 
 @profile_blueprint.route('/profile',methods=['GET'])
-@cross_origin()
 @token_required
 def get_matches(current_user:Users,response:Response):
     uuid = request.args.get('uuid')
@@ -28,7 +26,6 @@ def get_matches(current_user:Users,response:Response):
 
 
 @profile_blueprint.route('/profile', methods=['PATCH'])
-@cross_origin()
 @token_required
 def update_profile(current_user:Users, response:Response):
     data = request.get_json()
