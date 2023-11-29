@@ -6,11 +6,11 @@ import Routing from './components/pages/preLogin/common/routing/Routing'
 
 function MainLayout () {
   return (
-    <>
+    <div className='wrapper'>
       <Nav />
       <Routing />
       <Footer />
-    </>
+    </div>
   )
 }
 

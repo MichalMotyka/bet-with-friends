@@ -2,17 +2,19 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import MainLayout from './MainLayout'
 import Panel from './components/pages/postLogin/Panel'
+import { AuthProvider } from './components/auth/authcontext/AuthContext'
 
 import './index.css'
 
 function App () {
   return (
-    <div className='wrapper'>
+    <AuthProvider>
       <Routes>
         <Route path='/*' element={<MainLayout />} />
+
         <Route path='/panel/*' element={<Panel />} />
       </Routes>
-    </div>
+    </AuthProvider>
   )
 }
 
