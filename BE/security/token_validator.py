@@ -39,7 +39,7 @@ def token_required(f):
                 expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
                 response.set_cookie('Authorization',authorize,expires=expiration,httponly=True,samesite=None,max_age=expiration)
                 expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
-                response.set_cookie('Refresh',refresh,expires=expiration,httponly=True,samesite=None,max_age=expiration)
+                response.set_cookie('Refresh',refresh,expires=expiration,httponly=True,samesite=None,max_age=expiration,domain=request.origin)
             except (UserNotActivatedException, UserDontExistException) as e:
                 response = make_response(Response(e.message,e.code).__dict__)
                 response.status_code = 401
