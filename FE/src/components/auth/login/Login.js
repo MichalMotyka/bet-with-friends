@@ -5,10 +5,15 @@ import validate from '../validation/LogInValidations'
 import RaccoonLogin from './images/raccoon-login3.webp'
 import { ScrollToTop } from '../../utilities/ScrollToTop'
 import { FaSpinner } from 'react-icons/fa'
+
+import { useAuth } from '../authcontext/AuthContext'
+
 import './login.css'
 
 function Login () {
   const navigate = useNavigate()
+  //destrukturyzacja funkcji odpowiedzialnej za zmiane stanu zalogowanego uzytkownika.
+  const { login } = useAuth()
 
   const [loginError, setLoginError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -29,9 +34,6 @@ function Login () {
       setLoading(false)
 
       if (response.ok) {
-        const responseData = await response.json()
-        console.log('Response from server:', responseData)
-
         // Czyszczenie formularza po udanym logowaniu
         resetForm({
           values: {
@@ -43,13 +45,14 @@ function Login () {
         // Wyczyszczenie błędu po udanym logowaniu
         setLoginError(null)
 
+        login()
         navigate('/panel')
       } else {
         // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
 
         // Spróbuj sparsować błąd jako JSON, jeśli to możliwe
         const errorData = await response.json()
-
+        console.log(errorData)
         if (errorData.code === 'L1') {
           throw new Error(`Błędne hasło lub nazwa użytkownika.`)
         } else {

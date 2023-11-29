@@ -29,7 +29,7 @@ function Nav () {
       >
         <li>
           {/* link jest aktywny tylko wtedy, gdy ścieżka URL jest identyczna z określoną ścieżką. 
-            NavLink posiadafunkcje która za pomocą atrybutu activeClassName nadaje klasę active do aktualnie otwartego elementu menu.
+            NavLink posiada klasę domyślną active  która nadaje style do otwartego elementu menu.
           */}
           <NavLink className='nav-menu-item' to='/'>
             Home
