@@ -2,11 +2,13 @@ from flask import Blueprint, request, Response, make_response
 from service.ranking_service import get_ranking
 from entity.profile import Profile
 import json
+from flask_cors import CORS, cross_origin
 
 
 ranking_blueprint = Blueprint('ranking_blueprint', __name__)
 
 @ranking_blueprint.route('/ranking', methods=['GET'])
+@cross_origin()
 def ranking_list():
     page = 1 
     limit = 5
