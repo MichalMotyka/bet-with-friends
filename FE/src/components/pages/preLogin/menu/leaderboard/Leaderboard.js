@@ -25,7 +25,8 @@ function Leaderboard () {
     }
 
     fetchData()
-  }, []) // Pusta tablica oznacza, że useEffect uruchomi się tylko raz po zamontowaniu komponentu
+  }, [])
+
   console.log(leadersData)
   return (
     leadersData &&
@@ -34,17 +35,15 @@ function Leaderboard () {
         <h2 className='section-title'>
           <span className='span-brand'> Leader</span>board
         </h2>
-
-      
-        <table className='leaderboard-table'>
-        <caption className='table-caption'>
+        <p className='table-caption'>
           W sekcji "Top 5 Typerów Piłki Nożnej" prezentujemy najskuteczniejszych
           graczy w naszej społeczności. Tabela zawiera kluczowe statystyki,
           takie jak zdobyte punkty, skuteczność, ilość wygranych oraz ogólna
           ocena. To doskonała okazja, aby sprawdzić swoje umiejętności w
           typowaniu wyników i konkurować z innymi fanami piłki nożnej. Dołącz
           już dziś i poczuj emocje rywalizacji!
-        </caption>
+        </p>
+        <table className='leaderboard-table  '>
           <thead>
             <tr>
               <th className='th-place'>Miejsce</th>
