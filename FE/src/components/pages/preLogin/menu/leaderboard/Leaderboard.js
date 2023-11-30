@@ -3,23 +3,30 @@ import './leaderboards.css'
 
 function Leaderboard () {
   const [leadersData, setLeadersData] = useState([])
-  const [leadersNumber, setLeaderNumber] = useState(10)
 
   useEffect(() => {
-    const APIURL = `https://randomuser.me/api/?results=${leadersNumber}`
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          'http://130.162.44.103:5000/api/v1/ranking',
+          {
+            method: 'GET', // Metoda GET
+            headers: {
+              'Content-Type': 'application/json' // Opcjonalne, ustawienia nagłówka z typem treści
+            }
+          }
+        )
 
-    fetch(APIURL)
-      .then(response => response.json())
-      .then(data => setLeadersData(data.results))
-      .catch(error => console.error(error))
-  }, [leadersNumber])
+        const jsonData = await response.json()
+        setLeadersData(jsonData)
+      } catch (error) {
+        console.error('Błąd pobierania danych:', error)
+      }
+    }
 
-  const handleLeadersNumber = e => {
-    setLeaderNumber(e.target.value)
-  }
-
-
-  console.log(leadersData);
+    fetchData()
+  }, []) // Pusta tablica oznacza, że useEffect uruchomi się tylko raz po zamontowaniu komponentu
+  console.log(leadersData)
   return (
     leadersData &&
     leadersData.length > 0 && (
@@ -28,30 +35,46 @@ function Leaderboard () {
           <span className='span-brand'> Leader</span>board
         </h2>
 
-        <div>
-          <ol>
-            {leadersData
-              .sort(
-                (a, b) => b.location.street.number - a.location.street.number
-              )
-              .map((leader, index) => (
-                <li key={leader.login.uuid}>
-                  <p>{index + 1}</p>
-                  <img src={leader.picture.large} alt='' />
-                  <p>{leader.login.username}</p>
-                  <p>{leader.location.street.number}</p>
-                </li>
-              ))}
-          </ol>
-        </div>
-
-        <select value={leadersNumber} onChange={handleLeadersNumber}>
-          <option value={10}>10</option>
-          <option value={20}>20</option>
-          <option value={30}>30</option>
-          <option value={40}>40</option>
-          <option value={50}>50</option>
-        </select>
+      
+        <table className='leaderboard-table'>
+        <caption className='table-caption'>
+          W sekcji "Top 5 Typerów Piłki Nożnej" prezentujemy najskuteczniejszych
+          graczy w naszej społeczności. Tabela zawiera kluczowe statystyki,
+          takie jak zdobyte punkty, skuteczność, ilość wygranych oraz ogólna
+          ocena. To doskonała okazja, aby sprawdzić swoje umiejętności w
+          typowaniu wyników i konkurować z innymi fanami piłki nożnej. Dołącz
+          już dziś i poczuj emocje rywalizacji!
+        </caption>
+          <thead>
+            <tr>
+              <th className='th-place'>Miejsce</th>
+              <th>Nick</th>
+              <th className='th-hide'>Avatar</th>
+              <th>Punkty</th>
+              <th>Bety</th>
+              <th>Winy</th>
+              <th className='th-hide'>Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leadersData.map(leader => (
+              <tr key={leader.public_id}>
+                <td className='th-place'>{leader.ranking.place}</td>
+                <td className='leader-name'>{leader.name}</td>
+                <td className='th-hide'>
+                  <img
+                    src={`http://130.162.44.103:5000/api/v1/avatar/${leader.avatar}`}
+                    alt=''
+                  />
+                </td>
+                <td>{leader.points}</td>
+                <td>{leader.rating.bets}</td>
+                <td>{leader.rating.wins}</td>
+                <td className='th-hide'>{leader.rating.rating}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </section>
     )
   )

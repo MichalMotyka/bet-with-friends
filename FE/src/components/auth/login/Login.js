@@ -23,7 +23,7 @@ function Login () {
     try {
       setLoading(true)
       // Wysyłanie danych do backendu
-      const response = await fetch('http://130.162.44.103:5000/api/v1/login', {
+      const response = await fetch('http://localhost:5000/api/v1/login', {
         method: 'POST',
         credentials: 'include',
         headers: {
