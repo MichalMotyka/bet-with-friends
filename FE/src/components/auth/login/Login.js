@@ -117,6 +117,7 @@ function Login () {
                 id='password'
                 name='password'
                 placeholder='*********'
+                autoComplete='current-password'
               />
               <ErrorMessage
                 name='password'

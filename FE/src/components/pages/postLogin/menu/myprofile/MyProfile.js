@@ -11,9 +11,17 @@ function MyProfile () {
           method: 'GET',
           credentials: 'include',
           headers: {
+            Accept: 'application/json',
             'Content-Type': 'application/json'
           }
         })
+
+        console.log('Response Status:', response.status)
+        console.log('Response Headers:', response.headers)
+
+        // Log the cookies received
+        console.log(document.cookie)
+
         if (!response.ok) {
           throw new Error(
             `Network response was not ok, status: ${response.status}`
@@ -23,7 +31,7 @@ function MyProfile () {
         const data = await response.json()
         setUserProfile(data)
       } catch (error) {
-        console.log(error)
+        console.error('Błąd podczas pobierania danych:', error)
       }
     }
 
