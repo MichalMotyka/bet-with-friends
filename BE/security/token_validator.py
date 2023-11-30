@@ -18,10 +18,10 @@ def token_required(f):
         refresh_token= None
         response = make_response()
         response.headers['Content-Type'] = 'application/json'
-        if 'Authorization' in request.headers:
-            token = request.headers['Authorization']
-        if 'Refresh' in request.headers:
-            refresh_token = request.headers['Refresh']
+        if 'Authorization' in request.cookies:
+            token = request.cookies['Authorization']
+        if 'Refresh' in request.cookies:
+            refresh_token =  request.cookies['Refresh']
         if not token and not refresh_token:
             response = make_response(Response('Session expired','T1').__dict__)
             response.status_code = 401
