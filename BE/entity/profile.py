@@ -15,7 +15,7 @@ class Profile(Base):
     public_id = Column(String)
     name = Column(String(50),unique=True)
     points = Column(Double)
-    avatar = Column(String(255),unique=True)
+    avatar = Column(String(255))
     ranking_id = Column(Integer, ForeignKey("rankings.id"))
     rating_id = Column(Integer,ForeignKey('ratings.id'))
     user_id = Column(Integer,ForeignKey('users.id'))
