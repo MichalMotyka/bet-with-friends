@@ -20,5 +20,8 @@
     "name":"postgres",
     "port":"5432",
     "host":"130.162.44.103"
+  },
+  "jobs":{
+    "updateProfile":300
   }
 }

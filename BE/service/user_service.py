@@ -14,6 +14,7 @@ from exceptions.user_alredy_exist_name_exception import UserAlredyExistNameExcep
 from exceptions.user_not_activated_exception import UserNotActivatedException
 from exceptions.password_or_login_incorrect_exception import PasswordOrLoginIncorrectException
 from exceptions.user_dont_exist_exception import UserDontExistException
+from service.profile_service import create_profile
 
 config = ConfigurationManager.get_instance()
 def create_user(user:Users):
@@ -33,12 +34,13 @@ def create_user(user:Users):
             session.refresh(user)
             create_activation(user_id=user.id)
             send_activation_mail(user.email)
+            create_profile(user=user)
         except IntegrityError as e:
-             if 'already exists.' in str(e.orig):
+            if 'already exists.' in str(e.orig):
                 if 'name' in str(e.orig):
                     raise UserAlredyExistNameException(user.name)
                 elif 'email' in str(e.orig):
-                    raise UserAlredyExistEmailException(user.email)            
+                    raise UserAlredyExistEmailException(user.email)
 
 def activate_user(code:str):
     user_id = activate(code)
