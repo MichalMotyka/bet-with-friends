@@ -56,7 +56,7 @@ function Nav () {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/signup' className='nav-front-signup-btn'>
+          <NavLink to='/signup' className='nav-front-signup-btn '>
             Sign Up
           </NavLink>
         </li>

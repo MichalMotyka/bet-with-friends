@@ -13,7 +13,6 @@ function UserMenu () {
   }
 
   const handleUserMenu = () => {
-    console.log('Clicked on user menu')
     setUserMenu(!showUserMenu)
   }
 
