@@ -41,6 +41,8 @@ def create_user(user:Users):
                     raise UserAlredyExistNameException(user.name)
                 elif 'email' in str(e.orig):
                     raise UserAlredyExistEmailException(user.email)
+        except:
+            session.rollback()
 
 def activate_user(code:str):
     user_id = activate(code)
@@ -51,7 +53,7 @@ def activate_user(code:str):
 
 def login(user:Users):
     with session_factory() as session:
-        userdb = session.query(Users).filter_by(name=user.name).first()
+        userdb = session.query(Users).filter_by(email=user.email).first()
         if not userdb:
            raise PasswordOrLoginIncorrectException()
         elif not userdb.isActive:
