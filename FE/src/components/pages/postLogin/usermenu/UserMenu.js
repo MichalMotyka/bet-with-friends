@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../../auth/authcontext/AuthContext'
+import { useUser } from '../context/UserContext'
 import { useState } from 'react'
 
 import './usermenu.css'
 
 function UserMenu () {
+  const { userProfile } = useUser()
   const [showUserMenu, setUserMenu] = useState(false)
   const { logout } = useAuth()
 
@@ -13,17 +15,17 @@ function UserMenu () {
   }
 
   const handleUserMenu = () => {
-    console.log('Clicked on user menu')
     setUserMenu(!showUserMenu)
   }
+  console.log(userProfile.avatar)
 
   return (
     <div className='user-menu-box'>
       <p style={{ padding: '0 10px 0 0', fontWeight: 'bold' }}>
-        Nazwa użytkownika
+        {userProfile.name}
       </p>
       <img
-        src='http://130.162.44.103:5000/api/v1/avatar/ava1'
+        src={userProfile.avatar}
         alt=''
         className='user-menu-avatar'
         onClick={handleUserMenu}
