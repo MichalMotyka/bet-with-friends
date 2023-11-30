@@ -25,11 +25,7 @@ function Login () {
       // Wysyłanie danych do backendu
       const response = await fetch('http://130.162.44.103:5000/api/v1/login', {
         method: 'POST',
-<<<<<<< HEAD
         credentials: 'include',
-=======
-        credentials:'include',
->>>>>>> d01f810bad3a4678b379bfbd3f66f6648b1e1c40
         headers: {
           'Content-Type': 'application/json'
         },
