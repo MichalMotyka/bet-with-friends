@@ -1,5 +1,5 @@
 import io
-from flask import Blueprint, request, send_file, send_from_directory
+from flask import Blueprint, request, send_file
 import os
 
 image_blueprint = Blueprint('image_blueprint', __name__)
