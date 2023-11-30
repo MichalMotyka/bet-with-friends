@@ -94,8 +94,9 @@ text-align: center;
 }
 
 .active {
-  color: var(--brand-color);
-  font-weight: bold;
+  /* color: var(--brand-color); */
+  color: red;
+
 }
 
 /* ICONS */
