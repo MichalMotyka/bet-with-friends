@@ -59,3 +59,11 @@ def login():
         response = make_response(Response(message=e.message,code='L4').__dict__)
         response.status_code = 400
     return response
+
+@user_blueprint.route('/logout', methods=['GET'])
+def logout():
+    response = make_response(Response(message='The user has been successfully logout.',code='OK').__dict__)
+    response.set_cookie('Authorization','',1,httponly=False)
+    response.set_cookie('Refresh','',expires=1,httponly=False)
+    return response
+

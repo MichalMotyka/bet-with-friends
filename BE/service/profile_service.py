@@ -9,6 +9,9 @@ from entity.users import Users
 from entity.rating import Rating
 from shared.base import session_factory
 import uuid
+from configuration.configuration_manager import ConfigurationManager
+
+config = ConfigurationManager.get_instance()
 
 def create_profile(user:Users):
     rating:Rating = create_raiting()
@@ -28,6 +31,8 @@ def get_profile_by_uid(uuid:str):
     with session_factory() as session:
         profile = session.query(Profile).filter_by(public_id=uuid).first()
         if profile:
+           avatar_url = config.get_config_by_key('external.url')+"/api/v1/avatar/"+profile.avatar
+           profile.avatar = avatar_url
            return profile
         raise ProfileDontExistException()
 
@@ -35,6 +40,8 @@ def get_profile_by_id(id:int):
     with session_factory() as session:
         profile = session.query(Profile).filter_by(user_id=id).first()
         if profile:
+            avatar_url = config.get_config_by_key('external.url')+"/api/v1/avatar/"+profile.avatar
+            profile.avatar = avatar_url
             return profile
         raise ProfileDontExistException()
     
