@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
-function UserInfo () {
+const UserContext = createContext()
+
+function UserProvider ({ children }) {
   const [userProfile, setUserProfile] = useState([])
 
   useEffect(() => {
@@ -12,33 +14,34 @@ function UserInfo () {
           credentials: 'include',
           headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            'Content-type': 'application/json'
           }
         })
-
         console.log('Response Status:', response.status)
         console.log('Response Headers:', response.headers)
 
-        // Log the cookies received
-        console.log(document.cookie)
-
         if (!response.ok) {
-          throw new Error(
-            `Network response was not ok, status: ${response.status}`
-          )
+          throw new Error('Network response was not ok.')
         }
 
         const data = await response.json()
         setUserProfile(data)
       } catch (error) {
-        console.error('Błąd podczas pobierania danych:', error)
+        console.error(`Bład podczas pobierana danych:`, error)
       }
     }
-
     fetchData()
   }, [])
-  console.log(userProfile)
-  return userProfile
+
+  return (
+    <UserContext.Provider value={{ userProfile }}>
+      {children}
+    </UserContext.Provider>
+  )
 }
 
-export default UserInfo
+export const useUser = () => {
+  return useContext(UserContext)
+}
+
+export default UserProvider

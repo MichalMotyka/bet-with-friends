@@ -1,9 +1,11 @@
-import UserInfo from '../../common/userinfo/UserInfo'
+import { useUser } from "../../context/UserContext"
 
 function MyProfile () {
-  const { userProfile } = UserInfo()
+ const {userProfile} = useUser()
 
-  console.log(userProfile)
+
+
+console.log(userProfile);
 
   return (
     <section style={{ marginBottom: '30px' }} className='app-wrap'>

@@ -18,6 +18,8 @@ function Leaderboard () {
     setLeaderNumber(e.target.value)
   }
 
+
+  console.log(leadersData);
   return (
     leadersData &&
     leadersData.length > 0 && (
