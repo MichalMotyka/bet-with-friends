@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
 import PanelNav from './common/nav/PanelNav'
 import GroupList from './main/grouplist/GroupList'
-import TopFive from './main/topfive/TopFive'
 import PanelRounting from './common/routing/PanelRouting'
-import TopTyper from './main/toptyper/TopTyper'
 import Ads from './main/ads/Ads'
 import PanelFooter from './common/footer/PanelFooter'
+import TopParent from './main/topParent/TopParent'
 import './panel.css'
 
 import UserProvider from './context/UserContext'
@@ -31,16 +30,15 @@ function Panel () {
         <div className='panel-box'>
           <div className='left-panel'>
             <GroupList />
-            <TopFive />
+            <Ads />
           </div>
 
           <div className='center-panel'>
             <PanelRounting />
           </div>
 
-          <div className='right-panel'>
-            <TopTyper />
-            <Ads />
+          <div className='right-panel' style={{ borderRadius: '0' }}>
+            <TopParent />
           </div>
         </div>
         <PanelFooter />
