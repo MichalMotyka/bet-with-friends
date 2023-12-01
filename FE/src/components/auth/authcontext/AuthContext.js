@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   const logout = async () => {
-    const url = 'http://localhost:5000/api/v1/logout'
+    const url = 'http://130.162.44.103:5000/api/v1/logout'
 
     try {
       const response = await fetch(url, {

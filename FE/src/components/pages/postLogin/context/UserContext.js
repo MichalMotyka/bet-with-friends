@@ -17,8 +17,6 @@ function UserProvider ({ children }) {
             'Content-type': 'application/json'
           }
         })
-        console.log('Response Status:', response.status)
-        console.log('Response Headers:', response.headers)
 
         if (!response.ok) {
           throw new Error('Network response was not ok.')

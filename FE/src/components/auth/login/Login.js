@@ -53,7 +53,7 @@ function Login () {
 
         // Spróbuj sparsować błąd jako JSON, jeśli to możliwe
         const errorData = await response.json()
-        console.log(errorData)
+
         if (errorData.code === 'L1') {
           throw new Error(`Błędne hasło lub nazwa użytkownika.`)
         } else {

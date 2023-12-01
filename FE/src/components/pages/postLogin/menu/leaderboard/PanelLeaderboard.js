@@ -2,18 +2,21 @@ import { useState, useEffect } from 'react'
 
 function PanelLeaderboard () {
   const [leadersData, setLeadersData] = useState([])
+  const [page, setPage] = useState(10) // Domyślna strona
+  // const [limit, setLimit] = useState(10) // Domyślna liczba elementów na stronie
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Dodaj parametr "page" do adresu URL
-        const pageParam = 1 // Przykładowa wartość, możesz dostosować
-        const url = `http://130.162.44.103:5000/api/v1/ranking?limit=${pageParam}`
+        // Dodaj parametry "page" i "limit" do adresu URL
+        const url = `http://130.162.44.103:5000/api/v1/ranking?limit=${page}`
 
         const response = await fetch(url, {
           method: 'GET',
+          credentials: 'include',
           headers: {
-            'Content-Type': 'application/json'
+            Accept: 'application/json',
+            'Content-type': 'application/json'
           }
         })
 
@@ -32,7 +35,8 @@ function PanelLeaderboard () {
     }
 
     fetchData()
-  }, [])
+  }, [page]) // Dodaj page i limit do zależności useEffect, aby reagować na ich zmiany
+
   console.log(leadersData)
 
   return (
@@ -43,29 +47,29 @@ function PanelLeaderboard () {
           <span className='span-brand'> Leader</span>board
         </h2>
         <p className='table-caption'>
-          W sekcji "Top 5 Typerów Piłki Nożnej" prezentujemy najskuteczniejszych
-          graczy w naszej społeczności. Tabela zawiera kluczowe statystyki,
-          takie jak zdobyte punkty, skuteczność, ilość wygranych oraz ogólna
-          ocena. To doskonała okazja, aby sprawdzić swoje umiejętności w
-          typowaniu wyników i konkurować z innymi fanami piłki nożnej. Dołącz
-          już dziś i poczuj emocje rywalizacji!
+          W sekcji Top 5 Typerów prezentujemy najskuteczniejszych graczy w
+          naszej społeczności. Tabela zawiera kluczowe statystyki, takie jak
+          zdobyte punkty, skuteczność, ilość wygranych oraz ogólna ocena. To
+          doskonała okazja, aby sprawdzić swoje umiejętności w typowaniu wyników
+          i konkurować z innymi fanami piłki nożnej. Dołącz już dziś i poczuj
+          emocje rywalizacji!
         </p>
-        <table className='  '>
+        <table>
           <thead>
             <tr>
-              <th className=''>Miejsce</th>
+              <th>Miejsce</th>
               <th>Nick</th>
-              <th className=''>Avatar</th>
+              <th>Avatar</th>
               <th>Punkty</th>
               <th>Bety</th>
               <th>Winy</th>
-              <th className=''>Rating</th>
+              <th>Rating</th>
             </tr>
           </thead>
           <tbody>
             {leadersData.map(leader => (
               <tr key={leader.public_id}>
-                <td className=''>{leader.ranking.place}</td>
+                <td>{leader.ranking.place}</td>
                 <td>{leader.name}</td>
                 <td>
                   <img

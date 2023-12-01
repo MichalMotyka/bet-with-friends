@@ -15,12 +15,9 @@ function UserInfo () {
             'Content-Type': 'application/json'
           }
         })
+     
 
-        console.log('Response Status:', response.status)
-        console.log('Response Headers:', response.headers)
-
-        // Log the cookies received
-        console.log(document.cookie)
+        // Log the cookies received       
 
         if (!response.ok) {
           throw new Error(
@@ -37,7 +34,7 @@ function UserInfo () {
 
     fetchData()
   }, [])
-  console.log(userProfile)
+
   return userProfile
 }
 

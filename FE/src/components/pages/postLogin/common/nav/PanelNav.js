@@ -2,12 +2,8 @@ import { NavLink, Link } from 'react-router-dom'
 import './panelnav.css'
 import UserMenu from '../../usermenu/UserMenu'
 
-import { useUser } from '../../context/UserContext'
 
 function PanelNav () {
-  const { userProfile } = useUser()
-
-  console.log(userProfile)
   return (
     <>
       <nav className='nav-panel'>
