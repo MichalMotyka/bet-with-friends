@@ -2,8 +2,10 @@ import './topfive.css'
 
 function TopFive () {
   return (
-    <div className='topfive'>
-      <p>TOP 5</p>
+    <div className='panel-side-box'>
+      <h2 className='panel-header'>
+        Top 5 <span className='span-brand'>Typerów</span>
+      </h2>
     </div>
   )
 }

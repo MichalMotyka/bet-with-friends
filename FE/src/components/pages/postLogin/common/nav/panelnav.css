@@ -1,6 +1,8 @@
-.nav-panel {
+.nav-panel {   
     display: flex;
     justify-content: space-between;   
+    background-color: var(--white-color);
+    padding: 0 15px;
      }
 
 .nav-panel-box {

@@ -2,11 +2,9 @@ import './ads.css'
 
 function Ads () {
   return (
-    <>
-      <div className='ads'>
-        <p>TOP 5</p>
-      </div>
-    </>
+    <div className='panel-side-box'>
+      <h2 className='panel-header'>Reklama</h2>
+    </div>
   )
 }
 

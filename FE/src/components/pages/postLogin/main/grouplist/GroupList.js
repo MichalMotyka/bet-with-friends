@@ -1,10 +1,13 @@
-import "./grouplist.css"
+import './grouplist.css'
 function GroupList () {
-  return <div className="grouplist">
-
-    <p>Grupa A</p>
-
-   </div>
+  return (
+    <div className='panel-side-box'>
+      <h2 className='panel-header'>
+        {' '}
+        <span className='span-brand'>Grupy</span>
+      </h2>
+    </div>
+  )
 }
 
 export default GroupList
