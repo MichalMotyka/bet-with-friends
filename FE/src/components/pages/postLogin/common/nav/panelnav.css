@@ -1,8 +1,7 @@
 .nav-panel {
     display: flex;
-    justify-content: space-between;
-    margin: 0 20px;
-}
+    justify-content: space-between;   
+     }
 
 .nav-panel-box {
     display: flex;

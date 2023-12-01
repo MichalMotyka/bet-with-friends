@@ -99,6 +99,12 @@ text-align: center;
 
 }
 
+.avatar{
+  border: 2px solid #c0c0c0; 
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(192, 192, 192, 0.8);
+}
+
 /* ICONS */
 .spinner-icon {
   margin-right: 8px;

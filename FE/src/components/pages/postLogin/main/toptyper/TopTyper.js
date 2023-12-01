@@ -1,8 +1,9 @@
+import './toptyper.css'
 function TopTyper () {
   return (
-    <>
-      <h2>Top Typer</h2>
-    </>
+    <div className='top-typer'>
+      <p>Top Typer</p>
+    </div>
   )
 }
 

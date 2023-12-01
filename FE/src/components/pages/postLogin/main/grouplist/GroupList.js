@@ -1,6 +1,10 @@
+import "./grouplist.css"
 function GroupList () {
-  return <>
-   <h2>Group A</h2></>
+  return <div className="grouplist">
+
+    <p>Grupa A</p>
+
+   </div>
 }
 
 export default GroupList
