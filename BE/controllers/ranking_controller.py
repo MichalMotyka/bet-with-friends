@@ -16,5 +16,5 @@ def ranking_list(response:Response):
         page = request.args.get('page')
     if request.args.get('limit'):
         limit = request.args.get('limit')
-    response.set_data(json.dumps([obj.to_json() for obj in get_ranking(page=page,limit=limit)],indent=4))
+    response.set_data(json.dumps([obj.to_json() for obj in get_ranking(page=int(page),limit=int(limit))],indent=4))
     return response,200
