@@ -1,7 +1,11 @@
+import './ads.css'
+
 function Ads () {
   return (
     <>
-      <h2>Reklama</h2>
+      <div className='ads'>
+        <p>TOP 5</p>
+      </div>
     </>
   )
 }

@@ -2,13 +2,12 @@ import { useState, useEffect } from 'react'
 
 function PanelLeaderboard () {
   const [leadersData, setLeadersData] = useState([])
-  const [page, setPage] = useState(1) // Domyślna strona
-  const [limit, setLimit] = useState(10) // Domyślna liczba elementów na stronie
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(10)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Dodaj parametry "page" i "limit" do adresu URL
         const url = `http://130.162.44.103:5000/api/v1/ranking?page=${page}&limit=${limit}`
 
         const response = await fetch(url, {
@@ -35,7 +34,7 @@ function PanelLeaderboard () {
     }
 
     fetchData()
-  }, [page, limit]) // Dodaj page i limit do zależności useEffect, aby reagować na ich zmiany
+  }, [page, limit])
 
   console.log(leadersData)
 
@@ -47,12 +46,8 @@ function PanelLeaderboard () {
           <span className='span-brand'> Leader</span>board
         </h2>
         <p className='table-caption'>
-          W sekcji Top 5 Typerów prezentujemy najskuteczniejszych graczy w
-          naszej społeczności. Tabela zawiera kluczowe statystyki, takie jak
-          zdobyte punkty, skuteczność, ilość wygranych oraz ogólna ocena. To
-          doskonała okazja, aby sprawdzić swoje umiejętności w typowaniu wyników
-          i konkurować z innymi fanami piłki nożnej. Dołącz już dziś i poczuj
-          emocje rywalizacji!
+          W sekcji Top Typerów prezentujemy najskuteczniejszych graczy w naszej
+          społeczności.
         </p>
         <table>
           <thead>
@@ -75,12 +70,13 @@ function PanelLeaderboard () {
                   <img
                     src={`http://130.162.44.103:5000/api/v1/avatar/${leader.avatar}`}
                     alt=''
+                    width={40}
                   />
                 </td>
                 <td>{leader.points}</td>
                 <td>{leader.rating.bets}</td>
                 <td>{leader.rating.wins}</td>
-                <td className='th-hide'>{leader.rating.rating}</td>
+                <td>{leader.rating.rating}</td>
               </tr>
             ))}
           </tbody>

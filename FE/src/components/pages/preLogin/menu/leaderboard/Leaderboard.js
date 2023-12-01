@@ -64,6 +64,7 @@ function Leaderboard () {
                   <img
                     src={`http://130.162.44.103:5000/api/v1/avatar/${leader.avatar}`}
                     alt=''
+                    className='avatar'
                   />
                 </td>
                 <td>{leader.points}</td>

@@ -1,7 +1,38 @@
-/* .panel{
+.panel{
+    margin: 0 10px;
+}
+
+.panel-wrapper {
     display: flex;
     flex-direction: column;
+    height: 100vh; 
+  }
   
-    background-color: tomato;
+  .panel-content {
+    display: flex;
+    flex: 1; 
+  }
+  
+  .left-panel,
+  .right-panel {
+    flex: 1;
+    background-color: #eee; 
+ 
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+  }
 
-} */
+  .left-panel{
+    margin-right: 10px;
+  }
+
+  .right-panel{
+    margin-left: 10px;
+  }
+  
+  .center-panel {
+    flex: 3;
+    background-color: #ccc; 
+  }
+  
