@@ -8,7 +8,7 @@ function UserProvider ({ children }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = 'http://localhost:5000/api/v1/profile'
+        const url = 'http://130.162.44.103:5000/api/v1/profile'
         const response = await fetch(url, {
           method: 'GET',
           credentials: 'include',
@@ -17,8 +17,6 @@ function UserProvider ({ children }) {
             'Content-type': 'application/json'
           }
         })
-        console.log('Response Status:', response.status)
-        console.log('Response Headers:', response.headers)
 
         if (!response.ok) {
           throw new Error('Network response was not ok.')
@@ -32,6 +30,8 @@ function UserProvider ({ children }) {
     }
     fetchData()
   }, [])
+
+  console.log(userProfile)
 
   return (
     <UserContext.Provider value={{ userProfile }}>

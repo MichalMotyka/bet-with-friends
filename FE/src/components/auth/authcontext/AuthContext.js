@@ -21,10 +21,27 @@ export const AuthProvider = ({ children }) => {
     console.log('User logged in')
   }
 
-  const logout = () => {
-    setLoggedIn(false)
-    localStorage.removeItem('loggedIn')
-    console.log('User logged out')
+  const logout = async () => {
+    const url = 'http://130.162.44.103:5000/api/v1/logout'
+
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      if (response.ok) {
+        setLoggedIn(false)
+        localStorage.removeItem('loggedIn')
+        console.log('User logged out')
+      } else {
+        console.error('Logout failed')
+      }
+    } catch (error) {
+      console.error('Error during logout:', error)
+    }
   }
 
   return (
