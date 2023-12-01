@@ -31,6 +31,8 @@ function UserProvider ({ children }) {
     fetchData()
   }, [])
 
+  console.log(userProfile)
+
   return (
     <UserContext.Provider value={{ userProfile }}>
       {children}
