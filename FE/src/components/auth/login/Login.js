@@ -53,7 +53,7 @@ function Login () {
 
         // Spróbuj sparsować błąd jako JSON, jeśli to możliwe
         const errorData = await response.json()
-        console.log(errorData)
+
         if (errorData.code === 'L1') {
           throw new Error(`Błędne hasło lub nazwa użytkownika.`)
         } else {
@@ -84,7 +84,7 @@ function Login () {
 
         <Formik
           initialValues={{
-            name: '',
+            email: '',
             password: ''
           }}
           validate={validate}
@@ -93,21 +93,20 @@ function Login () {
           {formik => (
             <Form className='form-login'>
               <p className='form-parag'>Zaloguj się i dołącz do zabawy!</p>
-              <label htmlFor='name'>Nazwa użytkownika</label>
+              <label htmlFor='email'>Email</label>
               <Field
-                type='text'
-                id='name'
-                name='name'
-                maxLength={30}
-                placeholder='Nazwa użytkownika'
+                type='email'
+                id='email'
+                name='email'
+                placeholder='Email'
                 className={
-                  formik.touched.name && formik.errors.name
+                  formik.touched.email && formik.errors.email
                     ? 'login-input-error'
                     : ''
                 }
               />
               <ErrorMessage
-                name='name'
+                name='email'
                 component='span'
                 className='login-error-msg'
               />
