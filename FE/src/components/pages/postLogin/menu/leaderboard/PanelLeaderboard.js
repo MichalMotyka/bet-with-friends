@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react'
 
 function PanelLeaderboard () {
   const [leadersData, setLeadersData] = useState([])
-  const [page, setPage] = useState(10) // Domyślna strona
-  // const [limit, setLimit] = useState(10) // Domyślna liczba elementów na stronie
+  const [page, setPage] = useState(1) // Domyślna strona
+  const [limit, setLimit] = useState(10) // Domyślna liczba elementów na stronie
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Dodaj parametry "page" i "limit" do adresu URL
-        const url = `http://130.162.44.103:5000/api/v1/ranking?limit=${page}`
+        const url = `http://http://130.162.44.103:5000/api/v1/ranking?page=${page}&limit=${limit}`
 
         const response = await fetch(url, {
           method: 'GET',

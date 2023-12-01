@@ -6,7 +6,7 @@ function UserInfo () {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = 'http://localhost:5000/api/v1/profile'
+        const url = 'http://130.162.44.103:5000/api/v1/profile'
         const response = await fetch(url, {
           method: 'GET',
           credentials: 'include',
@@ -15,9 +15,8 @@ function UserInfo () {
             'Content-Type': 'application/json'
           }
         })
-     
 
-        // Log the cookies received       
+        // Log the cookies received
 
         if (!response.ok) {
           throw new Error(
