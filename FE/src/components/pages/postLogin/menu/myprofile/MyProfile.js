@@ -1,11 +1,9 @@
-import { useUser } from "../../context/UserContext"
+import { useUser } from '../../context/UserContext'
 
 function MyProfile () {
- const {userProfile} = useUser()
+  const { userProfile } = useUser()
 
-
-
-console.log(userProfile);
+  console.log(userProfile)
 
   return (
     <section style={{ marginBottom: '30px' }} className='app-wrap'>

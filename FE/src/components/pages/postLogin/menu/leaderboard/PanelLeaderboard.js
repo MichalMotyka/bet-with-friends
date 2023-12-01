@@ -9,7 +9,7 @@ function PanelLeaderboard () {
     const fetchData = async () => {
       try {
         // Dodaj parametry "page" i "limit" do adresu URL
-        const url = `http://http://130.162.44.103:5000/api/v1/ranking?page=${page}&limit=${limit}`
+        const url = `http://130.162.44.103:5000/api/v1/ranking?page=${page}&limit=${limit}`
 
         const response = await fetch(url, {
           method: 'GET',
@@ -35,7 +35,7 @@ function PanelLeaderboard () {
     }
 
     fetchData()
-  }, [page]) // Dodaj page i limit do zależności useEffect, aby reagować na ich zmiany
+  }, [page, limit]) // Dodaj page i limit do zależności useEffect, aby reagować na ich zmiany
 
   console.log(leadersData)
 

@@ -2,7 +2,6 @@ import { NavLink, Link } from 'react-router-dom'
 import './panelnav.css'
 import UserMenu from '../../usermenu/UserMenu'
 
-
 function PanelNav () {
   return (
     <>
