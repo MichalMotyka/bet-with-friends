@@ -1,8 +1,10 @@
+import './topfive.css'
+
 function TopFive () {
   return (
-    <>
-      <h2>Top 5</h2>
-    </>
+    <div className='topfive'>
+      <p>TOP 5</p>
+    </div>
   )
 }
 
