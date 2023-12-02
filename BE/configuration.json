@@ -22,6 +22,12 @@
     "host":"130.162.44.103"
   },
   "jobs":{
-    "updateProfile":300
+    "updateProfile":300,
+    "getMatches":86400
+  },
+  "football_data":{
+    "token":"2e5640899c95458992402923bfb45b69",
+    "uri":"https://api.football-data.org/v4",
+    "competitions":[2018,2001]
   }
 }
