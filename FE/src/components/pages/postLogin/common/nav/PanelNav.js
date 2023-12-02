@@ -12,7 +12,6 @@ function PanelNav () {
           </Link>
 
           <div className='border'></div>
-          
 
           <ul className='panel-menu'>
             <li className='panel-item'>
