@@ -63,6 +63,4 @@ def create_jobs():
     atexit.register(lambda: sheduler.shutdown())
 
 create_jobs()
-
-insert_competetition()
     
