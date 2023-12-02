@@ -5,7 +5,12 @@ import './yourprofile.css'
 function YourProfile () {
   const { userProfile } = useUser()
 
-  console.log(userProfile);
+  if (!userProfile || !userProfile.rating) {
+    // Możesz tutaj wyświetlić np. ładowanie, jeśli dane są jeszcze pobierane
+    return <div>Loading...</div>;
+  }
+
+  console.log(userProfile)
 
   return (
     <div className='panel-side-box'>
@@ -20,9 +25,9 @@ function YourProfile () {
             width={110}
           />
           <p>{userProfile.name}</p>
-          {/* <p>Punkty: {userProfile.points}</p>
+          <p>Punkty: {userProfile.points}</p>
           <p>Trafienia: {userProfile.rating.wins}</p>
-          <p>Rating: {userProfile.rating.rating}</p> */}
+          <p>Rating: {userProfile.ranking.place}</p>
           <button>Twój profil</button>
         </div>
       </h2>
