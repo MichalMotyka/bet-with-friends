@@ -5,30 +5,29 @@ import './yourprofile.css'
 function YourProfile () {
   const { userProfile } = useUser()
 
-  const yourProfile = userProfile && userProfile.length > 0 ? userProfile : null
-  console.log(yourProfile)
+  console.log(userProfile);
 
-  return userProfile && userProfile.length > 0 ? (
+  return (
     <div className='panel-side-box'>
       <h2 className='panel-header'>
         Twój <span className='span-brand'>Profil</span>
         <div className='your-profile'>
           <img
-            src={yourProfile.avatar}
+            src={userProfile.avatar}
             alt=''
             className='avatar top-typer-avatar'
             height={110}
             width={110}
           />
-          <p>{yourProfile.name}</p>
-          <p>Punkty: {yourProfile.points}</p>
-          <p>Trafienia: {yourProfile.rating.wins}</p>
-          <p>Rating: {yourProfile.rating.rating}</p>
+          <p>{userProfile.name}</p>
+          {/* <p>Punkty: {userProfile.points}</p>
+          <p>Trafienia: {userProfile.rating.wins}</p>
+          <p>Rating: {userProfile.rating.rating}</p> */}
           <button>Twój profil</button>
         </div>
       </h2>
     </div>
-  ) : null
+  )
 }
 
 export default YourProfile
