@@ -4,7 +4,7 @@
 }
 
 .nav-menu-item {
-    color: var(--black-color);
+  
     padding: 15px 30px;
     font-weight: bold;
     transition: color 0.3s;

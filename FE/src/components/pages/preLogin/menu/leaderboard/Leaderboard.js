@@ -27,7 +27,6 @@ function Leaderboard () {
     fetchData()
   }, [])
 
-  console.log(leadersData)
   return (
     leadersData &&
     leadersData.length > 0 && (
