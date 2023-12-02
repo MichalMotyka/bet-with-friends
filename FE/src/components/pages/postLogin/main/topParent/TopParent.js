@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import YourProfile from '../topfive/YourProfile'
+import YourProfile from '../yourprofile/YourProfile'
 import TopTyper from '../toptyper/TopTyper'
 
 function TopParent () {
