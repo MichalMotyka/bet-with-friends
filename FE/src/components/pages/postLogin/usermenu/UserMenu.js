@@ -29,7 +29,7 @@ function UserMenu () {
         className='user-menu-avatar'
         onClick={handleUserMenu}
       />
-      <ul className={` ${showUserMenu ? 'show-user-menu' : 'hide-user-menu'}`}>
+      <ul className={`user-menu ${showUserMenu ? 'open' : 'closed'}`}>
         <li className='panel-item'>
           <Link to='/panel/'>Panel</Link>
         </li>
@@ -42,9 +42,15 @@ function UserMenu () {
         <li className='panel-item'>
           <Link to='/panel/profile'>Mój profil</Link>
         </li>
-        <label htmlFor='darkmode'>Darkmode</label>
-        <input type='checkbox' id='darkmode' />
-        <button onClick={handleLogout}>Wyloguj</button>
+        <li className='panel-item'>
+          <label htmlFor='darkmode'>Darkmode</label>
+          <input type='checkbox' id='darkmode' />
+        </li>
+        <li className='panel-item'>
+          <button className='panel-logout-btn' onClick={handleLogout}>
+            Wyloguj
+          </button>
+        </li>
       </ul>
     </div>
   )

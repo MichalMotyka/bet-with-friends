@@ -27,7 +27,7 @@ function YourProfile () {
           <p>{userProfile.name}</p>
           <p>Punkty: {userProfile.points}</p>
           <p>Trafienia: {userProfile.rating.wins}</p>
-          <p>Rating: {userProfile.ranking.place}</p>
+          <p>Pozycja: {userProfile.ranking.place}</p>
           <button>Twój profil</button>
         </div>
       </h2>
