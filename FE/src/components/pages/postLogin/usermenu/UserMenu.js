@@ -17,7 +17,6 @@ function UserMenu () {
   const handleUserMenu = () => {
     setUserMenu(!showUserMenu)
   }
-  console.log(userProfile.avatar)
 
   return (
     <div className='user-menu-box'>

@@ -1,6 +1,6 @@
 import { NavLink, Link } from 'react-router-dom'
-import './panelnav.css'
 import UserMenu from '../../usermenu/UserMenu'
+import './panelnav.css'
 
 function PanelNav () {
   return (
@@ -12,7 +12,6 @@ function PanelNav () {
           </Link>
 
           <div className='border'></div>
-          
 
           <ul className='panel-menu'>
             <li className='panel-item'>

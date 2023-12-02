@@ -51,7 +51,7 @@ function Nav () {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/login' className='nav-front-login-btn'>
+          <NavLink to='/login' className='nav-front-login-btn '>
             Log In
           </NavLink>
         </li>

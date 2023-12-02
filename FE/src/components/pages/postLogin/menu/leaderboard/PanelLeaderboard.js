@@ -36,8 +36,6 @@ function PanelLeaderboard () {
     fetchData()
   }, [page, limit])
 
-  console.log(leadersData)
-
   return (
     leadersData &&
     leadersData.length > 0 && (
@@ -81,6 +79,10 @@ function PanelLeaderboard () {
             ))}
           </tbody>
         </table>
+        <select value={page} onChange={e => setPage(e.target.value)}>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+        </select>
       </section>
     )
   )
