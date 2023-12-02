@@ -37,7 +37,7 @@ function Panel () {
             <PanelRounting />
           </div>
 
-          <div className='right-panel' style={{ borderRadius: '0' }}>
+          <div className='right-panel'>
             <TopParent />
           </div>
         </div>
