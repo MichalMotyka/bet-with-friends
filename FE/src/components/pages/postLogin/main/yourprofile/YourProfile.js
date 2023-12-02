@@ -7,7 +7,7 @@ function YourProfile () {
 
   if (!userProfile || !userProfile.rating) {
     // Możesz tutaj wyświetlić np. ładowanie, jeśli dane są jeszcze pobierane
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   console.log(userProfile)
