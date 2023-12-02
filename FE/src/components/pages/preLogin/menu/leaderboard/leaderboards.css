@@ -55,21 +55,24 @@
 
 .leaderboard-table tbody tr:nth-child(-n+3){
   font-weight: bold;
-  background-color: #2c2d5b13;
+
 }
 
 
 .leaderboard-table tbody tr:nth-child(1) {
   font-size: 1.2rem;
+  background-color: #2c2d5b13;
 }
 
 .leaderboard-table tbody tr:nth-child(2) {
   font-size: 1.15rem;
+  background-color: #8b8ca113;
 }
 
 
 .leaderboard-table tbody tr:nth-child(3) {
   font-size: 1.1rem;
+  background-color: #bfc0d313;
 }
 
 
