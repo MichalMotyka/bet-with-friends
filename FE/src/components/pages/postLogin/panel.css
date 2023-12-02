@@ -107,4 +107,35 @@
 
 }
 
-@media (min-width: 992px) and (max-width: 1199.98px) {}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .panel-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .center-panel {
+    order: -1;
+    /* Ustaw centralny panel na samej górze */
+
+  }
+
+  .panel-side-box {
+    height: 430px;
+  }
+
+  .left-panel,
+  .right-panel {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+  }
+}
+
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .center-panel {
+    flex: 3;
+    background-color: var(--white-color);
+    border-radius: 5px;
+  }
+}
