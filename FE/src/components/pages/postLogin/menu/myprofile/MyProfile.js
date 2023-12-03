@@ -38,8 +38,6 @@ function MyProfile () {
     setActiveTab(tab)
   }
 
-  console.log('Tutaj kurła:', userProfile)
-
   return Object.keys(avatar).length && Object.keys(userProfile).length > 0 ? (
     <section style={{ marginBottom: '30px' }} className='app-wrap'>
       <div>
