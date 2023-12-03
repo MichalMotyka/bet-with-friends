@@ -1,0 +1,12 @@
+.tab-stats{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+
+}
+
+.stats-item{
+    margin: 23px 0;
+}

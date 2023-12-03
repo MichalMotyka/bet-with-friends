@@ -1,5 +1,31 @@
-.my-profile{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.my-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.tabs-btn {
+  padding: 5px 15px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  /* background: #2c2d5b; */
+  font-weight: bold;
+  /* color: var(--white-color); */
+  background: none;
+  color: rgb(160, 159, 159);
+  cursor: pointer;
+font-size: 1rem;
+}
+
+.active-btn {
+  text-decoration: underline;
+  color: var(--brand-color);
 }
