@@ -7,13 +7,13 @@
 }
 
 .your-profile-btn{
-  padding: 10px 15px;
+  padding: 5px 15px;
   border: 1px solid transparent;
   border-radius: 10px;
   background: #2c2d5b;
   font-weight: bold;
   color: var(--white-color);
-  cursor: pointer;
+  cursor: pointer; 
 }
 
 .your-name{

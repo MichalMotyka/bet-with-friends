@@ -15,22 +15,22 @@ function YourProfile () {
     <div className='panel-side-box'>
       <h2 className='panel-header'>
         Twój <span className='span-brand'>Profil</span>
-        <div className='your-profile'>
-          <img
-            src={userProfile.avatar}
-            alt=''
-            className='avatar top-typer-avatar'
-            height={110}
-            width={110}
-          />
-          <p className='your-name'>{userProfile.name}</p>
-          <p>Punkty: {userProfile.points}</p>
-          <p>Pozycja: {userProfile.ranking.place}</p>
-          <Link to='/panel/profile' className='your-profile-btn'>
-            Profil
-          </Link>
-        </div>
       </h2>
+      <div className='your-profile'>
+        <img
+          src={userProfile.avatar}
+          alt=''
+          className='avatar top-typer-avatar'
+          height={110}
+          width={110}
+        />
+        <p className='your-name'>{userProfile.name}</p>
+        <p>Punkty: {userProfile.points}</p>
+        <p>Pozycja: {userProfile.ranking.place}</p>
+        <Link to='/panel/profile' className='your-profile-btn'>
+          Profil
+        </Link>
+      </div>
     </div>
   )
 }
