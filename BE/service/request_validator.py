@@ -40,5 +40,4 @@ def login_validation():
         user:Users = Users(**data_as_dict)
     except ValidationError as e:
         raise e
-    
     return user

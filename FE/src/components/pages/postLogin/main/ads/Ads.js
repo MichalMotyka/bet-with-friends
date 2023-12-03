@@ -1,8 +1,12 @@
+import './ads.css'
+
 function Ads () {
   return (
-    <>
-      <h2>Reklama</h2>
-    </>
+    <div className='panel-side-box'>
+      <h2 className='panel-header'>
+        Twoja <span className='span-brand'>Reklama</span>{' '}
+      </h2>
+    </div>
   )
 }
 

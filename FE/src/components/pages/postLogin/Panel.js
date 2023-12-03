@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import PanelNav from './common/nav/PanelNav'
 import GroupList from './main/grouplist/GroupList'
-import TopFive from './main/topfive/TopFive'
 import PanelRounting from './common/routing/PanelRouting'
-import TopTyper from './main/toptyper/TopTyper'
 import Ads from './main/ads/Ads'
 import PanelFooter from './common/footer/PanelFooter'
+import TopParent from './main/topParent/TopParent'
 import './panel.css'
 
+import UserProvider from './context/UserContext'
 import { useAuth } from '../../auth/authcontext/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
@@ -23,41 +23,26 @@ function Panel () {
     }
   }, [loggedIn, navigate])
 
-  // function Panel () {
-  //   const { loggedIn,refreshTokens  } = useAuth()
-  //   const navigate = useNavigate()
-
-  //   useEffect(() => {
-  //     const checkAuthentication = async () => {
-  //       try {
-  //         // Sprawdź, czy użytkownik jest zalogowany
-  //         if (!loggedIn) {
-  //           navigate('/login');
-  //           return;
-  //         }
-
-  //         // Próbuj odświeżyć tokeny przy każdym renderowaniu komponentu Panel
-  //         await refreshTokens();
-  //       } catch (error) {
-  //         console.error('Błąd podczas odświeżania tokenów:', error);
-  //         // W przypadku błędu (np. brak dostępu do serwera), przekieruj na stronę logowania
-  //         navigate('/login');
-  //       }
-  //     };
-
-  //     // Sprawdzaj stan zalogowania i odświeżaj tokeny przy każdym renderowaniu komponentu Panel
-  //     checkAuthentication();
-  //   }, [loggedIn, navigate, refreshTokens]);
-
   return (
     <div className='panel-wrapper panel'>
-      <PanelNav />
-      <GroupList />
-      <TopFive />
-      <PanelRounting />
-      <TopTyper />
-      <Ads />
-      <PanelFooter />
+      <UserProvider>
+        <PanelNav />
+        <div className='panel-box'>
+          <div className='left-panel'>
+            <GroupList />
+            <Ads />
+          </div>
+
+          <div className='center-panel'>
+            <PanelRounting />
+          </div>
+
+          <div className='right-panel'>
+            <TopParent />
+          </div>
+        </div>
+        <PanelFooter />
+      </UserProvider>
     </div>
   )
 }

@@ -1,51 +1,103 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useUser } from '../../context/UserContext'
+import MyStats from './mystats/MyStats'
+import MyAchiv from './myachiv/MyAchiv'
+import MyHistory from './myhistory/MyHistory'
+import MyConfig from './myconfig/MyConfig'
+import './myprofile.css'
 
 function MyProfile () {
-  const [userProfile, setUserProfile] = useState([])
+  const [avatar, setAvatar] = useState([])
+  const [activeTab, setActiveTab] = useState('Statystyki')
+  const { userProfile } = useUser()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = 'http://130.162.44.103:5000/api/v1/profile'
-        const response = await fetch(url, {
-          method: 'GET',
-          credentials: 'include',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
+        const response = await fetch(
+          'http://130.162.44.103:5000/api/v1/avatar',
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
           }
-        })
+        )
 
-        console.log('Response Status:', response.status)
-        console.log('Response Headers:', response.headers)
-
-        // Log the cookies received
-        console.log(document.cookie)
-
-        if (!response.ok) {
-          throw new Error(
-            `Network response was not ok, status: ${response.status}`
-          )
-        }
-
-        const data = await response.json()
-        setUserProfile(data)
+        const jsonData = await response.json()
+        setAvatar(jsonData)
       } catch (error) {
-        console.error('Błąd podczas pobierania danych:', error)
+        console.error('Błąd pobierania danych:', error)
       }
     }
 
     fetchData()
   }, [])
-  console.log(userProfile)
 
-  return (
+  const handleTabClick = tab => {
+    setActiveTab(tab)
+  }
+
+  return Object.keys(avatar).length && Object.keys(userProfile).length > 0 ? (
     <section style={{ marginBottom: '30px' }} className='app-wrap'>
-      <div className='login'>
-        <h2 className='section-title'>Mój profil</h2>
+      <div>
+        <h2 className='section-title'>
+          Mój <span className='span-brand'>profil</span>{' '}
+        </h2>
+      </div>
+      <div className='my-profile'>
+        <div className='my-header'>
+          <img
+            src={`http://130.162.44.103:5000/api/v1/avatar/${avatar[1].avatar}`}
+            alt=''
+            className='avatar'
+          />
+          <p className='your-name'>Witaj, {userProfile.name}</p>
+        </div>
+        <div className='tabs'>
+          <button
+            className={`tabs-btn ${
+              activeTab === 'Statystyki' ? 'active-btn' : ''
+            }`}
+            onClick={() => handleTabClick('Statystyki')}
+          >
+            Statystyki
+          </button>
+          <button
+            className={`tabs-btn ${
+              activeTab === 'Osiągnięcia' ? 'active-btn' : ''
+            }`}
+            onClick={() => handleTabClick('Osiągnięcia')}
+          >
+            Osiągnięcia
+          </button>
+          <button
+            className={`tabs-btn ${
+              activeTab === 'Aktywność' ? 'active-btn' : ''
+            }`}
+            onClick={() => handleTabClick('Aktywność')}
+          >
+            Aktywność
+          </button>
+          <button
+            className={`tabs-btn ${
+              activeTab === 'Ustawienia' ? 'active-btn' : ''
+            }`}
+            onClick={() => handleTabClick('Ustawienia')}
+          >
+            Ustawienia
+          </button>
+        </div>
+
+        <div className='tab-content'>
+          {activeTab === 'Statystyki' && <MyStats props={userProfile} />}
+          {activeTab === 'Osiągnięcia' && <MyAchiv props={userProfile} />}
+          {activeTab === 'Aktywność' && <MyHistory props={userProfile} />}
+          {activeTab === 'Ustawienia' && <MyConfig />}
+        </div>
       </div>
     </section>
-  )
+  ) : null
 }
 
 export default MyProfile

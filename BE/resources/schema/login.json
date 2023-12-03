@@ -1,11 +1,9 @@
 {
     "type": "object",
     "properties": {
-        "name": {
+        "email": {
             "type": "string",
-            "minLength": 3,
-            "description": "Username",
-            "errorMessage": "The name must have at least 3 characters.",
+            "description": "email",
             "code":"L3"
         },
         "password": {
@@ -16,5 +14,5 @@
             "code":"L4"
         }
     },
-    "required": ["name", "password"]
+    "required": ["email", "password"]
 }
