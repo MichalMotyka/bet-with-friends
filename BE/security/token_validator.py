@@ -37,7 +37,7 @@ def token_required(f):
                 refresh = jwt.encode({'exp':expiry_refresh*60*1000,'user_uid': userdb.public_id,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
                 response = make_response()
                 expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
-                response.set_cookie('Authorization',authorize,expires=expiration,httponly=True,samesite=None,max_age=expiration)
+                response.set_cookie('Authorization',authorize,expires=expiration,httponly=True,samesite=None,max_age=expiration,domain=request.origin)
                 expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
                 response.set_cookie('Refresh',refresh,expires=expiration,httponly=True,samesite=None,max_age=expiration,domain=request.origin)
             except (UserNotActivatedException, UserDontExistException) as e:
@@ -75,7 +75,7 @@ def update_token(f):
                     refresh = jwt.encode({'exp':expiry_refresh*60*1000,'user_uid': userdb.public_id,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
                     response = make_response()
                     expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
-                    response.set_cookie('Authorization',authorize,expires=expiration,httponly=True,samesite=None,max_age=expiration)
+                    response.set_cookie('Authorization',authorize,expires=expiration,httponly=True,samesite=None,max_age=expiration,domain=request.origin)
                     expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
                     response.set_cookie('Refresh',refresh,expires=expiration,httponly=True,samesite=None,max_age=expiration,domain=request.origin)
                 except (UserNotActivatedException, UserDontExistException) as e:
