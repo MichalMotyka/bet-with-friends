@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useUser } from '../../context/UserContext'
 
 import './yourprofile.css'
@@ -9,8 +10,6 @@ function YourProfile () {
     // Możesz tutaj wyświetlić np. ładowanie, jeśli dane są jeszcze pobierane
     return <div>Loading...</div>
   }
-
-  console.log(userProfile)
 
   return (
     <div className='panel-side-box'>
@@ -24,11 +23,12 @@ function YourProfile () {
             height={110}
             width={110}
           />
-          <p>{userProfile.name}</p>
+          <p className='your-name'>{userProfile.name}</p>
           <p>Punkty: {userProfile.points}</p>
-          <p>Trafienia: {userProfile.rating.wins}</p>
           <p>Pozycja: {userProfile.ranking.place}</p>
-          <button>Twój profil</button>
+          <Link to='/panel/profile' className='your-profile-btn'>
+            Profil
+          </Link>
         </div>
       </h2>
     </div>

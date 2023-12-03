@@ -24,7 +24,7 @@ function PanelNav () {
               <NavLink to='/panel/schedule'>Terminarz</NavLink>
             </li>
             <li className='panel-item'>
-              <NavLink to='/panel/profile'>Mój profil</NavLink>
+              <NavLink to='/panel/profile'>Profil</NavLink>
             </li>
           </ul>
         </div>

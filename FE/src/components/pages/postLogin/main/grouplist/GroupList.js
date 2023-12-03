@@ -1,29 +1,31 @@
-// import './grouplist.css'
-// function GroupList () {
-//   return (
-//     <div className='panel-side-box'>
-//       <h2 className='panel-header'>
-//         <span className='span-brand'>Grupy</span>
-//       </h2>
-//     </div>
-//   )
-// }
+import { BsArrowRight } from 'react-icons/bs'
+import { BsArrowLeft } from 'react-icons/bs'
 
-// export default GroupList
-import { MdFlag } from 'react-icons/md'
 import './grouplist.css'
 function GroupList () {
-  const teams = ['Polska', 'Włochy', 'Szwajcaria', 'Turcja', 'Walia']
+  const teams = ['Niemcy', 'Szkocja', 'Węgry', 'Szwajcaria']
+
   return (
     <div className='panel-side-box'>
-      <h2 className='panel-header'>
-        <span className='span-brand'>Grupy</span>
+      <h2 className='panel-header group-name'>
+        <span>
+          <BsArrowLeft />
+        </span>
+        <span className='span-brand group-name'>Euro 2024</span>
+        <BsArrowRight />
       </h2>
-      <div className='your-component'>
-        <ul>
+      <div className='group-box'>
+        <select className='group-select'>
+          <option>Grupa A</option>
+          <option>Grupa B</option>
+          <option>Grupa C</option>
+          <option>Grupa D</option>
+          <option>Grupa E</option>
+          <option>Grupa F</option>
+        </select>
+        <ul className='group-list'>
           {teams.map((team, index) => (
-            <li key={index}>
-              <MdFlag className='flag-icon' />
+            <li className='group-item' key={index}>
               {team}
             </li>
           ))}

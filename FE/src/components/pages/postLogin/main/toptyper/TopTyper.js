@@ -17,10 +17,10 @@ function TopTyper (props) {
           height={110}
           width={110}
         />
-        <p>{topTyper.name}</p>
+        <p className='top-typer-name'>{topTyper.name}</p>
         <p>Punkty: {topTyper.points}</p>
         <p>Trafienia: {topTyper.rating.wins}</p>
-        <p>Rating: {topTyper.rating.rating}</p>
+        <p>Rating: {topTyper.rating.rating}%</p>
       </div>
     </div>
   ) : null
