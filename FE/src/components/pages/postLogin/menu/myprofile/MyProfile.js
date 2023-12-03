@@ -40,7 +40,7 @@ function MyProfile () {
 
   return Object.keys(avatar).length && Object.keys(userProfile).length > 0 ? (
     <section style={{ marginBottom: '30px' }} className='app-wrap'>
-      <div className='login'>
+      <div>
         <h2 className='section-title'>
           Mój <span className='span-brand'>profil</span>{' '}
         </h2>
@@ -93,7 +93,7 @@ function MyProfile () {
           {activeTab === 'Statystyki' && <MyStats props={userProfile} />}
           {activeTab === 'Osiągnięcia' && <MyAchiv props={userProfile} />}
           {activeTab === 'Aktywność' && <MyHistory props={userProfile} />}
-          {activeTab === 'Ustawienia' && <MyConfig props={userProfile} />}
+          {activeTab === 'Ustawienia' && <MyConfig />}
         </div>
       </div>
     </section>
