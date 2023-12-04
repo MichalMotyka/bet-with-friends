@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react'
-
+import './schedule.css'
 function Schedule () {
   const [matchList, setMatchList] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
 
+  const competitionId = '2001' // Zastąp wartość swoim id typu meczy
+  const limit = 10
   useEffect(() => {
     const getMatches = async () => {
       try {
-        const competitionId = '2001' // Zastąp wartość swoim id typu meczy
         // 2001 - CL
         // 2018 - euro
-
-        const page = 1 // Możesz dostosować stronę do paginacji
-        const limit = 10 // Możesz dostosować limit do paginacji
-
         const matchesResponse = await fetch(
-          `http://130.162.44.103/5000/api/v1/matches?competetition=${competitionId}&page=${page}&limit=${limit}`,
+          `http://130.162.44.103:5000/api/v1/matches?competetition=${competitionId}&page=${currentPage}&limit=${limit}`,
 
           {
             method: 'GET',
@@ -38,40 +36,56 @@ function Schedule () {
     }
 
     getMatches()
-  }, [])
+  }, [currentPage])
 
-  console.log(matchList)
+  console.log('Tuyaj:', matchList)
 
-  return (
-    <div>
-      <h2>Terminarz rozgrywek</h2>
-      <table>
+  return Object.keys(matchList).length > 0 ? (
+    <div className='schedule'>
+      <h2>
+        Terminarz <span className='span-brand'>rozgrywek</span>
+      </h2>
+
+      <p>{matchList[0].competition.name}</p>
+      <table className='schedule-table'>
         <thead>
           <tr>
-            <th>Mecz</th>
+            <th className='crest'></th>
             <th>Drużyna domowa</th>
             <th>Wynik</th>
             <th>Drużyna wyjazdowa</th>
+            <th className='crest'></th>
             <th>Termin</th>
           </tr>
         </thead>
         <tbody>
-          {matchList.map((match, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{match.home_team.name}</td>
-              {/* <td>
-                {match.score
-                  ? `${match.score.full_time.home_team} - ${match.score.full_time.away_team}`
-                  : 'N/A'}
-              </td> */}
-              <td>{match.away_team.name}</td>
-              <td>{match.utc_date}</td>
+          {matchList.map(match => (
+            <tr key={match.score.public_id}>
+              <td className='crest'>
+                <img width={45} src={match.home_team.crest} alt='' />
+              </td>
+              <td>{match.home_team.short_name}</td>
+              <td>{match.score.full_time ?? 'TBD'}</td>
+
+              <td>{match.away_team.short_name}</td>
+              <td className='crest'>
+                <img width={45} src={match.away_team.crest} alt='' />
+              </td>
+              <td>{match.utc_date.replace('T', ' ').slice(0, -3)}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <select
+        value={currentPage}
+        onChange={e => setCurrentPage(e.target.value)}
+      >
+        <option value={1}>1</option>
+        <option value={2}>2</option>
+      </select>
     </div>
+  ) : (
+    'Data pending...'
   )
 }
 

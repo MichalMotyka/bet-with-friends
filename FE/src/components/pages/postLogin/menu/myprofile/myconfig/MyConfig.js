@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react'
+import { FaSpinner } from 'react-icons/fa'
+import { useUser } from '../../../context/UserContext'
 import './myconfig.css'
 
 function MyConfig () {
   const [changeAvatar, setChangeAvatar] = useState([])
   const [selectedAvatar, setSelectedAvatar] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState(null)
+  const { updateUserProfile } = useUser()
   // const [newNick, setNewNick] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true)
         const response = await fetch(
           'http://130.162.44.103:5000/api/v1/avatar',
           {
@@ -19,6 +25,8 @@ function MyConfig () {
             }
           }
         )
+
+        setLoading(false)
 
         const jsonData = await response.json()
         setChangeAvatar(jsonData)
@@ -44,8 +52,6 @@ function MyConfig () {
       const profileEndpoint = 'http://130.162.44.103:5000/api/v1/profile'
       const requestBody = {
         avatar: selectedAvatar
-        // Dodaj inne pola, takie jak name, jeśli są dostępne
-        // name: 'Nowa Nazwa',
       }
 
       const avatarResponse = await fetch(profileEndpoint, {
@@ -58,8 +64,10 @@ function MyConfig () {
       })
 
       if (avatarResponse.ok) {
+        setStatus(true)
         console.log('Zmiana avatara udana')
         // Tutaj możesz dodać logikę, która aktualizuje UI w odpowiedzi na udaną zmianę avatara
+        updateUserProfile()
       } else {
         console.error('Błąd podczas zmiany avatara')
       }
@@ -103,28 +111,6 @@ function MyConfig () {
   return (
     <>
       <div className='tab-config'>
-        {/* <form className='config-form'>
-          <label className='config-form-item'>Zmień nick:</label>
-          <input
-            className='config-form-item'
-            type='text'
-            placeholder='Nowy nick...'
-            value={newNick}
-            min={3}
-            max={20}
-            onChange={e => setNewNick(e.target.value)}
-          />
-          <button
-            className='config-btn'
-            disabled={
-              newNick.length >= 3 && newNick.length <= 20 ? false : true
-            }
-            onClick={handleNickChange}
-          >
-            Zmień nick
-          </button>
-        </form> */}
-
         <div className='config-avatar-box'>
           <p>Wybierz i zmień avatar</p>
           <div className='avatar-list'>
@@ -151,8 +137,17 @@ function MyConfig () {
                 width={150}
               />
               <button className='config-btn' onClick={handleAvatarChange}>
-                Zmień avatar
+                {loading ? (
+                  <>
+                    {' '}
+                    <FaSpinner className='spinner-icon' />
+                    Przesyłanie...
+                  </>
+                ) : (
+                  '  Zmień avatar'
+                )}
               </button>
+              {status ? <p>Avatar zmieniony</p> : null}
             </>
           )}
         </div>
