@@ -4,8 +4,7 @@ import './myconfig.css'
 function MyConfig () {
   const [changeAvatar, setChangeAvatar] = useState([])
   const [selectedAvatar, setSelectedAvatar] = useState(null)
-  const [newPassword, setNewPassword] = useState('')
-  const [repeatPassword, setRepeatPassword] = useState('')
+  // const [newNick, setNewNick] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,6 +13,7 @@ function MyConfig () {
           'http://130.162.44.103:5000/api/v1/avatar',
           {
             method: 'GET',
+            credentials: 'include',
             headers: {
               'Content-Type': 'application/json'
             }
@@ -30,51 +30,103 @@ function MyConfig () {
     fetchData()
   }, [])
 
-  function changeAvatarBtn () {
-    console.log(selectedAvatar)
+  const changeAvatarBtn = avatar => {
+    setSelectedAvatar(avatar)
   }
 
-  const handleAvatarChange = avatarId => {
-    setSelectedAvatar(avatarId)
+  const handleAvatarChange = async () => {
+    if (!selectedAvatar) {
+      console.error('Nie wybrano avatara')
+      return
+    }
+
+    try {
+      const profileEndpoint = 'http://130.162.44.103:5000/api/v1/profile'
+      const requestBody = {
+        avatar: selectedAvatar
+        // Dodaj inne pola, takie jak name, jeśli są dostępne
+        // name: 'Nowa Nazwa',
+      }
+
+      const avatarResponse = await fetch(profileEndpoint, {
+        method: 'PATCH',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      })
+
+      if (avatarResponse.ok) {
+        console.log('Zmiana avatara udana')
+        // Tutaj możesz dodać logikę, która aktualizuje UI w odpowiedzi na udaną zmianę avatara
+      } else {
+        console.error('Błąd podczas zmiany avatara')
+      }
+    } catch (error) {
+      console.error('Błąd podczas wysyłania żądania:', error)
+    }
   }
 
-  const handlePasswordChange = () => {
-    // Dodaj logikę zmiany hasła tutaj, np. wysyłanie na serwer
+  // const handleNickChange = async () => {
+  //   if (!newNick) {
+  //     console.error('Nie wybrano nicku')
+  //     return
+  //   }
 
-    console.log('Nowe hasło:', newPassword)
-    console.log('Powtórz hasło:', repeatPassword)
+  //   try {
+  //     const nickResponse = await fetch('http://localhost:5000/api/v1/profile', {
+  //       method: 'PATCH',
+  //       credentials: 'include',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         name: newNick
+  //       })
+  //     })
 
-    // Resetuj pola po zmianie hasła
-    setNewPassword('')
-    setRepeatPassword('')
-  }
+  //     if (nickResponse.ok) {
+  //       console.log('Zmiana nicku udana')
+  //       // Tutaj możesz dodać logikę, która aktualizuje UI w odpowiedzi na udaną zmianę nicku
+  //     } else {
+  //       console.error('Błąd podczas zmiany nicku')
+  //     }
+  //   } catch (error) {
+  //     console.error('Błąd podczas wysyłania żądania:', error)
+  //   } finally {
+  //     // Resetuj pole po zmianie nicku
+  //     setNewNick('')
+  //   }
+  // }
 
   return (
     <>
       <div className='tab-config'>
-        <form className='config-form'>
-          <label className='config-form-item'>Zmień hasło:</label>
+        {/* <form className='config-form'>
+          <label className='config-form-item'>Zmień nick:</label>
           <input
             className='config-form-item'
-            type='password'
-            placeholder='Nowe hasło...'
-            value={newPassword}
-            onChange={e => setNewPassword(e.target.value)}
+            type='text'
+            placeholder='Nowy nick...'
+            value={newNick}
+            min={3}
+            max={20}
+            onChange={e => setNewNick(e.target.value)}
           />
-          <input
-            className='config-form-item'
-            type='password'
-            placeholder='Powtórz hasło...'
-            value={repeatPassword}
-            onChange={e => setRepeatPassword(e.target.value)}
-          />
-          <button className='config-btn' onClick={handlePasswordChange}>
-            Zmień hasło
+          <button
+            className='config-btn'
+            disabled={
+              newNick.length >= 3 && newNick.length <= 20 ? false : true
+            }
+            onClick={handleNickChange}
+          >
+            Zmień nick
           </button>
-        </form>
+        </form> */}
 
-        <div>
-          <p>Zmień avatar</p>
+        <div className='config-avatar-box'>
+          <p>Wybierz i zmień avatar</p>
           <div className='avatar-list'>
             {changeAvatar.map(avatar => (
               <img
@@ -84,21 +136,25 @@ function MyConfig () {
                 className={`avatar-item ${
                   selectedAvatar === avatar.id ? 'selected' : ''
                 }`}
-                onClick={() => handleAvatarChange(avatar.avatar)}
+                onClick={() => changeAvatarBtn(avatar.avatar)}
               />
             ))}
           </div>
+
           <p>Twój wybór:</p>
           {selectedAvatar && (
-            <img
-              src={`http://130.162.44.103:5000/api/v1/avatar/${selectedAvatar}`}
-              alt='Selected Avatar'
-              className='selected-avatar'
-            />
+            <>
+              <img
+                src={`http://130.162.44.103:5000/api/v1/avatar/${selectedAvatar}`}
+                alt='Selected Avatar'
+                className='selected-avatar'
+                width={150}
+              />
+              <button className='config-btn' onClick={handleAvatarChange}>
+                Zmień avatar
+              </button>
+            </>
           )}
-          <button className='config-btn' onClick={changeAvatarBtn}>
-            Zmień avatar
-          </button>
         </div>
       </div>
     </>
