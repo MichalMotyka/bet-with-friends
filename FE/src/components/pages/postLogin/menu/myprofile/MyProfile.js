@@ -18,6 +18,7 @@ function MyProfile () {
           'http://130.162.44.103:5000/api/v1/avatar',
           {
             method: 'GET',
+            credentials: 'include',
             headers: {
               'Content-Type': 'application/json'
             }
@@ -37,8 +38,6 @@ function MyProfile () {
   const handleTabClick = tab => {
     setActiveTab(tab)
   }
-
-  console.log('Tutaj kurła:', userProfile)
 
   return Object.keys(avatar).length && Object.keys(userProfile).length > 0 ? (
     <section style={{ marginBottom: '30px' }} className='app-wrap'>
