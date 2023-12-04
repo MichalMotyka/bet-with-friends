@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 function PanelLeaderboard () {
   const [leadersData, setLeadersData] = useState([])
   const [page, setPage] = useState(1)
-  const [limit, setLimit] = useState(10)
+  const [limit] = useState(10)
 
   useEffect(() => {
     const fetchData = async () => {

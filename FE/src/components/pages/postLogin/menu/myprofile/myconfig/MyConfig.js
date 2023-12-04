@@ -4,7 +4,7 @@ import './myconfig.css'
 function MyConfig () {
   const [changeAvatar, setChangeAvatar] = useState([])
   const [selectedAvatar, setSelectedAvatar] = useState(null)
-  const [newNick, setNewNick] = useState('')
+  // const [newNick, setNewNick] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,6 +13,7 @@ function MyConfig () {
           'http://130.162.44.103:5000/api/v1/avatar',
           {
             method: 'GET',
+            credentials: 'include',
             headers: {
               'Content-Type': 'application/json'
             }
@@ -40,18 +41,21 @@ function MyConfig () {
     }
 
     try {
-      const avatarResponse = await fetch(
-        'http://130.162.44.103:5000/api/v1/profile/',
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            avatar: selectedAvatar
-          })
-        }
-      )
+      const profileEndpoint = 'http://130.162.44.103:5000/api/v1/profile'
+      const requestBody = {
+        avatar: selectedAvatar
+        // Dodaj inne pola, takie jak name, jeśli są dostępne
+        // name: 'Nowa Nazwa',
+      }
+
+      const avatarResponse = await fetch(profileEndpoint, {
+        method: 'PATCH',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      })
 
       if (avatarResponse.ok) {
         console.log('Zmiana avatara udana')
@@ -64,39 +68,42 @@ function MyConfig () {
     }
   }
 
-  const handleNickChange = async () => {
-    try {
-      const nickResponse = await fetch(
-        'http://130.162.44.103:5000/api/v1/profile',
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            name: newNick
-          })
-        }
-      )
+  // const handleNickChange = async () => {
+  //   if (!newNick) {
+  //     console.error('Nie wybrano nicku')
+  //     return
+  //   }
 
-      if (nickResponse.ok) {
-        console.log('Zmiana nicku udana')
-        // Tutaj możesz dodać logikę, która aktualizuje UI w odpowiedzi na udaną zmianę nicku
-      } else {
-        console.error('Błąd podczas zmiany nicku')
-      }
-    } catch (error) {
-      console.error('Błąd podczas wysyłania żądania:', error)
-    } finally {
-      // Resetuj pole po zmianie nicku
-      setNewNick('')
-    }
-  }
+  //   try {
+  //     const nickResponse = await fetch('http://localhost:5000/api/v1/profile', {
+  //       method: 'PATCH',
+  //       credentials: 'include',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         name: newNick
+  //       })
+  //     })
+
+  //     if (nickResponse.ok) {
+  //       console.log('Zmiana nicku udana')
+  //       // Tutaj możesz dodać logikę, która aktualizuje UI w odpowiedzi na udaną zmianę nicku
+  //     } else {
+  //       console.error('Błąd podczas zmiany nicku')
+  //     }
+  //   } catch (error) {
+  //     console.error('Błąd podczas wysyłania żądania:', error)
+  //   } finally {
+  //     // Resetuj pole po zmianie nicku
+  //     setNewNick('')
+  //   }
+  // }
 
   return (
     <>
       <div className='tab-config'>
-        <form className='config-form'>
+        {/* <form className='config-form'>
           <label className='config-form-item'>Zmień nick:</label>
           <input
             className='config-form-item'
@@ -116,7 +123,7 @@ function MyConfig () {
           >
             Zmień nick
           </button>
-        </form>
+        </form> */}
 
         <div className='config-avatar-box'>
           <p>Wybierz i zmień avatar</p>

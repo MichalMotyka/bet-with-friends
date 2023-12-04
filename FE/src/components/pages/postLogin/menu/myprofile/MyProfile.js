@@ -18,6 +18,7 @@ function MyProfile () {
           'http://130.162.44.103:5000/api/v1/avatar',
           {
             method: 'GET',
+            credentials: 'include',
             headers: {
               'Content-Type': 'application/json'
             }
