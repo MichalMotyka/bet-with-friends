@@ -41,7 +41,7 @@ function MyConfig () {
 
     try {
       const avatarResponse = await fetch(
-        'http://130.162.44.103:5000/api/v1/profile/avatar',
+        'http://130.162.44.103:5000/api/v1/profile/',
         {
           method: 'PATCH',
           headers: {
@@ -67,7 +67,7 @@ function MyConfig () {
   const handleNickChange = async () => {
     try {
       const nickResponse = await fetch(
-        'http://130.162.44.103:5000/api/v1/profile/name',
+        'http://130.162.44.103:5000/api/v1/profile',
         {
           method: 'PATCH',
           headers: {

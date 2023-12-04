@@ -8,7 +8,7 @@ function UserProvider ({ children }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = 'http://130.162.44.103:5000/api/v1/profile/'
+        const url = 'http://130.162.44.103:5000/api/v1/profile'
         const response = await fetch(url, {
           method: 'GET',
           credentials: 'include',
