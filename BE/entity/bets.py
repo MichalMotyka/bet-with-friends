@@ -1,8 +1,7 @@
-#from shared.base import Base
+from shared.base import Base
 from sqlalchemy import Column,String,Integer,ForeignKey
 
-
-class Bets():
+class Bets(Base):
     __tablename__ = 'bets'
 
     id = Column(Integer,primary_key=True)
