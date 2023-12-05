@@ -49,7 +49,9 @@ function PanelLeaderboard () {
         <h2 className='section-title panel-header'>
           <span className='span-brand'> Leader</span>board
         </h2>
-
+        <p style={{ textAlign: 'center' }}>
+          Najlepsi typerzy Bet With <span className='span-brand'>Friends</span>
+        </p>
         <p className='schedule-btns'>
           <button
             className='schedule-list-btn span-brand'
