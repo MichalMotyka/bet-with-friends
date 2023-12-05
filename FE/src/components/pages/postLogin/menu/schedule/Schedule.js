@@ -12,7 +12,7 @@ function Schedule () {
         // 2001 - CL
         // 2018 - euro
         const matchesResponse = await fetch(
-          `http://130.162.44.103:5000/api/v1/matches?competetition=${competitionId}&page=${currentPage}&limit=${limit}`,
+          `http://localhost:5000/api/v1/matches?competetition=${competitionId}&page=${currentPage}&limit=${limit}`,
 
           {
             method: 'GET',
@@ -45,8 +45,18 @@ function Schedule () {
       <h2>
         Terminarz <span className='span-brand'>rozgrywek</span>
       </h2>
+      {/* <img width={75} src={matchList[0].competition.emblem} alt='' /> */}
 
-      <p>{matchList[0].competition.name}</p>
+      <p className='competition-name'>
+        {matchList[0].competition.name} <br /> Przeglądaj listę:{' '}
+        <select
+          value={currentPage}
+          onChange={e => setCurrentPage(e.target.value)}
+        >
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+        </select>
+      </p>
       <table className='schedule-table'>
         <thead>
           <tr>
@@ -76,13 +86,6 @@ function Schedule () {
           ))}
         </tbody>
       </table>
-      <select
-        value={currentPage}
-        onChange={e => setCurrentPage(e.target.value)}
-      >
-        <option value={1}>1</option>
-        <option value={2}>2</option>
-      </select>
     </div>
   ) : (
     'Data pending...'
