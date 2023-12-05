@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { BsArrowRight } from 'react-icons/bs'
+import { BsArrowLeft } from 'react-icons/bs'
 import './schedule.css'
 function Schedule () {
   const [matchList, setMatchList] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-
-  const competitionId = '2001' // Zastąp wartość swoim id typu meczy
+  const [totalMatches, setTotalMatches] = useState(null)
   const limit = 10
+  const competitionId = '2001' // Zastąp wartość swoim id typu meczy
+
+  // Przy meczach EURO przebudowa komponentu na paginacje pomiedzy zawodami.
   useEffect(() => {
     const getMatches = async () => {
       try {
@@ -18,7 +22,8 @@ function Schedule () {
             method: 'GET',
             credentials: 'include',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'X-Total-Count': 'true'
             }
           }
         )
@@ -27,6 +32,8 @@ function Schedule () {
           const matchesData = await matchesResponse.json()
           console.log('Pobranie danych zakończone sukcesem:', matchesData)
           setMatchList(matchesData)
+
+          setTotalMatches(matchesResponse.headers.get('X-Total-Count'))
         } else {
           console.error('Błąd podczas pobierania danych')
         }
@@ -38,24 +45,32 @@ function Schedule () {
     getMatches()
   }, [currentPage])
 
-  console.log('Tuyaj:', matchList)
-
   return Object.keys(matchList).length > 0 ? (
     <div className='schedule'>
       <h2>
         Terminarz <span className='span-brand'>rozgrywek</span>
       </h2>
-      {/* <img width={75} src={matchList[0].competition.emblem} alt='' /> */}
 
-      <p className='competition-name'>
-        {matchList[0].competition.name} <br /> Przeglądaj listę:{' '}
-        <select
-          value={currentPage}
-          onChange={e => setCurrentPage(e.target.value)}
+      <p className='competition-name'>{matchList[0].competition.name}</p>
+      <p className='schedule-btns'>
+        <button
+          className='schedule-list-btn span-brand'
+          disabled={currentPage === 1 ? true : false}
+          onClick={() => setCurrentPage(prevValue => prevValue - 1)}
         >
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-        </select>
+          <BsArrowLeft />
+        </button>
+        <span className='schedule-btn-span'>
+          Przeglądaj listę {currentPage} / {Math.ceil(totalMatches / limit)}
+        </span>
+        <button
+          className='schedule-list-btn span-brand'
+          onClick={() => setCurrentPage(prevValue => prevValue + 1)}
+          // total matches np. 16 przez 10 daje 1.6 i Ceil robi 2.
+          disabled={currentPage === Math.ceil(totalMatches / limit)}
+        >
+          <BsArrowRight />
+        </button>
       </p>
       <table className='schedule-table'>
         <thead>

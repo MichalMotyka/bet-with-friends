@@ -8,9 +8,8 @@ function GroupList () {
   return (
     <div className='panel-side-box'>
       <h2 className='panel-header group-name'>
-        <span>
-          <BsArrowLeft />
-        </span>
+        <BsArrowLeft />
+
         <span className='span-brand group-name'>Euro 2024</span>
         <BsArrowRight />
       </h2>

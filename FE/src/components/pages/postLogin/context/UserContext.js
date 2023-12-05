@@ -7,7 +7,7 @@ function UserProvider ({ children }) {
 
   const updateUserProfile = async () => {
     try {
-      const url = 'http://130.162.44.103:5000/api/v1/profile'
+      const url = 'http://localhost:5000/api/v1/profile'
       const response = await fetch(url, {
         method: 'GET',
         credentials: 'include',

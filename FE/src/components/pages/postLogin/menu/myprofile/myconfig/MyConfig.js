@@ -15,16 +15,13 @@ function MyConfig () {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const response = await fetch(
-          'http://130.162.44.103:5000/api/v1/avatar',
-          {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-              'Content-Type': 'application/json'
-            }
+        const response = await fetch('http://localhost:5000/api/v1/avatar', {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
           }
-        )
+        })
 
         setLoading(false)
 
@@ -49,7 +46,7 @@ function MyConfig () {
     }
 
     try {
-      const profileEndpoint = 'http://130.162.44.103:5000/api/v1/profile'
+      const profileEndpoint = 'http://localhost:5000/api/v1/profile'
       const requestBody = {
         avatar: selectedAvatar
       }
