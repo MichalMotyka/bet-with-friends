@@ -112,10 +112,11 @@ function MyConfig () {
     <>
       <div className='tab-config'>
         <div className='config-avatar-box'>
-          <p>Wybierz i zmień avatar</p>
+          <p>Wybierz nowy avatar</p>
           <div className='avatar-list'>
             {changeAvatar.map(avatar => (
               <img
+                width={75}
                 key={avatar.avatar}
                 src={`http://130.162.44.103:5000/api/v1/avatar/${avatar.avatar}`}
                 alt={`Avatar ${avatar.id}`}
@@ -134,7 +135,7 @@ function MyConfig () {
                 src={`http://130.162.44.103:5000/api/v1/avatar/${selectedAvatar}`}
                 alt='Selected Avatar'
                 className='selected-avatar'
-                width={150}
+                width={130}
               />
               <button className='config-btn' onClick={handleAvatarChange}>
                 {loading ? (
