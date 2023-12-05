@@ -15,13 +15,16 @@ function MyConfig () {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const response = await fetch('http://localhost:5000/api/v1/avatar', {
-          method: 'GET',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json'
+        const response = await fetch(
+          'http://130.162.44.103:5000/api/v1/avatar',
+          {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json'
+            }
           }
-        })
+        )
 
         setLoading(false)
 
@@ -46,7 +49,7 @@ function MyConfig () {
     }
 
     try {
-      const profileEndpoint = 'http://localhost:5000/api/v1/profile'
+      const profileEndpoint = 'http://130.162.44.103:5000/api/v1/profile'
       const requestBody = {
         avatar: selectedAvatar
       }
@@ -109,10 +112,11 @@ function MyConfig () {
     <>
       <div className='tab-config'>
         <div className='config-avatar-box'>
-          <p>Wybierz i zmień avatar</p>
+          <p>Wybierz nowy avatar</p>
           <div className='avatar-list'>
             {changeAvatar.map(avatar => (
               <img
+                width={75}
                 key={avatar.avatar}
                 src={`http://130.162.44.103:5000/api/v1/avatar/${avatar.avatar}`}
                 alt={`Avatar ${avatar.id}`}
@@ -131,7 +135,7 @@ function MyConfig () {
                 src={`http://130.162.44.103:5000/api/v1/avatar/${selectedAvatar}`}
                 alt='Selected Avatar'
                 className='selected-avatar'
-                width={150}
+                width={130}
               />
               <button className='config-btn' onClick={handleAvatarChange}>
                 {loading ? (

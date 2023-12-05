@@ -46,7 +46,7 @@ function PanelLeaderboard () {
     leadersData &&
     leadersData.length > 0 && (
       <section className='app-wrap'>
-        <h2 className='section-title'>
+        <h2 className='section-title panel-header'>
           <span className='span-brand'> Leader</span>board
         </h2>
 
@@ -96,7 +96,7 @@ function PanelLeaderboard () {
                 <td>{leader.points}</td>
                 <td>{leader.rating.bets}</td>
                 <td>{leader.rating.wins}</td>
-                <td className='th-hide'>{leader.rating.rating}</td>
+                <td className='th-hide'>{leader.rating.rating} %</td>
               </tr>
             ))}
           </tbody>

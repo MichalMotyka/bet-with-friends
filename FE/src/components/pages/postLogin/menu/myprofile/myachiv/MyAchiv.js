@@ -1,11 +1,10 @@
-import { FcRating } from 'react-icons/fc'
 import './myachiv.css'
 function MyAchiv (props) {
   const userStats = props.props
 
   return (
     <>
-      <div className='tab-stats'>     
+      <div className='tab-stats'>
         <p className='stats-item'>Miejsce: {userStats.ranking.place}</p>
         <p className='stats-item'>Punkty: {userStats.points}</p>
         <p className='stats-item'>Bety: {userStats.rating.bets}</p>
