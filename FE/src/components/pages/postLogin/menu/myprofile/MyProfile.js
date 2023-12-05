@@ -17,13 +17,13 @@ function MyProfile () {
   return Object.keys(userProfile).length > 0 ? (
     <section style={{ marginBottom: '30px' }} className='app-wrap'>
       <div>
-        <h2 className='section-title'>
+        <h2 className='section-title panel-header'>
           Mój <span className='span-brand'>profil</span>{' '}
         </h2>
       </div>
       <div className='my-profile'>
         <div className='my-header'>
-          <img src={userProfile.avatar} alt='' className='avatar' />
+          <img src={userProfile.avatar} alt='' className='avatar' width={130} />
           <p className='your-name'>Witaj, {userProfile.name}</p>
         </div>
         <div className='tabs'>
@@ -62,6 +62,7 @@ function MyProfile () {
         </div>
 
         <div className='tab-content'>
+          <hr className='hr-panel' />
           {activeTab === 'Statystyki' && <MyStats props={userProfile} />}
           {activeTab === 'Osiągnięcia' && <MyAchiv props={userProfile} />}
           {activeTab === 'Aktywność' && <MyHistory props={userProfile} />}
