@@ -6,6 +6,8 @@ from entity.team import Team
 from entity.score import Score
 from entity.bets import Bets
 from entity.profile import Profile
+from exceptions.already_bet_exception import AlreadyBetException
+from exceptions.match_dont_exist_exception import MatchDontExistException
 from shared.base import session_factory
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
@@ -95,12 +97,19 @@ def insert_score():
         session.refresh(score)
         return score.id
 
-def create_bet(match:int,user_id:int):
+def create_bet(match:int,user_id:int,bets:Bets):
     with session_factory() as session:
         existing_bet = session.query(Bets).join(Match).join(Profile).filter(Match.public_id == match, Profile.user_id == user_id).first()
-        if existing_bet:
-            pass
-
+        if not existing_bet:
+            match_db = session.query(Match).filter_by(public_id=match).first()
+            profile =  session.query(Profile).filter_by(user_id=user_id).first()
+            if not match_db:
+                raise MatchDontExistException()
+            bet = Bets(public_id=uuid.uuid4(),match_id=match_db.id,profile_id = profile.id, away_team=bets.away_team,home_team=bets.home_team,who_win=bets.who_win)
+            session.add(bet)
+            session.commit()
+            return
+        raise AlreadyBetException()
 
 def create_jobs():
     sheduler = BackgroundScheduler()
