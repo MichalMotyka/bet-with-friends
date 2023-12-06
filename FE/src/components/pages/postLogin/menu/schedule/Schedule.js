@@ -18,7 +18,7 @@ function Schedule () {
     const getCompetitions = async () => {
       try {
         const competitionsResponse = await fetch(
-          'http://localhost:5000/api/v1/competetition',
+          'http://130.162.44.103:5000/api/v1/competetition',
           {
             method: 'GET',
             credentials: 'include',
@@ -50,7 +50,7 @@ function Schedule () {
     const getMatches = async () => {
       try {
         const matchesResponse = await fetch(
-          `http://localhost:5000/api/v1/matches?competetition=${selectedCompetition}&page=${currentPage}&limit=${limit}`,
+          `http://130.162.44.103:5000/api/v1/matches?competetition=${selectedCompetition}&page=${currentPage}&limit=${limit}`,
           {
             method: 'GET',
             credentials: 'include',
@@ -63,7 +63,7 @@ function Schedule () {
 
         if (matchesResponse.ok) {
           const matchesData = await matchesResponse.json()
-          console.log('Pobranie danych zakończone sukcesem:', matchesData)
+
           setMatchList(matchesData)
           setTotalMatches(matchesResponse.headers.get('X-Total-Count'))
         } else {

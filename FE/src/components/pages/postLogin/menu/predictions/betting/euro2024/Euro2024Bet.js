@@ -7,11 +7,12 @@ function Euro2024Bet ({ matchList }) {
   const [totalBets, setTobalBets] = useState(null)
   const limit = 10
   console.log('PONIŻEJ WYNIKI POBIERANIA BET:')
+
   useEffect(() => {
     const getMatches = async () => {
       try {
         const matchesResponse = await fetch(
-          `http://localhost:5000/api/v1/bet?competetition=${selectedCompetition}&page=${currentPage}&limit=${limit}`,
+          `http://130.162.44.103:5000/api/v1/bet?competetition=${selectedCompetition}&page=${currentPage}&limit=${limit}`,
           {
             method: 'GET',
             credentials: 'include',

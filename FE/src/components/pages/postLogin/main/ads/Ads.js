@@ -10,7 +10,7 @@ function Ads () {
       </h2>
 
       <div className='ad-box'>
-        <img className='patopoker' src={PatoPoker} alt='' width={250} />
+        <img className='patopoker' src={PatoPoker} alt='' width={220} />
       </div>
     </div>
   )

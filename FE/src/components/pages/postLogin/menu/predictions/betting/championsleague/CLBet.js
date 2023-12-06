@@ -1,3 +1,5 @@
+import './clbet.css'
+
 function CLBet ({ matchList }) {
   return matchList.length > 0 ? (
     <table className='schedule-table'>

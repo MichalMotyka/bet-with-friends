@@ -1,4 +1,3 @@
-// PredictionLogin.js
 import { useEffect, useState } from 'react'
 
 export const PredictionLogic = () => {
@@ -14,7 +13,7 @@ export const PredictionLogic = () => {
     const getCompetitions = async () => {
       try {
         const competitionsResponse = await fetch(
-          'http://localhost:5000/api/v1/competetition',
+          'http://130.162.44.103:5000/api/v1/competetition',
           {
             method: 'GET',
             credentials: 'include',
@@ -42,13 +41,11 @@ export const PredictionLogic = () => {
     getCompetitions()
   }, [])
 
-  console.log('Prediction logic', selectedCompetition)
-
   useEffect(() => {
     const getMatches = async () => {
       try {
         const matchesResponse = await fetch(
-          `http://localhost:5000/api/v1/matches?competetition=${selectedCompetition}&page=${currentPage}&limit=${limit}`,
+          `http://130.162.44.103:5000/api/v1/bet?competetition=${selectedCompetition}&page=${currentPage}&limit=${limit}`,
           {
             method: 'GET',
             credentials: 'include',
