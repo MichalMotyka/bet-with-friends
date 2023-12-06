@@ -75,7 +75,6 @@ def update_token(f):
                     expiry_refresh = datetime.utcnow() + timedelta(minutes=float(config.get_config_by_key("jwt.exp.refresh"))*milliseconds_per_minute)
                     authorize = jwt.encode({'exp':expiry_time*60*1000,'user_uid': current_user.public_id,'isAdmin':current_user.admin,'isActive':current_user.isActive,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
                     refresh = jwt.encode({'exp':expiry_refresh*60*1000,'user_uid': current_user.public_id,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
-                    response = make_response()
                     expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
                     response.set_cookie('Authorization',authorize,expires=expiration.timestamp(),httponly=False)
                     expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.refresh")))
