@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { BsArrowRight } from 'react-icons/bs'
-import { BsArrowLeft } from 'react-icons/bs'
-import CLSchedule from './competitions/championsleague/CLSchedule'
-import Euro2024Schedule from './competitions/euro2024/Euro2024Schedule'
-import './schedule.css'
+// PredictionLogin.js
+import { useEffect, useState } from 'react'
 
-function Schedule () {
+export const PredictionLogic = () => {
   const [matchList, setMatchList] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalMatches, setTotalMatches] = useState(null)
@@ -46,6 +42,8 @@ function Schedule () {
     getCompetitions()
   }, [])
 
+  console.log('Prediction logic', selectedCompetition)
+
   useEffect(() => {
     const getMatches = async () => {
       try {
@@ -82,59 +80,14 @@ function Schedule () {
     setCurrentPage(1) // Resetowanie strony przy zmianie turnieju
   }
 
-  return (
-    <section>
-      <div className='schedule'>
-        <h2 className='panel-header'>
-          Terminarz <span className='span-brand'>rozgrywek</span>
-        </h2>
-
-        <div className='competition-buttons'>
-          {competitions.map(competition => (
-            <button
-              key={competition.public_id}
-              className={`competition-btn ${
-                selectedCompetition === competition.public_id
-                  ? 'active-schedule'
-                  : ''
-              }`}
-              onClick={() => handleCompetitionChange(competition.public_id)}
-            >
-              {competition.name}
-            </button>
-          ))}
-        </div>
-
-        {/* //  Lista buttonów z zawodami */}
-        <p className='competition-name'>{matchList[0]?.competition.name}</p>
-        <p className='schedule-btns'>
-          <button
-            className='schedule-list-btn span-brand'
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(prevValue => prevValue - 1)}
-          >
-            <BsArrowLeft />
-          </button>
-          <span className='schedule-btn-span'>
-            Przeglądaj listę {currentPage} / {Math.ceil(totalMatches / limit)}
-          </span>
-          <button
-            className='schedule-list-btn span-brand'
-            onClick={() => setCurrentPage(prevValue => prevValue + 1)}
-            disabled={currentPage === Math.ceil(totalMatches / limit)}
-          >
-            <BsArrowRight />
-          </button>
-        </p>
-
-        {selectedCompetition === 2001 ? (
-          <CLSchedule matchList={matchList} />
-        ) : (
-          <Euro2024Schedule matchList={matchList} />
-        )}
-      </div>
-    </section>
-  )
+  return {
+    matchList,
+    currentPage,
+    totalMatches,
+    competitions,
+    selectedCompetition,
+    limit,
+    setCurrentPage,
+    handleCompetitionChange
+  }
 }
-
-export default Schedule
