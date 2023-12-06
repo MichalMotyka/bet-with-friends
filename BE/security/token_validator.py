@@ -69,11 +69,12 @@ def update_token(f):
                 validate_token(token)
             except:
                 try:
-                    userdb = validate_token(refresh_token)
-                    expiry_time = datetime.utcnow() + timedelta(minutes=config.get_config_by_key("jwt.exp.authorization"))
-                    expiry_refresh = datetime.utcnow() + timedelta(minutes=config.get_config_by_key("jwt.exp.refresh"))
-                    authorize = jwt.encode({'exp':expiry_time*60*1000,'user_uid': userdb.public_id,'isAdmin':userdb.admin,'isActive':userdb.isActive,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
-                    refresh = jwt.encode({'exp':expiry_refresh*60*1000,'user_uid': userdb.public_id,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
+                    current_user = validate_token(refresh_token)
+                    milliseconds_per_minute = float(1000 * 60)
+                    expiry_time = datetime.utcnow() + timedelta(minutes=float(config.get_config_by_key("jwt.exp.authorization"))*milliseconds_per_minute)
+                    expiry_refresh = datetime.utcnow() + timedelta(minutes=float(config.get_config_by_key("jwt.exp.refresh"))*milliseconds_per_minute)
+                    authorize = jwt.encode({'exp':expiry_time*60*1000,'user_uid': current_user.public_id,'isAdmin':current_user.admin,'isActive':current_user.isActive,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
+                    refresh = jwt.encode({'exp':expiry_refresh*60*1000,'user_uid': current_user.public_id,'date':str(datetime.now())},config.get_config_by_key("SECRET_KEY"),algorithm="HS256")
                     response = make_response()
                     expiration = datetime.utcnow() + timedelta(minutes=int(config.get_config_by_key("jwt.exp.authorization")))
                     response.set_cookie('Authorization',authorize,expires=expiration.timestamp(),httponly=False)
