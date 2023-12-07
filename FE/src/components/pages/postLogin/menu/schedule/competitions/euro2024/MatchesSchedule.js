@@ -17,8 +17,8 @@ function Euro2024Schedule ({ matchList }) {
             <tr key={match.score.public_id}>
               <td className='crest'>
                 <img
-                  width={45}
-                  height={45}
+                  width={25}
+                  height={25}
                   src={match.home_team.crest}
                   alt=''
                 />
@@ -29,8 +29,8 @@ function Euro2024Schedule ({ matchList }) {
               <td>{match.away_team.short_name}</td>
               <td className='crest'>
                 <img
-                  width={45}
-                  height={45}
+                  width={25}
+                  height={25}
                   src={match.away_team.crest}
                   alt=''
                 />

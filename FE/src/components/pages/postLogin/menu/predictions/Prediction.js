@@ -1,6 +1,6 @@
 import { BsArrowRight } from 'react-icons/bs'
 import { BsArrowLeft } from 'react-icons/bs'
-import CLBet from './betting/championsleague/CLBet'
+import CLBet from './betting/MatchBet'
 
 import { PredictionLogic } from './data/PredictionLogic'
 import TypingRacoon from './images/raccoon-header3.webp'
@@ -31,8 +31,6 @@ function Prediction () {
 
     return translateCompetition[competitionName] || competitionName
   }
-
-  console.log(competitions)
 
   return (
     <section className='app-wrap'>
