@@ -54,7 +54,7 @@ function CLBet ({ matchList }) {
         <tr>
           <th className='crest'></th>
           <th>Gospodarze</th>
-          <th>Wynik</th>
+          <th>Wynika</th>
           <th>Goście</th>
           <th className='crest'></th>
           <th>Termin</th>
@@ -78,10 +78,10 @@ function CLBet ({ matchList }) {
               <input
                 type='number'
                 placeholder='Gospodarze'
-                value={betResults[match.score.public_id]?.home_team || ''}
+                value={betResults[match.public_id]?.home_team || ''}
                 onChange={e =>
                   handleInputChange(
-                    match.score.public_id,
+                    match.public_id,
                     'home_team',
                     e.target.value
                   )
@@ -91,16 +91,16 @@ function CLBet ({ matchList }) {
               <input
                 type='number'
                 placeholder='Goście'
-                value={betResults[match.score.public_id]?.away_team || ''}
+                value={betResults[match.public_id]?.away_team || ''}
                 onChange={e =>
                   handleInputChange(
-                    match.score.public_id,
+                    match.public_id,
                     'away_team',
                     e.target.value
                   )
                 }
               />
-              <button onClick={() => handleBetSubmit(match.score.public_id)}>
+              <button onClick={() => handleBetSubmit(match.public_id)}>
                 WYŚLIJ
               </button>
             </td>
