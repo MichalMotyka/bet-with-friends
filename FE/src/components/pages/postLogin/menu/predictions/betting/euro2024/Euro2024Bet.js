@@ -1,46 +1,7 @@
-import { useEffect, useState } from 'react'
+
 function Euro2024Bet ({ matchList }) {
-  const [bet, setBet] = useState([])
 
-  const [currentPage] = useState(1)
-  const [selectedCompetition] = useState(2001)
-  const [totalBets, setTobalBets] = useState(null)
-  const limit = 10
   console.log('PONIŻEJ WYNIKI POBIERANIA BET:')
-
-  useEffect(() => {
-    const getMatches = async () => {
-      try {
-        const matchesResponse = await fetch(
-          `http://130.162.44.103:5000/api/v1/bet?competetition=${selectedCompetition}&page=${currentPage}&limit=${limit}`,
-          {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-Total-Count': 'true'
-            }
-          }
-        )
-
-        if (matchesResponse.ok) {
-          const matchesData = await matchesResponse.json()
-          console.log('Pobranie danych zakończone sukcesem:', matchesData)
-          setBet(matchesData)
-          setTobalBets(matchesResponse.headers.get('X-Total-Count'))
-        } else {
-          console.error('Błąd podczas pobierania danych')
-        }
-      } catch (error) {
-        console.error('Błąd podczas wysyłania żądania:', error)
-      }
-    }
-
-    getMatches()
-  }, [currentPage, selectedCompetition])
-
-  console.log('TUTAJ SĄ MECZE DO BETOWANIA:', bet)
-  console.log('TYLE JEST MECZY DO BETOWANIA:', totalBets)
 
   return matchList.length > 0 ? (
     <>

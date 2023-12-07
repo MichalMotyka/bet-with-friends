@@ -82,7 +82,7 @@ function Prediction () {
             </button>
           </p>
 
-          {/* // W przysszłosci będzie wiecej zawodów do wyboru- do zmiany */}
+          {/* // W przysszłosci będzie wiecej zawodów do wyboru- do zmiany  2023*/}
 
           {selectedCompetition === 2001 ? (
             <CLBet matchList={matchList} />
