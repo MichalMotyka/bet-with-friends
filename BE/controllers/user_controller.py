@@ -1,4 +1,4 @@
-from flask import Blueprint, request, make_response
+from flask import Blueprint, request, make_response,redirect
 from configuration.configuration_manager import ConfigurationManager
 from entity.users import Users
 from entity.response import Response
@@ -30,15 +30,15 @@ def register():
         response.status_code = 400
     return response 
 
-@user_blueprint.route('/activate/<code>', methods=['POST'])
-def activate(code:str):
-    try:
-        user_service.activate_user(code=code)
-        response = make_response(Response(message='The user has been successfully activated.',code='OK').__dict__)
-    except ActivationCodeInvalidException as e:
-        response = make_response(Response(message=e.message,code=e.code).__dict__)
-        response.status_code = 400
-    return response
+# @user_blueprint.route('/activate/<code>', methods=['POST'])
+# def activate(code:str):
+#     try:
+#         user_service.activate_user(code=code)
+#         response = make_response(Response(message='The user has been successfully activated.',code='OK').__dict__)
+#     except ActivationCodeInvalidException as e:
+#         response = make_response(Response(message=e.message,code=e.code).__dict__)
+#         response.status_code = 400
+#     return response
 
 @user_blueprint.route('/login', methods=['POST'])
 def login():
@@ -66,4 +66,9 @@ def logout():
     response.set_cookie('Authorization','',expires=0,httponly=False,path='/')
     response.set_cookie('Refresh','',expires=0,httponly=False)
     return response
+
+@user_blueprint.route('/activate/<code>', methods=['GET'])
+def activate(code:str):
+    user_service.activate_user(code=code)
+    return redirect(config.get_config_by_key('external.frontend_login'))
 
