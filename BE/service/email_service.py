@@ -14,14 +14,13 @@ email = configuration.get_config_by_key('smtp.email')
 
 def send_activation_mail(reciver:str):
  try:
-    print("Start send email")
     directory = os.path.dirname(__file__)
     directory = os.path.abspath(os.path.join(directory, os.pardir))
     file_path = os.path.join(directory, 'resources', 'templates', 'activation', 'index.html')
     with open(file_path, "r", encoding='utf-8') as f:
         body= f.read()
     body = setUrl(body)
-    print("Email has been created")
+    print(body)
     em = EmailMessage()
     em['From'] = email
     em['To'] = reciver
@@ -33,7 +32,6 @@ def send_activation_mail(reciver:str):
     with smtplib.SMTP_SSL('smtp.gmail.com',465, context=context) as smtp:
         smtp.login(email,password)
         smtp.sendmail(email,reciver,em.as_string())
-        print("Mail has been sent")
  except Exception as e:
     print(e)
 
@@ -61,9 +59,7 @@ def image_to_base64(image_name):
 def setUrl(body:str):
     images = extract_image_names_from_html(body)
     for image in images:
-        soup = BeautifulSoup(body, 'html.parser')
-        image_tags = soup.find_all('img', src=image)
-        for img_tag in image_tags:
-            img_tag['src'] = f'data:image/png;base64,{image_to_base64(image)}'
-
-    return str(soup)
+        template = re.compile(image)
+        new_url = f'data:image/png;base64,{image_to_base64(image)}'
+        body = template.sub(new_url, body)
+    return body
