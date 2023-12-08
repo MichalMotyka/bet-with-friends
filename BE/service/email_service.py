@@ -39,5 +39,3 @@ def setUrl(body:str,code:str):
     template = re.compile(r'\(frontend\)')
     new_url = f"""{configuration.get_config_by_key('external.url')}/api/v1/activate/{code}"""
     return template.sub(new_url, body)
-
-send_activation_mail("michmot12@gmail.com",code="0541e02e-f09c-42b4-8bb5-9f0913ebbb31")
