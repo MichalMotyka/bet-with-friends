@@ -23,7 +23,7 @@ function MatchBet ({
     const { matchId, away_team_bet, home_team_bet } = betResults
 
     try {
-      const betEndpoint = `http://130.162.44.103:5000/api/v1/bet/${matchId}`
+      const betEndpoint = `http://localhost:5000/api/v1/bet/${matchId}`
       const response = await fetch(betEndpoint, {
         method: 'POST',
         credentials: 'include',
