@@ -26,6 +26,7 @@ def send_activation_mail(reciver:str):
     em['To'] = reciver
     em['Subject'] = 'Aktywuj swoje konto w portalu Bet With Friends'
     em.add_alternative(body, subtype='html')
+    add_attachments()
 
     context = ssl.create_default_context()
 
@@ -35,6 +36,17 @@ def send_activation_mail(reciver:str):
  except Exception as e:
     print(e)
 
+
+def add_attachments(em:EmailMessage,body):
+    for image in extract_image_names_from_html(body):
+        directory = os.path.dirname(__file__)
+        directory = os.path.abspath(os.path.join(directory, os.pardir))
+        file_path = os.path.join(directory, 'resources', 'images',image)
+        with open(file_path, 'rb') as img_file:
+            file_data = img_file.read()
+            file_name = os.path.basename(file_path)
+            em.add_attachment(file_data, maintype='image', subtype='png', filename=file_name)
+    
 
 def extract_image_names_from_html(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
