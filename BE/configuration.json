@@ -4,7 +4,8 @@
     "email":"testerapi715@gmail.com"
   },
   "external":{
-    "url":"http://130.162.44.103:5000"
+    "url":"http://130.162.44.103:5000",
+    "frontend_login":"http://130.162.44.103/login"
   },
   "SECRET_KEY":"Th1s1ss3cr3t"
   ,

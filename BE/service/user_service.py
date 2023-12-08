@@ -32,8 +32,8 @@ def create_user(user:Users):
             session.add(user)
             session.commit()
             session.refresh(user)
-            create_activation(user_id=user.id)
-            send_activation_mail(user.email)
+            code = create_activation(user_id=user.id)
+            send_activation_mail(user.email,code=code)
             create_profile(user=user)
         except IntegrityError as e:
             if 'already exists.' in str(e.orig):
