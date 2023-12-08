@@ -3,6 +3,8 @@ import ssl
 import smtplib
 import os
 import re
+from bs4 import BeautifulSoup
+import base64
 from configuration.configuration_manager import ConfigurationManager
 
 configuration = ConfigurationManager.get_instance()
@@ -11,12 +13,15 @@ password = configuration.get_config_by_key('smtp.password')
 email = configuration.get_config_by_key('smtp.email')
 
 def send_activation_mail(reciver:str):
+ try:
+    print("Start send email")
     directory = os.path.dirname(__file__)
     directory = os.path.abspath(os.path.join(directory, os.pardir))
     file_path = os.path.join(directory, 'resources', 'templates', 'activation', 'index.html')
     with open(file_path, "r", encoding='utf-8') as f:
         body= f.read()
     body = setUrl(body)
+    print("Email has been created")
     em = EmailMessage()
     em['From'] = email
     em['To'] = reciver
@@ -28,10 +33,37 @@ def send_activation_mail(reciver:str):
     with smtplib.SMTP_SSL('smtp.gmail.com',465, context=context) as smtp:
         smtp.login(email,password)
         smtp.sendmail(email,reciver,em.as_string())
+        print("Mail has been sent")
+ except Exception as e:
+    print(e)
 
 
+def extract_image_names_from_html(html_content):
+    soup = BeautifulSoup(html_content, 'html.parser')
+    image_tags = soup.find_all('img')  # Znajdź wszystkie tagi <img>
+
+    image_names = []
+    for img_tag in image_tags:
+        src = img_tag.get('src')  # Pobierz wartość atrybutu 'src' (ścieżka do obrazka)
+        if src:
+            image_name = src.split('/')[-1]  # Pobierz nazwę pliku obrazka z URL-a
+            image_names.append(image_name)
+    return image_names
+
+def image_to_base64(image_name):
+    directory = os.path.dirname(__file__)
+    directory = os.path.abspath(os.path.join(directory, os.pardir))
+    file_path = os.path.join(directory, 'resources', 'images',image_name)
+    with open(file_path, 'rb') as img_file:
+        base64_encoded_image = base64.b64encode(img_file.read()).decode('utf-8')
+    return base64_encoded_image
 
 def setUrl(body:str):
-    template = re.compile(r'\(url\)')
-    new_url = configuration.get_config_by_key('external.url')
-    return template.sub(new_url, body)
+    images = extract_image_names_from_html(body)
+    for image in images:
+        soup = BeautifulSoup(body, 'html.parser')
+        image_tags = soup.find_all('img', src=image)
+        for img_tag in image_tags:
+            img_tag['src'] = f'data:image/png;base64,{image_to_base64(image)}'
+
+    return str(soup)
