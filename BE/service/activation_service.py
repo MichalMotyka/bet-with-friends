@@ -11,6 +11,7 @@ def create_activation(user_id:int):
     with session_factory() as session:
         session.add(activation)
         session.commit()
+        session.refresh(activation)
     return activation.code
 
 def activate(code:str):

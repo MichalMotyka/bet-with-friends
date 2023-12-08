@@ -3,8 +3,6 @@ import ssl
 import smtplib
 import os
 import re
-from bs4 import BeautifulSoup
-import base64
 from configuration.configuration_manager import ConfigurationManager
 
 configuration = ConfigurationManager.get_instance()
