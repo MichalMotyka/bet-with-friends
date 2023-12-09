@@ -59,7 +59,7 @@ def get_new_matches():
                         })
                         session.commit()
                         if match['status'] == 'FINISHED':
-                            session.query(Score).filter_by(id=matchdb.score_id).update(full_time=full_time,half_time=half_time,winner=winner)
+                            session.query(Score).filter_by(id=matchdb.score_id).update({"full_time":full_time,"half_time":half_time,"winner":winner})
                             session.commit()
                     
                         
