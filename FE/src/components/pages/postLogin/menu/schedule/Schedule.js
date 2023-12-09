@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { BsArrowRight } from 'react-icons/bs'
-import { BsArrowLeft } from 'react-icons/bs'
-import Euro2024Schedule from './competitions/euro2024/MatchesSchedule'
+
+import Euro2024Schedule from './competitions/MatchesSchedule'
 import './schedule.css'
 
 function Schedule () {
@@ -120,29 +119,13 @@ function Schedule () {
 
         {/* //  Lista buttonów z zawodami */}
 
-        <p className='schedule-btns'>
-          <button
-            aria-label='Previous page'
-            className='schedule-list-btn span-brand'
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(prevValue => prevValue - 1)}
-          >
-            <BsArrowLeft />
-          </button>
-          <span className='schedule-btn-span'>
-            Przeglądaj listę {currentPage} / {Math.ceil(totalMatches / limit)}
-          </span>
-          <button
-            aria-label='Next page'
-            className='schedule-list-btn span-brand'
-            onClick={() => setCurrentPage(prevValue => prevValue + 1)}
-            disabled={currentPage === Math.ceil(totalMatches / limit)}
-          >
-            <BsArrowRight />
-          </button>
-        </p>
-
-        <Euro2024Schedule matchList={matchList} />
+        <Euro2024Schedule
+          matchList={matchList}
+          currentPage={currentPage}
+          totalMatches={totalMatches}
+          limit={limit}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </section>
   )

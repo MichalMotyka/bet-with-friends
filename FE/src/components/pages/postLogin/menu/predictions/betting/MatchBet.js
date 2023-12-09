@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 import { BsArrowRight } from 'react-icons/bs'
 import { BsArrowLeft } from 'react-icons/bs'
 
@@ -36,6 +36,8 @@ function MatchBet ({
 
       if (response.ok) {
         setSubmittedBets([...submittedBets, matchId])
+
+        console.log('Poszło', betResults)
       } else {
         console.error('Błąd podczas wysyłania zakładu')
       }
@@ -44,10 +46,15 @@ function MatchBet ({
     }
   }
 
+  useEffect(() => {
+    console.log('Aktualizacja betResults', betResults);
+  }, [betResults]);
+
+
   return matchList.length > 0 ? (
     <>
       {/* //  Lista buttonów z zawodami */}
-      {console.log(matchList)}
+
       <p className='competition-name'>{matchList[0]?.competition.name}</p>
 
       <p className='schedule-btns'>
@@ -119,7 +126,7 @@ function MatchBet ({
                       className='bet-input'
                       type='number'
                       disabled={isBetSubmitted}
-                      value={betResults[match.public_id]}
+                      value={betResults[match.public_id]?.home_team_bet}
                       onChange={e =>
                         setBetResult({
                           ...betResults,
@@ -138,7 +145,7 @@ function MatchBet ({
                       type='number'
                       disabled={isBetSubmitted}
                       placeholder={match.away_team.short_name}
-                      value={betResults[match.public_id]}
+                      value={betResults[match.public_id]?.away_team}
                       onChange={e =>
                         setBetResult({
                           ...betResults,
