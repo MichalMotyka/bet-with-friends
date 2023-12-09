@@ -39,9 +39,6 @@ def setUrl(body:str,code:str):
     new_url = f"""{configuration.get_config_by_key('external.url')}/api/v1/activate/{code}"""
     return template.sub(new_url, body)
 
-
-
-
 def send_reset_mail(reciver:str,code):
  try:
     directory = os.path.dirname(__file__)
