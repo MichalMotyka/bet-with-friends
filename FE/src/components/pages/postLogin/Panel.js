@@ -14,6 +14,8 @@ function Panel () {
   const { loggedIn } = useAuth()
   const navigate = useNavigate()
 
+  console.log('Dane logowania:', loggedIn)
+
   useEffect(() => {
     // Sprawdź, czy użytkownik jest zalogowany
     if (!loggedIn) {
