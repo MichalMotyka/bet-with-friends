@@ -107,5 +107,5 @@ def reset_password():
 @user_blueprint.route('/auto-login',methods=['GET'])
 @token_required
 def auto_login(current_user:Users, response:ResponseFlask):
-    response.set_data(Response(message="User is logged in",code="OK").to_json())
+    response.set_data(Response(message=current_user.public_id,code="OK").to_json())
     return response, 200
