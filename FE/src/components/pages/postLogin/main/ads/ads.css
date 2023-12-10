@@ -7,6 +7,9 @@
 }
 
 .patopoker{
-    background-color: tomato;
+    height: 100%;
+    width: 220px;
+    
+
     cursor: pointer;
 }
