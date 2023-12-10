@@ -1,5 +1,5 @@
-// import patopoker from './images/patopokers.webp'
-import gentelman from './images/gentelman.webp'
+import patopoker from './images/patopokers.webp'
+
 import './ads.css'
 
 function Ads () {
@@ -9,15 +9,8 @@ function Ads () {
         Twoja <span className='span-brand'>Reklama</span>
       </h2>
       <div className='ad-box'>
-        {/* <img
-          className='patopoker'
-          src={patopoker}
-          alt='Pato Poker best Poker Game!'
-          width={220}
-          height={400}
-        /> */}
+        <img className='patopoker' src={patopoker} alt='Pato Poker Game' />
       </div>
-      <img src={gentelman} alt='test' />
     </div>
   )
 }
