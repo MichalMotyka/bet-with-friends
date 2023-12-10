@@ -8,7 +8,7 @@ function Ads () {
       <h2 className='panel-header'>
         Twoja <span className='span-brand'>Reklama</span>
       </h2>
-      <div className='ad-box'>
+      <div className='adding-box'>
         <img className='patopoker' src={patopoker} alt='Pato Poker Game' />
       </div>
     </div>
