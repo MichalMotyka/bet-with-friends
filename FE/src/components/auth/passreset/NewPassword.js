@@ -17,7 +17,7 @@ function NewPassword () {
     try {
       setLoading(true)
       setSuccessMessage('')
-      const response = await fetch('http://localhost:5000/api/v1/reset', {
+      const response = await fetch('http://130.162.44.103:5000/api/v1/reset', {
         method: 'POST',
         credentials: 'include',
         headers: {
