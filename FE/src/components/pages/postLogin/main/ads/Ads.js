@@ -1,4 +1,4 @@
-import PatoPoker from './images/patopoker.webp'
+import PatoPokers from './images/patopokers.webp'
 import './ads.css'
 
 function Ads () {
@@ -9,7 +9,7 @@ function Ads () {
       </h2>
 
       <div className='ad-box'>
-        <img className='patopoker' src={PatoPoker} alt='' width={220} />
+        <img className='patopoker' src={PatoPokers} alt='' width={220} />
       </div>
     </div>
   )
