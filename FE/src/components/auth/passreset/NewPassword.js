@@ -2,16 +2,22 @@ import { useState } from 'react'
 import MyPassword from './images/mypassword.webp'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import validate from '../validation/NewPasswordValidation'
+import { FaSpinner } from 'react-icons/fa'
+
+import './newpassword.css'
 
 function NewPassword () {
   const [successMessage, setSuccessMessage] = useState(null)
   const [serverError, setServerError] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (userData, { resetForm }) => {
     console.log(userData.email)
 
     try {
-      const response = await fetch('http://localhost:5000/api/v1/reset', {
+      setLoading(true)
+      setSuccessMessage('')
+      const response = await fetch('http://130.162.44.103/:5000/api/v1/reset', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -21,7 +27,7 @@ function NewPassword () {
           email: userData.email
         })
       })
-
+      setLoading(false)
       if (response.ok) {
         setServerError(false)
         console.log('POSZŁO!')
@@ -65,22 +71,23 @@ function NewPassword () {
             }}
             validate={validate}
             onSubmit={handleSubmit}
-            className='form-login'
+            className='form-login newemail'
           >
             {formik => (
-              <Form className='form-login'>
-                {' '}
-                <label htmlFor='email'>Email</label>
+              <Form className='newemail'>
+                <label htmlFor='email' className='newemail-label'>
+                  Email
+                </label>
                 <Field
                   id='email'
                   name='email'
                   placeholder='Email...'
                   type='email'
-                  className={
+                  className={`${'newemail-input'}
                     formik.touched.email && formik.errors.email
                       ? 'login-input-error'
                       : ''
-                  }
+                  `}
                 />
                 <ErrorMessage
                   name='email'
@@ -88,17 +95,24 @@ function NewPassword () {
                   className='login-error-msg'
                 />
                 <button
-                  className='login-submit-button'
+                  className='newemail-btn'
                   type='submit'
                   disabled={!(formik.dirty && formik.isValid)}
                 >
-                  Submit
+                  {loading ? (
+                    <>
+                      <FaSpinner className='spinner-icon' />
+                      Przesyłanie...
+                    </>
+                  ) : (
+                    'Reset hasła'
+                  )}
                 </button>
                 {successMessage && (
                   <div className='signup-success-msg'>{successMessage}</div>
                 )}
                 {serverError && (
-                  <p>'W systemie nie ma takiego takiego emaila'</p>
+                  <p className='login-error-msg'>Brak emaila w systemie</p>
                 )}
               </Form>
             )}
