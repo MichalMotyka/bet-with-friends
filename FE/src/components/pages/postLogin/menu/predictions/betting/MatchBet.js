@@ -140,7 +140,7 @@ function MatchBet ({
                       }
                       placeholder={match.home_team.short_name}
                     />
-                    <span> : </span>
+                    <span className='bet-span'> : </span>
                     <input
                       min={0}
                       max={20}
