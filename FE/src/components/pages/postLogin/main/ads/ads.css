@@ -5,7 +5,6 @@
     flex-direction: column;
 }
 
-.patopoker{
-    height: 100%;  
+.patopoker{ 
     cursor: pointer;
 }
