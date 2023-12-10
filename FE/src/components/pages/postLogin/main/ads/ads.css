@@ -1,15 +1,11 @@
-
-
 .ad-box{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .patopoker{
-    height: 100%;
-    width: 220px;
-    
-
+    height: 100%;  
     cursor: pointer;
 }
