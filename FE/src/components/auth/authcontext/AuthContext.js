@@ -15,32 +15,32 @@ export const AuthProvider = ({ children }) => {
     }
   }, [])
 
-
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
-        const response = await fetch('https://example.com/api/data');
-        const data = await response.json();
+        const response = await fetch('http://localhost:5000/api/v1/autologin')
+        const data = await response.json()
 
-        console.log('Dane z API:', data);
+        console.log('Dane z API:', data)
 
         if (response.ok) {
-          console.log('Gitareczka!');
+          console.log('Gitareczka!')
+          login()
           // Tutaj możesz dodać kod do przetwarzania pobranych danych
         } else {
-          console.error('Błąd pobierania danych z API:', data);
+          console.error('Błąd pobierania danych z API:', data)
         }
       } catch (error) {
-        console.error('Błąd pobierania danych z API:', error);
+        console.error('Błąd pobierania danych z API:', error)
       }
-    };
+    }
 
     // Wywołanie funkcji pobierającej dane z API
-    fetchDataFromApi();
-  }, []); // Pusta tablica oznacza, że ten efekt będzie uruchomiony tylko raz po zamontowaniu komponentu
+    fetchDataFromApi()
+  }, []) // Pusta tablica oznacza, że ten efekt będzie uruchomiony tylko raz po zamontowaniu komponentu
 
   const login = () => {
-   
+    console.log('user poszedł do logowania')
 
     setLoggedIn(true)
     localStorage.setItem('loggedIn', JSON.stringify(true))
