@@ -2,15 +2,12 @@ import { useState } from 'react'
 import Euro2024 from './euro2024/Euro2024'
 import './grouplist.css'
 
-function YourComponent () {
+function GroupList () {
   const [activeTab, setActiveTab] = useState('Euro2024')
-  // const [compe, setCompe] = useState([])
 
   const handleTabClick = tab => {
     setActiveTab(tab)
   }
-
-  // Wywołanie funkcji pobierającej dane, np. w useEffect
 
   return (
     <div className='panel-side-box'>
@@ -30,4 +27,4 @@ function YourComponent () {
   )
 }
 
-export default YourComponent
+export default GroupList
