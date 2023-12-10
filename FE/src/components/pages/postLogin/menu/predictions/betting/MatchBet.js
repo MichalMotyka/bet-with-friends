@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import { BsArrowRight } from 'react-icons/bs'
 import { BsArrowLeft } from 'react-icons/bs'
 
@@ -18,9 +18,9 @@ function MatchBet ({
     home_team_bet: ''
   })
 
-  const handleBetSubmit = async e => {
+  const handleBetSubmit = async (e, matchId) => {
     e.preventDefault()
-    const { matchId, away_team_bet, home_team_bet } = betResults
+    const { away_team_bet, home_team_bet } = betResults[matchId]
 
     try {
       const betEndpoint = `http://localhost:5000/api/v1/bet/${matchId}`
@@ -47,9 +47,8 @@ function MatchBet ({
   }
 
   useEffect(() => {
-    console.log('Aktualizacja betResults', betResults);
-  }, [betResults]);
-
+    console.log('Aktualizacja betResults', betResults)
+  }, [betResults])
 
   return matchList.length > 0 ? (
     <>
@@ -118,7 +117,10 @@ function MatchBet ({
                   {match.utc_date.replace('T', ' ').slice(11, -3)})
                 </td>
                 <td className='td-bet'>
-                  <form onSubmit={handleBetSubmit} className='bet-form'>
+                  <form
+                    onSubmit={e => handleBetSubmit(e, match.public_id)}
+                    className='bet-form'
+                  >
                     <input
                       min={0}
                       max={20}
@@ -126,12 +128,14 @@ function MatchBet ({
                       className='bet-input'
                       type='number'
                       disabled={isBetSubmitted}
-                      value={betResults[match.public_id]?.home_team_bet}
+                      value={betResults[match.public_id]?.home_team_bet || ''}
                       onChange={e =>
                         setBetResult({
                           ...betResults,
-                          matchId: match.public_id,
-                          home_team_bet: e.target.value
+                          [match.public_id]: {
+                            ...betResults[match.public_id],
+                            home_team_bet: e.target.value
+                          }
                         })
                       }
                       placeholder={match.home_team.short_name}
@@ -145,12 +149,14 @@ function MatchBet ({
                       type='number'
                       disabled={isBetSubmitted}
                       placeholder={match.away_team.short_name}
-                      value={betResults[match.public_id]?.away_team}
+                      value={betResults[match.public_id]?.away_team_bet || ''}
                       onChange={e =>
                         setBetResult({
                           ...betResults,
-                          matchId: match.public_id,
-                          away_team_bet: e.target.value
+                          [match.public_id]: {
+                            ...betResults[match.public_id],
+                            away_team_bet: e.target.value
+                          }
                         })
                       }
                     />
