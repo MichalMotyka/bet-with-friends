@@ -30,7 +30,7 @@ function NewPassword () {
       setLoading(false)
       if (response.ok) {
         setServerError(false)
-        console.log('POSZŁO!')
+
         resetForm({
           values: {
             email: ''

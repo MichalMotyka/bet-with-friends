@@ -6,6 +6,8 @@ import './yourprofile.css'
 function YourProfile () {
   const { userProfile } = useUser()
 
+  console.log('User profile:', userProfile)
+
   if (!userProfile || !userProfile.rating) {
     // Możesz tutaj wyświetlić np. ładowanie, jeśli dane są jeszcze pobierane
     return <div>Loading...</div>
@@ -20,7 +22,9 @@ function YourProfile () {
         <img
           src={userProfile.avatar}
           alt=''
-          className='avatar top-typer-avatar'
+          className={`avatar ${
+            userProfile.ranking.place <= 3 ? 'top-typer-avatar' : null
+          } `}
           height={110}
           width={110}
         />
