@@ -17,7 +17,7 @@ function YourComponent () {
 
       // Wysyłanie żądania GET do backendu
       const response = await fetch(
-        `http://130.162.44.103:5000/api/v1/competetition`,
+        `http://localhost:5000/api/v1/competetition`,
         {
           method: 'GET',
           credentials: 'include', // Dodanie tego, jeśli istnieje konieczność uwierzytelnienia
@@ -32,8 +32,6 @@ function YourComponent () {
 
       if (response.ok) {
         // Pobranie danych z odpowiedzi w formacie JSON
-    
-
         // Ustawienie pobranych danych w stanie komponentu
         // setCompe(data);
       } else {

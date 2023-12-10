@@ -20,7 +20,7 @@ function Login () {
     setLoginError(null)
     try {
       setLoading(true)
-      // Wysyłanie danych do backendu
+
       const response = await fetch('http://130.162.44.103:5000/api/v1/login', {
         method: 'POST',
         credentials: 'include',
@@ -141,15 +141,26 @@ function Login () {
               {loginError && (
                 <div className='login-server-error-msg'>{loginError}</div>
               )}
+              <div className='new-pass'>
+                <Link
+                  to='/newpassword'
+                  className='signup-login'
+                  onClick={ScrollToTop}
+                >
+                  Przypomnij hasło
+                </Link>
+              </div>
             </Form>
           )}
         </Formik>
 
         <div className='form-to-signup'>
-          Nie posiadasz konta?
-          <Link to='/signup' className='signup-login' onClick={ScrollToTop}>
-            Zarejestruj się
-          </Link>
+          <div>
+            <span>Nie masz konta?</span>
+            <Link to='/signup' className='signup-login' onClick={ScrollToTop}>
+              Zarejestruj się
+            </Link>
+          </div>
         </div>
       </div>
     </section>
