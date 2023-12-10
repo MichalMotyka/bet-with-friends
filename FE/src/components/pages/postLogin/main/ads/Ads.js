@@ -8,8 +8,14 @@ function Ads () {
         Twoja <span className='span-brand'>Reklama!</span>
       </h2>
       <div className='ad-box'>
-        <img className='patopoker' src={PatoPokers} alt='' />
-      </div>{' '}
+        <img
+          className='patopoker'
+          src={PatoPokers}
+          alt='Pato Poker best Poker Game!'
+          width={220}
+          height={400}
+        />
+      </div>
     </div>
   )
 }
