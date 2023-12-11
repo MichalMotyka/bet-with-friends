@@ -12,6 +12,7 @@ from exceptions.match_dont_exist_exception import MatchDontExistException
 from shared.base import session_factory
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime,timezone
+from service.raiting_service import update_raiting
 import atexit
 import uuid
 
@@ -126,6 +127,8 @@ def proces_bets():
                     if home_team_winner and bet.who_win == "home": price += 0.15
                     if draw and bet.who_win == "draw": price += 0.15
                 price = price * 100
+                profile = session.query(Profile).filter(Profile.id==bet.profile_id).first()
+                update_raiting(id=profile.rating_id,isWin=price > 0)
                 stmt = update(Profile).where(Profile.id == bet.profile_id).values(points=(Profile.points + price))
                 session.execute(stmt)
                 session.commit()
@@ -183,5 +186,6 @@ def create_jobs():
     sheduler.start()
     atexit.register(lambda: sheduler.shutdown())
 
+proces_bets()
 create_jobs()
     
