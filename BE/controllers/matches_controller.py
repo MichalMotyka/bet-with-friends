@@ -1,5 +1,5 @@
 from flask import Blueprint, request,Response
-from security.token_validator import token_required
+from security.token_validator import token_required,update_token
 from service.match_service import get_competetition_list,get_matches_list,get_posible_bets,create_bet
 from entity.response import Response as CustomResponse
 from entity.competition import Competition
@@ -13,7 +13,7 @@ import json
 match_blueprint = Blueprint('match_blueprint', __name__)
 
 @match_blueprint.route('/matches',methods=['GET'])
-@token_required
+@update_token
 def get_matches(current_user,response:Response):
     page = 1 
     limit = 5
