@@ -5,7 +5,6 @@ import validate from '../validation/LogInValidations'
 import RaccoonLogin from './images/raccoon-login3.webp'
 import { ScrollToTop } from '../../utilities/ScrollToTop'
 import { FaSpinner } from 'react-icons/fa'
-
 import { useAuth } from '../authcontext/AuthContext'
 
 import './login.css'

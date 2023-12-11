@@ -7,12 +7,12 @@
 .user-menu {
   position: absolute;
   top: 76px;
-  right: 220px;
+  right: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 295px;
+  width: 285px;
   height: 300px;
   z-index: 49;
   background-color: var(--white-color);
@@ -76,6 +76,8 @@
   margin-right: 5px;
   cursor: pointer;
   transition: transform 0.3s;
+  animation: scaleAnimation 2s ease-in-out infinite; /* Adjust the duration and timing function as needed */
+
 }
 .message-true:hover {
   transform: scale(1.05);
@@ -92,6 +94,16 @@
   left: 10px;
   z-index: 5;
 }
+
+@keyframes scaleAnimation {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
 
 
 @media (max-width: 575.98px) {
