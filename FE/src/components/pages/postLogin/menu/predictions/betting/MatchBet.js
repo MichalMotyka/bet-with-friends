@@ -20,6 +20,9 @@ function MatchBet ({
   })
   const { ipMan } = useAuth()
 
+  console.log(matchList)
+  console.log(totalMatches)
+
   const handleBetSubmit = async (e, matchId) => {
     e.preventDefault()
     const { away_team_bet, home_team_bet } = betResults[matchId]

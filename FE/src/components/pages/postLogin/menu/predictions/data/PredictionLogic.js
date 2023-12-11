@@ -8,7 +8,7 @@ export const PredictionLogic = () => {
   const [competitions, setCompetitions] = useState([])
   const [selectedCompetition, setSelectedCompetition] = useState(2021)
   const { ipMan } = useAuth()
-  const limit = 9
+  const limit = 3
 
   useEffect(() => {
     const getCompetitions = async () => {
@@ -24,6 +24,7 @@ export const PredictionLogic = () => {
             }
           }
         )
+
         if (competitionsResponse.ok) {
           const competitionsData = await competitionsResponse.json()
           setCompetitions(competitionsData)

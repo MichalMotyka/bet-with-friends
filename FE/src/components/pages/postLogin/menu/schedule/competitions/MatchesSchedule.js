@@ -41,7 +41,7 @@ function MatchesSchedule ({
             <th>Wynik</th>
             <th>Goście</th>
             <th className='crest'></th>
-            <th>Termin</th>
+            <th className='crest'>Termin</th>
           </tr>
         </thead>
         <tbody>
@@ -67,7 +67,7 @@ function MatchesSchedule ({
                   alt=''
                 />
               </td>
-              <td>
+              <td className='crest'>
                 {' '}
                 {new Date(match.utc_date).toLocaleDateString('en-GB')} (
                 {match.utc_date.replace('T', ' ').slice(11, -3)})

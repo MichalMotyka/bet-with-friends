@@ -4,9 +4,9 @@ import { useAuth } from '../../../../auth/authcontext/AuthContext'
 function Matches () {
   const [matchesData, setMatchesData] = useState([])
   const [competitionsList, setCompetitionsList] = useState([])
+  const [currentCompetition, setCurrentCompetition] = useState(2001)
 
   const { ipMan } = useAuth()
-  const competetition = 2001
 
   useEffect(() => {
     const getCompetitions = async () => {
@@ -39,13 +39,11 @@ function Matches () {
     getCompetitions()
   }, [ipMan])
 
-  console.log(competitionsList)
-
   useEffect(() => {
     const getMatches = async () => {
       try {
         const pubMatchesResponse = await fetch(
-          `http://130.162.44.103:5000/api/v1/matches?competetition=${competetition}`,
+          `http://130.162.44.103:5000/api/v1/matches?competetition=${currentCompetition}`,
           {
             method: 'GET',
             headers: {
@@ -71,10 +69,11 @@ function Matches () {
     }
 
     getMatches()
-  }, [ipMan, competetition])
+  }, [ipMan, currentCompetition])
 
-  console.log('siema')
-  console.log(matchesData)
+  const handleCompetitionChange = competitionId => {
+    setCurrentCompetition(competitionId)
+  }
 
   return (
     <section className='app-wrap'>
@@ -84,11 +83,72 @@ function Matches () {
       </h2>
 
       <p>
-        Tabela przedstawianadchodzące rozgrywki najpopularniejszych lig
-        piłkarskich i uczestniczyć w emocjonującym świecie obstawiania ze swoimi
-        przyjaciółmi. Z łatwością sprawdź, kiedy odbywają się najważniejsze
-        mecze i zanurz się w atmosferze rywalizacji.
+        Tabela przedstawia nadchodzące rozgrywki najpopularniejszych lig. Aby
+        uczestniczyć w emocjonującym świecie obstawiania ze swoimi przyjaciółmi
+        sprawdź, kiedy odbywają się najważniejsze mecze i zanurz się w
+        atmosferze rywalizacji.
       </p>
+
+      <div className='competition-buttons'>
+        {competitionsList.map(competition => (
+          <button
+            key={competition.public_id}
+            className={`competition-btn ${
+              currentCompetition === competition.public_id
+                ? 'active-schedule'
+                : ''
+            }`}
+            onClick={() => handleCompetitionChange(competition.public_id)}
+          >
+            <img width={50} height={50} src={competition.emblem} alt='' />
+            <span>{competition.name}</span>
+          </button>
+        ))}
+      </div>
+
+      <table className='schedule-table'>
+        <thead>
+          <tr>
+            <th className='crest'></th>
+            <th>Gospodarze</th>
+            <th>Wynik</th>
+            <th>Goście</th>
+            <th className='crest'></th>
+            <th className='crest'>Termin</th>
+          </tr>
+        </thead>
+        <tbody>
+          {matchesData.map(match => (
+            <tr key={match.score.public_id}>
+              <td className='crest'>
+                <img
+                  width={25}
+                  height={25}
+                  src={match.home_team.crest}
+                  alt=''
+                />
+              </td>
+              <td>{match.home_team.short_name}</td>
+              <td>{match.score.full_time.replace('-', ' - ') ?? 'TBD'}</td>
+
+              <td>{match.away_team.short_name}</td>
+              <td className='crest'>
+                <img
+                  width={25}
+                  height={25}
+                  src={match.away_team.crest}
+                  alt=''
+                />
+              </td>
+              <td className='crest'>
+                {' '}
+                {new Date(match.utc_date).toLocaleDateString('en-GB')} (
+                {match.utc_date.replace('T', ' ').slice(11, -3)})
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </section>
   )
 }
