@@ -1,7 +1,7 @@
 import { BsArrowRight } from 'react-icons/bs'
 import { BsArrowLeft } from 'react-icons/bs'
 
-function Euro2024Schedule ({
+function MatchesSchedule ({
   matchList,
   currentPage,
   totalMatches,
@@ -82,4 +82,4 @@ function Euro2024Schedule ({
   )
 }
 
-export default Euro2024Schedule
+export default MatchesSchedule

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../../../auth/authcontext/AuthContext'
-import Euro2024Schedule from './competitions/MatchesSchedule'
+import MatchesSchedule from './competitions/MatchesSchedule'
 import './schedule.css'
 
 function Schedule () {
@@ -120,7 +120,7 @@ function Schedule () {
 
         {/* //  Lista buttonów z zawodami */}
 
-        <Euro2024Schedule
+        <MatchesSchedule
           matchList={matchList}
           currentPage={currentPage}
           totalMatches={totalMatches}
