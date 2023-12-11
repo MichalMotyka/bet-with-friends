@@ -23,7 +23,6 @@
 
 .user-menu.closed {
   top: -370px;
-  /* Menu jest początkowo schowane za ekranem */
 }
 
 .panel-item {
@@ -76,7 +75,6 @@
   margin-right: 5px;
   cursor: pointer;
   transition: transform 0.3s;
-  animation: scaleAnimation 2s ease-in-out infinite; /* Adjust the duration and timing function as needed */
 
 }
 .message-true:hover {
@@ -94,17 +92,6 @@
   left: 10px;
   z-index: 5;
 }
-
-@keyframes scaleAnimation {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.05);
-  }
-}
-
-
 
 @media (max-width: 575.98px) {
   .typing-raccoon-top{
