@@ -1,7 +1,7 @@
 import { BsArrowRight } from 'react-icons/bs'
 import { BsArrowLeft } from 'react-icons/bs'
 
-function Euro2024Schedule ({
+function MatchesSchedule ({
   matchList,
   currentPage,
   totalMatches,
@@ -41,7 +41,7 @@ function Euro2024Schedule ({
             <th>Wynik</th>
             <th>Goście</th>
             <th className='crest'></th>
-            <th>Termin</th>
+            <th className='crest'>Termin</th>
           </tr>
         </thead>
         <tbody>
@@ -67,7 +67,7 @@ function Euro2024Schedule ({
                   alt=''
                 />
               </td>
-              <td>
+              <td className='crest'>
                 {' '}
                 {new Date(match.utc_date).toLocaleDateString('en-GB')} (
                 {match.utc_date.replace('T', ' ').slice(11, -3)})
@@ -82,4 +82,4 @@ function Euro2024Schedule ({
   )
 }
 
-export default Euro2024Schedule
+export default MatchesSchedule

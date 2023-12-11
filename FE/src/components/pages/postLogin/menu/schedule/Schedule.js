@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-
-import Euro2024Schedule from './competitions/MatchesSchedule'
+import { useAuth } from '../../../../auth/authcontext/AuthContext'
+import MatchesSchedule from './competitions/MatchesSchedule'
 import './schedule.css'
 
 function Schedule () {
@@ -11,12 +11,13 @@ function Schedule () {
   const [selectedCompetition, setSelectedCompetition] = useState(2001) // Domyślnie brak wybranej kompetencji
   // 2018 euro
   const limit = 10
+  const { ipMan } = useAuth()
 
   useEffect(() => {
     const getCompetitions = async () => {
       try {
         const competitionsResponse = await fetch(
-          'http://130.162.44.103:5000/api/v1/competetition',
+          `http://${ipMan}:5000/api/v1/competetition`,
           {
             method: 'GET',
             credentials: 'include',
@@ -42,13 +43,13 @@ function Schedule () {
     }
 
     getCompetitions()
-  }, [])
+  }, [ipMan])
 
   useEffect(() => {
     const getMatches = async () => {
       try {
         const matchesResponse = await fetch(
-          `http://130.162.44.103:5000/api/v1/matches?competetition=${selectedCompetition}&page=${currentPage}&limit=${limit}`,
+          `http://${ipMan}:5000/api/v1/matches?competetition=${selectedCompetition}&page=${currentPage}&limit=${limit}`,
           {
             method: 'GET',
             credentials: 'include',
@@ -73,7 +74,7 @@ function Schedule () {
     }
 
     getMatches()
-  }, [currentPage, selectedCompetition])
+  }, [currentPage, selectedCompetition, ipMan])
 
   const handleCompetitionChange = competitionId => {
     setSelectedCompetition(competitionId)
@@ -119,7 +120,7 @@ function Schedule () {
 
         {/* //  Lista buttonów z zawodami */}
 
-        <Euro2024Schedule
+        <MatchesSchedule
           matchList={matchList}
           currentPage={currentPage}
           totalMatches={totalMatches}
