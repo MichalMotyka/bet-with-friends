@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext()
@@ -6,6 +7,7 @@ const AuthContext = createContext()
 const ipMan = 'localhost'
 
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate()
   const [loggedIn, setLoggedIn] = useState(() => {
     const storedLoggedIn = localStorage.getItem('loggedIn')
     return storedLoggedIn ? JSON.parse(storedLoggedIn) : false
@@ -19,11 +21,8 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const login = () => {
-    console.log('user poszedł do logowania')
-
     setLoggedIn(true)
     localStorage.setItem('loggedIn', JSON.stringify(true))
-    console.log('User logged in')
   }
 
   const logout = async () => {
@@ -32,6 +31,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await fetch(url, {
         method: 'GET',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         }
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         setLoggedIn(false)
         localStorage.removeItem('loggedIn')
-        console.log('User logged out')
+        navigate('/login')
       } else {
         console.error('Logout failed')
       }

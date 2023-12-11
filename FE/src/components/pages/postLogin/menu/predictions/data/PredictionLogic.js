@@ -40,7 +40,7 @@ export const PredictionLogic = () => {
     }
 
     getCompetitions()
-  }, [])
+  }, [ipMan])
 
   useEffect(() => {
     const getMatches = async () => {

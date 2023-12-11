@@ -6,14 +6,7 @@ import './yourprofile.css'
 function YourProfile () {
   const { userProfile } = useUser()
 
-  console.log('User profile:', userProfile)
-
-  if (!userProfile || !userProfile.rating) {
-    // Możesz tutaj wyświetlić np. ładowanie, jeśli dane są jeszcze pobierane
-    return <div>Loading...</div>
-  }
-
-  return (
+  return Object.keys(userProfile).length > 0 ? (
     <div className='panel-side-box'>
       <h2 className='panel-header'>
         Twój <span className='span-brand'>Profil</span>
@@ -36,6 +29,8 @@ function YourProfile () {
         </Link>
       </div>
     </div>
+  ) : (
+    'Loading...'
   )
 }
 

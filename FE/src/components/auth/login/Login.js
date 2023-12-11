@@ -38,7 +38,7 @@ function Login () {
         // Czyszczenie formularza po udanym logowaniu
         resetForm({
           values: {
-            name: '',
+            email: '',
             password: ''
           }
         })
@@ -47,6 +47,8 @@ function Login () {
         setLoginError(null)
 
         login()
+
+        // Navigate after login
         navigate('/panel')
       } else {
         // Obsługa błędów, np. wyświetlenie komunikatu użytkownikowi
@@ -61,7 +63,6 @@ function Login () {
         }
       }
     } catch (error) {
-      // Ustawienie błędu, który zostanie wyświetlony użytkownikowi
       setLoginError(error.message || 'Wystąpił błąd podczas logowania.')
     }
   }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { BsArrowRight } from 'react-icons/bs'
 import { BsArrowLeft } from 'react-icons/bs'
+import { useAuth } from '../../../../../auth/authcontext/AuthContext'
 
 import './matchbet.css'
 
@@ -17,13 +18,14 @@ function MatchBet ({
     away_team_bet: '',
     home_team_bet: ''
   })
+  const { ipMan } = useAuth()
 
   const handleBetSubmit = async (e, matchId) => {
     e.preventDefault()
     const { away_team_bet, home_team_bet } = betResults[matchId]
 
     try {
-      const betEndpoint = `http://130.162.44.103:5000/api/v1/bet/${matchId}`
+      const betEndpoint = `http://${ipMan}:5000/api/v1/bet/${matchId}`
       const response = await fetch(betEndpoint, {
         method: 'POST',
         credentials: 'include',

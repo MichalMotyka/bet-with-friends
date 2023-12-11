@@ -1,53 +1,58 @@
+import { useEffect, useState } from 'react'
+import { useAuth } from '../../../../auth/authcontext/AuthContext'
+
 function Matches () {
+  const [matchesData, setMatchesData] = useState([])
+  const { ipMan } = useAuth()
+  const competetition = 2001
+
+  useEffect(() => {
+    const getMatches = async () => {
+      try {
+        const pubMatchesResponse = await fetch(
+          `http://130.162.44.103/api/v1/matches?competetition=${competetition}`,
+          // `http://localhost:5000/api/v1/matches?competetition=2001`,
+
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Total-Count': 'true'
+            }
+          }
+        )
+
+        if (pubMatchesResponse.ok) {
+          const matchesInfo = await pubMatchesResponse.json()
+          setMatchesData(matchesInfo)
+          console.log('oK')
+        } else {
+          console.error('Błąd podczas pobierania danych')
+        }
+      } catch (error) {
+        console.error('Błąd podczas wysyłania żądania:', error)
+      }
+    }
+
+    getMatches()
+  }, [ipMan])
+  console.log('siema')
+  console.log(matchesData)
+
   return (
     <section className='app-wrap'>
-      <h2>Tabela Meczów</h2>
+      <h2 className='section-title'>
+        {' '}
+        Tabela <span className='span-brand'>meczów</span>{' '}
+      </h2>
 
       <p>
-        Tabela Meczów to centralne miejsce, gdzie możesz śledzić wszystkie
-        nadchodzące rozgrywki Euro 2024 i uczestniczyć w emocjonującym świecie
-        obstawiania ze swoimi przyjaciółmi. Z łatwością sprawdź, kiedy odbywają
-        się najważniejsze mecze i zanurz się w atmosferze rywalizacji.
+        Tabela przedstawianadchodzące rozgrywki najpopularniejszych lig
+        piłkarskich i uczestniczyć w emocjonującym świecie obstawiania ze swoimi
+        przyjaciółmi. Z łatwością sprawdź, kiedy odbywają się najważniejsze
+        mecze i zanurz się w atmosferze rywalizacji.
       </p>
     </section>
   )
 }
 export default Matches
-
-// import React, { useEffect, useState } from 'react'
-
-// const Matches = () => {
-//   const [matches, setMatches] = useState([])
-
-//   useEffect(() => {
-//     const fetchMatches = async () => {
-//       const uri = 'https://api.football-data.org/v4/matches'
-//       const headers = { 'X-Auth-Token': '2e5640899c95458992402923bfb45b69' }
-
-//       try {
-//         const response = await fetch(uri, { method: 'POST}', headers })
-//         const data = await response.json()
-
-//         // Assuming the response structure has a 'matches' property
-//         setMatches(data.matches)
-//       } catch (error) {
-//         console.error('Error fetching data:', error)
-//       }
-//     }
-
-//     fetchMatches()
-//   }, []) // Empty dependency array to run the effect only once on component mount
-
-//   return (
-//     <div>
-//       {matches.map((match, index) => (
-//         <div key={index}>
-//           {/* Render your match data here */}
-//           {/* For example: <p>{match.someProperty}</p> */}
-//         </div>
-//       ))}
-//     </div>
-//   )
-// }
-
-// export default Matches
