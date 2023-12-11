@@ -11,7 +11,7 @@ from exceptions.already_bet_exception import AlreadyBetException
 from exceptions.match_dont_exist_exception import MatchDontExistException
 from shared.base import session_factory
 from apscheduler.schedulers.background import BackgroundScheduler
-from datetime import datetime,timezone
+from datetime import datetime,timezone, timedelta
 from service.raiting_service import update_raiting
 import atexit
 import uuid
@@ -94,7 +94,9 @@ def get_posible_bets(competetition,page:int,limit:int) -> [Match]:
                .query(Match)
                .join(Competition)
                .outerjoin(Bets, Match.id == Bets.match_id)
-               .filter(Competition.public_id == competetition, Match.utc_date > datetime.utcnow(),Bets.match_id == None)
+               .filter(Competition.public_id == competetition, Match.utc_date > datetime.utcnow(), 
+                       Match.utc_date < datetime.now() + timedelta(days=5)
+                       ,Bets.match_id == None)
                .order_by(Match.utc_date)
                .offset((page-1)*limit)
                .limit(limit)
