@@ -2,6 +2,9 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext()
 
+// const ipMan = '130.162.44.103'
+const ipMan = 'localhost'
+
 export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(() => {
     const storedLoggedIn = localStorage.getItem('loggedIn')
@@ -24,7 +27,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   const logout = async () => {
-    const url = 'http://130.162.44.103:5000/api/v1/logout'
+    const url = `http://${ipMan}:5000/api/v1/logout`
 
     try {
       const response = await fetch(url, {
@@ -47,7 +50,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ loggedIn, login, logout }}>
+    <AuthContext.Provider value={{ loggedIn, login, logout, ipMan }}>
       {children}
     </AuthContext.Provider>
   )

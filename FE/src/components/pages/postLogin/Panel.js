@@ -11,17 +11,14 @@ import { useNavigate } from 'react-router-dom'
 import './panel.css'
 
 function Panel () {
-  const { loggedIn, login } = useAuth()
+  // const { loggedIn, login } = useAuth()
+  const { login, ipMan } = useAuth()
   const navigate = useNavigate()
-
-  console.log('Dane logowania:', loggedIn)
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
-        const response = await fetch(
-          'http://130.162.44.103:5000/api/v1/auto-login'
-        )
+        const response = await fetch(`http://${ipMan}:5000/api/v1/auto-login`)
         const data = await response.json()
 
         console.log('Dane z API:', data)
@@ -32,22 +29,24 @@ function Panel () {
           // Tutaj możesz dodać kod do przetwarzania pobranych danych
         } else {
           console.error('Błąd pobierania danych z API:', data)
+          navigate('/login')
         }
       } catch (error) {
         console.error('Błąd pobierania danych z API:', error)
+        navigate('/login')
       }
     }
 
     fetchDataFromApi()
-  }, [login])
+  }, [navigate, login, ipMan])
 
-  useEffect(() => {
-    // Sprawdź, czy użytkownik jest zalogowany
-    if (!loggedIn) {
-      // Jeśli nie jest zalogowany, przekieruj go na stronę logowania
-      navigate('/login')
-    }
-  }, [loggedIn, navigate])
+  // useEffect(() => {
+  //   // Sprawdź, czy użytkownik jest zalogowany
+  //   if (!loggedIn) {
+  //     // Jeśli nie jest zalogowany, przekieruj go na stronę logowania
+  //     navigate('/login')
+  //   }
+  // }, [loggedIn, navigate])
 
   return (
     <div className='panel-wrapper panel'>

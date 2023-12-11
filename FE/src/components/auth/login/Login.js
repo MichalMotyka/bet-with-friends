@@ -12,16 +12,18 @@ import './login.css'
 
 function Login () {
   const navigate = useNavigate()
-  const { login } = useAuth()
+  const { login, ipMan } = useAuth()
   const [loginError, setLoginError] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  console.log(ipMan)
 
   const handleSubmit = async (userData, { resetForm }) => {
     setLoginError(null)
     try {
       setLoading(true)
 
-      const response = await fetch('http://130.162.44.103:5000/api/v1/login', {
+      const response = await fetch(`http://${ipMan}:5000/api/v1/login`, {
         method: 'POST',
         credentials: 'include',
         headers: {

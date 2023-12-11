@@ -1,13 +1,15 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { useAuth } from '../../../auth/authcontext/AuthContext'
 
 const UserContext = createContext()
 
 function UserProvider ({ children }) {
   const [userProfile, setUserProfile] = useState([])
+  const { ipMan } = useAuth()
 
   const updateUserProfile = async () => {
     try {
-      const url = 'http://130.162.44.103:5000/api/v1/profile'
+      const url = `http://${ipMan}:5000/api/v1/profile`
       const response = await fetch(url, {
         method: 'GET',
         credentials: 'include',
@@ -27,10 +29,9 @@ function UserProvider ({ children }) {
       console.error('Błąd podczas pobierania danych:', error)
     }
   }
-
   useEffect(() => {
     updateUserProfile()
-  }, []) // Wywołaj funkcję przy pierwszym renderowaniu
+  }, [ipMan]) // Wywołaj funkcję przy pierwszym renderowaniu
 
   // Update the context when userProfile changes
   useEffect(() => {
