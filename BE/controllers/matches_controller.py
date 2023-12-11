@@ -14,7 +14,7 @@ match_blueprint = Blueprint('match_blueprint', __name__)
 
 @match_blueprint.route('/matches',methods=['GET'])
 @update_token
-def get_matches(current_user,response:Response):
+def get_matches(response:Response):
     page = 1 
     limit = 5
     if request.args.get('page'):
