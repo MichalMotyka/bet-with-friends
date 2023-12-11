@@ -7,12 +7,12 @@
 .user-menu {
   position: absolute;
   top: 76px;
-  right: 220px;
+  right: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 295px;
+  width: 285px;
   height: 300px;
   z-index: 49;
   background-color: var(--white-color);
@@ -23,7 +23,6 @@
 
 .user-menu.closed {
   top: -370px;
-  /* Menu jest początkowo schowane za ekranem */
 }
 
 .panel-item {
@@ -76,6 +75,7 @@
   margin-right: 5px;
   cursor: pointer;
   transition: transform 0.3s;
+
 }
 .message-true:hover {
   transform: scale(1.05);
@@ -92,7 +92,6 @@
   left: 10px;
   z-index: 5;
 }
-
 
 @media (max-width: 575.98px) {
   .typing-raccoon-top{
