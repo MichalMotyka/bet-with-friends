@@ -31,8 +31,8 @@ def get_matches(response:Response):
     return response,400
 
 @match_blueprint.route('/competetition',methods=['GET'])
-@token_required
-def get_competetition(current_user,response:Response):
+@update_token
+def get_competetition(response:Response):
     comp:Competition = get_competetition_list()
     response.set_data(json.dumps([obj.to_json() for obj in comp],indent=4))
     return response
