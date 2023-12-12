@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { BsArrowRight } from 'react-icons/bs'
 import { BsArrowLeft } from 'react-icons/bs'
 import { useAuth } from '../../../../../auth/authcontext/AuthContext'
@@ -50,6 +50,24 @@ function MatchBet ({
     }
   }
 
+  console.log(matchList)
+
+  const handlePrevPage = () => {
+    if (matchList.length <= 0) {
+      setCurrentPage(1)
+    } else {
+      setCurrentPage(prevValue => prevValue - 1)
+    }
+  }
+
+  const handleNextPage = () => {
+    if (matchList.length <= 0) {
+      setCurrentPage(1)
+    } else {
+      setCurrentPage(prevValue => prevValue + 1)
+    }
+  }
+
   return matchList.length > 0 ? (
     <>
       {/* //  Lista buttonów z zawodami */}
@@ -61,7 +79,7 @@ function MatchBet ({
           className='schedule-list-btn span-brand'
           disabled={currentPage === 1}
           aria-label='Page left'
-          onClick={() => setCurrentPage(prevValue => prevValue - 1)}
+          onClick={handlePrevPage}
         >
           <BsArrowLeft />
         </button>
@@ -70,7 +88,7 @@ function MatchBet ({
         </span>
         <button
           className='schedule-list-btn span-brand'
-          onClick={() => setCurrentPage(prevValue => prevValue + 1)}
+          onClick={handleNextPage}
           disabled={currentPage === Math.ceil(totalMatches / limit)}
           aria-label='Page right'
         >
