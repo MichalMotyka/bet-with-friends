@@ -209,6 +209,5 @@ def create_jobs():
     sheduler.start()
     atexit.register(lambda: sheduler.shutdown())
 
-proces_bets()
 create_jobs()
     
