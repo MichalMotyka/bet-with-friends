@@ -96,7 +96,7 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
         possible_best = (session
             .query(Match)
             .join(Competition, Match.competetition_id == Competition.id)
-            .join(Bets, Match.id == Bets.match_id)
+            .outerjoin(Bets, Match.id == Bets.match_id)
             .filter(
                 Competition.public_id == competetition,
                 Match.utc_date >= datetime.utcnow(),
@@ -111,7 +111,7 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
         count = (session
             .query(Match)
             .join(Competition, Match.competetition_id == Competition.id)
-            .join(Bets, Match.id == Bets.match_id)
+            .outerjoin(Bets, Match.id == Bets.match_id)
             .filter(
                 Competition.public_id == competetition,
                 Match.utc_date >= datetime.utcnow(),
