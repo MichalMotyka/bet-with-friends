@@ -2,23 +2,23 @@ import { useState } from 'react'
 import validate from '../validation/ResetPassValidation'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import { FaSpinner } from 'react-icons/fa'
+import { useAuth } from '../authcontext/AuthContext'
+
 import './panelpassreset.css'
 
 function PanelPassReset () {
+  const { ipMan } = useAuth()
   const [loading, setLoading] = useState(false)
   const [formError, setFormError] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
 
   const handleSubmit = async (userData, { resetForm }) => {
-    console.log(userData.password)
     try {
       setFormError(null)
       setSuccessMessage(null)
       setLoading(true)
 
-      console.log(userData.password)
-
-      const response = await fetch('http://localhost:5000/api/v1/profile', {
+      const response = await fetch(`http://${ipMan}:5000/api/v1/profile`, {
         method: 'PATCH',
         credentials: 'include',
         headers: {

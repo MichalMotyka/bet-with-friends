@@ -16,8 +16,6 @@ function Login () {
   const [loginError, setLoginError] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  console.log(ipMan)
-
   const handleSubmit = async (userData, { resetForm }) => {
     setLoginError(null)
     try {
@@ -100,6 +98,7 @@ function Login () {
                 id='email'
                 name='email'
                 placeholder='Email'
+                autoComplete='email'
                 className={
                   formik.touched.email && formik.errors.email
                     ? 'login-input-error'
