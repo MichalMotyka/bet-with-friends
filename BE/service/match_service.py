@@ -114,12 +114,15 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
             ).all()
         )
         possible_best = filter_match(matchs=possible_best,session=session,profile=profile)
-        start = (page - 1) * limit
-        end = start + limit
-        possible_best = possible_best[start:end]
-
         count = len(filter_match(matchs=count,session=session,profile=profile))
-       
+        if count >= page * limit:
+            start = (page - 1) * limit
+            end = start + limit
+            possible_best = possible_best[start:end]
+        else:
+            start = (page - 2) * limit
+            end = start + limit
+            possible_best = possible_best[start:end]
 
     return (possible_best, count)
 
