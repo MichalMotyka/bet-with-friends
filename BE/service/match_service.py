@@ -101,11 +101,9 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
                 Match.utc_date <= datetime.now() + timedelta(days=5),
             )
             .order_by(Match.utc_date)
-            .offset((page - 1) * limit)
-            .limit(limit)
             .all()
         )
-
+        print(obj.to_json() for obj in possible_best)
         count = (session
             .query(Match)
             .join(Competition, Match.competetition_id == Competition.id)
@@ -115,19 +113,23 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
                 Match.utc_date <= datetime.now() + timedelta(days=5),
             ).all()
         )
-        possible_best = filter_match(matchs=possible_best,session=session,profile=profile)
-        count = len(filter_match(matchs=count,session=session,profile=profile))
+        possible_best = filter_match(matchs=possible_best,session=session,profile=profile,page=page,limit=limit)
+        count = len(filter_match(matchs=count,session=session,profile=profile,page=None,limit=None))
        
 
     return (possible_best, count)
 
 
-def filter_match(matchs:[Match],session,profile:Profile) -> [Match]:
+def filter_match(matchs:[Match],session,profile:Profile, page:int,limit:int) -> [Match]:
     result:[Match] = []
     for match in matchs:
         bets = session.query(Bets).filter(Bets.profile_id == profile.id,Bets.match_id == match.id).first()
         if not bets:
             result.append(match)
+        if page and limit and len(result) == page * limit:
+            start = (page - 1) * limit
+            end = start + limit
+            return result[start:end]
     return result
 
 def proces_bets():
