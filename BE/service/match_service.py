@@ -113,23 +113,23 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
                 Match.utc_date <= datetime.now() + timedelta(days=5),
             ).all()
         )
-        possible_best = filter_match(matchs=possible_best,session=session,profile=profile,page=page,limit=limit)
-        count = len(filter_match(matchs=count,session=session,profile=profile,page=None,limit=None))
+        possible_best = filter_match(matchs=possible_best,session=session,profile=profile)
+        start = (page - 1) * limit
+        end = start + limit
+        possible_best = possible_best[start:end]
+
+        count = len(filter_match(matchs=count,session=session,profile=profile))
        
 
     return (possible_best, count)
 
 
-def filter_match(matchs:[Match],session,profile:Profile, page:int,limit:int) -> [Match]:
+def filter_match(matchs:[Match],session,profile:Profile) -> [Match]:
     result:[Match] = []
     for match in matchs:
         bets = session.query(Bets).filter(Bets.profile_id == profile.id,Bets.match_id == match.id).first()
         if not bets:
             result.append(match)
-        if page and limit and len(result) == page * limit:
-            start = (page - 1) * limit
-            end = start + limit
-            return result[start:end]
     return result
 
 def proces_bets():
