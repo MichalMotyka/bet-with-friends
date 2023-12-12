@@ -100,7 +100,7 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
                 Match.utc_date >= datetime.utcnow(),
                 Match.utc_date <= datetime.now() + timedelta(days=5),
             )
-            .order_by(Match.utc_date)
+            .order_by(Match.utc_date,Match.home_team_id)
             .all()
         )
         print(obj.to_json() for obj in possible_best)
