@@ -138,13 +138,11 @@ def proces_bets():
             bets_to_preces = session.query(Bets).filter(Bets.match_id == match.id)
             for bet in bets_to_preces:
                 price = 0
-                if bet.away_team and bet.home_team:
-                    if bet.away_team == int(away_team_score): price += 0.50
-                    if bet.home_team == int(home_team_score): price += 0.50
+                if bet.away_team == int(away_team_score) and bet.home_team == int(home_team_score): price = 100
                 elif bet.who_win:
-                    if away_team_winner and bet.who_win == "away": price += 0.15
-                    if home_team_winner and bet.who_win == "home": price += 0.15
-                    if draw and bet.who_win == "draw": price += 0.15
+                    if away_team_winner and bet.who_win == "away": price = 20
+                    if home_team_winner and bet.who_win == "home": price = 20
+                    if draw and bet.who_win == "draw": price = 20
                 price = price * 100
                 profile = session.query(Profile).filter(Profile.id==bet.profile_id).first()
                 update_raiting(id=profile.rating_id,isWin=price > 0)
@@ -192,6 +190,13 @@ def create_bet(match:int,user_id:int,bets:Bets):
             profile =  session.query(Profile).filter_by(user_id=user_id).first()
             if not match_db:
                 raise MatchDontExistException()
+            if not bets.who_win:
+                if bets.away_team == bets.home_team:
+                    bets.who_win = "draw"
+                elif bets.home_team > bets.away_team:
+                    bets.who_win = "home"
+                else:
+                    bets.who_win = 'away'
             bet = Bets(public_id=uuid.uuid4(),match_id=match_db.id,profile_id = profile.id, away_team=bets.away_team,home_team=bets.home_team,who_win=bets.who_win)
             session.add(bet)
             session.commit()
