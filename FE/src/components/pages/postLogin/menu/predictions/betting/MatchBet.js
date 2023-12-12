@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BsArrowRight } from 'react-icons/bs'
 import { BsArrowLeft } from 'react-icons/bs'
 import { useAuth } from '../../../../../auth/authcontext/AuthContext'
@@ -19,6 +19,9 @@ function MatchBet ({
     home_team_bet: ''
   })
   const { ipMan } = useAuth()
+
+  console.log(matchList)
+  console.log(totalMatches)
 
   const handleBetSubmit = async (e, matchId) => {
     e.preventDefault()
@@ -47,6 +50,10 @@ function MatchBet ({
       console.error('Błąd podczas wysyłania zakładu:', error)
     }
   }
+
+  useEffect(() => {
+    console.log('Aktualizacja betResults', betResults)
+  }, [betResults])
 
   return matchList.length > 0 ? (
     <>

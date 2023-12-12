@@ -8,6 +8,7 @@
   display: flex;
   position: absolute;
   top: 76px;
+<<<<<<< HEAD
   right: 10px;
   padding: 0;
   flex-direction: column;
@@ -15,6 +16,16 @@
   justify-content: center;
   width: 285px;
   height: 402px;
+=======
+  right: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 295px;
+  height: 300px;
+  z-index: 49;
+>>>>>>> main
   background-color: var(--white-color);
   list-style: none; 
   z-index: 49;
@@ -22,7 +33,12 @@
 }
 
 .user-menu.closed {
+<<<<<<< HEAD
   top: -472px;
+=======
+  top: -370px;
+  /* Menu jest początkowo schowane za ekranem */
+>>>>>>> main
 }
 
 .panel-item {
@@ -83,7 +99,6 @@
   margin-right: 5px;
   cursor: pointer;
   transition: transform 0.3s;
-
 }
 .message-true:hover {
   transform: scale(1.05);
@@ -100,6 +115,7 @@
   left: 10px;
   z-index: 5;
 }
+
 
 @media (max-width: 575.98px) {
   .typing-raccoon-top{
