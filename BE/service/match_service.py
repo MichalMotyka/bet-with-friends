@@ -115,10 +115,7 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
                 Competition.public_id == competetition,
                 Match.utc_date >= datetime.utcnow(),
                 Match.utc_date <= datetime.now() + timedelta(days=5),
-                or_(
-                    Bets.profile_id != profile.id,
-                    Bets.profile_id.is_(None)
-                )
+                Bets.match_id.not_in(session.query(Bets.match_id).filter(Bets.profile_id == profile.id))
             ).count()
         )
     return (possible_best, count)
