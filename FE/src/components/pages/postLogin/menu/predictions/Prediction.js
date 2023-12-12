@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import MatchBet from './betting/MatchBet'
 import { PredictionLogic } from './data/PredictionLogic'
 import TypingRacoon from './images/raccoon-header3.webp'
 
 import './prediction.css'
 function Prediction () {
+  const [isHowToModalVisible, setHowToModalVisibility] = useState(false)
+
   const {
     matchList,
     currentPage,
@@ -29,6 +32,14 @@ function Prediction () {
     return translateCompetition[competitionName] || competitionName
   }
 
+  const handleHowTo = () => {
+    setHowToModalVisibility(true)
+  }
+
+  const closeHowToModal = () => {
+    setHowToModalVisibility(false)
+  }
+
   return (
     <section className='app-wrap'>
       <div className='pred'>
@@ -50,6 +61,42 @@ function Prediction () {
               src={TypingRacoon}
               alt=''
             />
+
+            <button className='how-to-bet' onClick={handleHowTo}>
+              Jak typować wyniki?
+            </button>
+
+            {/* MODAL */}
+            {isHowToModalVisible && (
+              <div className='how-to-modal' onClick={closeHowToModal}>
+                <div className='how-to-modal-content'>
+                  <h4>Instrukcja jak typować:</h4>
+                  <span className='close-modal'>X</span>
+                  <ol>
+                    <li>
+                      <p>
+                        Obstawiać można na 5 dni wcześniej, aż do momentu
+                        rozpoczęcia meczu.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Mecze typujesz tylko raz. Później nie ma możliwości
+                        edycji predykcji.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Za trafiony wynik otrzymasz 100 ptk.
+                        <br />
+                        Za wskazanie wynikiem zwycięzcy 25pk.
+                      </p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            )}
+
             <p>
               Typuj wyniki meczów wybranych rozgrywek piłkarskich. Każdy mecz
               obstawiasz osobno. <br /> Pamiętaj, masz tylko jedną możliwość
