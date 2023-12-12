@@ -39,8 +39,9 @@ function MatchBet ({
 
       if (response.ok) {
         setSubmittedBets([...submittedBets, matchId])
-
-        console.log('Poszło', betResults)
+        if (matchList.length <= 1) {
+          setCurrentPage(prevValue => prevValue - 1)
+        }
         setTotalMatches(prevTotalMatches => prevTotalMatches + 1)
       } else {
         console.error('Błąd podczas wysyłania zakładu')
@@ -50,23 +51,17 @@ function MatchBet ({
     }
   }
 
-  console.log(matchList)
-
   const handlePrevPage = () => {
-    if (matchList.length <= 0) {
-      setCurrentPage(1)
-    } else {
-      setCurrentPage(prevValue => prevValue - 1)
-    }
+    setCurrentPage(prevValue => prevValue - 1)
   }
 
   const handleNextPage = () => {
-    if (matchList.length <= 0) {
-      setCurrentPage(1)
-    } else {
-      setCurrentPage(prevValue => prevValue + 1)
-    }
+    setCurrentPage(prevValue => prevValue + 1)
   }
+
+  console.log('TOTAL MATCHES:', totalMatches)
+
+  const whatPageIsIT = Math.ceil(totalMatches / limit)
 
   return matchList.length > 0 ? (
     <>
@@ -84,7 +79,7 @@ function MatchBet ({
           <BsArrowLeft />
         </button>
         <span className='schedule-btn-span'>
-          Przeglądaj listę {currentPage} / {Math.ceil(totalMatches / limit)}
+          Przeglądaj listę {`${currentPage} /   ${whatPageIsIT}`}
         </span>
         <button
           className='schedule-list-btn span-brand'
