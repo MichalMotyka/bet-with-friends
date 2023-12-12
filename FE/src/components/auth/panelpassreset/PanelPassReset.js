@@ -16,6 +16,8 @@ function PanelPassReset () {
       setSuccessMessage(null)
       setLoading(true)
 
+      console.log(userData.password)
+
       const response = await fetch('http://localhost:5000/api/v1/profile', {
         method: 'PATCH',
         credentials: 'include',
@@ -47,7 +49,7 @@ function PanelPassReset () {
         }
       }
     } catch (error) {
-      setFormError('Coś się:', error)
+      setFormError('Błędna odpowiedź serwera:', error)
     }
   }
 
