@@ -66,8 +66,7 @@ def update_name(password:str,user_id:int):
             password = password.encode('utf-8')
             hashed_password = bcrypt.hashpw(password, salt)
             password = hashed_password.decode('utf-8')
-
-            stmt = update(Profile).where(Profile.user_id == user_id).values(password=password)
+            stmt = update(Users).where(Users.id == user_id).values(password=password)
             session.execute(stmt)
             session.commit()
         except NoResultFound:
