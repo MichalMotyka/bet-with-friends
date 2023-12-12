@@ -143,7 +143,6 @@ def proces_bets():
                     if away_team_winner and bet.who_win == "away": price = 20
                     if home_team_winner and bet.who_win == "home": price = 20
                     if draw and bet.who_win == "draw": price = 20
-                price = price * 100
                 profile = session.query(Profile).filter(Profile.id==bet.profile_id).first()
                 update_raiting(id=profile.rating_id,isWin=price > 0)
                 stmt = update(Profile).where(Profile.id == bet.profile_id).values(points=(Profile.points + price))
