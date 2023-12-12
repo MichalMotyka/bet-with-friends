@@ -92,6 +92,7 @@ def get_competetition_list():
 def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
     with session_factory() as session:
         profile = session.query(Profile).filter(Profile.user_id == user.id).first()
+        matches = session.query(Bets.match_id).filter(Bets.profile_id == profile.id)
         possible_best = (session
             .query(Match)
             .join(Competition, Match.competetition_id == Competition.id)
@@ -100,7 +101,7 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
                 Competition.public_id == competetition,
                 Match.utc_date >= datetime.utcnow(),
                 Match.utc_date <= datetime.now() + timedelta(days=5),
-                Bets.match_id.not_in(session.query(Bets.match_id).filter(Bets.profile_id == profile.id))
+                Bets.match_id.not_in(matches)
             )
             .order_by(Match.utc_date)
             .offset((page - 1) * limit)
@@ -114,8 +115,7 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
             .filter(
                 Competition.public_id == competetition,
                 Match.utc_date >= datetime.utcnow(),
-                Match.utc_date <= datetime.now() + timedelta(days=5),
-                Bets.match_id.not_in(session.query(Bets.match_id).filter(Bets.profile_id == profile.id))
+                Match.utc_date <= datetime.now() + timedelta(days=5)
             ).count()
         )
     return (possible_best, count)
