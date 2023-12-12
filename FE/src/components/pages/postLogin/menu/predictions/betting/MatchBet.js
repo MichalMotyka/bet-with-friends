@@ -10,7 +10,8 @@ function MatchBet ({
   currentPage,
   totalMatches,
   limit,
-  setCurrentPage
+  setCurrentPage,
+  setTotalMatches
 }) {
   const [submittedBets, setSubmittedBets] = useState([])
   const [betResults, setBetResult] = useState({
@@ -19,9 +20,6 @@ function MatchBet ({
     home_team_bet: ''
   })
   const { ipMan } = useAuth()
-
-  console.log(matchList)
-  console.log(totalMatches)
 
   const handleBetSubmit = async (e, matchId) => {
     e.preventDefault()
@@ -43,6 +41,7 @@ function MatchBet ({
         setSubmittedBets([...submittedBets, matchId])
 
         console.log('Poszło', betResults)
+        setTotalMatches(prevTotalMatches => prevTotalMatches + 1)
       } else {
         console.error('Błąd podczas wysyłania zakładu')
       }
@@ -50,10 +49,6 @@ function MatchBet ({
       console.error('Błąd podczas wysyłania zakładu:', error)
     }
   }
-
-  useEffect(() => {
-    console.log('Aktualizacja betResults', betResults)
-  }, [betResults])
 
   return matchList.length > 0 ? (
     <>
@@ -65,6 +60,7 @@ function MatchBet ({
         <button
           className='schedule-list-btn span-brand'
           disabled={currentPage === 1}
+          aria-label='Page left'
           onClick={() => setCurrentPage(prevValue => prevValue - 1)}
         >
           <BsArrowLeft />
@@ -76,6 +72,7 @@ function MatchBet ({
           className='schedule-list-btn span-brand'
           onClick={() => setCurrentPage(prevValue => prevValue + 1)}
           disabled={currentPage === Math.ceil(totalMatches / limit)}
+          aria-label='Page right'
         >
           <BsArrowRight />
         </button>
@@ -96,15 +93,13 @@ function MatchBet ({
           {matchList.map(match => {
             const isBetSubmitted = submittedBets.includes(match.public_id)
             return (
-              <tr
-                key={`${match.home_team.short_name}-${match.away_team.short_name}`}
-              >
+              <tr key={match.public_id}>
                 <td className='crest'>
                   <img
                     width={25}
                     height={25}
                     src={match.home_team.crest}
-                    alt=''
+                    alt={`Crest of ${match.home_team.short_name}`}
                   />
                 </td>
                 <td>{match.home_team.short_name}</td>
@@ -114,7 +109,7 @@ function MatchBet ({
                     width={25}
                     height={25}
                     src={match.away_team.crest}
-                    alt=''
+                    alt={`Crest of ${match.away_team.short_name}`}
                   />
                 </td>
                 <td className='crest'>
