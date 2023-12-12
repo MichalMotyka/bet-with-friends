@@ -1,4 +1,4 @@
-from sqlalchemy import update
+from sqlalchemy import update,or_
 from service.footaball_data_service import get_matches,get_competetition
 from configuration.configuration_manager import ConfigurationManager
 from entity.competition import Competition
@@ -7,6 +7,7 @@ from entity.team import Team
 from entity.score import Score
 from entity.bets import Bets
 from entity.profile import Profile
+from entity.users import Users
 from exceptions.already_bet_exception import AlreadyBetException
 from exceptions.match_dont_exist_exception import MatchDontExistException
 from shared.base import session_factory
@@ -88,26 +89,42 @@ def get_competetition_list():
     with session_factory() as session:
         return session.query(Competition).all()
 
-def get_posible_bets(competetition,page:int,limit:int) -> [Match]:
+def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
     with session_factory() as session:
-       posible_best =  (session
-               .query(Match)
-               .join(Competition)
-               .outerjoin(Bets, Match.id == Bets.match_id)
-               .filter(Competition.public_id == competetition, Match.utc_date > datetime.utcnow(), 
-                       Match.utc_date <= (datetime.now() + timedelta(days=5))
-                       ,Bets.match_id == None)
-               .order_by(Match.utc_date)
-               .offset((page-1)*limit)
-               .limit(limit)
-               .all())
-       count = (session
-               .query(Match)
-               .join(Competition)
-               .outerjoin(Bets, Match.id == Bets.match_id)
-               .filter(Competition.public_id == competetition, Match.utc_date <= (datetime.now() + timedelta(days=5)), Match.utc_date > datetime.utcnow(),Bets.match_id == None)
-               .count())
-    return (posible_best, count)
+        profile = session.query(Profile).filter(Profile.user_id == user.id).first()
+        possible_best = (session
+            .query(Match)
+            .join(Competition, Match.competetition_id == Competition.id)
+            .outerjoin(Bets, Match.id == Bets.match_id)
+            .filter(
+                Competition.public_id == competetition,
+                Match.utc_date >= datetime.utcnow(),
+                Match.utc_date <= datetime.now() + timedelta(days=5),
+                or_(
+                    Bets.profile_id != profile.id,
+                    Bets.profile_id.is_(None)
+                )
+            )
+            .order_by(Match.utc_date)
+            .offset((page - 1) * limit)
+            .limit(limit)
+            .all()
+        )
+        count = (session
+            .query(Match)
+            .join(Competition, Match.competetition_id == Competition.id)
+            .outerjoin(Bets, Match.id == Bets.match_id)
+            .filter(
+                Competition.public_id == competetition,
+                Match.utc_date >= datetime.utcnow(),
+                Match.utc_date <= datetime.now() + timedelta(days=5),
+                or_(
+                    Bets.profile_id != profile.id,
+                    Bets.profile_id.is_(None)
+                )
+            ).count()
+        )
+    return (possible_best, count)
 
 def proces_bets():
     with session_factory() as session:
