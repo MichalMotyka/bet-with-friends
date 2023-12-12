@@ -15,6 +15,8 @@ function Prediction () {
     selectedCompetition,
     limit,
     setCurrentPage,
+    setTotalMatches,
+
     handleCompetitionChange
   } = PredictionLogic()
 
@@ -48,6 +50,7 @@ function Prediction () {
           <img
             className='typing-raccoon-top'
             width={180}
+            height={180}
             src={TypingRacoon}
             alt=''
           />
@@ -87,9 +90,9 @@ function Prediction () {
                     </li>
                     <li>
                       <p>
-                        Za trafiony wynik otrzymasz 100 ptk.
+                        Za w pełni trafiony wynik otrzymasz 100 ptk.
                         <br />
-                        Za wskazanie wynikiem zwycięzcy 25pk.
+                        Za wskazanie wynikiem zwycięzcy 20pk.
                       </p>
                     </li>
                   </ol>
@@ -136,6 +139,7 @@ function Prediction () {
             totalMatches={totalMatches}
             limit={limit}
             setCurrentPage={setCurrentPage}
+            setTotalMatches={setTotalMatches}
           />
         </div>
       </div>
