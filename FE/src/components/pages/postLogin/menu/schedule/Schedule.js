@@ -112,7 +112,7 @@ function Schedule () {
               }`}
               onClick={() => handleCompetitionChange(competition.public_id)}
             >
-              <img width={50} height={50} src={competition.emblem} alt='' />
+              <img width={50} height={50} src={competition.emblem} alt='' className='comp-button-img'/>
               {handleCompetitionNames(competition.name)}
             </button>
           ))}

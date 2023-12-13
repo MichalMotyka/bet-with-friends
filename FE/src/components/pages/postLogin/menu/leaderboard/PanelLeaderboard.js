@@ -88,7 +88,9 @@ function PanelLeaderboard () {
             {leadersData.map(leader => (
               <tr
                 key={leader.public_id}
-                className={`${leader.ranking.place <= 3 ? 'top-players' : ''}`}
+                className={`top-panel-player ${
+                  leader.ranking.place <= 3 ? 'top-players' : ''
+                }`}
               >
                 <td className={`th-place`}>{leader.ranking.place}</td>
 

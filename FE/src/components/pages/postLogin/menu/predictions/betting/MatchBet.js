@@ -64,7 +64,13 @@ function MatchBet ({
   return matchList.length > 0 ? (
     <>
       {/* //  Lista buttonów z zawodami */}
-
+      <img
+      className='footbal-team-crest'
+        width={65}
+        height={65}
+        src={matchList[0].competition.emblem}
+        alt='Footbal team emblem'
+      />
       <p className='competition-name'>{matchList[0]?.competition.name}</p>
 
       <p className='schedule-btns'>
@@ -90,7 +96,7 @@ function MatchBet ({
       </p>
 
       <table className='bet-table'>
-        <thead>
+        <thead className='bet-thead'>
           <tr>
             <th className='crest'></th>
             <th>Gospodarze</th>
@@ -104,7 +110,7 @@ function MatchBet ({
           {matchList.map(match => {
             const isBetSubmitted = submittedBets.includes(match.public_id)
             return (
-              <tr key={match.public_id}>
+              <tr key={match.public_id} className='tr-bet'>
                 <td className='crest'>
                   <img
                     width={25}
@@ -113,8 +119,8 @@ function MatchBet ({
                     alt={`Crest of ${match.home_team.short_name}`}
                   />
                 </td>
-                <td>{match.home_team.short_name}</td>
-                <td>{match.away_team.short_name}</td>
+                <td className='td-short-name'>{match.home_team.short_name}</td>
+                <td className='td-short-name'>{match.away_team.short_name}</td>
                 <td className='crest'>
                   <img
                     width={25}
@@ -123,15 +129,18 @@ function MatchBet ({
                     alt={`Crest of ${match.away_team.short_name}`}
                   />
                 </td>
-                <td className='crest'>
+                <td className='match-time'>
                   {new Date(match.utc_date).toLocaleDateString('en-GB')} (
                   {match.utc_date.replace('T', ' ').slice(11, -3)})
                 </td>
                 <td className='td-bet'>
+              
                   <form
                     onSubmit={e => handleBetSubmit(e, match.public_id)}
                     className='bet-form'
                   >
+
+
                     <input
                       min={0}
                       max={20}
