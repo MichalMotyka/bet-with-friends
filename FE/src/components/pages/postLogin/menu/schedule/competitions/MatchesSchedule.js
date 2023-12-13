@@ -46,7 +46,7 @@ function MatchesSchedule ({
         </thead>
         <tbody>
           {matchList.map(match => (
-            <tr key={match.score.public_id}>
+            <tr key={match.score.public_id} className="schedule-tr">
               <td className='crest'>
                 <img
                   width={25}

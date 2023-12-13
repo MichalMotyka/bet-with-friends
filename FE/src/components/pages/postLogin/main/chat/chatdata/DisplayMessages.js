@@ -3,8 +3,8 @@ import { useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
 
 const GET_MESSAGES = gql`
-  query GetMessages($limit: Int, $page: Int) {
-    getMessages(limit: $limit, page: $page) {
+  query GetMessages {
+    getMessages {
       content
       sender {
         image
