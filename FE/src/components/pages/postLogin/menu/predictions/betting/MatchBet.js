@@ -65,7 +65,7 @@ function MatchBet ({
     <>
       {/* //  Lista buttonów z zawodami */}
       <img
-      className='footbal-team-crest'
+        className='footbal-team-crest'
         width={65}
         height={65}
         src={matchList[0].competition.emblem}
@@ -129,18 +129,34 @@ function MatchBet ({
                     alt={`Crest of ${match.away_team.short_name}`}
                   />
                 </td>
+
                 <td className='match-time'>
                   {new Date(match.utc_date).toLocaleDateString('en-GB')} (
                   {match.utc_date.replace('T', ' ').slice(11, -3)})
                 </td>
+
                 <td className='td-bet'>
-              
+                  <p className='match-time-mobile'>
+                    {new Date(match.utc_date).toLocaleDateString('en-GB')} (
+                    {match.utc_date.replace('T', ' ').slice(11, -3)})
+                    <br />
+                    <img
+                    width={15}
+                    height={15}
+                    src={match.home_team.crest}
+                    alt={`Crest of ${match.home_team.short_name}`}
+                  /> {match.home_team.short_name} - {match.away_team.short_name}{' '}   <img
+                  width={15}
+                  height={15}
+                  src={match.away_team.crest}
+                  alt={`Crest of ${match.home_team.short_name}`}
+                />
+                  </p>
+
                   <form
                     onSubmit={e => handleBetSubmit(e, match.public_id)}
                     className='bet-form'
                   >
-
-
                     <input
                       min={0}
                       max={20}
@@ -161,6 +177,7 @@ function MatchBet ({
                       placeholder={match.home_team.short_name}
                     />
                     <span className='bet-span'> : </span>
+
                     <input
                       min={0}
                       max={20}

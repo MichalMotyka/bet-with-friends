@@ -115,8 +115,9 @@
     display: flex;
     align-items: flex-start; 
     justify-content: flex-start;
-    height: 100px;
     flex-direction: row;
+    margin: 1px;
+    height: 100px;
     flex-wrap: nowrap;
     overflow-y: auto;
   }
@@ -127,17 +128,16 @@
     justify-content: flex-start;
     flex-direction: column;
     gap: 8px;
-    margin: 2px 4px 5px 0px ;
-    padding: 5px 10px;
-    border-radius: 4px;
-    border: transparent;
+    height: 80px;  
+    margin: 1px ;
+    padding: 5px 0px;
+    border-radius: 4px;  
     font-weight: bold; 
-    width: 160px;
-    cursor: pointer;
+    min-width: 112px;
     background-color: white;
     border: 0px solid rgba(0, 0, 0, 0.212);
     transition: all 0.3s;
-    height: 80px;  
+    cursor: pointer;
   
   }
 
