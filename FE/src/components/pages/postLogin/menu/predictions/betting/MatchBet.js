@@ -59,8 +59,6 @@ function MatchBet ({
     setCurrentPage(prevValue => prevValue + 1)
   }
 
-  console.log('TOTAL MATCHES:', totalMatches)
-
   const whatPageIsIT = Math.ceil(totalMatches / limit)
 
   return matchList.length > 0 ? (
@@ -79,7 +77,7 @@ function MatchBet ({
           <BsArrowLeft />
         </button>
         <span className='schedule-btn-span'>
-          Przeglądaj listę {`${currentPage} /   ${whatPageIsIT}`}
+          Przeglądaj listę {`${currentPage} / ${whatPageIsIT}`}
         </span>
         <button
           className='schedule-list-btn span-brand'
