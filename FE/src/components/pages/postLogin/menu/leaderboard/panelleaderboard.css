@@ -55,11 +55,7 @@
 }
 
 
-@media (max-width: 420px) {
-  .th-place {
-    display: none;
-  }
-}
+
 
 @media (max-width: 767.98px) {
   .leader-name {
@@ -71,7 +67,29 @@
   }
   .panel-leader-table td{
     font-size: 0.8rem;
-
     padding: 20px 0;
   }
+
+
+  .panel-leader-table td {
+    margin: 10px 5px;
+    border: none;
+    padding: 10px;
+  }
+  
+  .panel-leader-table th {
+    border: none;
+    padding: 8px;
+  }
+
+
+  
+.panel-leader-table{
+
+box-shadow: 0 0 3px rgba(0,0,0,.473);
+text-align: center;
+overflow-x: auto; 
+min-width: 100%;
+}
+
 } 
