@@ -71,6 +71,11 @@
 
 
 @media (max-width: 575.98px) {
+
+.app-wrap{
+  padding: 0;
+}
+
   .match-time-mobile{
     display: block;
     margin: 0;
@@ -103,18 +108,15 @@
     margin-top: 10px;
   }
 
-
   .bet-table {  
     box-shadow: none;    
   }
   .bet-table td {  
     border:1px solid transparent;
- 
   }
   
   .bet-table th {
-    border: 1px solid transparent;
-   
+   border: 1px solid transparent;
   }
 
   .bet-form{
@@ -125,9 +127,7 @@
     padding: 10px 0;
     border-radius: 6px;
     background-color: rgba(192, 192, 192, 0.082);
-    border-radius: 4px;
- 
-   
+    border-radius: 4px;   
   }
 
 
@@ -152,10 +152,7 @@
 
 .match-time{
   display: none;
-
-
-
-}
+  }
 
 }
 
@@ -163,6 +160,13 @@
 
 
 @media (min-width: 576px) and (max-width: 767.98px) {
+
+      .away-team-crest{
+       align-self: flex-start;
+      }
+
+
+
   .bet-button{
     margin-right: 0;
   }
