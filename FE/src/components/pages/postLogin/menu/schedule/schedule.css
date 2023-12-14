@@ -106,7 +106,9 @@
 
 @media (max-width: 575.98px) {
 
-
+  .app-wrap{
+    padding: 5px;
+  }
 
   .schedule-tr {
     border: 1px solid rgba(0, 0, 0, 0.164);
@@ -150,9 +152,11 @@
     justify-content: flex-start;
     flex-direction: row;
     gap: 2px;
-    margin: 2px;
-    height: 90px;
+    margin: 2px 0;
+   
+    height: 100px;
     flex-wrap: nowrap;
+  
     overflow-y: auto;
   }
 

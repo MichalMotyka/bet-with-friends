@@ -95,7 +95,7 @@ function Schedule () {
   }
 
   return (
-    <section>
+    <section className='app-wrap'>
       <div className='schedule'>
         <h2 className='panel-header'>
           Terminarz <span className='span-brand'>rozgrywek</span>
