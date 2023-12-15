@@ -21,13 +21,8 @@ public class MessageService {
     private final MessageRepository messageRepository;
     private final ProfileRepository profileRepository;
 
-    @Value("${be.url.avatar}")
-    private String AVATAR_URL;
-
     public void sendMessage(String message,String user){
         profileRepository.findProfileByUser(user).ifPresentOrElse(value->{
-            value.setAvatar(AVATAR_URL+value.getAvatar());
-
             Message msg = new Message();
             msg.setContent(message);
             msg.setSender(value);
