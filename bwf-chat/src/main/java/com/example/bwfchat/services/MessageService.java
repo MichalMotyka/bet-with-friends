@@ -6,6 +6,7 @@ import com.example.bwfchat.exceptions.ProfileDontExistException;
 import com.example.bwfchat.repository.MessageRepository;
 import com.example.bwfchat.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,13 @@ public class MessageService {
     private final MessageRepository messageRepository;
     private final ProfileRepository profileRepository;
 
+    @Value("${be.url.avatar}")
+    private String AVATAR_URL;
+
     public void sendMessage(String message,String user){
         profileRepository.findProfileByUser(user).ifPresentOrElse(value->{
+            value.setAvatar(AVATAR_URL+value.getAvatar());
+
             Message msg = new Message();
             msg.setContent(message);
             msg.setSender(value);
