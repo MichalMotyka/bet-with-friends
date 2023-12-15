@@ -24,12 +24,14 @@ public class MessageMediator {
     private String AVATAR_URL;
 
     public void sendMessage(String message, Cookie[] cookies) throws UserNotLoggedInException, ProfileDontExistException {
-            String user_id = validateCookies(cookies);
-            messageService.sendMessage(message,user_id);
+            String userId = validateCookies(cookies);
+            messageService.sendMessage(message,userId);
     }
-
+    public long getTotalCount(){
+      return messageService.getTotalCount();
+    }
     public List<Message> getMessage(int page, int limit,Cookie[] cookie) throws UserNotLoggedInException{
-        //validateCookies(cookie);
+        validateCookies(cookie);
         List<Message> messages = messageService.getMessage(page,limit);
         messages.forEach(value -> {
             String avatar = value.getSender().getAvatar();
@@ -44,5 +46,11 @@ public class MessageMediator {
         String authorization = cookieService.getCookieByKey(cookie, "Authorization");
         String refresh = cookieService.getCookieByKey(cookie, "Refresh");
         return jwtService.validToken(authorization,refresh);
+    }
+
+    public void sendReaction(String uuid, boolean isDelete, Cookie[] cookies, String messageUuid) {
+        //String userId = validateCookies(cookies);
+        String userId = "deec3ac8-7bd7-4c09-a958-845b5e2cda8d";
+        messageService.processReaction(userId,uuid,isDelete,messageUuid);
     }
 }
