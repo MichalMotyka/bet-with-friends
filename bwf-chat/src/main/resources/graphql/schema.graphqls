@@ -29,6 +29,7 @@ type Query{
 }
 type Mutation{
     sendMessage(message:String!):Response
+    sendReaction(uuid:String!,isDelete:Boolean!,messageUuid:String!):Response
 }
 type Subscription{
     newMessageSubscription:Message
