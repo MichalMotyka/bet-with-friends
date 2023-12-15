@@ -29,9 +29,15 @@ public class MessageMediator {
     }
 
     public List<Message> getMessage(int page, int limit,Cookie[] cookie) throws UserNotLoggedInException{
+        System.out.println(AVATAR_URL);
         validateCookies(cookie);
         List<Message> messages = messageService.getMessage(page,limit);
-        messages.forEach(value-> value.getSender().setAvatar(AVATAR_URL+value.getSender().getAvatar()));
+        messages.forEach(value -> {
+            String avatar = value.getSender().getAvatar();
+            if (!avatar.startsWith("http") || !avatar.startsWith("https")) {
+                value.getSender().setAvatar(AVATAR_URL + avatar);
+            }
+        });
         return messages;
     }
 
