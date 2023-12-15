@@ -6,6 +6,7 @@ import com.example.bwfchat.exceptions.ProfileDontExistException;
 import com.example.bwfchat.repository.MessageRepository;
 import com.example.bwfchat.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
