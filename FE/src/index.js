@@ -8,9 +8,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 const client = new ApolloClient({
-  uri: 'http://130.162.44.103:8081/graphiql',
+  uri: 'http://130.162.44.103:8081/graphql',
   cache: new InMemoryCache(),
-  credentials: 'same-origin'
+  credentials: 'include'
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
