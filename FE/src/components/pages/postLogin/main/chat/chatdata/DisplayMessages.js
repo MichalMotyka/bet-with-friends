@@ -1,13 +1,12 @@
 import React from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 const GET_MESSAGES = gql`
-  query GetMessages {
-    getMessages {
+  query MyQuery {
+    getMessages(limit: 10, page: 1) {
       content
       sender {
-        image
+        avatar
         name
         ranking
       }
