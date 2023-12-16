@@ -19,6 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class MessageService {
     private final MessageRepository messageRepository;
     private final ProfileRepository profileRepository;
+    private final ReactionService reactionService;
 
     public void sendMessage(String message,String user){
         profileRepository.findProfileByUser(user).ifPresentOrElse(value->{
@@ -30,7 +31,6 @@ public class MessageService {
         }, ()->{throw new ProfileDontExistException("Profile dont exist");});
 
     }
-
 
     public List<Message> getMessage(int page, int limit) {
        return messageRepository.findAll(page,limit);
@@ -65,7 +65,7 @@ public class MessageService {
                 }
             });
             if (!processed.get() && !isDelete){
-               Reaction.reactionList().forEach(reaction -> {
+                reactionService.reactionList().forEach(reaction -> {
                    if (reaction.getUuid().equals(uuid)){
                        reactionList.add(new Reaction(reaction.getUuid(),reaction.getReaction(),new ArrayList<String>(List.of(userId)),1l));
                    }
