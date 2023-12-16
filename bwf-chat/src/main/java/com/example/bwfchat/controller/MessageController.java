@@ -36,7 +36,7 @@ public class MessageController {
         Cookie[] cookies = httpServletRequest.getCookies();
         HttpServletResponse httpServletResponse = attributes.getResponse();
         httpServletResponse.addHeader("X-Total-Count", String.valueOf(messageMediator.getTotalCount()));
-        return messageMediator.getMessage(page, limit,cookies);
+        return messageMediator.getMessage(page-1, limit,cookies);
     }
 
     @MutationMapping
