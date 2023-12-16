@@ -44,20 +44,22 @@ public class MessageService {
         Optional<Message> message =  messageRepository.findByUuid(messageUid);
         AtomicBoolean processed = new AtomicBoolean(false);
         message.ifPresentOrElse(value->{
-            reactionList.addAll(Reaction.toObject(value.getReaction()));
+            if (value.getReaction() != null){
+                reactionList.addAll(Reaction.toObject(value.getReaction()));
+            }
             reactionList.forEach(reaction -> {
                 if (processed.get()) return;
                 if (reaction.getUuid().equals(uuid)
                         && isDelete
                         && reaction.getUsers().contains(userId)) {
+                    reaction.getUsers().removeIf(user-> user.equals(userId));
                     reaction.setCounter(reaction.getCounter()-1);
-                    messageRepository.save(value);
                     processed.set(true);
                 } else if (reaction.getUuid().equals(uuid)
                         && !isDelete) {
-                    if (!reaction.getReaction().contains(userId)){
+                    if (!reaction.getUsers().contains(userId)){
+                        reaction.getUsers().add(uuid);
                         reaction.setCounter(reaction.getCounter()+1);
-                        messageRepository.save(value);
                     }
                     processed.set(true);
                 }
@@ -66,11 +68,12 @@ public class MessageService {
                Reaction.reactionList().forEach(reaction -> {
                    if (reaction.getUuid().equals(uuid)){
                        reactionList.add(new Reaction(reaction.getUuid(),reaction.getReaction(),new ArrayList<String>(List.of(userId)),1l));
-                       value.setReaction(Message.toJsonReaction(reactionList));
-                       messageRepository.save(value);
                    }
                });
             }
+            reactionList.removeIf(reaction -> reaction.getCounter() <= 0l);
+            value.setReaction(Message.toJsonReaction(reactionList));
+            messageRepository.save(value);
         },()-> {throw new RuntimeException();});
         Message finalMessage = message.get();
         finalMessage.setReaction(Message.toJsonReaction(reactionList));
