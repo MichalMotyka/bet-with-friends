@@ -1,5 +1,6 @@
-import React from 'react'
-import { useQuery, gql } from '@apollo/client'
+import { useState } from 'react'
+import { useQuery, useMutation, gql } from '@apollo/client'
+import { useRef, useEffect } from 'react'
 
 const GET_MESSAGES = gql`
   query MyQuery {
@@ -15,33 +16,85 @@ const GET_MESSAGES = gql`
   }
 `
 
+const SEND_MESSAGE = gql`
+  mutation MyMutation($message: String!) {
+    sendMessage(message: $message) {
+      code
+      message
+      timestamp
+    }
+  }
+`
+
 function DisplayMessages () {
+  const [userMsg, setUserMsg] = useState('')
+  const messagesContainerRef = useRef(null)
   const { loading, error, data } = useQuery(GET_MESSAGES, {
     variables: { limit: 10, page: 1 }
   })
+
+  const [sendMessage] = useMutation(SEND_MESSAGE, {
+    refetchQueries: [{ query: GET_MESSAGES, variables: { limit: 10, page: 1 } }]
+  })
+
+  useEffect(() => {
+    // Przewiń okno w dół po pierwszym renderowaniu
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight
+    }
+  }, [data]) // Użyj data jako zależności, aby upewnić się, że useEffect wykonuje się po otrzymaniu danych
+
+  const handleSendMessage = async e => {
+    e.preventDefault()
+    if (userMsg.trim() !== '') {
+      await sendMessage({ variables: { message: userMsg } })
+      setUserMsg('')
+    }
+  }
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error: {error.message}</p>
 
   return (
-    <div className='chat'>
-      {data.getMessages
-        .map(message => (
-          <div key={message.uuid} className='chat-box'>
-            <img
-              src={message.sender.avatar}
-              height={35}
-              alt={`${message.sender.name}'s avatar`}
+    <>
+      <div className='chat' ref={messagesContainerRef}>
+        {data.getMessages
+          .map(message => (
+            <ul className='chat-box'>
+              <li key={message.uuid} className='chat-box-item'>
+                <img
+                  className='chat-avatar'
+                  src={message.sender.avatar}
+                  height={30}
+                  alt={`${message.sender.name}'s avatar`}
+                />
+                <p> {message.sender.ranking}</p>
+                <p>{message.sender.name}:</p>
+                <div className='chat-box-msg'>
+                  <p className='chat-message'> {message.content}</p>
+                </div>
+              </li>
+            </ul>
+          ))
+          .reverse()}
+        <div>
+          <form className='chat-input-box' onSubmit={handleSendMessage}>
+            <input
+              type='text'
+              maxLength={150}
+              value={userMsg}
+              className='chat-input'
+              placeholder='Wiadomość...'
+              onChange={e => setUserMsg(e.target.value)}
             />
-            <p> {message.sender.ranking}</p>
-            <p>{message.sender.name}</p>
-            <div className='chat-box-msg'>
-              <p> {message.content}</p>
-            </div>
-          </div>
-        ))
-        .reverse()}
-    </div>
+            <button className='chat-button' type='submit'>
+              Wyślij
+            </button>
+          </form>
+        </div>
+      </div>
+    </>
   )
 }
 
