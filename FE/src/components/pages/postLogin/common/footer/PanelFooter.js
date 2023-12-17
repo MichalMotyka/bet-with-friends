@@ -41,7 +41,7 @@ function PanelFooter () {
         </li>
         <li className='footer-panel-li'>
           <Link
-            to='/panel/profile'
+            to='/panel/chat'
             className='footer-panel-item footer-panel-chat'
           >
             <FcSms /> <br /> Chat
