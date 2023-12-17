@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useQuery, gql } from '@apollo/client'
+import { useState } from 'react'
+import { useQuery, useMutation, gql } from '@apollo/client'
 import { useRef, useEffect } from 'react'
 
 const GET_MESSAGES = gql`
@@ -16,11 +16,25 @@ const GET_MESSAGES = gql`
   }
 `
 
+const SEND_MESSAGE = gql`
+  mutation MyMutation($message: String!) {
+    sendMessage(message: $message) {
+      code
+      message
+      timestamp
+    }
+  }
+`
+
 function DisplayMessages () {
-  const [userMsg, setUserMsg] = useState(null)
+  const [userMsg, setUserMsg] = useState('')
   const messagesContainerRef = useRef(null)
   const { loading, error, data } = useQuery(GET_MESSAGES, {
     variables: { limit: 10, page: 1 }
+  })
+
+  const [sendMessage] = useMutation(SEND_MESSAGE, {
+    refetchQueries: [{ query: GET_MESSAGES, variables: { limit: 10, page: 1 } }]
   })
 
   useEffect(() => {
@@ -30,6 +44,14 @@ function DisplayMessages () {
         messagesContainerRef.current.scrollHeight
     }
   }, [data]) // Użyj data jako zależności, aby upewnić się, że useEffect wykonuje się po otrzymaniu danych
+
+  const handleSendMessage = async e => {
+    e.preventDefault()
+    if (userMsg.trim() !== '') {
+      await sendMessage({ variables: { message: userMsg } })
+      setUserMsg('')
+    }
+  }
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error: {error.message}</p>
@@ -50,21 +72,26 @@ function DisplayMessages () {
                 <p> {message.sender.ranking}</p>
                 <p>{message.sender.name}:</p>
                 <div className='chat-box-msg'>
-                  <p> {message.content}</p>
+                  <p className='chat-message'> {message.content}</p>
                 </div>
               </li>
             </ul>
           ))
           .reverse()}
-        <div className='chat-input-box'>
-          <input
-            value={userMsg}
-            className='chat-input'
-            type='text'
-            placeholder='Wiadomość...'
-            onChange={e => setUserMsg(e.target.value)}
-          />
-          <button>Wyślij</button>
+        <div>
+          <form className='chat-input-box' onSubmit={handleSendMessage}>
+            <input
+              type='text'
+              maxLength={150}
+              value={userMsg}
+              className='chat-input'
+              placeholder='Wiadomość...'
+              onChange={e => setUserMsg(e.target.value)}
+            />
+            <button className='chat-button' type='submit'>
+              Wyślij
+            </button>
+          </form>
         </div>
       </div>
     </>
