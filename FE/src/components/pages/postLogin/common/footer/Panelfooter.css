@@ -69,6 +69,10 @@
     display: block;
     
   }
+
+  .btn-chat-active{
+    color: var(--brand-color);
+  }
 }
 
   

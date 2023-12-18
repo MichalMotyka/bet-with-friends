@@ -19,7 +19,7 @@ function PanelFooter () {
     setIsChatVisible(!isChatVisible)
   }
   console.log('hell  o')
- 
+
   return (
     <>
       <p className='brand panel-footer'>
@@ -56,7 +56,9 @@ function PanelFooter () {
         <li className='footer-panel-li'>
           <button
             onClick={handleShowChat}
-            className='footer-panel-item footer-panel-chat'
+            className={`footer-panel-item footer-panel-chat ${
+              isChatVisible ? 'btn-chat-active' : null
+            }`}
           >
             <FcSms /> <br /> Chat
           </button>
