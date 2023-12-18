@@ -18,8 +18,8 @@ function PanelFooter () {
   const handleShowChat = () => {
     setIsChatVisible(!isChatVisible)
   }
-  console.log('hello')
-
+  console.log('hell  o')
+ 
   return (
     <>
       <p className='brand panel-footer'>

@@ -49,6 +49,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   credentials: 'include'
 })
+console.log('hell o')
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
