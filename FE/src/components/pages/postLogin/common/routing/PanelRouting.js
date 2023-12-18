@@ -4,7 +4,6 @@ import PanelLeaderboard from '../../menu/leaderboard/PanelLeaderboard'
 import Schedule from '../../menu/schedule/Schedule'
 import MyProfile from '../../menu/myprofile/MyProfile'
 import NotFound from '../../../../auth/NotFound'
-import Chat from '../../main/chat/Chat'
 
 function PanelRounting () {
   return (
@@ -15,7 +14,6 @@ function PanelRounting () {
           <Route path='/toptypers' element={<PanelLeaderboard />} />
           <Route path='/schedule' element={<Schedule />} />
           <Route path='/profile' element={<MyProfile />} />
-          <Route path='/chat' element={<Chat />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
