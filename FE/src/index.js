@@ -15,10 +15,10 @@ import { getMainDefinition } from '@apollo/client/utilities'
 import { WebSocketLink } from '@apollo/client/link/ws'
 
 // Adres GraphQL dla HTTP
-const httpUri = 'http://localhost:8081/graphql'
+const httpUri = 'http://130.162.44.103:8081/graphql'
 
 // Adres GraphQL dla WebSocket (zmień na odpowiednią ścieżkę)
-const wsUri = 'ws://localhost:8081/graphql'
+const wsUri = 'ws://130.162.44.103:8081/graphql'
 
 // HTTP Link
 const httpLink = new HttpLink({ uri: httpUri })
