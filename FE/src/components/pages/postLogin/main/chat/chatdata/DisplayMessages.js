@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { useQuery, useMutation, gql } from '@apollo/client'
+import React, { useState } from 'react'
+import { useQuery, useMutation, useSubscription } from '@apollo/client'
+import { gql } from '@apollo/client'
 
 const GET_MESSAGES = gql`
-  query MyQuery {
-    getMessages(limit: 10, page: 1) {
+  query GetMessages($limit: Int!, $page: Int!) {
+    getMessages(limit: $limit, page: $page) {
       content
       sender {
         avatar
@@ -15,8 +16,22 @@ const GET_MESSAGES = gql`
   }
 `
 
+const NEW_MESSAGE_SUBSCRIPTION = gql`
+  subscription NewMessageSubscription {
+    newMessageSubscription {
+      content
+      sender {
+        name
+        avatar
+        ranking
+      }
+      uuid
+    }
+  }
+`
+
 const SEND_MESSAGE = gql`
-  mutation MyMutation($message: String!) {
+  mutation SendMessage($message: String!) {
     sendMessage(message: $message) {
       code
       message
@@ -25,30 +40,56 @@ const SEND_MESSAGE = gql`
   }
 `
 
-function DisplayMessages () {
-  const [userMsg, setUserMsg] = useState('')
-  const messagesContainerRef = useRef(null)
-
+const DisplayMessages = () => {
+  const [inputMessage, setInputMessage] = useState('')
   const { loading, error, data } = useQuery(GET_MESSAGES, {
     variables: { limit: 10, page: 1 }
   })
 
-  const [sendMessage] = useMutation(SEND_MESSAGE, {
-    refetchQueries: [{ query: GET_MESSAGES, variables: { limit: 10, page: 1 } }]
+  useSubscription(NEW_MESSAGE_SUBSCRIPTION, {
+    onData: ({ client, subscriptionData }) => {
+      client.writeQuery({
+        query: GET_MESSAGES,
+        variables: { limit: 10, page: 1 },
+        data: {
+          getMessages: [
+            ...data.getMessages,
+            subscriptionData.data.newMessageSubscription
+          ]
+        }
+      })
+    }
   })
 
-  useEffect(() => {
-    if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTop =
-        messagesContainerRef.current.scrollHeight
+  const [sendMessage] = useMutation(SEND_MESSAGE, {
+    update: (cache, { data: { sendMessage } }) => {
+      const { getMessages } = cache.readQuery({
+        query: GET_MESSAGES,
+        variables: { limit: 10, page: 1 }
+      })
+
+      cache.writeQuery({
+        query: GET_MESSAGES,
+        variables: { limit: 10, page: 1 },
+        data: {
+          getMessages: [...getMessages, sendMessage]
+        }
+      })
     }
-  }, [data])
+  })
 
   const handleSendMessage = async e => {
     e.preventDefault()
-    if (userMsg.trim() !== '') {
-      await sendMessage({ variables: { message: userMsg } })
-      setUserMsg('')
+
+    if (inputMessage.trim() !== '') {
+      try {
+        await sendMessage({
+          variables: { message: inputMessage }
+        })
+        setInputMessage('')
+      } catch (err) {
+        console.error('Error sending message:', err)
+      }
     }
   }
 
@@ -57,7 +98,7 @@ function DisplayMessages () {
 
   return (
     <div className='chat-wrapper'>
-      <div className='chat ' ref={messagesContainerRef}>
+      <div className='chat'>
         {data && data.getMessages
           ? data.getMessages
               .map(message => (
@@ -84,10 +125,10 @@ function DisplayMessages () {
             <input
               type='text'
               maxLength={150}
-              value={userMsg}
+              value={inputMessage}
               className='chat-input'
               placeholder='Wiadomość...'
-              onChange={e => setUserMsg(e.target.value)}
+              onChange={e => setInputMessage(e.target.value)}
             />
             <button className='chat-button' type='submit'>
               Wyślij

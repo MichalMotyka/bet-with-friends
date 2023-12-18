@@ -18,6 +18,10 @@
 .env.test.local
 .env.production.local
 
+ bwf-chat/node_modules/
+        bwf-chat/package-lock.json
+        bwf-chat/package.json
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

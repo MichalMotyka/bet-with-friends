@@ -4,12 +4,48 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  split,
+  HttpLink
+} from '@apollo/client'
+import { getMainDefinition } from '@apollo/client/utilities'
+import { WebSocketLink } from '@apollo/client/link/ws'
 
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+// Adres GraphQL dla HTTP
+const httpUri = 'http://localhost:8081/graphql'
+
+// Adres GraphQL dla WebSocket (zmień na odpowiednią ścieżkę)
+const wsUri = 'ws://localhost:8081/graphql'
+
+// HTTP Link
+const httpLink = new HttpLink({ uri: httpUri })
+
+// WebSocket Link
+const wsLink = new WebSocketLink({
+  uri: wsUri,
+  options: {
+    reconnect: true
+  }
+})
+
+const link = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query)
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    )
+  },
+  wsLink,
+  httpLink
+)
 
 // Apollo Client
 const client = new ApolloClient({
-  uri: `http://130.162.44.103:8081/graphql`,
+  link,
   cache: new InMemoryCache(),
   credentials: 'include'
 })
@@ -26,7 +62,4 @@ root.render(
   </React.StrictMode>
 )
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals()
