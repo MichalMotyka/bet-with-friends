@@ -23,14 +23,15 @@ const httpUri = 'http://130.162.44.103:8081/graphql'
 const wsUri = 'ws://130.162.44.103:8081/graphql'
 
 // HTTP Link
-const httpLink = new HttpLink({ uri: httpUri })
+const httpLink = new HttpLink({ uri: httpUri, credentials: 'include' })
 
 // WebSocket Link
 const wsLink = new WebSocketLink({
   uri: wsUri,
   options: {
     reconnect: true
-  }
+  },
+  credentials: 'include'
 })
 
 const link = split(
@@ -51,7 +52,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   credentials: 'include'
 })
-console.log('hell o')
+console.log('hello')
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
