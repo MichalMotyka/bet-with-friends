@@ -214,6 +214,27 @@ def create_bet(match:int,user_id:int,bets:Bets):
             session.commit()
             return
         raise AlreadyBetException()
+    
+
+def get_historical_bets(page:int,limit:int, competetition:int):
+    with session_factory() as session:
+        if competetition:
+            comp:Competition = session.query(Competition).filter(Competition.public_id==competetition).first()
+            return (session.query(Bets)
+             .join(Match)
+             .filter(Match.competetition_id == comp.id)
+             .order_by(Match.utc_date)
+             .offset((page-1)*limit)
+             .limit(limit)
+             .all())
+        return (session.query(Bets)
+             .join(Match)
+             .order_by(Match.utc_date)
+             .offset((page-1)*limit)
+             .limit(limit)
+             .all())
+        
+
 
 def create_jobs():
     sheduler = BackgroundScheduler()
