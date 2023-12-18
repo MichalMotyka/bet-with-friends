@@ -18,6 +18,7 @@ function PanelFooter () {
   const handleShowChat = () => {
     setIsChatVisible(!isChatVisible)
   }
+  console.log('hello')
 
   return (
     <>

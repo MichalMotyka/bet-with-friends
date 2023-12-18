@@ -30,6 +30,8 @@ const NEW_MESSAGE_SUBSCRIPTION = gql`
   }
 `
 
+console.log('hello2')
+
 const SEND_MESSAGE = gql`
   mutation SendMessage($message: String!) {
     sendMessage(message: $message) {
