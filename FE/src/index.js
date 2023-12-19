@@ -1,5 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
+
+import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
@@ -11,30 +13,21 @@ import {
   split,
   HttpLink
 } from '@apollo/client'
+import { createClient } from 'graphql-ws'
 import { getMainDefinition } from '@apollo/client/utilities'
-import { WebSocketLink } from '@apollo/client/link/ws'
 
-// Adres GraphQL dla HTTP
-// const httpUri = 'http://localhost:8081/graphql'
-const httpUri = 'http://130.162.44.103:8081/graphql'
-
-// Adres GraphQL dla WebSocket (zmień na odpowiednią ścieżkę)
-// const wsUri = 'ws://localhost:8081/graphql'
-const wsUri = 'ws://130.162.44.103:8081/graphql'
-
-// HTTP Link
-const httpLink = new HttpLink({ uri: httpUri, credentials: 'include' })
-
-// WebSocket Link
-const wsLink = new WebSocketLink({
-  uri: wsUri,
-  options: {
-    reconnect: true
-  },
+const httpLink = new HttpLink({
+  uri: 'http://localhost:8081/graphql',
   credentials: 'include'
 })
 
-const link = split(
+const wsLink = new GraphQLWsLink(
+  createClient({
+    url: 'ws://localhost:8081/graphql'
+  })
+)
+
+const splitLink = split(
   ({ query }) => {
     const definition = getMainDefinition(query)
     return (
@@ -46,24 +39,20 @@ const link = split(
   httpLink
 )
 
-// Apollo Client
 const client = new ApolloClient({
-  link,
+  link: splitLink,
   cache: new InMemoryCache(),
   credentials: 'include'
 })
-console.log('hello')
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
+const root = createRoot(document.getElementById('root'))
 
 root.render(
-  <React.StrictMode>
+  <ApolloProvider client={client}>
     <BrowserRouter>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
+      <App />
     </BrowserRouter>
-  </React.StrictMode>
+  </ApolloProvider>
 )
 
 reportWebVitals()
