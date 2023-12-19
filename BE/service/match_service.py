@@ -11,10 +11,8 @@ from entity.users import Users
 from exceptions.already_bet_exception import AlreadyBetException
 from exceptions.match_dont_exist_exception import MatchDontExistException
 from shared.base import session_factory
-from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime,timezone, timedelta
 from service.raiting_service import update_raiting
-import atexit
 import uuid
 
 config  = ConfigurationManager.get_instance()
@@ -241,16 +239,4 @@ def get_historical_bets(page:int,limit:int, competetition:int,user:Users):
              session.query(Bets)
              .join(Match)
              .filter(Bets.profile_id == profile.id).count()
-             )
-        
-
-
-def create_jobs():
-    sheduler = BackgroundScheduler()
-    sheduler.add_job(func=get_new_matches, trigger="interval", seconds=config.get_config_by_key('jobs.getMatches'))
-    sheduler.add_job(func=proces_bets,trigger="interval", seconds=config.get_config_by_key('jobs.procesBets'))
-    sheduler.start()
-    atexit.register(lambda: sheduler.shutdown())
-
-create_jobs()
-    
+             )  
