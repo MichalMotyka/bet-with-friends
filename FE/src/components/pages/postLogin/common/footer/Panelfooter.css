@@ -51,24 +51,24 @@
 }
   
 @media (max-width: 575.98px) {
- 
+  
+
   .show-chat {
-    position: fixed;
+    position: absolute;
     margin: 0 5px;
     background-color: var(--white-color);
     top: 90px;
     left: 0;
-    right: 0;
-    height: 100%;
-    display: none;
-    overflow-y: auto;
+    right: 0;      
     border-radius: 4px;  
+    transition: all .3s;
+   
   }
 
-  .show-chat.visible {
+  .visible {
     display: block;
-    
-  }
+    bottom:  0;
+    }
 
   .btn-chat-active{
     color: var(--brand-color);

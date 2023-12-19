@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useQuery, useMutation, useSubscription } from '@apollo/client'
 import { gql } from '@apollo/client'
 
@@ -20,17 +20,16 @@ const NEW_MESSAGE_SUBSCRIPTION = gql`
   subscription NewMessageSubscription {
     newMessageSubscription {
       content
+      uuid
       sender {
         name
         avatar
         ranking
+        uuid
       }
-      uuid
     }
   }
 `
-
-console.log('hell o')
 
 const SEND_MESSAGE = gql`
   mutation SendMessage($message: String!) {
@@ -44,42 +43,26 @@ const SEND_MESSAGE = gql`
 
 const DisplayMessages = () => {
   const [inputMessage, setInputMessage] = useState('')
-  const { loading, error, data } = useQuery(GET_MESSAGES, {
+
+  const { loading, error, data, refetch } = useQuery(GET_MESSAGES, {
     variables: { limit: 10, page: 1 }
   })
 
-  useSubscription(NEW_MESSAGE_SUBSCRIPTION, {
-    onData: ({ client, subscriptionData }) => {
-      client.writeQuery({
-        query: GET_MESSAGES,
-        variables: { limit: 10, page: 1 },
-        data: {
-          getMessages: [
-            ...data.getMessages,
-            subscriptionData.data.newMessageSubscription
-          ]
-        }
-      })
+  const {
+    data: subscriptionData,
+    loading: subscriptionLoading,
+    error: subscriptionError
+  } = useSubscription(NEW_MESSAGE_SUBSCRIPTION)
+
+  const [sendMessage] = useMutation(SEND_MESSAGE)
+
+  useEffect(() => {
+    if (subscriptionData && subscriptionData.newMessageSubscription) {
+      refetch()
     }
-  })
+  }, [subscriptionData, refetch])
 
-  const [sendMessage] = useMutation(SEND_MESSAGE, {
-    update: (cache, { data: { sendMessage } }) => {
-      const { getMessages } = cache.readQuery({
-        query: GET_MESSAGES,
-        variables: { limit: 10, page: 1 }
-      })
-
-      cache.writeQuery({
-        query: GET_MESSAGES,
-        variables: { limit: 10, page: 1 },
-        data: {
-          getMessages: [...getMessages, sendMessage]
-        }
-      })
-    }
-  })
-
+  // WYSYŁANKO WIADOMOŚCI:
   const handleSendMessage = async e => {
     e.preventDefault()
 
@@ -96,47 +79,47 @@ const DisplayMessages = () => {
   }
 
   if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
+  if (error) return <p>Error :</p>
+  if (subscriptionError) return <p>Error :</p>
 
   return (
     <div className='chat-wrapper'>
       <div className='chat'>
-        {data && data.getMessages
-          ? data.getMessages
-              .map(message => (
-                <ul className='chat-box' key={message.uuid}>
-                  <li className='chat-box-item'>
-                    <img
-                      className='chat-avatar'
-                      src={message.sender.avatar}
-                      height={30}
-                      alt={`${message.sender.name}'s avatar`}
-                    />
-                    <p> {message.sender.ranking}</p>
-                    <p>{message.sender.name}:</p>
-                    <div className='chat-box-msg'>
-                      <p className='chat-message'> {message.content}</p>
-                    </div>
-                  </li>
-                </ul>
-              ))
-              .reverse()
-          : null}
-        <div>
-          <form className='chat-input-box' onSubmit={handleSendMessage}>
-            <input
-              type='text'
-              maxLength={150}
-              value={inputMessage}
-              className='chat-input'
-              placeholder='Wiadomość...'
-              onChange={e => setInputMessage(e.target.value)}
-            />
-            <button className='chat-button' type='submit'>
-              Wyślij
-            </button>
-          </form>
-        </div>
+        {[...data.getMessages]
+          .map(subMsg => (
+            <ul className='chat-box' key={subMsg.uuid}>
+              <li className='chat-box-item'>
+                {' '}
+                <img
+                  className='chat-avatar'
+                  src={subMsg.sender.avatar}
+                  height={30}
+                  alt={`${subMsg.sender.name}'s avatar`}
+                />
+                <p> {subMsg.sender.ranking}</p>
+                <p>{subMsg.sender.name}:</p>
+                <div className='chat-box-msg'>
+                  <p className='chat-message'> {subMsg.content}</p>
+                </div>
+              </li>
+            </ul>
+          ))
+          .reverse()}
+      </div>
+      <div>
+        <form className='chat-input-box' onSubmit={handleSendMessage}>
+          <input
+            type='text'
+            maxLength={150}
+            value={inputMessage}
+            className='chat-input'
+            placeholder='Wiadomość...'
+            onChange={e => setInputMessage(e.target.value)}
+          />
+          <button className='chat-button' type='submit'>
+            Wyślij
+          </button>
+        </form>
       </div>
     </div>
   )
