@@ -83,7 +83,7 @@ def create_password_reset(email:str):
     with session_factory() as session:
        user = session.query(Users).filter(Users.email == email,Users.isActive == True).first()
        if user:
-           password_reset = PasswordReset(code=uuid.uuid4(),user_id=user.id,expires=(datetime.now() + timedelta(seconds=3600)))
+           password_reset = PasswordReset(code=uuid.uuid4(),user_id=user.id,expires=(datetime.utcnow() + timedelta(seconds=3600+3600)))
            session.add(password_reset)
            session.commit()
            send_reset_mail(reciver=user.email,code=password_reset.code)
