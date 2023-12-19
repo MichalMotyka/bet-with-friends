@@ -216,23 +216,32 @@ def create_bet(match:int,user_id:int,bets:Bets):
         raise AlreadyBetException()
     
 
-def get_historical_bets(page:int,limit:int, competetition:int):
+def get_historical_bets(page:int,limit:int, competetition:int,user:Users):
     with session_factory() as session:
+        profile:Profile = session.query(Profile).filter(Profile.user_id == user.id).first()
         if competetition:
             comp:Competition = session.query(Competition).filter(Competition.public_id==competetition).first()
-            return (session.query(Bets)
+            return ((session.query(Bets)
              .join(Match)
-             .filter(Match.competetition_id == comp.id)
+             .filter(Match.competetition_id == comp.id, Bets.profile_id == profile.id)
              .order_by(Match.utc_date)
              .offset((page-1)*limit)
              .limit(limit)
-             .all())
-        return (session.query(Bets)
+             .all()),     
+             session.query(Bets)
              .join(Match)
+             .filter(Match.competetition_id == comp.id, Bets.profile_id == profile.id).count())
+        return ((session.query(Bets)
+             .join(Match)
+             .filter(Bets.profile_id == profile.id)
              .order_by(Match.utc_date)
              .offset((page-1)*limit)
              .limit(limit)
-             .all())
+             .all()),
+             session.query(Bets)
+             .join(Match)
+             .filter(Bets.profile_id == profile.id).count()
+             )
         
 
 
