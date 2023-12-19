@@ -12,7 +12,7 @@ def create_jobs():
     sheduler.add_job(func=get_new_matches, trigger="interval", seconds=config.get_config_by_key('jobs.getMatches'))
     sheduler.add_job(func=proces_bets,trigger="interval", seconds=config.get_config_by_key('jobs.procesBets'))
     sheduler.add_job(func=update_ranking, trigger="interval", seconds=config.get_config_by_key('jobs.updateProfile'))
-    sheduler.add_job(func=remove_reset_passwords, trigger="interval", seconds=10)
+    sheduler.add_job(func=remove_reset_passwords, trigger="interval", seconds=config.get_config_by_key('jobs.removeTokensRest'))
     sheduler.start()
     atexit.register(lambda: sheduler.shutdown())
 
