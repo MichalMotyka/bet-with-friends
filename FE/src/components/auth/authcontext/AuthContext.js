@@ -5,7 +5,6 @@ const AuthContext = createContext()
 
 const ipMan = '130.162.44.103'
 // const ipMan = 'localhost'
-console.log('hell o')
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate()

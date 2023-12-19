@@ -28,7 +28,7 @@ function PanelFooter () {
         {currentYear}
       </p>
 
-      <div className={`show-chat${isChatVisible ? ' visible' : ''}`}>
+      <div className={`show-chat${isChatVisible ? ' visible' : 'visible'}`}>
         {isChatVisible && <DisplayMessages />}
       </div>
 
@@ -57,7 +57,7 @@ function PanelFooter () {
           <button
             onClick={handleShowChat}
             className={`footer-panel-item footer-panel-chat ${
-              isChatVisible ? 'btn-chat-active' : null
+              isChatVisible && 'btn-chat-active'
             }`}
           >
             <FcSms /> <br /> Chat
