@@ -1,5 +1,6 @@
 from sqlalchemy import Column,String, Integer, ForeignKey
 from entity.competition import Competition
+from entity.profile import Profile
 from dataclasses import dataclass
 from shared.base import Base
 from sqlalchemy.orm import relationship
@@ -18,13 +19,15 @@ class CompetetitionRanking(Base):
     profile_id = Column(Integer,ForeignKey("profiles.id")) 
     
     competetition = relationship(Competition,foreign_keys=[competetition_id],lazy='joined')
+    profile = relationship(Profile,foreign_keys=[profile_id],lazy='joined')
 
     def to_json(self):
-        return json.dumps({
+        return {
             "public_id": self.public_id,
             "place": self.place,
             "points":self.points,
-            "competetition": self.competetition.to_json()
-        }, indent= 4)
+            "competetition": self.competetition.to_json(),
+            "profile": self.profile.to_json()
+        }
     
 
