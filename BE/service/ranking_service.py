@@ -37,6 +37,17 @@ def update_ranking():
         except:
             session.rollback()
 
+def update_ranking_competetition() -> None:
+    with session_factory() as session:
+        competetition:Competition = session.query(Competition).all()
+        for comp in competetition:
+            rank = 1
+            sorted_ranking = session.query(CompetetitionRanking).filter(CompetetitionRanking.competetition_id == comp.id).order_by(CompetetitionRanking.points.desc()).all()
+            for ranking in sorted_ranking:
+                session.query(CompetetitionRanking).filter(CompetetitionRanking.id == ranking.id).update({"place": rank})
+                rank += 1
+                session.commit()
+
 def get_ranking(page:int,limit:int) -> Profile:
     with session_factory() as session:
         ranking = (
@@ -50,5 +61,21 @@ def get_ranking(page:int,limit:int) -> Profile:
         count = (session.query(Profile)
             .join(Profile.ranking)
             .filter(Ranking.place != 0)
+            .count())
+    return (ranking,count)
+
+
+def get_ranking_competetition(page:int,limit:int,competetition:str) -> CompetetitionRanking:
+    with session_factory() as session:
+        comp = session.query(Competition).filter(Competition.public_id == competetition).first()
+        ranking = (
+            session.query(CompetetitionRanking)
+            .filter(CompetetitionRanking.place > 0,CompetetitionRanking.competetition_id == comp.id)
+            .order_by(CompetetitionRanking.place)
+            .offset((page-1)*limit)
+            .limit(limit)
+            .all())
+        count = (session.query(Profile)
+            .filter(CompetetitionRanking.place > 0,CompetetitionRanking.competetition_id == comp.id)
             .count())
     return (ranking,count)
