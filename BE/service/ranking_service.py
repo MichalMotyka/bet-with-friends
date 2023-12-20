@@ -31,7 +31,14 @@ def update_ranking():
             rank = 1
             for profile in sorted_profiles:
                 ranking = session.query(Ranking).filter_by(id=profile.ranking_id).first()
-                session.query(Ranking).filter_by(id=ranking.id).update({"place": rank})
+                if rank == ranking.place:
+                    tendency = 0
+                elif rank > ranking.place:
+                    tendency = 1
+                else:
+                    tendency = 2
+
+                session.query(Ranking).filter_by(id=ranking.id).update({"place": rank,"tendency":tendency})
                 rank += 1
             session.commit()
         except:
