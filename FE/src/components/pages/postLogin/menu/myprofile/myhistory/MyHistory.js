@@ -130,7 +130,7 @@ function MyHistory () {
             </button>
           </div>
         ) : (
-          <p>Brak histori typowania...</p>
+          <p>Brak historii typowania...</p>
         )}
 
         <div className='history-list'>
@@ -195,19 +195,6 @@ function MyHistory () {
                 </div>
               </li>
             ))}
-            <hr className='history-hr' />
-            <div className='legend'>
-              <span className='legend-item-one'>
-                Pełne trafienie <br /> 100 pkt
-              </span>
-
-              <span className='legend-item-three'>
-                Wskazanie zwyciężcy <br /> 20 pkt
-              </span>
-              <span className='legend-item-two'>
-                Pudło <br /> 0 pkt
-              </span>
-            </div>
           </ul>
         </div>
       </div>
