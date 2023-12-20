@@ -51,7 +51,13 @@ def update_ranking_competetition() -> None:
             rank = 1
             sorted_ranking = session.query(CompetetitionRanking).filter(CompetetitionRanking.competetition_id == comp.id).order_by(CompetetitionRanking.points.desc()).all()
             for ranking in sorted_ranking:
-                session.query(CompetetitionRanking).filter(CompetetitionRanking.id == ranking.id).update({"place": rank})
+                if rank == ranking.place:
+                    tendency = 0
+                elif rank > ranking.place:
+                    tendency = 1
+                else:
+                    tendency = 2
+                session.query(CompetetitionRanking).filter(CompetetitionRanking.id == ranking.id).update({"place": rank,"tendency":tendency})
                 rank += 1
                 session.commit()
 
@@ -82,7 +88,7 @@ def get_ranking_competetition(page:int,limit:int,competetition:str) -> Competeti
             .offset((page-1)*limit)
             .limit(limit)
             .all())
-        count = (session.query(Profile)
+        count = (session.query(Competition)
             .filter(CompetetitionRanking.place > 0,CompetetitionRanking.competetition_id == comp.id)
             .count())
     return (ranking,count)
