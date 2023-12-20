@@ -6,15 +6,14 @@ import { BsArrowLeft } from 'react-icons/bs'
 
 import './myhistory.css'
 
-// import { useEffect } from 'react'
 function MyHistory () {
   const { ipMan } = useAuth()
   const [historyBets, setHistoryBets] = useState([])
   const [historyPage, setHistoryPage] = useState(1)
   const [totalHistory, setTotalHistory] = useState(0)
   const [selectedCompetition, setSelectedCompetition] = useState(2001)
+
   const limitHistory = 10
-  // const userStats = props.props
   const whatPageIsIT = Math.ceil(totalHistory / limitHistory)
 
   const { competitions } = PredictionLogic()
@@ -34,13 +33,11 @@ function MyHistory () {
           }
         })
 
-        // Sprawdź, czy status odpowiedzi jest OK (200)
         if (response.ok) {
           const jsonData = await response.json()
           setHistoryBets(jsonData)
           setTotalHistory(response.headers.get('X-Total-Count'))
         } else {
-          // Odczytaj treść odpowiedzi jako tekst, jeśli nie jest to JSON
           const errorText = await response.text()
           console.error('Błąd pobierania danych:', errorText)
         }
@@ -76,7 +73,7 @@ function MyHistory () {
 
   const handleCompetitionChange = competitionId => {
     setSelectedCompetition(competitionId)
-    setHistoryPage(1) // Resetowanie strony przy zmianie turnieju
+    setHistoryPage(1)
   }
 
   console.log(historyBets)
@@ -139,7 +136,28 @@ function MyHistory () {
         <div className='history-list'>
           <ul className='history-ul'>
             {historyBets.map(bets => (
-              <li className='history-item' key={bets.public_id}>
+              <li
+                className={`history-item ${
+                  bets.match.score?.full_time &&
+                  (Number(bets.match.score.full_time.split('-')[0]) ===
+                    bets.home_team &&
+                  Number(bets.match.score.full_time.split('-')[1]) ===
+                    bets.away_team
+                    ? 'hit'
+                    : (Number(bets.match.score.full_time.split('-')[0]) >
+                        Number(bets.match.score.full_time.split('-')[1]) &&
+                        bets.home_team > bets.away_team) ||
+                      (Number(bets.match.score.full_time.split('-')[0]) <
+                        Number(bets.match.score.full_time.split('-')[1]) &&
+                        bets.home_team < bets.away_team) ||
+                      (Number(bets.match.score.full_time.split('-')[0]) ===
+                        Number(bets.match.score.full_time.split('-')[1]) &&
+                        bets.home_team === bets.away_team)
+                    ? 'target'
+                    : 'miss')
+                }`}
+                key={bets.public_id}
+              >
                 <div className='history-result'>
                   <img
                     className='history-home-team-img'
@@ -150,8 +168,16 @@ function MyHistory () {
                   <p>{bets.match.home_team.short_name}</p>
                 </div>
                 <div className='history-result history-span '>
-                  <span>{bets.home_team} :</span>
-                  <span>{bets.away_team}</span>
+                  <p>
+                    Bet: {bets.home_team}-{bets.away_team}
+                  </p>
+                  <p>
+                    {bets.match.score?.full_time ? (
+                      <span>Wynik: {bets.match.score?.full_time}</span>
+                    ) : (
+                      <span>TBD</span>
+                    )}
+                  </p>
                 </div>
                 <div className='history-result history-right'>
                   <p>{bets.match.away_team.short_name}</p>
@@ -164,6 +190,18 @@ function MyHistory () {
                 </div>
               </li>
             ))}
+            <div className='legend'>
+              <div className='legend-item-one'>
+                Pełne trafienie <br /> 100 pkt
+              </div>
+
+              <div className='legend-item-three'>
+                Wskazanie zwyciężcy <br /> 20 pkt
+              </div>
+              <div className='legend-item-two'>
+                Pudło <br /> 0 pkt
+              </div>
+            </div>
           </ul>
         </div>
       </div>
