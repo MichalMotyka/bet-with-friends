@@ -16,6 +16,7 @@ class CompetetitionRanking(Base):
     place = Column(Integer)
     competetition_id = Column(Integer,ForeignKey('competition.id'))
     points = Column(Integer)
+    tendency = Column(Integer,default=0)
     profile_id = Column(Integer,ForeignKey("profiles.id")) 
     
     competetition = relationship(Competition,foreign_keys=[competetition_id],lazy='joined')
@@ -27,7 +28,8 @@ class CompetetitionRanking(Base):
             "place": self.place,
             "points":self.points,
             "competetition": self.competetition.to_json(),
-            "profile": self.profile.to_json()
+            "profile": self.profile.to_json(),
+            "tendency": self.tendency
         }
     
 
