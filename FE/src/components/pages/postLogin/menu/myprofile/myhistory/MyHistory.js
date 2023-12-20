@@ -169,13 +169,18 @@ function MyHistory () {
                 </div>
                 <div className='history-result history-span'>
                   <p>
-                    Bet: {bets.home_team}-{bets.away_team}
+                    Bet
+                    <br /> {bets.home_team}-{bets.away_team}
                   </p>
                   <p>
                     {bets.match.score?.full_time ? (
-                      <span>Wynik: {bets.match.score?.full_time}</span>
+                      <span className='history-span-result'>
+                        Wynik <br /> {bets.match.score?.full_time}
+                      </span>
                     ) : (
-                      <span>Wynik: TBD</span>
+                      <span className='history-span-result'>
+                        Wynik <br /> TBD
+                      </span>
                     )}
                   </p>
                 </div>
