@@ -15,20 +15,20 @@ function PanelLeaderboard () {
   const { ipMan } = useAuth()
   const { competitions } = PredictionLogic()
 
-  console.log(selectedCompetition)
-  console.log(leadersData)
-  console.log('e:', totalLeaders)
-
   // MAIN API FOR ALL  LEADERBOARD!
   useEffect(() => {
     const fetchData = async () => {
       try {
         const url = `http://${ipMan}:5000/api/v1/ranking?competetition=${selectedCompetition}&page=${page}&limit=${limit}`
 
-        console.log('Fetching data from:', url)
-
         const response = await fetch(url, {
-          // ...
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+            'X-Total-Count': 'true'
+          }
         })
 
         if (response.ok) {
