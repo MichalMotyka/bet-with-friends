@@ -8,6 +8,8 @@ import './mystats.css'
 function MyStats (props) {
   const userStats = props.props
 
+  console.log(userStats);
+
   const percentage = userStats.rating.rating
   const style = { '--percentage': `${percentage}%` }
 
