@@ -130,7 +130,7 @@ function MyHistory () {
             </button>
           </div>
         ) : (
-          <p>Brak histori typowania...</p>
+          <p>Brak historii typowania...</p>
         )}
 
         <div className='history-list'>
