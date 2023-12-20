@@ -57,11 +57,11 @@ padding-right: 5px;
    }
 
 .miss {
-    background-color: #ff6666;
+    background-color: rgba(255, 99, 71, 0.612);
 }
 
 .target{
-    background-color: rgba(0, 255, 0, 0.151);
+    background-color:  rgba(0, 255, 21, 0.251);
 }
 
 .legend{ 
@@ -89,14 +89,19 @@ padding-right: 5px;
 
 .legend-item-three{
     border-radius: 4px;
-    background-color: rgba(0, 255, 0, 0.151);
+    background-color: rgba(0, 255, 21, 0.251);
     padding: 5px 3px;
+}
+.history-span-result{
+    padding-left: 5px;
 }
 
 
 
 
+
 @media  (max-width: 768px) {
+
     .history-buttons {
         display: flex;
         align-items: center;
@@ -109,17 +114,21 @@ padding-right: 5px;
      
     }
 
+    .history-span-result{
+        padding-left: 5px;
+    }
+
     .history-item {
         display: flex;
         justify-content: space-between;
-        list-style: none;
-        padding: 0;
+        list-style: none;      
         width: 100%;
         margin: 5px;
         border-radius: 4px;
-        padding: 0px 8px;
+        padding: 0px 7px;
         height: 65px;
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.295);
+        font-size: 0.75rem;
     }
 
     .history-ul {
