@@ -22,7 +22,7 @@
 
 .history-result {
     display: flex;
-    align-items: center;
+    align-items: center;   
     width: 100px;
 }
 
@@ -37,7 +37,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .history-pages {
@@ -54,41 +54,43 @@ padding-right: 5px;
 
 /* // COlory pod wyniki trafień */
 .hit{  
-    background-color: rgba(0, 255, 0, 0.667);
+    background-color:gold;
    }
 
 .miss {
-    background-color: rgba(255, 99, 71, 0.667);
+    background-color: rgba(192, 192, 192, 0.849);
 }
 
 .target{
-    background-color: rgba(0, 255, 0, 0.233);
+    background-color: rgba(0, 255, 0, 0.151);
 }
 
 .legend{ 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-evenly;   
+    flex-direction: row;
     width: 100%;
+    margin-top: 5px;
   
 }
 .legend-item-one{
     border-radius: 4px;
-    background-color: rgba(0, 255, 0, 0.667);
-    padding: 5px 3px;
+    background-color:gold;
+        padding: 5px 3px;
     
 }
 
 .legend-item-two{
     border-radius: 4px;
-    background-color: rgba(255, 99, 71, 0.667);
+    background-color: rgba(192, 192, 192, 0.849);
     padding: 5px 3px;
    
 }
 
 .legend-item-three{
     border-radius: 4px;
-    background-color: rgba(0, 255, 0, 0.233);
+    background-color: rgba(0, 255, 0, 0.151);
     padding: 5px 3px;
 }
 
@@ -114,10 +116,11 @@ padding-right: 5px;
         list-style: none;
         padding: 0;
         width: 100%;
+        margin: 5px;
         border-radius: 4px;
         padding: 0px 8px;
-        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.575);
-      
+        height: 65px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.295);
     }
 
     .history-ul {

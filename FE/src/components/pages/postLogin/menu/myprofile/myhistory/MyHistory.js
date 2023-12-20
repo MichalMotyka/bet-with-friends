@@ -167,7 +167,7 @@ function MyHistory () {
                   />
                   <p>{bets.match.home_team.short_name}</p>
                 </div>
-                <div className='history-result history-span '>
+                <div className='history-result history-span'>
                   <p>
                     Bet: {bets.home_team}-{bets.away_team}
                   </p>
@@ -175,7 +175,7 @@ function MyHistory () {
                     {bets.match.score?.full_time ? (
                       <span>Wynik: {bets.match.score?.full_time}</span>
                     ) : (
-                      <span>TBD</span>
+                      <span>Wynik: TBD</span>
                     )}
                   </p>
                 </div>
@@ -191,16 +191,16 @@ function MyHistory () {
               </li>
             ))}
             <div className='legend'>
-              <div className='legend-item-one'>
+              <span className='legend-item-one'>
                 Pełne trafienie <br /> 100 pkt
-              </div>
+              </span>
 
-              <div className='legend-item-three'>
+              <span className='legend-item-three'>
                 Wskazanie zwyciężcy <br /> 20 pkt
-              </div>
-              <div className='legend-item-two'>
+              </span>
+              <span className='legend-item-two'>
                 Pudło <br /> 0 pkt
-              </div>
+              </span>
             </div>
           </ul>
         </div>
