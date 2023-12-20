@@ -195,6 +195,7 @@ function MyHistory () {
                 </div>
               </li>
             ))}
+            <hr className='history-hr' />
             <div className='legend'>
               <span className='legend-item-one'>
                 Pełne trafienie <br /> 100 pkt

@@ -23,6 +23,7 @@
     display: flex;
     align-items: center;   
     width: 100px;
+ 
 }
 
 .history-right {
@@ -37,6 +38,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
+ 
 }
 
 .history-pages {
@@ -46,9 +48,15 @@
 }
 .history-home-team-img{
 padding-right: 5px;
+
 }
 .history-away-team-img{
     padding-left: 5px;
+}
+
+.history-hr{ 
+   
+    width: 100%;
 }
 
 /* // COlory pod wyniki trafień */
@@ -94,6 +102,18 @@ padding-right: 5px;
 }
 .history-span-result{
     padding-left: 5px;
+}
+
+.history-item-top{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    width: 450px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.336);
+    padding: 0px 10px;
+    margin: 10px; 
 }
 
 
