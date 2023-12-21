@@ -78,7 +78,7 @@ function PanelLeaderboard () {
           }`}
         >
           <FcGlobe size={50} />
-          <p>Ranking Ogólny</p>
+          <p>Ranking Globalny</p>
         </button>
 
         {competitions.map(competition => (

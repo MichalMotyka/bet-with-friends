@@ -21,7 +21,7 @@ function TotalLeaders () {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `http://localhost:5000/api/v1/ranking?page=${page}&limit=${limit}`
+        const url = `http://${ipMan}:5000/api/v1/ranking?page=${page}&limit=${limit}`
         console.log('Fetching data from:', url)
 
         const response = await fetch(url, {
