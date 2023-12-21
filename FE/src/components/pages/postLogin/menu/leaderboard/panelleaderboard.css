@@ -35,10 +35,9 @@
 }
 
 .panel-leader-table img {
-  max-width: 48px;
-  max-height: 48px;
+  max-width: 38px;
+  max-height: 38px;
 }
-
 
 .leader-name {
   max-width: 280px;
@@ -61,6 +60,9 @@
   box-shadow: 0 0 8px rgba(205, 127, 50, 0.8);
 }
 
+.handle-table{
+  display: none;
+}
 
 
 
@@ -101,17 +103,13 @@
     justify-content: space-around;
   }
 
-
   .leader-stats p {
     margin: 5px 0;
   }
 
-
-
   .top-panel-player {
     text-align: center;
   }
-
 
   .leader-stats {
     display: flex;
@@ -123,9 +121,6 @@
   .leader-stats-box {
     background-color: rgba(221, 220, 218, 0.062);
   }
-
-
-
 
   .leader-place {
     display: block;
@@ -139,18 +134,4 @@
     border-radius: 50%;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.226);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
