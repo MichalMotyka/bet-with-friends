@@ -1,5 +1,6 @@
 import './myachiv.css'
-function MyAchiv () {
+function MyAchiv (userProfile) {
+  console.log('MY ACHIV:', userProfile.props)
   return (
     <>
       <div className='tab-stats'>
