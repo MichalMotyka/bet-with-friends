@@ -83,7 +83,7 @@ def get_ranking_competetition(page:int,limit:int,competetition:str) -> Competeti
         comp = session.query(Competition).filter(Competition.public_id == competetition).first()
         ranking = (
             session.query(CompetetitionRanking)
-            .filter(CompetetitionRanking.place > 0,CompetetitionRanking.competetition_id == comp.id)
+            .filter(CompetetitionRanking.place > 0,CompetetitionRanking.competetition_id == comp.id,CompetetitionRanking.bets > 0)
             .order_by(CompetetitionRanking.place)
             .offset((page-1)*limit)
             .limit(limit)
