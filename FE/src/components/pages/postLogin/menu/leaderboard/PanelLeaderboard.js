@@ -53,8 +53,6 @@ function PanelLeaderboard () {
     // Resetowanie strony przy zmianie turnieju
   }
 
-  console.log(leadersData)
-
   return (
     <section className='app-wrap'>
       <h2 className='section-title panel-header'>
@@ -154,8 +152,8 @@ function PanelLeaderboard () {
                   />
                 </td>
                 <td>{leader.points}</td>
-                <td>{leader.profile.rating.bets}</td>
-                <td>{leader.profile.rating.wins}</td>
+                <td>{leader.bets}</td>
+                <td>{leader.wins}</td>
                 <td className='th-hide'>{leader.profile.rating.rating} %</td>
               </tr>
             ))}
@@ -202,11 +200,11 @@ function PanelLeaderboard () {
                   </p>
                   <p>
                     Bety <br />
-                    {leader.profile.rating.bets}
+                    {leader.bets}
                   </p>
                   <p>
                     Winy <br />
-                    {leader.profile.rating.wins}
+                    {leader.wins}
                   </p>
                   <p>
                     Rating <br />
