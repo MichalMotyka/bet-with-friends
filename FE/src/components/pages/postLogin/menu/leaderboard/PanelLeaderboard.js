@@ -6,8 +6,13 @@ import RaccoonLeader from './images/raccoon-leader.webp'
 import { PredictionLogic } from '../predictions/data/PredictionLogic'
 import { useAuth } from '../../../../auth/authcontext/AuthContext'
 
+import { FaArrowDown } from 'react-icons/fa'
+import { FaArrowUp } from 'react-icons/fa'
+import { FaArrowDownUpAcrossLine } from 'react-icons/fa6'
+
 function PanelLeaderboard () {
   const [leadersData, setLeadersData] = useState([])
+
   const [page, setPage] = useState(1)
   const [totalLeaders, setTotalLeaders] = useState(null)
   const [limit] = useState(10)
@@ -142,7 +147,18 @@ function PanelLeaderboard () {
                 }`}
               >
                 {console.log('here:', leader)}
-                <td className={`th-place`}>{leader.place}</td>
+                <td className={`th-place`}>
+                  {leader.place}{' '}
+                  <span style={{ color: 'green' }}>
+                    {leader.tendency === 2 && <FaArrowUp />}
+                  </span>
+                  <span style={{ color: 'red' }}>
+                    {leader.tendency === 1 && <FaArrowDown />}
+                  </span>
+                  <span style={{ color: 'gray' }}>
+                    {leader.tendency === 0 && <FaArrowDownUpAcrossLine />}
+                  </span>
+                </td>
                 <td className='leader-name'>{leader.profile.name}</td>
                 <td className='th-hide'>
                   <img
@@ -154,7 +170,7 @@ function PanelLeaderboard () {
                 <td>{leader.points}</td>
                 <td>{leader.bets}</td>
                 <td>{leader.wins}</td>
-                <td className='th-hide'>{leader.profile.rating.rating} %</td>
+                <td className='th-hide'>{leader.rating} %</td>
               </tr>
             ))}
           </tbody>
@@ -183,7 +199,27 @@ function PanelLeaderboard () {
                     {' '}
                     {leader.place}
                   </span>
-                  <p className='top-leader-box-item'> {leader.profile.name} </p>
+
+                  {leader.tendency === 2 && (
+                    <span style={{ color: 'green' }}>
+                      <FaArrowUp />
+                    </span>
+                  )}
+
+                  {leader.tendency === 1 && (
+                    <span style={{ color: 'red' }}>
+                      <FaArrowDown />
+                    </span>
+                  )}
+
+                  {leader.tendency === 0 && (
+                    <span style={{ color: 'gray' }}>
+                      <FaArrowDownUpAcrossLine />
+                    </span>
+                  )}
+
+                  <p className='top-leader-box-item'> {leader.profile.name}</p>
+
                   <img
                     className={` top-leader-box-item leader-box-img ${
                       leader.place <= 3 ? 'top-avatar' : ''
@@ -208,7 +244,7 @@ function PanelLeaderboard () {
                   </p>
                   <p>
                     Rating <br />
-                    {leader.profile.rating.rating} %
+                    {leader.rating} %
                   </p>
                 </div>
               </td>
