@@ -65,7 +65,6 @@
 
 
 @media (max-width: 767.98px) {
-
   .leader-raccoon {
     display: block;
     margin: 0 auto;
@@ -75,9 +74,10 @@
     display: block;
     border-collapse: separate;
     border-spacing: 0 10px;
-    /* Dostosuj wartość według swoich preferencji */
+    }
 
-
+  .dektop-leader-check{
+    display: none;
   }
 
   .panel-leader-table {
@@ -122,7 +122,6 @@
 
   .leader-stats-box {
     background-color: rgba(221, 220, 218, 0.062);
-
   }
 
 

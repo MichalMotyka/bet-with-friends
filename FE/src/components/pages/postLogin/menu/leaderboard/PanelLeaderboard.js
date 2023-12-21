@@ -90,7 +90,7 @@ function PanelLeaderboard () {
       </p>
       <span style={{ display: 'block', textAlign: 'center' }}>
         {' '}
-        Liczba graczy: {totalLeaders}{' '}
+        Liczba graczy: {totalLeaders}
       </span>
       <img
         className='leader-raccoon'
@@ -102,7 +102,7 @@ function PanelLeaderboard () {
       <p className='schedule-btns'>
         <button
           className='schedule-list-btn span-brand'
-          disabled={page === 1 ? true : false}
+          disabled={page === 1 || totalLeaders === '0' ? true : false}
           onClick={() => setPage(prevValue => prevValue - 1)}
         >
           <BsArrowLeft />
@@ -114,7 +114,9 @@ function PanelLeaderboard () {
           className='schedule-list-btn span-brand'
           onClick={() => setPage(prevValue => prevValue + 1)}
           // total matches np. 16 przez 10 daje 1.6 i Ceil robi 2.
-          disabled={page === Math.ceil(totalLeaders / limit)}
+          disabled={
+            page === Math.ceil(totalLeaders / limit) || totalLeaders === '0'
+          }
         >
           <BsArrowRight />
         </button>
@@ -159,7 +161,11 @@ function PanelLeaderboard () {
             ))}
           </tbody>
         </table>
-      ) : null}
+      ) : (
+        <p className='dektop-leader-check' style={{ textAlign: 'center' }}>
+          Oczekiwanie na rozgrywki...
+        </p>
+      )}
 
       <table className='panel-leader-mobile'>
         <thead>
