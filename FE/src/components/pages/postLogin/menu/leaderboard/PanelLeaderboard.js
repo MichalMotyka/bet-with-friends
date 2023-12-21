@@ -6,8 +6,13 @@ import RaccoonLeader from './images/raccoon-leader.webp'
 import { PredictionLogic } from '../predictions/data/PredictionLogic'
 import { useAuth } from '../../../../auth/authcontext/AuthContext'
 
+import { FaArrowDown } from 'react-icons/fa'
+import { FaArrowUp } from 'react-icons/fa'
+import { FaArrowDownUpAcrossLine } from 'react-icons/fa6'
+
 function PanelLeaderboard () {
   const [leadersData, setLeadersData] = useState([])
+
   const [page, setPage] = useState(1)
   const [totalLeaders, setTotalLeaders] = useState(null)
   const [limit] = useState(10)
@@ -15,20 +20,20 @@ function PanelLeaderboard () {
   const { ipMan } = useAuth()
   const { competitions } = PredictionLogic()
 
-  console.log(selectedCompetition)
-  console.log(leadersData)
-  console.log('e:', totalLeaders)
-
   // MAIN API FOR ALL  LEADERBOARD!
   useEffect(() => {
     const fetchData = async () => {
       try {
         const url = `http://${ipMan}:5000/api/v1/ranking?competetition=${selectedCompetition}&page=${page}&limit=${limit}`
 
-        console.log('Fetching data from:', url)
-
         const response = await fetch(url, {
-          // ...
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+            'X-Total-Count': 'true'
+          }
         })
 
         if (response.ok) {
@@ -52,8 +57,6 @@ function PanelLeaderboard () {
     setSelectedCompetition(competitionId)
     // Resetowanie strony przy zmianie turnieju
   }
-
-  console.log(leadersData)
 
   return (
     <section className='app-wrap'>
@@ -90,7 +93,7 @@ function PanelLeaderboard () {
       </p>
       <span style={{ display: 'block', textAlign: 'center' }}>
         {' '}
-        Liczba graczy: {totalLeaders}{' '}
+        Liczba graczy: {totalLeaders}
       </span>
       <img
         className='leader-raccoon'
@@ -102,7 +105,7 @@ function PanelLeaderboard () {
       <p className='schedule-btns'>
         <button
           className='schedule-list-btn span-brand'
-          disabled={page === 1 ? true : false}
+          disabled={page === 1 || totalLeaders === '0' ? true : false}
           onClick={() => setPage(prevValue => prevValue - 1)}
         >
           <BsArrowLeft />
@@ -114,7 +117,9 @@ function PanelLeaderboard () {
           className='schedule-list-btn span-brand'
           onClick={() => setPage(prevValue => prevValue + 1)}
           // total matches np. 16 przez 10 daje 1.6 i Ceil robi 2.
-          disabled={page === Math.ceil(totalLeaders / limit)}
+          disabled={
+            page === Math.ceil(totalLeaders / limit) || totalLeaders === '0'
+          }
         >
           <BsArrowRight />
         </button>
@@ -142,7 +147,18 @@ function PanelLeaderboard () {
                 }`}
               >
                 {console.log('here:', leader)}
-                <td className={`th-place`}>{leader.place}</td>
+                <td className={`th-place`}>
+                  {leader.place}{' '}
+                  <span style={{ color: 'green' }}>
+                    {leader.tendency === 2 && <FaArrowUp />}
+                  </span>
+                  <span style={{ color: 'red' }}>
+                    {leader.tendency === 1 && <FaArrowDown />}
+                  </span>
+                  <span style={{ color: 'gray' }}>
+                    {leader.tendency === 0 && <FaArrowDownUpAcrossLine />}
+                  </span>
+                </td>
                 <td className='leader-name'>{leader.profile.name}</td>
                 <td className='th-hide'>
                   <img
@@ -152,14 +168,18 @@ function PanelLeaderboard () {
                   />
                 </td>
                 <td>{leader.points}</td>
-                <td>{leader.profile.rating.bets}</td>
-                <td>{leader.profile.rating.wins}</td>
-                <td className='th-hide'>{leader.profile.rating.rating} %</td>
+                <td>{leader.bets}</td>
+                <td>{leader.wins}</td>
+                <td className='th-hide'>{leader.rating} %</td>
               </tr>
             ))}
           </tbody>
         </table>
-      ) : null}
+      ) : (
+        <p className='dektop-leader-check' style={{ textAlign: 'center' }}>
+          Oczekiwanie na rozgrywki...
+        </p>
+      )}
 
       <table className='panel-leader-mobile'>
         <thead>
@@ -179,7 +199,27 @@ function PanelLeaderboard () {
                     {' '}
                     {leader.place}
                   </span>
-                  <p className='top-leader-box-item'> {leader.profile.name} </p>
+
+                  {leader.tendency === 2 && (
+                    <span style={{ color: 'green' }}>
+                      <FaArrowUp />
+                    </span>
+                  )}
+
+                  {leader.tendency === 1 && (
+                    <span style={{ color: 'red' }}>
+                      <FaArrowDown />
+                    </span>
+                  )}
+
+                  {leader.tendency === 0 && (
+                    <span style={{ color: 'gray' }}>
+                      <FaArrowDownUpAcrossLine />
+                    </span>
+                  )}
+
+                  <p className='top-leader-box-item'> {leader.profile.name}</p>
+
                   <img
                     className={` top-leader-box-item leader-box-img ${
                       leader.place <= 3 ? 'top-avatar' : ''
@@ -196,15 +236,15 @@ function PanelLeaderboard () {
                   </p>
                   <p>
                     Bety <br />
-                    {leader.profile.rating.bets}
+                    {leader.bets}
                   </p>
                   <p>
                     Winy <br />
-                    {leader.profile.rating.wins}
+                    {leader.wins}
                   </p>
                   <p>
                     Rating <br />
-                    {leader.profile.rating.rating} %
+                    {leader.rating} %
                   </p>
                 </div>
               </td>
