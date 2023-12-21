@@ -165,8 +165,16 @@ function MyHistory () {
                       {new Date(bets.match.utc_date).toLocaleDateString(
                         'en-GB'
                       )}
-                      ({bets.match.utc_date.slice(11, -3)})
+                      {` `}
+                      {bets.match.utc_date.slice(11, -3)}
                     </p>
+
+                    <img
+                      className='cometition-emblem'
+                      src={bets.match.competition.emblem}
+                      alt='cometition emblem'
+                      height={30}
+                    />
 
                     <p>
                       Typowałeś: {bets.home_team}-{bets.away_team}
@@ -179,7 +187,7 @@ function MyHistory () {
                         bets.home_team &&
                       Number(bets.match.score.full_time.split('-')[1]) ===
                         bets.away_team
-                        ? 'hit'
+                        ? 'hit-boxa'
                         : (Number(bets.match.score.full_time.split('-')[0]) >
                             Number(bets.match.score.full_time.split('-')[1]) &&
                             bets.home_team > bets.away_team) ||
@@ -189,8 +197,8 @@ function MyHistory () {
                           (Number(bets.match.score.full_time.split('-')[0]) ===
                             Number(bets.match.score.full_time.split('-')[1]) &&
                             bets.home_team === bets.away_team)
-                        ? 'target'
-                        : 'miss')
+                        ? 'target-box'
+                        : 'miss-box')
                     }`}
                     key={bets.public_id}
                   >
