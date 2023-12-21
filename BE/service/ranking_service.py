@@ -89,6 +89,6 @@ def get_ranking_competetition(page:int,limit:int,competetition:str) -> Competeti
             .limit(limit)
             .all())
         count = (session.query(CompetetitionRanking)
-            .filter(CompetetitionRanking.place > 0,CompetetitionRanking.competetition_id == comp.id)
+            .filter(CompetetitionRanking.place > 0,CompetetitionRanking.competetition_id == comp.id,CompetetitionRanking.bets > 0)
             .count())
     return (ranking,count)

@@ -167,7 +167,7 @@ def proces_bets():
                         win = 1
                     rate = 0
                     try:
-                        rate =  100 * ranking_competetition.wins / ranking_competetition.bets
+                        rate =  100 * ranking_competetition.wins+win / ranking_competetition.bets+1
                     except ZeroDivisionError:
                         rate = 0
                     rate = round(rate,2)
