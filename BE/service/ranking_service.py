@@ -31,13 +31,15 @@ def update_ranking():
             rank = 1
             for profile in sorted_profiles:
                 ranking = session.query(Ranking).filter_by(id=profile.ranking_id).first()
-                if rank == ranking.place:
-                    tendency = 0
-                elif rank > ranking.place:
-                    tendency = 1
+                if ranking.place != 0:
+                    if rank == ranking.place:
+                        tendency = 0
+                    elif rank > ranking.place:
+                        tendency = 1
+                    else:
+                        tendency = 2
                 else:
-                    tendency = 2
-
+                    tendency = 0
                 session.query(Ranking).filter_by(id=ranking.id).update({"place": rank,"tendency":tendency})
                 rank += 1
             session.commit()
@@ -51,12 +53,15 @@ def update_ranking_competetition() -> None:
             rank = 1
             sorted_ranking = session.query(CompetetitionRanking).filter(CompetetitionRanking.competetition_id == comp.id).order_by(CompetetitionRanking.points.desc()).all()
             for ranking in sorted_ranking:
-                if rank == ranking.place:
-                    tendency = 0
-                elif rank > ranking.place:
-                    tendency = 1
+                if ranking.place != 0:
+                    if rank == ranking.place:
+                        tendency = 0
+                    elif rank > ranking.place:
+                        tendency = 1
+                    else:
+                        tendency = 2
                 else:
-                    tendency = 2
+                    tendency = 0
                 session.query(CompetetitionRanking).filter(CompetetitionRanking.id == ranking.id).update({"place": rank,"tendency":tendency})
                 rank += 1
                 session.commit()
