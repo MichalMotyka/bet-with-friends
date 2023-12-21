@@ -4,6 +4,10 @@ import { BsArrowLeft } from 'react-icons/bs'
 import '../panelleaderboard.css'
 import { useAuth } from '../../../../../auth/authcontext/AuthContext'
 
+import { FaArrowDown } from 'react-icons/fa'
+import { FaArrowUp } from 'react-icons/fa'
+import { FaArrowDownUpAcrossLine } from 'react-icons/fa6'
+
 function TotalLeaders () {
   const [leadersData, setLeadersData] = useState([])
   const [page, setPage] = useState(1)
@@ -92,7 +96,22 @@ function TotalLeaders () {
                   leader.ranking.place <= 3 ? 'top-players' : ''
                 }`}
               >
-                <td className={`th-place`}>{leader.ranking.place}</td>
+                <td className={`th-place`}>
+                  {leader.ranking.place}
+                  {` `}
+
+                  <span style={{ color: 'green' }}>
+                    {leader.ranking.tendency === 2 && <FaArrowUp />}
+                  </span>
+                  <span style={{ color: 'red' }}>
+                    {leader.ranking.tendency === 1 && <FaArrowDown />}
+                  </span>
+                  <span style={{ color: 'gray' }}>
+                    {leader.ranking.tendency === 0 && (
+                      <FaArrowDownUpAcrossLine />
+                    )}
+                  </span>
+                </td>
                 <td className='leader-name'>{leader.name}</td>
                 <td className='th-hide'>
                   <img
@@ -129,9 +148,27 @@ function TotalLeaders () {
                 <td className='leader-stats-box'>
                   <div className='top-leader-box'>
                     <span className='leader-place top-leader-box-item'>
-                      {' '}
                       {leader.ranking.place}
                     </span>
+
+                    {leader.ranking.tendency === 2 && (
+                      <span style={{ color: 'green' }}>
+                        <FaArrowUp />
+                      </span>
+                    )}
+
+                    {leader.ranking.tendency === 1 && (
+                      <span style={{ color: 'red' }}>
+                        <FaArrowDown />
+                      </span>
+                    )}
+
+                    {leader.ranking.tendency === 0 && (
+                      <span style={{ color: 'gray' }}>
+                        <FaArrowDownUpAcrossLine />
+                      </span>
+                    )}
+
                     <p className='top-leader-box-item'> {leader.name} </p>
                     <img
                       className={` top-leader-box-item leader-box-img ${
