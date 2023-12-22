@@ -45,7 +45,8 @@ def create_user(user:Users):
                     raise UserAlredyExistNameException(user.name)
                 elif 'email' in str(e.orig):
                     raise UserAlredyExistEmailException(user.email)
-        except:
+        except Exception as e:
+            print(e)
             session.rollback()
 
 def activate_user(code:str):

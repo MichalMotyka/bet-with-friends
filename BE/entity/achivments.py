@@ -13,7 +13,7 @@ class Achivments(Base):
     description = Column(String)
     image_url = Column(String)
     acquired = Column(DateTime)
-    active = Column(Boolean)
+    active = Column(Boolean,default=False)
     query_text = Column(String)
 
 
