@@ -27,6 +27,7 @@ def create_profile(user:Users):
         stmt = update(Profile).where(Profile.id == profile.id).values(ranking_id=ranking.id)
         session.execute(stmt)
         session.commit()
+        return session.refresh(Profile)
 
 
 def get_profile_by_uid(uuid:str):
