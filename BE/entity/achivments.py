@@ -13,11 +13,25 @@ class Achivments(Base):
     description = Column(String)
     image_url = Column(String)
     acquired = Column(DateTime)
-    active = Column(Boolean)
+    active = Column(Boolean,default=False)
     query_text = Column(String)
 
 
     match = relationship(Profile,foreign_keys=[profile_id],lazy='joined')
+
+
+    
+    def to_json(self):
+        acquired_date = self.acquired.isoformat() if self.acquired else None
+        return {
+            "uuid": self.uuid,
+            "achivment_type_uuid": self.achivment_type_uuid,
+            "achiv_name": self.achiv_name,
+            "description": self.description,
+            "image_url": self.image_url,
+            "acquired": acquired_date,
+            "active": self.active
+        }
 
 
 
