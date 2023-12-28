@@ -76,8 +76,6 @@ function MyHistory () {
     setHistoryPage(1)
   }
 
-  console.log(historyBets)
-
   return (
     <>
       <div className='history'>
@@ -138,7 +136,6 @@ function MyHistory () {
             {historyBets
               .map(bets => (
                 <>
-                  {console.log(bets)}
                   <div
                     key={bets.match.score.public_id}
                     className={`history-data-item ${

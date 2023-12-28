@@ -77,7 +77,7 @@ function PanelLeaderboard () {
             handleTableShow ? 'active-schedule' : ''
           }`}
         >
-          <FcGlobe size={50} />
+          <FcGlobe className='fc-globe' />
           <p>Ranking Globalny</p>
         </button>
 
