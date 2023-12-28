@@ -1,10 +1,12 @@
 .tab-config{
     display: flex;
     align-items: flex-start;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: column;
      width: 100%;
       gap: 10px;
+      height: 500px;
+      overflow-y: auto;
 }
 
 .config-form{

@@ -15,8 +15,6 @@ function TotalLeaders () {
   const [limit] = useState(6)
   const { ipMan } = useAuth()
 
-  console.log(leadersData)
-
   // MAIN API FOR TOTAL LEADERBOARD!
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +34,6 @@ function TotalLeaders () {
 
         if (response.ok) {
           const jsonData = await response.json()
-          console.log('Data received:', jsonData)
           setLeadersData(jsonData)
           setTotalLeaders(response.headers.get('X-Total-Count'))
         } else {
