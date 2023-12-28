@@ -8,17 +8,14 @@
  .footer-panel{
   display: none;
  }
-
-
-
-
+ 
 
  .footer-panel-chat{
   background:none;
   border: transparent;
  }
 
- @media (max-width: 575.98px) {  
+ @media (max-width: 768.98px) {  
   .panel-footer{
     display: none;
   }
