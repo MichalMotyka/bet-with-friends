@@ -217,7 +217,6 @@ function PanelLeaderboard () {
                   leader.place <= 3 ? 'top-players' : ''
                 }`}
               >
-                {console.log(leader)}
                 <td className='leader-stats-box'>
                   <div className='top-leader-box'>
                     <span className='leader-place top-leader-box-item'>
