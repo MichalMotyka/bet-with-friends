@@ -8,10 +8,13 @@ import { FcSms } from 'react-icons/fc'
 import { FcCalendar } from 'react-icons/fc'
 import { FcBusinessman } from 'react-icons/fc'
 import { FcBullish } from 'react-icons/fc'
+import { useAuth } from '../../../../auth/authcontext/AuthContext'
 
 import DisplayMessages from '../../main/chat/chatdata/DisplayMessages'
 
 function PanelFooter () {
+  const { darkMode } = useAuth()
+
   const currentYear = new Date().getFullYear()
   const [isChatVisible, setIsChatVisible] = useState(false)
 
@@ -20,7 +23,7 @@ function PanelFooter () {
   }
 
   return (
-    <>
+    <div className={`${darkMode && 'darkmode-on'}`}>
       <p className='brand panel-footer'>
         Bet With <span className='span-brand'>Friends</span>
         <MdOutlineAlternateEmail />
@@ -63,7 +66,7 @@ function PanelFooter () {
           </button>
         </li>
       </ul>
-    </>
+    </div>
   )
 }
 

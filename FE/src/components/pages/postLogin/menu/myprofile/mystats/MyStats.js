@@ -12,7 +12,7 @@ function MyStats (props) {
   const style = { '--percentage': `${percentage}%` }
 
   return (
-    <>
+    <section>
       <div className='stats-box'>
         <p>Statystyki globalne:</p>
         <div className='tab-stats'>
@@ -67,7 +67,7 @@ function MyStats (props) {
           </ul>
         </div>
       </div>
-    </>
+    </section>
   )
 }
 

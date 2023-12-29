@@ -34,6 +34,10 @@
     padding: 0 10px;
 }
 
+.panel-item a{
+  color: black;
+}
+
 
 @media (max-width: 575.98px) {
 

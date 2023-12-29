@@ -11,7 +11,7 @@
   padding: 0 10px;
   margin-top: 10px;
   display: flex;
-  flex: 1;
+  flex: 1; 
 }
 
 .left-panel,
@@ -30,20 +30,22 @@
 .right-panel {
   min-width: 300px;
   margin-left: 10px;
-
 }
 
-.center-panel {
+  .center-panel {
   flex: 4.5;
   background-color: var(--white-color);
   border-radius: 5px;
-}
 
-.panel-side-box,
-.center-panel,
-.nav-panel {
+  }
+
+
+  .panel-side-box,
+  .center-panel,
+  .nav-panel {
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.119);
-}
+
+  }
 
 
 @media (max-width: 575.98px) {
@@ -53,10 +55,10 @@
     padding: 0;
   }
 
-  .center-panel {
-    order: -1;
-    /* Ustaw centralny panel na samej górze */
-      }
+ .center-panel {
+  order: -1;
+ /* Ustaw centralny panel na samej górze */
+ }
 
   .left-panel,
   .right-panel {

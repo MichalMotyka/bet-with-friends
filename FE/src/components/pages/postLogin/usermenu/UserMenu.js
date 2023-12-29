@@ -11,7 +11,7 @@ import './usermenu.css'
 function UserMenu () {
   const { userProfile } = useUser()
   const [showUserMenu, setUserMenu] = useState(false)
-  const { logout } = useAuth()
+  const { logout, darkMode, handleDarkMode } = useAuth()
 
   const handleLogout = () => {
     logout()
@@ -57,10 +57,15 @@ function UserMenu () {
           <Link to='/panel/profile'>Mój profil</Link>
         </li>
 
-        <li className='panel-item '>
+        {/* <li className='panel-item '>
           <label htmlFor='darkmode'>Darkmode</label>
-          <input type='checkbox' id='darkmode' />
-        </li>
+          <input
+            type='checkbox'
+            id='darkmode'
+            checked={darkMode}
+            onChange={handleDarkMode}
+          />
+        </li> */}
         <li className='panel-item'>
           <button className='panel-logout-btn' onClick={handleLogout}>
             Wyloguj
