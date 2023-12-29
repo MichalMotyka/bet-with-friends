@@ -123,16 +123,30 @@ function PanelLeaderboard () {
       {!handleTableShow && (
         <p className='schedule-btns'>
           <button
+            style={
+              totalLeaders === '0' ? { display: 'none' } : { display: 'block' }
+            }
             className='schedule-list-btn span-brand'
             disabled={page === 1 || totalLeaders === '0' ? true : false}
             onClick={() => setPage(prevValue => prevValue - 1)}
           >
             <BsArrowLeft />
           </button>
-          <span className='schedule-btn-span'>
-            Przeglądaj listę {page} / {Math.ceil(totalLeaders / limit)}
-          </span>
+
+          {totalLeaders === '0' ? (
+            <span className='schedule-btn-span'>
+              Oczekiwanie na rozgrywki...
+            </span>
+          ) : (
+            <span className='schedule-btn-span'>
+              Przeglądaj listę {page} / {Math.ceil(totalLeaders / limit)}
+            </span>
+          )}
+
           <button
+            style={
+              totalLeaders === '0' ? { display: 'none' } : { display: 'block' }
+            }
             className='schedule-list-btn span-brand'
             onClick={() => setPage(prevValue => prevValue + 1)}
             // total matches np. 16 przez 10 daje 1.6 i Ceil robi 2.
@@ -194,15 +208,8 @@ function PanelLeaderboard () {
               </tr>
             ))}
           </tbody>
-          {leadersData.length <= 0 && (
-            <p style={{ textAlign: 'center' }}>Oczekiwanie na rozgrywki..</p>
-          )}
         </table>
-      ) : (
-        <p className='dektop-leader-check' style={{ textAlign: 'center' }}>
-          Oczekiwanie na rozgrywki...
-        </p>
-      )}
+      ) : null}
 
       {!handleTableShow && (
         <table className='panel-leader-mobile'>
@@ -217,7 +224,6 @@ function PanelLeaderboard () {
                   leader.place <= 3 ? 'top-players' : ''
                 }`}
               >
-                {console.log(leader)}
                 <td className='leader-stats-box'>
                   <div className='top-leader-box'>
                     <span className='leader-place top-leader-box-item'>
@@ -280,9 +286,6 @@ function PanelLeaderboard () {
               </tr>
             ))}
           </tbody>
-          {leadersData.length <= 0 && (
-            <p style={{ textAlign: 'center' }}>Oczekiwanie na rozgrywki..</p>
-          )}
         </table>
       )}
 

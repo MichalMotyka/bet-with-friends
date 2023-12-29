@@ -4,6 +4,8 @@ import './myachiv.css'
 function MyAchiv (userProfile) {
   const userAchiv = userProfile.props
 
+  console.log(userAchiv)
+
   return (
     <>
       <div className='achiv-box'>
@@ -16,7 +18,7 @@ function MyAchiv (userProfile) {
                 <div className='achiv-name'>
                   <FcGraduationCap size={20} />
                   <span
-                    style={!achiv.active ? { color: 'gray' } : null}
+                    style={!achiv.active ? { color: 'silver' } : null}
                     className='achiv-span-top'
                   >
                     {achiv.achiv_name}
@@ -38,7 +40,7 @@ function MyAchiv (userProfile) {
                   </span>
 
                   <span
-                    style={!achiv.active ? { color: 'gray' } : null}
+                    style={!achiv.active ? { color: 'silver' } : null}
                     className='achiv-span-top'
                   >
                     {achiv.description}.{' '}
