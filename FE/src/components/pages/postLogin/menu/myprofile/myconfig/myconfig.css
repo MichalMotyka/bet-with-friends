@@ -83,6 +83,13 @@
 }
 
 
+.avatar-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
 
   @media (max-width: 575.98px) {
     .avatar-list{
