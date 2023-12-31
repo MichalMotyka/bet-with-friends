@@ -4,7 +4,6 @@ import './myachiv.css'
 function MyAchiv (userProfile) {
   const userAchiv = userProfile.props
 
-  console.log(userAchiv)
 
   return (
     <>
@@ -14,7 +13,7 @@ function MyAchiv (userProfile) {
         <div>
           <ul className='achiv-list'>
             {userAchiv.achievements.map(achiv => (
-              <li className='achiv-list-item' key={achiv.name}>
+              <li className='achiv-list-item' key={achiv.uuid}>
                 <div className='achiv-name'>
                   <FcGraduationCap size={20} />
                   <span
@@ -36,7 +35,7 @@ function MyAchiv (userProfile) {
                             minute: '2-digit'
                           })
                           .replace(',', '')
-                      : ' '}
+                      : '...'}
                   </span>
 
                   <span
