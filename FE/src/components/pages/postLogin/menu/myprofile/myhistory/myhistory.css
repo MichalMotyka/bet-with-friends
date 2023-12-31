@@ -125,12 +125,8 @@
 
 
 @media (max-width: 576px) {
-
-
-  .history-data-item,  .history-item {
-  
-    max-width: 320px;   
-  
+  .history-data-item,  .history-item {  
+    max-width: 320px; 
   }
 
 }
