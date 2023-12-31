@@ -3,13 +3,12 @@ import { FcRating } from 'react-icons/fc'
 import { FcInspection } from 'react-icons/fc'
 import { FcSalesPerformance } from 'react-icons/fc'
 import { FcBullish } from 'react-icons/fc'
+import { useAuth } from '../../../../../auth/authcontext/AuthContext'
 
 import './mystats.css'
 function MyStats (props) {
   const userStats = props.props
-
-  const percentage = userStats.rating.rating
-  const style = { '--percentage': `${percentage}%` }
+  const { darkMode } = useAuth()
 
   return (
     <section>
@@ -31,7 +30,7 @@ function MyStats (props) {
             <span>{userStats.rating.wins}</span>
           </p>
 
-          <p className='stats-item' style={style}>
+          <p className={`stats-item ${darkMode && 'darkmode-on'}`}>
             <FcRating /> Rating
             <br />
             <span className='stats-item-chart'>{userStats.rating.rating}</span>%
@@ -42,7 +41,10 @@ function MyStats (props) {
         <div className='tab-stats'>
           <ul className='tab-stats-ul'>
             {userStats.ranking_competetition.map(userComp => (
-              <li className='tab-stats-item' key={userComp.public_id}>
+              <li
+                className='tab-stats-item'
+                key={userComp.competetition.public_id}
+              >
                 <div className='tab-stats-comp'>
                   <img
                     src={userComp.competetition.emblem}

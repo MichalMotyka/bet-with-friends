@@ -18,8 +18,9 @@
 }
 
 .darkmode-on {
-  background-color: rgb(0, 0, 0) !important;
+  background-color: rgb(19, 18, 18) !important;
   color:var(--white-color) !important;
+  transition: background-color .4s , color .4s ;
 }
 
 .darkmode-off {

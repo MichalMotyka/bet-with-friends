@@ -10,24 +10,48 @@ function PanelNav () {
     <>
       <nav className={`nav-panel ${darkMode && 'darkmode-on'}`}>
         <div className='nav-panel-box'>
-          <Link to='/panel/' className='brand front-brand-logo'>
+          <Link
+            style={darkMode ? { color: 'white' } : { color: 'black' }}
+            to='/panel/'
+            className='brand front-brand-logo'
+          >
             Bet With <span className='span-brand'>Friends</span>
           </Link>
 
-          <div className='border'></div>
+          <hr className='border' style={!darkMode ? {  backgroundColor: "silver"}: {backgroundColor:"transparent"}} />
 
           <ul className='panel-menu'>
             <li className='panel-item'>
-              <Link to='/panel/'>Panel</Link>
+              <Link
+                to='/panel/'
+                style={darkMode ? { color: 'white' } : { color: 'black' }}
+              >
+                Panel
+              </Link>
             </li>
             <li className='panel-item'>
-              <Link to='/panel/toptypers'>Leaderboard</Link>
+              <Link
+                style={darkMode ? { color: 'white' } : { color: 'black' }}
+                to='/panel/toptypers'
+              >
+                Leaderboard
+              </Link>
             </li>
             <li className='panel-item'>
-              <Link to='/panel/schedule'>Terminarz</Link>
+              <Link
+                style={darkMode ? { color: 'white' } : { color: 'black' }}
+                to='/panel/schedule'
+              >
+                Terminarz
+              </Link>
             </li>
             <li className='panel-item'>
-              <Link to='/panel/profile'>Profil</Link>
+              <Link
+                style={darkMode ? { color: 'white' } : { color: 'black' }}
+                to='/panel/profile'
+              >
+                Profil
+              </Link>
             </li>
           </ul>
         </div>

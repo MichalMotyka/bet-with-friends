@@ -43,10 +43,14 @@ function Panel () {
   }, [navigate, login, ipMan])
 
   return (
-    <div className={`panel-wrapper panel  ${darkMode && 'darkmode-on'}'`}>
+    <div
+      className={`panel-wrapper panel  ${darkMode && 'darkmode-on'}'`}
+      style={darkMode ? { backgroundColor: 'rgb(19, 18, 18)' } : null}
+    >
       <UserProvider>
         <PanelNav />
-        <div className='panel-box'>
+
+        <div className={`panel-box ${darkMode && 'darkmode-on'}`}>
           <div className='left-panel'>
             <TopParent />
           </div>

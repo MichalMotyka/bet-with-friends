@@ -7,7 +7,7 @@ import { BsArrowLeft } from 'react-icons/bs'
 import './myhistory.css'
 
 function MyHistory () {
-  const { ipMan } = useAuth()
+  const { ipMan, darkMode } = useAuth()
   const [historyBets, setHistoryBets] = useState([])
   const [historyPage, setHistoryPage] = useState(1)
   const [totalHistory, setTotalHistory] = useState(0)
@@ -82,6 +82,11 @@ function MyHistory () {
         <div className='competition-buttons history-buttons'>
           {competitions.map(competition => (
             <button
+              style={
+                darkMode
+                  ? { color: 'white', backgroundColor: '#1F1F1F' }
+                  : { color: 'black' }
+              }
               key={competition.public_id}
               className={`competition-btn ${
                 selectedCompetition === competition.public_id
@@ -135,9 +140,8 @@ function MyHistory () {
           <ul className='history-ul'>
             {historyBets
               .map(bets => (
-                <>
+                <div key={bets.match.public_id}>
                   <div
-                    key={bets.match.score.public_id}
                     className={`history-data-item ${
                       bets.match.score?.full_time &&
                       (Number(bets.match.score.full_time.split('-')[0]) ===
@@ -231,7 +235,7 @@ function MyHistory () {
                       />
                     </div>
                   </li>
-                </>
+                </div>
               ))
               .reverse()}
           </ul>

@@ -11,7 +11,7 @@ function Schedule () {
   const [selectedCompetition, setSelectedCompetition] = useState(2001) // Domyślnie brak wybranej kompetencji
   // 2018 euro
   const limit = 10
-  const { ipMan } = useAuth()
+  const { ipMan, darkMode } = useAuth()
 
   useEffect(() => {
     const getCompetitions = async () => {
@@ -105,6 +105,11 @@ function Schedule () {
           {competitions.map(competition => (
             <button
               key={competition.public_id}
+              style={
+                darkMode
+                  ? { color: 'white', backgroundColor: '#1F1F1F' }
+                  : { color: 'black' }
+              }
               className={`competition-btn ${
                 selectedCompetition === competition.public_id
                   ? 'active-schedule'

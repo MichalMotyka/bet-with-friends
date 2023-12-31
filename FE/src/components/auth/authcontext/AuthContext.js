@@ -3,8 +3,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext()
 
-// const ipMan = '130.162.44.103'
-const ipMan = 'localhost'
+const ipMan = '130.162.44.103'
+// const ipMan = 'localhost'
 
 export const AuthProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(() => {
@@ -62,8 +62,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode))
   }, [darkMode])
-
-  console.log(darkMode)
 
   return (
     <AuthContext.Provider
