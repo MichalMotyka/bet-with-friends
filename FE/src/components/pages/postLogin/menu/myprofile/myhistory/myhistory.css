@@ -131,7 +131,7 @@
 
 }
 
-@media (max-width: 577px) and (max-width: 768px) {
+@media (min-width: 577px) and (max-width: 768px) {
   .cometition-emblem {
     margin: 5px 10px 0 0;
   }
