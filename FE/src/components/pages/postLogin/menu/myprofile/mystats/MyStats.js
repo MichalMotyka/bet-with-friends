@@ -51,6 +51,7 @@ function MyStats (props) {
                     alt='competition eblem'
                     width={30}
                     height={30}
+                    style={{ backgroundColor: 'white' }}
                   />
                   <p>{userComp.competetition.name}</p>
                 </div>

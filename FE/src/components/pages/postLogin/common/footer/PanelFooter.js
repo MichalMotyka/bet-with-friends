@@ -30,7 +30,14 @@ function PanelFooter () {
       </p>
 
       <ul className={`footer-panel ${darkMode && 'darkmode-on'}`}>
-        <li className={`show-chat${isChatVisible ? ' visible' : ' hidden'}`}>
+        <li
+          className={`show-chat ${isChatVisible ? ' visible' : ' hidden'}`}
+          style={
+            darkMode
+              ? { backgroundColor: 'black' }
+              : { backgroundColor: 'white' }
+          }
+        >
           {isChatVisible && <DisplayMessages />}
         </li>
 
