@@ -1,15 +1,13 @@
 .panel-footer{  
     font-size: 10px;
     text-align: center;
-margin: 10px 0;
-    border-radius: 0px;  
-    
+    margin:  0;
+    border-radius: 0px;      
  } 
 
  .footer-panel{
   display: none;
- }
- 
+ } 
 
  .footer-panel-chat{
   background:none;
@@ -65,9 +63,9 @@ margin: 10px 0;
     background-color: white;     
  }
 
- .hidden-bg{
-  background-color: black;      
- }
+  .hidden-bg{
+   background-color: black;      
+  }
   
 
   .visible {
@@ -77,8 +75,7 @@ margin: 10px 0;
     right: 0;
     max-height: 90vh;
     overflow-y:auto ;      
-    background-color: white;     
-  
+    background-color: white;       
     }
 
   .btn-chat-active{
