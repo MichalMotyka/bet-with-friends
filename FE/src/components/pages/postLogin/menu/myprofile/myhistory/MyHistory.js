@@ -101,6 +101,7 @@ function MyHistory () {
                 src={competition.emblem}
                 alt=''
                 className='comp-button-img'
+                style={{ backgroundColor: 'white', borderRadius: '2px' }}
               />
               {handleCompetitionNames(competition.name)}
             </button>

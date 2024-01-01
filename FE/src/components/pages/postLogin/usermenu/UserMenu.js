@@ -3,7 +3,6 @@ import { useAuth } from '../../../auth/authcontext/AuthContext'
 import { useUser } from '../context/UserContext'
 import { useState } from 'react'
 import { BiSolidMessage } from 'react-icons/bi'
-
 import { BiSolidMessageDetail } from 'react-icons/bi'
 
 import './usermenu.css'
