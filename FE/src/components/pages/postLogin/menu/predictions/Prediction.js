@@ -54,6 +54,7 @@ function Prediction () {
             height={180}
             src={TypingRacoon}
             alt=''
+          
           />
           <div className='pred-info-text'>
             <h2 className='section-title panel-header'>
@@ -141,6 +142,7 @@ function Prediction () {
                   src={competition.emblem}
                   alt=''
                   className='comp-button-img'
+                  style={{backgroundColor:"white", borderRadius:"2px"}}
                 />
                 {handleCompetitionNames(competition.name)}
               </button>

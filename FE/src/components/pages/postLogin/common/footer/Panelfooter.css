@@ -1,8 +1,9 @@
 .panel-footer{  
     font-size: 10px;
     text-align: center;
-    margin: 0px;
+margin: 10px 0;
     border-radius: 0px;  
+    
  } 
 
  .footer-panel{
@@ -61,9 +62,12 @@
     right: 0;
     max-height: 90vh;
     overflow-y:auto ;      
-    background-color: white;      
+    background-color: white;     
  }
 
+ .hidden-bg{
+  background-color: black;      
+ }
   
 
   .visible {

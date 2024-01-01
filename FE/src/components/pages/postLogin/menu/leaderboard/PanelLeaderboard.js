@@ -20,7 +20,7 @@ function PanelLeaderboard () {
   const [totalLeaders, setTotalLeaders] = useState(null)
   const [limit] = useState(10)
   const [selectedCompetition, setSelectedCompetition] = useState(2002)
-  const { ipMan,darkMode } = useAuth()
+  const { ipMan, darkMode } = useAuth()
   const { competitions } = PredictionLogic()
 
   // MAIN API FOR ALL  LEADERBOARD!
@@ -70,11 +70,11 @@ function PanelLeaderboard () {
 
       <div className='competition-buttons'>
         <button
-         style={
-          darkMode
-            ? { color: 'white', backgroundColor: '#1F1F1F' }
-            : { color: 'black' }
-        }
+          style={
+            darkMode
+              ? { color: 'white', backgroundColor: '#1F1F1F' }
+              : { color: 'black' }
+          }
           onClick={() => setHandleTableShow(true)}
           // className='competition-btn'
 
@@ -111,6 +111,7 @@ function PanelLeaderboard () {
               alt='football team emblem'
               className='comp-button-img'
               loading='lazy'
+              style={{ backgroundColor: 'white', borderRadius: '2px' }}
             />
             <p>{competition.name}</p>
           </button>
