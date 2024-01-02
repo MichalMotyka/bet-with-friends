@@ -39,4 +39,10 @@ public class SystemInfoService {
         systemInfo.setUuid(UUID.randomUUID().toString());
         systemInfoRepository.save(systemInfo);
     }
+
+    public void read(String uuid) {
+        SystemInfo systemInfo = systemInfoRepository.findByUuid(uuid);
+        systemInfo.setStatus(true);
+        systemInfoRepository.save(systemInfo);
+    }
 }
