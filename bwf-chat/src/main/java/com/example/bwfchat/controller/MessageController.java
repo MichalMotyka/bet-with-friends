@@ -7,6 +7,7 @@ import com.example.bwfchat.entity.SystemInfo;
 import com.example.bwfchat.events.DatabaseChangeService;
 import com.example.bwfchat.events.DatabaseChangeServiceSystemInfo;
 import com.example.bwfchat.mediator.MessageMediator;
+import com.example.bwfchat.mediator.SystemInfoMediator;
 import com.example.bwfchat.services.JwtService;
 import com.example.bwfchat.services.SystemInfoService;
 import jakarta.servlet.http.Cookie;
@@ -32,7 +33,7 @@ import java.util.List;
 public class MessageController {
 
     private final MessageMediator messageMediator;
-    private final SystemInfoService systemInfoService;
+    private final SystemInfoMediator systemInfoMediator;
     private final DatabaseChangeService databaseChangeService;
     private final DatabaseChangeServiceSystemInfo databaseChangeServiceSystemInfo;
 
@@ -53,8 +54,8 @@ public class MessageController {
         Cookie[] cookies = httpServletRequest.getCookies();
         HttpServletResponse httpServletResponse = attributes.getResponse();
         String userID = messageMediator.validateCookies(cookies);
-        httpServletResponse.addHeader("X-Total-Count", String.valueOf(systemInfoService.getTotalCount(userID)));
-        return systemInfoService.getSystemInfo(userID,page-1, limit);
+        httpServletResponse.addHeader("X-Total-Count", String.valueOf(systemInfoMediator.getTotalCount(userID)));
+        return systemInfoMediator.getSystemInfo(page-1, limit,userID);
     }
 
     @MutationMapping
@@ -65,6 +66,16 @@ public class MessageController {
         messageMediator.sendMessage(message,cookies);
 
         return new Response("Message has been send","OK");
+    }
+
+    @MutationMapping
+    public Response readSystemInfo(@Argument String uuid){
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpServletRequest httpServletRequest = attributes.getRequest();
+        Cookie[] cookies = httpServletRequest.getCookies();
+        systemInfoMediator.readSystemInfo(uuid,cookies);
+
+        return new Response("Message has been read","OK");
     }
 
     @MutationMapping
