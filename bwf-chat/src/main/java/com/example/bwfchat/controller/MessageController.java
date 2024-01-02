@@ -5,6 +5,7 @@ import com.example.bwfchat.entity.Profile;
 import com.example.bwfchat.entity.Response;
 import com.example.bwfchat.entity.SystemInfo;
 import com.example.bwfchat.events.DatabaseChangeService;
+import com.example.bwfchat.events.DatabaseChangeServiceSystemInfo;
 import com.example.bwfchat.mediator.MessageMediator;
 import com.example.bwfchat.services.JwtService;
 import com.example.bwfchat.services.SystemInfoService;
@@ -33,6 +34,7 @@ public class MessageController {
     private final MessageMediator messageMediator;
     private final SystemInfoService systemInfoService;
     private final DatabaseChangeService databaseChangeService;
+    private final DatabaseChangeServiceSystemInfo databaseChangeServiceSystemInfo;
 
     @QueryMapping
     public List<Message> getMessages(@Argument int page,@Argument  int limit){
@@ -79,5 +81,10 @@ public class MessageController {
     @SubscriptionMapping
     public Flux<Message> newMessageSubscription(){
         return databaseChangeService.databaseChangeStream().map(event -> (Message) event.getSource());
+    }
+
+    @SubscriptionMapping
+    public Flux<SystemInfo> newSystemInfoSubscription(){
+        return databaseChangeServiceSystemInfo.databaseChangeStream().map(event -> (SystemInfo) event.getSource());
     }
 }
