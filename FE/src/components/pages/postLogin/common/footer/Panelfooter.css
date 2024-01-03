@@ -33,6 +33,7 @@
     margin-top: 0;
     background-color: white ;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.493);
+    z-index: 1000;
   }
 
   .footer-panel-item{
