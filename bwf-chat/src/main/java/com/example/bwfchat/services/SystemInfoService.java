@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -34,4 +35,14 @@ public class SystemInfoService {
         return systemInfoList;
     }
 
+    public void save(SystemInfo systemInfo) {
+        systemInfo.setUuid(UUID.randomUUID().toString());
+        systemInfoRepository.save(systemInfo);
+    }
+
+    public void read(String uuid) {
+        SystemInfo systemInfo = systemInfoRepository.findByUuid(uuid);
+        systemInfo.setStatus(true);
+        systemInfoRepository.save(systemInfo);
+    }
 }
