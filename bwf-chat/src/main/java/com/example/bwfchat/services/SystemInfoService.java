@@ -30,7 +30,7 @@ public class SystemInfoService {
     public List<SystemInfo> getSystemInfo(String userId,int page, int limit){
         List<SystemInfo> systemInfoList = new ArrayList<>();
         profileRepository.findProfileByUser(userId).ifPresentOrElse(value->{
-            systemInfoList.addAll(systemInfoRepository.findAll(page,limit));
+            systemInfoList.addAll(systemInfoRepository.findAll(page,limit, (int) value.getId()));
         },()->{throw new ProfileDontExistException();});
         return systemInfoList;
     }
