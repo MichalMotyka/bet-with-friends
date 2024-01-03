@@ -1,6 +1,5 @@
 package com.example.bwfchat.events;
 
-import com.example.bwfchat.entity.Message;
 import com.example.bwfchat.entity.SystemInfo;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
