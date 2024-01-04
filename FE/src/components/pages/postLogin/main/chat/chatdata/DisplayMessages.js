@@ -104,7 +104,7 @@ const DisplayMessages = () => {
         ([entry]) => {
           if (entry.isIntersecting) {
             console.log('User has scrolled to the top!')
-            setMsgLimit(prevLimit => prevLimit + 10)
+            setMsgLimit(prevLimit => prevLimit + 30)
 
             chatContainerRef.current?.scrollIntoView({
               block: 'nearest',
@@ -165,7 +165,7 @@ const DisplayMessages = () => {
       </div>
       <div className='chat-input-wrapper'>
         <div ref={messagesEndRef}></div>
-        <button className='elon' onClick={scrollToBottom}>
+        <button className='chat-scroll' onClick={scrollToBottom}>
           <MdOutlineArrowDropDown size={25} />
         </button>
         <form className='chat-input-box' onSubmit={handleSendMessage}>
