@@ -1,4 +1,5 @@
 .chat-wrapper{
+
   max-height: 400px;
 transition: bottom .3s;
 }
@@ -55,9 +56,19 @@ transition: bottom .3s;
   border-radius: 4px;
 }
 
+
 .chat-input:focus {
   border: 1px solid #2c2d5b7c;
   outline: none;
+}
+
+/* // widoczny zawsze input i guzik */
+
+.chat-input-wrapper {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  z-index: 1;
 }
 
 .chat-button {
@@ -69,15 +80,22 @@ transition: bottom .3s;
   color: var(--white-color);
   cursor: pointer;
 }
-.chat-message {
 
-
+/* .chat-message {
   padding: 0 2px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-all;
-}
+} */
 
+
+
+.chat-message {
+  padding: 0 2px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
   @media (max-width: 576px) {
    
 /*  
@@ -93,4 +111,22 @@ transition: bottom .3s;
     
     
     
+  }
+  .chatter{
+    position: relative;
+  }
+
+  .elon{
+   
+    position: absolute;
+    bottom: 30px;
+    right: -4px;
+    background-color: white;
+    z-index: 1;
+    background-color: transparent;
+    border: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    color:silver;
+ 
   }
