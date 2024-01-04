@@ -136,6 +136,14 @@ const DisplayMessages = () => {
     })
   }
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      scrollToBottom()
+    }, 300)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error: {error}</p>
   if (subscriptionError) return <p>Error: {subscriptionError}</p>
