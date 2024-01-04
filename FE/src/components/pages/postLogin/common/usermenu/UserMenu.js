@@ -101,19 +101,6 @@ function UserMenu () {
           </Link>
         </li>
 
-        {/* <li className='panel-item darkmode-input'>
-          <label className='darkmode-input' htmlFor='darkmode'>
-            Darkmode
-            {darkMode ? <span> On</span> : <span> Off</span>}
-          </label>
-          <input
-            type='checkbox'
-            id='darkmode'
-            checked={darkMode}
-            onChange={handleDarkMode}
-          />
-        </li> */}
-
         <li className='panel-item darkmode-input darkmode'>
           <input
             type='checkbox'
