@@ -17,7 +17,11 @@ const NewMessages = () => {
   } = useGraphQLDataFetcher()
 
   useEffect(() => {
-    if (subscriptionData && subscriptionData.newSystemInfoSubscription) {
+    if (
+      subscriptionData &&
+      subscriptionData.newSystemInfoSubscription &&
+      refetch
+    ) {
       refetch()
     }
   }, [subscriptionData, refetch])
