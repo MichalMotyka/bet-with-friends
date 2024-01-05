@@ -20,7 +20,7 @@
   }
 
   .footer-panel{
-    position: sticky;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
@@ -50,7 +50,8 @@
     justify-content: center;   
   }
   .show-chat{
-    height: 85vh;
+    /* height: 85vh; */
+    height: 100vh;
     transition: all .5s;
     overflow-x: hidden;
   }
