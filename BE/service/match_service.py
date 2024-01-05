@@ -247,7 +247,7 @@ def get_historical_bets(page:int,limit:int, competetition:int,user:Users):
             return ((session.query(Bets)
              .join(Match)
              .filter(Match.competetition_id == comp.id, Bets.profile_id == profile.id)
-             .order_by(Match.utc_date)
+             .order_by(Match.utc_date.desc())
              .offset((page-1)*limit)
              .limit(limit)
              .all()),     
@@ -257,7 +257,7 @@ def get_historical_bets(page:int,limit:int, competetition:int,user:Users):
         return ((session.query(Bets)
              .join(Match)
              .filter(Bets.profile_id == profile.id)
-             .order_by(Match.utc_date)
+             .order_by(Match.utc_date.desc())
              .offset((page-1)*limit)
              .limit(limit)
              .all()),
