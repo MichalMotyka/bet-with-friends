@@ -100,6 +100,9 @@ function Prediction () {
                         Za wskazanie wynikiem zwycięzcy lub remisu 20pk.
                       </p>
                     </li>
+                    <li>
+                      <p>Ligi wyświetlają się tylko w trakcie rozgrywek.</p>
+                    </li>
                   </ol>
                 </div>
               </div>
@@ -109,7 +112,12 @@ function Prediction () {
               Typuj wyniki meczów wybranych rozgrywek piłkarskich. Każdy mecz
               obstawiasz osobno. <br /> Pamiętaj, masz tylko jedną możliwość
               wysłania swojej predykcji, później nie ma możliwośći jej
-              edytowania. <br /> Można typować mecze do 1 tygodnia do przodu.
+              edytowania. <br />
+              Mecze można typować do 1 tygodnia do przodu. <br />
+              <b>
+                Poniższa lista lig przedstawia wyłącznie obecnie trwające
+                rozgrywki.{` `}
+              </b>
               Powodzenia!
             </p>
           </div>
