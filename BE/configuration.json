@@ -27,7 +27,7 @@
   "jobs":{
     "updateProfile":300,
     "getMatches":86400,
-    "procesBets": 60,
+    "procesBets": 300,
     "removeTokensRest": 86400
   },
   "football_data":{
