@@ -53,6 +53,8 @@
   /* height: 400px; */
   overflow-y: auto;
 
+ 
+
 }
 
 .tab-stats-item{
@@ -86,6 +88,13 @@
 /* background-color: tomato; */
 }
 
+
+
+@media (max-width: 768px) {
+  .tab-stats-ul{ 
+    margin-bottom: 50px;  
+  }
+}
 
 
 
