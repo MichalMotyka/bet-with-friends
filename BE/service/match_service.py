@@ -166,24 +166,26 @@ def proces_bets():
                     message = "Brawo prawidłowo obstawiłeś mecz "+ bet.match.home_team.name+"-"+bet.match.away_team.name+". Sprawdź szczegóły w profilu."
                     send_message(message=message,profile_id=profile.id)
                 ranking_competetition:CompetetitionRanking = session.query(CompetetitionRanking).filter(CompetetitionRanking.profile_id == profile.id, CompetetitionRanking.competetition_id == match.competetition_id).first()
-                if ranking_competetition:
-                    win = 0
-                    if price > 0:
-                        win = 1
+                if not ranking_competetition:
+                    uuid_value = uuid.uuid4()
+                    session.add(CompetetitionRanking(public_id = uuid_value,competetition_id = match.competetition_id,points = 0,profile_id = profile.id))
+                    session.commit()
+                    ranking_competetition = session.query(CompetetitionRanking).filter(CompetetitionRanking.public_id == uuid_value).first()
+                win = 0
+                if price > 0:
+                    win = 1
+                rate = 0
+                try:
+                    rate =  100 * (ranking_competetition.wins+win) / (ranking_competetition.bets+1)
+                except ZeroDivisionError:
                     rate = 0
-                    try:
-                        rate =  100 * (ranking_competetition.wins+win) / (ranking_competetition.bets+1)
-                    except ZeroDivisionError:
-                        rate = 0
-                    rate = round(rate,2)
-                    stmt = (update(CompetetitionRanking)
-                            .where(CompetetitionRanking.profile_id == profile.id, CompetetitionRanking.competetition_id == match.competetition_id)
-                            .values(points=(CompetetitionRanking.points + price),bets =(CompetetitionRanking.bets+1),wins=CompetetitionRanking.wins+win,rating=rate))
-                    session.execute(stmt)
-                    session.commit()
-                else:
-                    session.add(CompetetitionRanking(public_id = uuid.uuid4(),competetition_id = match.competetition_id,points = price,profile_id = profile.id))
-                    session.commit()
+                rate = round(rate,2)
+                stmt = (update(CompetetitionRanking)
+                        .where(CompetetitionRanking.profile_id == profile.id, CompetetitionRanking.competetition_id == match.competetition_id)
+                        .values(points=(CompetetitionRanking.points + price),bets =(CompetetitionRanking.bets+1),wins=CompetetitionRanking.wins+win,rating=rate))
+                session.execute(stmt)
+                session.commit()
+                    
             stmt = update(Match).where(Match.id == match.id).values(proces = True)
             session.execute(stmt)
             session.commit()
