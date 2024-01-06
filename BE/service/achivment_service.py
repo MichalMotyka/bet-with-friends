@@ -24,7 +24,7 @@ def update_achivments_for_old_users():
 
 def get_achivments_by_profile(profile_id:int):
     with session_factory() as session:
-        achivments = session.query(Achivments).filter(Achivments.profile_id == profile_id).all()
+        achivments = session.query(Achivments).filter(Achivments.profile_id == profile_id).order_by(Achivments.id).all()
         achivments_json_list = []
         for achievement in achivments:
             achivments_json_list.append(achievement.to_json())
