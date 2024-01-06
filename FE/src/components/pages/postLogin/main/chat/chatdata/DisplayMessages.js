@@ -98,35 +98,36 @@ const DisplayMessages = () => {
 
   // po scoll do samej góry pobierz nowe dane
 
-  useEffect(() => {
-    if (observedElement) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            console.log('User has scrolled to the top!')
-            setMsgLimit(prevLimit => prevLimit + 30)
+  // useEffect(() => {
+  //   if (observedElement) {
+  //     const observer = new IntersectionObserver(
+  //       ([entry]) => {
+  //         if (entry.isIntersecting) {
+  //           console.log('User has scrolled to the top!')
+  //           setMsgLimit(prevLimit => prevLimit + 30)
 
-            chatContainerRef.current?.scrollIntoView({
-              block: 'nearest',
-              behavior: 'smooth'
-            })
-          }
-        },
-        { threshold: 1 }
-      )
+  //           chatContainerRef.current?.scrollIntoView({
+  //             block: 'nearest',
+  //             behavior: 'smooth'
+  //           })
+  //         }
+  //       },
+  //       { threshold: 1 }
+  //     )
 
-      observer.observe(observedElement)
+  //     observer.observe(observedElement)
 
-      return () => {
-        observer.unobserve(observedElement)
-      }
-    }
-  }, [observedElement])
+  //     return () => {
+  //       observer.unobserve(observedElement)
+  //     }
+  //   }
+  // }, [observedElement])
 
   // scollowanie do samego dołu przy  załadowaniu chatu
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView()
-  }, [data])
+
+  // useEffect(() => {
+  //   messagesEndRef.current?.scrollIntoView()
+  // }, [data])
 
   // guziks colluje na sam dół.
   const scrollToBottom = () => {
