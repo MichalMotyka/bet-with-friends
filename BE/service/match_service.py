@@ -86,9 +86,17 @@ def get_matches_list(competetition,page:int,limit:int):
                .count())
         return (matches, count)
     
-def get_competetition_list():
+def get_competetition_list(no_empty:bool):
     with session_factory() as session:
-        return session.query(Competition).all()
+        competetitions =  session.query(Competition).all()
+    if no_empty:
+        comp_list = []
+        for competetition in competetitions:
+           if session.query(Match).filter(Match.competetition_id == competetition.id,Match.status == 'TIMED').first():
+               comp_list.append(competetition)
+        return comp_list
+    return competetitions
+
 
 def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
     with session_factory() as session:
