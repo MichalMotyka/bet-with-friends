@@ -12,8 +12,9 @@ def insert_achivments(profile_id):
             session.commit()
 
 def update_achivments_for_old_users():
+    achiv_count = len(get_list_of_achiv())
     with session_factory() as session:
-        profiles:[] = session.query(Achivments.profile_id).group_by(Achivments.profile_id).having(func.count() < 5).all()
+        profiles:[] = session.query(Achivments.profile_id).group_by(Achivments.profile_id).having(func.count() < achiv_count).all()
         profiles+=(session.query(Profile.id).outerjoin(Achivments).all())
         for profile in profiles:
             for achiv in get_list_of_achiv(profile_id=profile[0]):
