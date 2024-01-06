@@ -17,13 +17,7 @@ function MyHistory () {
   const limitHistory = 10
   const whatPageIsIT = Math.ceil(totalHistory / limitHistory)
 
-
-
   // API DO BUTTONÓW W HISTORII BETOWANIA:
-
-
-
-
 
   useEffect(() => {
     const getCompetitions = async () => {
@@ -53,10 +47,6 @@ function MyHistory () {
 
     getCompetitions()
   }, [ipMan])
-
-
-
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -177,14 +167,11 @@ function MyHistory () {
           <p>Brak historii typowania...</p>
         )}
 
-     {   console.log("here:",historyBets)}
-
         <div className='history-list'>
           <ul className='history-ul'>
-            {historyBets
-              .map(bets => (
+            {
+              historyBets.map(bets => (
                 <div key={bets.match.public_id}>
-             
                   <div
                     className={`history-data-item ${
                       bets.match.score?.full_time &&
@@ -282,7 +269,7 @@ function MyHistory () {
                 </div>
               ))
               // .reverse()
-             }
+            }
           </ul>
         </div>
       </div>

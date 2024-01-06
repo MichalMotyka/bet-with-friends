@@ -39,11 +39,6 @@ export const PredictionLogic = () => {
     getCompetitions()
   }, [ipMan])
 
-  console.log('lista kompetition', competitions)
-  // console.log('Lista meczy po click na btn:', matchList)
-
-  //
-
   useEffect(() => {
     const getMatches = async () => {
       try {
