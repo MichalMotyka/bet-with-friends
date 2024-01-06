@@ -137,11 +137,14 @@ function MyHistory () {
           <p>Brak historii typowania...</p>
         )}
 
+     {   console.log("here:",historyBets)}
+
         <div className='history-list'>
           <ul className='history-ul'>
             {historyBets
               .map(bets => (
                 <div key={bets.match.public_id}>
+             
                   <div
                     className={`history-data-item ${
                       bets.match.score?.full_time &&
@@ -238,7 +241,8 @@ function MyHistory () {
                   </li>
                 </div>
               ))
-              .reverse()}
+              // .reverse()
+             }
           </ul>
         </div>
       </div>
