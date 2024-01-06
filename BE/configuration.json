@@ -35,6 +35,6 @@
     "uri":"https://api.football-data.org/v4",
     "competitions":[2018,2001,2021,2002,2019,2014,2013,2015,2003,2017]
   },
-  "achivments_update_mode":false,
+  "achivments_update_mode":true,
   "APP-TOKEN": "9d68e6b5-64b5-4b13-b1c9-b2677f78f33f"
 }
