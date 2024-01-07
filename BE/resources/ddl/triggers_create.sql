@@ -80,7 +80,7 @@ DECLARE
 BEGIN
     Select experience from profiles where id = new.id into exp;
     if exp >= 100 then
-        UPDATE profiles SET experience = exp - 100 and level = level +1 where id = new.id;
+        UPDATE profiles SET experience = exp - 100, level = level +1 where id = new.id;
     end if;
     RETURN NULL;
 END;
