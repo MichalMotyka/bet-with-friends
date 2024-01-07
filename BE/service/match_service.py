@@ -117,7 +117,7 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
             .filter(
                 Competition.public_id == competetition,
                 Match.utc_date >= datetime.utcnow(),
-                Match.utc_date <= datetime.now() + timedelta(days=5),
+                Match.utc_date <= datetime.now() + timedelta(days=21),
             ).all()
         )
         possible_best = filter_match(matchs=possible_best,session=session,profile=profile)
