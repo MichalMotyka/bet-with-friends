@@ -106,12 +106,11 @@ def get_posible_bets(competetition,page:int,limit:int,user:Users) -> [Match]:
             .filter(
                 Competition.public_id == competetition,
                 Match.utc_date >= datetime.utcnow(),
-                Match.utc_date <= datetime.now() + timedelta(days=5),
+                Match.utc_date <= datetime.now() + timedelta(days=21),
             )
             .order_by(Match.utc_date,Match.home_team_id)
             .all()
         )
-        print(obj.to_json() for obj in possible_best)
         count = (session
             .query(Match)
             .join(Competition, Match.competetition_id == Competition.id)
