@@ -19,7 +19,7 @@ function PanelLeaderboard () {
   const [page, setPage] = useState(1)
   const [totalLeaders, setTotalLeaders] = useState(null)
   const [limit] = useState(10)
-  const [selectedCompetition, setSelectedCompetition] = useState(2002)
+  const [selectedCompetition, setSelectedCompetition] = useState(2019)
   const { ipMan, darkMode } = useAuth()
   const [buttonCompetitions, setButtonCompetitions] = useState([])
 

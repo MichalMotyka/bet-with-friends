@@ -98,7 +98,7 @@ function MatchesSchedule ({
                   height={25}
                   src={match.away_team.crest}
                   alt=''
-                  style={{ backgroundColor: 'white' }}
+                  style={{ backgroundColor: 'white', borderRadius: '5px' }}
                 />
               </td>
               <td className='crest mobile-schedule'>
