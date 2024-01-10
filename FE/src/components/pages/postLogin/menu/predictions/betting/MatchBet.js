@@ -70,6 +70,7 @@ function MatchBet ({
         height={65}
         src={matchList[0].competition.emblem}
         alt='Footbal team emblem'
+        style={{ backgroundColor: 'white' }}
       />
 
       <p className='schedule-btns'>
