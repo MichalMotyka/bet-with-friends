@@ -3,8 +3,7 @@
     list-style: none;   
 }
 
-.nav-menu-item {
-  
+.nav-menu-item {  
     padding: 15px 30px;
     font-weight: bold;
     transition: color 0.3s;
@@ -12,13 +11,9 @@
     color: black;
 }
 
-
-
 .nav-front li a:hover {
     color: var(--brand-color);
 }
-
-
 
 .nav-front-login-btn {
     padding: 15px 30px;

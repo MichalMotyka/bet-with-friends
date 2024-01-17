@@ -29,7 +29,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('loggedIn', JSON.stringify(true))
   }
 
-
   const logout = async () => {
     const url = `http://${ipMan}:5000/api/v1/logout`
 
