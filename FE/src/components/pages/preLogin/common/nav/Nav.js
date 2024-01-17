@@ -23,7 +23,6 @@ function Nav () {
       navigate('/panel')
     } else {
       // Jeśli użytkownik nie jest zalogowany, przekieruj do strony logowania
-      navigate('/login')
     }
     // Zamknij menu hamburgera po kliknięciu na element nawigacji
     setOpen(false)
