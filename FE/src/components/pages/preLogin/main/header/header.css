@@ -80,8 +80,7 @@
 
 
   .header-front-logo-mobile{
-    display: block;   
-    padding-top: 20px ;
+  display: none;
   }
  
 
@@ -131,9 +130,8 @@
   }
 
   .header-front-logo-mobile{
-    display: block;   
-    padding-top: 20px ;
-  }
+    display: none;
+    }
  
 }
 
@@ -184,9 +182,8 @@
   }
 
   .header-front-logo-mobile{
-    display: block;   
-    padding-top: 20px ;
-  }
+    display: none;
+    }
  
 
   
