@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import './leaderboards.css'
+import { useTranslation } from 'react-i18next'
 
 function Leaderboard () {
+  const { t } = useTranslation()
   const [leadersData, setLeadersData] = useState([])
 
   useEffect(() => {
@@ -32,26 +34,20 @@ function Leaderboard () {
     leadersData.length > 0 && (
       <section className='app-wrap'>
         <h2 className='section-title'>
-          <span className='span-brand'> Leader</span>board
+          <span className='span-brand'> {t('leaderboard.headerA')}</span>
+          {t('leaderboard.headerB')}
         </h2>
-        <p className='table-caption'>
-          W sekcji "Top 5 Typerów Piłki Nożnej" prezentujemy najskuteczniejszych
-          graczy w naszej społeczności. Tabela zawiera kluczowe statystyki,
-          takie jak zdobyte punkty, skuteczność, ilość wygranych oraz ogólna
-          ocena. To doskonała okazja, aby sprawdzić swoje umiejętności w
-          typowaniu wyników i konkurować z innymi fanami piłki nożnej. Dołącz
-          już dziś i poczuj emocje rywalizacji!
-        </p>
+        <p className='table-caption'>{t('leaderboard.info')}</p>
         <table className='leaderboard-table  '>
           <thead>
             <tr>
-              <th className='th-place'>Miejsce</th>
-              <th>Nick</th>
-              <th className='th-hide'>Avatar</th>
-              <th>Punkty</th>
-              <th className='th-hide'>Bety</th>
-              <th>Winy</th>
-              <th className='th-hide'>Rating</th>
+              <th className='th-place'>{t('leaderboard.place')}</th>
+              <th>{t('leaderboard.nick')}</th>
+              <th className='th-hide'>{t('leaderboard.avatar')}</th>
+              <th>{t('leaderboard.points')}</th>
+              <th className='th-hide'>{t('leaderboard.bets')}</th>
+              <th>{t('leaderboard.wins')}</th>
+              <th className='th-hide'>{t('leaderboard.rating')}</th>
             </tr>
           </thead>
           <tbody>
