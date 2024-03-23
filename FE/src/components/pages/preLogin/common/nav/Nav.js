@@ -35,6 +35,7 @@ function Nav () {
       </Link>
 
       <button
+        className='lang-btn'
         onClick={() => {
           changeLanguage('en')
           console.log(i18n.language)
@@ -43,6 +44,7 @@ function Nav () {
         EN
       </button>
       <button
+        className='lang-btn'
         onClick={() => {
           changeLanguage('pl')
           console.log(i18n.language)

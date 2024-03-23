@@ -37,6 +37,13 @@
     transition: color 0.3s;
 }
 
+.lang-btn{
+ 
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.212);
+    border-radius: 4px;
+}
+
 
 
 /* //HAMBURGER MENU  */
