@@ -6,10 +6,8 @@ import validate from '../validation/SignUpValidation'
 import RaccoonSignUp from './images/raccoon-signup.webp'
 import { ScrollToTop } from '../../utilities/ScrollToTop'
 import './signup.css'
-import { useTranslation } from 'react-i18next'
 
 function SignUp () {
-  const { t } = useTranslation()
   const [formError, setFormError] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -50,18 +48,20 @@ function SignUp () {
           }
         })
         setFormError(null)
-        setSuccessMessage(`${t('signup.sucess')}`)
+        setSuccessMessage(
+          'Rejestracja zakończona sukcesem, aktywuj swoje konto poprzez email.'
+        )
       } else {
         const errorData = await response.json()
 
         if (errorData.code === 'R1') {
-          throw new Error(`${t('signupvalidation.error1')}`)
+          throw new Error(`Adres email jest zajęty.`)
         } else {
-          throw new Error(`${t('signupvalidation.error2')}`)
+          throw new Error(`Nazwa użytkownika jest zajęta.`)
         }
       }
     } catch (error) {
-      setFormError(error.message || `${t('signupvalidation.error3')}`)
+      setFormError(error.message || 'Wystąpił błąd podczas rejestracji.')
     }
   }
 
@@ -69,8 +69,7 @@ function SignUp () {
     <section className='app-wrap'>
       <div className='signup'>
         <h2 className='section-title'>
-          {t('signup.headerA')}{' '}
-          <span className='span-brand'> {t('signup.headerB')}</span>
+          Sign <span className='span-brand'>Up</span>
         </h2>
 
         <link rel='preload' as='image' href={RaccoonSignUp} />
@@ -95,9 +94,9 @@ function SignUp () {
         >
           {({ touched, errors, dirty, isValid }) => (
             <Form className='form-signup'>
-              <p> {t('signup.info')}</p>
+              <p>Stwórz konto i dołącz do społeczności!</p>
 
-              <label htmlFor='email'>{t('signup.email')}</label>
+              <label htmlFor='email'>Email</label>
               <Field
                 type='email'
                 id='email'
@@ -113,7 +112,7 @@ function SignUp () {
                 className='signup-error-msg'
               />
 
-              <label htmlFor='name'>{t('signup.nick')}</label>
+              <label htmlFor='name'>Nazwa użytkownika</label>
               <Field
                 type='text'
                 id='name'
@@ -130,7 +129,7 @@ function SignUp () {
                 className='signup-error-msg'
               />
 
-              <label htmlFor='password'>{t('signup.password1')}</label>
+              <label htmlFor='password'>Hasło</label>
               <Field
                 type='password'
                 id='password'
@@ -148,7 +147,7 @@ function SignUp () {
                 className='signup-error-msg'
               />
 
-              <label htmlFor='confirmPassword'>{t('signup.password2')}</label>
+              <label htmlFor='confirmPassword'>Potwierdź hasło</label>
               <Field
                 type='password'
                 id='confirmPassword'
@@ -177,7 +176,7 @@ function SignUp () {
                     Wysyłanie...
                   </>
                 ) : (
-                  `${t('signup.cta')}`
+                  'Stwórz konto'
                 )}
               </button>
 
@@ -192,9 +191,9 @@ function SignUp () {
         </Formik>
 
         <div className='form-to-login'>
-          {t('signup.acc1')}
+          Posiadasz już konto?
           <Link to='/login' className='signup-login' onClick={ScrollToTop}>
-            {t('signup.acc2')}
+            Zaloguj się
           </Link>
         </div>
       </div>
