@@ -15,7 +15,6 @@ function Hit () {
   return (
     <section className='app-wrap'>
       <hr />
-
       <h2 className='section-title'>
         <span className='span-brand'> {t('hit.title-top')}</span>{' '}
         {t('hit.title-bot')}
