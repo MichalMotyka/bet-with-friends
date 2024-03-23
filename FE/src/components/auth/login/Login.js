@@ -5,12 +5,12 @@ import validate from '../validation/LogInValidations'
 import RaccoonLogin from './images/raccoon-login3.webp'
 import { ScrollToTop } from '../../utilities/ScrollToTop'
 import { FaSpinner } from 'react-icons/fa'
+
 import { useAuth } from '../authcontext/AuthContext'
+
 import './login.css'
-import { useTranslation } from 'react-i18next'
 
 function Login () {
-  const { t } = useTranslation()
   const navigate = useNavigate()
   const { login, ipMan } = useAuth()
   const [loginError, setLoginError] = useState(null)
@@ -69,8 +69,7 @@ function Login () {
     <section className='app-wrap'>
       <div className='login'>
         <h2 className='section-title'>
-          {t('login.headerA')}{' '}
-          <span className='span-brand'> {t('login.headerB')}</span>
+          Log <span className='span-brand'>in</span>
         </h2>
 
         <link rel='preload' as='image' href={RaccoonLogin} />
@@ -92,8 +91,8 @@ function Login () {
         >
           {formik => (
             <Form className='form-login'>
-              <p className='form-parag'> {t('login.info')} </p>
-              <label htmlFor='email'>{t('login.email')}</label>
+              <p className='form-parag'>Zaloguj się i dołącz do zabawy!</p>
+              <label htmlFor='email'>Email</label>
               <Field
                 type='email'
                 id='email'
@@ -112,7 +111,7 @@ function Login () {
                 className='login-error-msg'
               />
 
-              <label htmlFor='password'>{t('login.password')}</label>
+              <label htmlFor='password'>Hasło</label>
               <Field
                 type='password'
                 id='password'
@@ -134,10 +133,10 @@ function Login () {
                 {loading ? (
                   <>
                     <FaSpinner className='spinner-icon' />
-                    {t('login.cta')}...
+                    Logowanie...
                   </>
                 ) : (
-                  `${t('login.cta')}`
+                  'Zaloguj'
                 )}
               </button>
 
@@ -150,7 +149,7 @@ function Login () {
                   className='signup-login'
                   onClick={ScrollToTop}
                 >
-                  {t('login.passrec')}
+                  Przypomnij hasło
                 </Link>
               </div>
             </Form>
@@ -159,9 +158,9 @@ function Login () {
 
         <div className='form-to-signup'>
           <div>
-            <span> {t('login.noacc1')}</span>
+            <span>Nie masz konta?</span>
             <Link to='/signup' className='signup-login' onClick={ScrollToTop}>
-              {t('login.noacc2')}
+              Zarejestruj się
             </Link>
           </div>
         </div>
