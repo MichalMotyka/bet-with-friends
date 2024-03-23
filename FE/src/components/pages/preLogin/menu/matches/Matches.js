@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../../../auth/authcontext/AuthContext'
+import { useTranslation } from 'react-i18next'
 
 function Matches () {
+  const { t } = useTranslation()
   const [matchesData, setMatchesData] = useState([])
   const [competitionsList, setCompetitionsList] = useState([])
   const [currentCompetition, setCurrentCompetition] = useState(2001)
@@ -78,15 +80,11 @@ function Matches () {
     <section className='app-wrap'>
       <h2 className='section-title'>
         {' '}
-        Tabela <span className='span-brand'>meczów</span>{' '}
+        {t('matches.headerA')}{' '}
+        <span className='span-brand'> {t('matches.headerB')}</span>{' '}
       </h2>
 
-      <p>
-        Tabela przedstawia nadchodzące rozgrywki najpopularniejszych lig. Aby
-        uczestniczyć w emocjonującym świecie obstawiania ze swoimi przyjaciółmi
-        sprawdź, kiedy odbywają się najważniejsze mecze i zanurz się w
-        atmosferze rywalizacji.
-      </p>
+      <p>{t('matches.info')}</p>
 
       <div className='competition-buttons'>
         {competitionsList.map(competition => (
@@ -109,11 +107,11 @@ function Matches () {
         <thead>
           <tr>
             <th className='crest'></th>
-            <th>Gospodarze</th>
-            <th>Wynik</th>
-            <th>Goście</th>
+            <th> {t('matches.host')}</th>
+            <th> {t('matches.result')}</th>
+            <th> {t('matches.guest')}</th>
             <th className='crest'></th>
-            <th className='crest'>Termin</th>
+            <th className='crest'> {t('matches.date')}</th>
           </tr>
         </thead>
         <tbody>
