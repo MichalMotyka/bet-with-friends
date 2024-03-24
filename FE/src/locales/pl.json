@@ -121,5 +121,20 @@
     "error": "Kod został zużyty lub się przedawnił.",
     "passA": "Zmień",
     "passB": "hasło"
+  },
+  "panelFooter": {
+    "table": "Tabela",
+    "schedule": "Terminarz",
+    "profile": "Profil"
+  },
+  "panelNav": {
+    "typing": "Typowanie"
+  },
+  "panelUM": {
+    "MP": "Mój profil",
+    "logout": "Wyloguj się"
   }
 }
+
+
+
