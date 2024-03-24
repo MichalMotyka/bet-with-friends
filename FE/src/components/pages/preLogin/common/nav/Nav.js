@@ -34,24 +34,15 @@ function Nav () {
         Bet With <span className='span-brand'>Friends</span>
       </Link>
 
-      <button
+      <select
+        aria-label='Language change'
         className='lang-btn'
-        onClick={() => {
-          changeLanguage('en')
-          console.log(i18n.language)
-        }}
+        value={i18n.language}
+        onChange={e => changeLanguage(e.target.value)}
       >
-        EN
-      </button>
-      <button
-        className='lang-btn'
-        onClick={() => {
-          changeLanguage('pl')
-          console.log(i18n.language)
-        }}
-      >
-        PL
-      </button>
+        <option value='en'>EN</option>
+        <option value='pl'>PL</option>
+      </select>
 
       <ul
         className={`nav-front ${

@@ -37,7 +37,13 @@
     transition: color 0.3s;
 }
 
+
+
 .lang-btn{
+    position: absolute;
+    top: 80px;
+
+   
  
     background-color: transparent;
     border: 1px solid rgba(0, 0, 0, 0.212);
