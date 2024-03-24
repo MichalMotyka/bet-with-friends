@@ -43,64 +43,83 @@
     "result": "Wynik",
     "date": "Termin"
   },
-  "leaderboard" : {
-    "header" : "Ranking",
-    "info" : "W sekcji 'Top 5 Typerów Piłki Nożnej' prezentujemy najskuteczniejszych graczy w naszej społeczności. Tabela zawiera kluczowe statystyki, takie jak zdobyte punkty, skuteczność, ilość wygranych oraz ogólna ocena. To doskonała okazja, aby sprawdzić swoje umiejętności w typowaniu wyników i konkurować z innymi fanami piłki nożnej. Dołącz już dziś i poczuj emocje rywalizacji!",
-    "place" : "Miejsce",
-    "nick" : "Nick",
-    "avatar" :"Avatar",
-    "points" : "Punkty",
-    "bets" : "Bety",
-    "wins" : "Winy",
-    "rating" : "Rating"
+  "leaderboard": {
+    "header": "Ranking",
+    "info": "W sekcji 'Top 5 Typerów Piłki Nożnej' prezentujemy najskuteczniejszych graczy w naszej społeczności. Tabela zawiera kluczowe statystyki, takie jak zdobyte punkty, skuteczność, ilość wygranych oraz ogólna ocena. To doskonała okazja, aby sprawdzić swoje umiejętności w typowaniu wyników i konkurować z innymi fanami piłki nożnej. Dołącz już dziś i poczuj emocje rywalizacji!",
+    "place": "Miejsce",
+    "nick": "Nick",
+    "avatar": "Avatar",
+    "points": "Punkty",
+    "bets": "Bety",
+    "wins": "Winy",
+    "rating": "Rating"
   },
-  "aboutus" :{
-    "headerA" : "O",
-    "headerB" : "nas",
-    "info1a" : "Witaj w fascynującym świecie Bet With Friends",
-    "info1b" : "nowoczesnej aplikacji do typowania wyników meczów z najpopularniejszych lig piłki nożnej! Ciesz się pasją do futbolu w zupełnie nowy sposób, zdobywając punkty za trafne typy i konkurując z przyjaciółmi oraz innymi entuzjastami tego pięknego sportu!",
+  "aboutus": {
+    "headerA": "O",
+    "headerB": "nas",
+    "info1a": "Witaj w fascynującym świecie Bet With Friends",
+    "info1b": "nowoczesnej aplikacji do typowania wyników meczów z najpopularniejszych lig piłki nożnej! Ciesz się pasją do futbolu w zupełnie nowy sposób, zdobywając punkty za trafne typy i konkurując z przyjaciółmi oraz innymi entuzjastami tego pięknego sportu!",
     "info2a": "Niezrównany Terminarz Meczów:",
-    "info2b" : "Bet With Friends oferuje kompletny terminarz z nadchodzącymi meczami z różnych lig piłkarskich na całym świecie. Bez względu na to, czy to Liga Mistrzów, Premier League, La Liga czy Serie A, nasza aplikacja zapewni Ci dostęp do najświeższych informacji o zbliżających się wydarzeniach piłkarskich.",
-    "info3a" : "Intuicyjny System Typowania",
-    "info3b" : "Zanurz się w emocjonującym świecie typowania wyników, korzystając z łatwego i intuicyjnego interfejsu Bet With Friends. Typowanie jeszcze nigdy nie było takie proste! Wybierz swoje przewidywania dla wybranych meczów, sprawdź swój instynkt piłkarski i zgarnij punkty za każdy trafiony wynik.",
-    "info4a" : "Zdobądź Punkty i Wspię się na Szczyt",
-    "info4b" : "Twój talent typowania zostanie doceniony dzięki systemowi punktacji w Bet With Friends. Im trafniejsze typy, tym więcej punktów zdobywasz. Sprawdź się w konkurencji z innymi graczami, awansuj na szczyt rankingu i zdobywaj tytuły najlepszego typera.",
-    "info5a" : "Dołącz do Społeczności Pasjonatów:",
-    "info5b" : "Odkryj społeczność Bet With Friendsi rozpocznij niezapomnianą podróż po futbolowych emocjach już teraz!"
+    "info2b": "Bet With Friends oferuje kompletny terminarz z nadchodzącymi meczami z różnych lig piłkarskich na całym świecie. Bez względu na to, czy to Liga Mistrzów, Premier League, La Liga czy Serie A, nasza aplikacja zapewni Ci dostęp do najświeższych informacji o zbliżających się wydarzeniach piłkarskich.",
+    "info3a": "Intuicyjny System Typowania",
+    "info3b": "Zanurz się w emocjonującym świecie typowania wyników, korzystając z łatwego i intuicyjnego interfejsu Bet With Friends. Typowanie jeszcze nigdy nie było takie proste! Wybierz swoje przewidywania dla wybranych meczów, sprawdź swój instynkt piłkarski i zgarnij punkty za każdy trafiony wynik.",
+    "info4a": "Zdobądź Punkty i Wspię się na Szczyt",
+    "info4b": "Twój talent typowania zostanie doceniony dzięki systemowi punktacji w Bet With Friends. Im trafniejsze typy, tym więcej punktów zdobywasz. Sprawdź się w konkurencji z innymi graczami, awansuj na szczyt rankingu i zdobywaj tytuły najlepszego typera.",
+    "info5a": "Dołącz do Społeczności Pasjonatów:",
+    "info5b": "Odkryj społeczność Bet With Friendsi rozpocznij niezapomnianą podróż po futbolowych emocjach już teraz!"
   },
-  "login" : {
+  "login": {
     "headerA": "Zaloguj",
     "headerB": "się",
-    "info" : "Zaloguj się i dołącz do zabawy!",
+    "info": "Zaloguj się i dołącz do zabawy!",
     "email": "Email",
-    "password" : "Hasło",
+    "password": "Hasło",
     "cta": "Login",
     "passrec": "Przypomnij hasło",
-    "noacc1" : "Nie masz konta?",
-    "noacc2" : "Zarejestruj się"
+    "noacc1": "Nie masz konta?",
+    "noacc2": "Zarejestruj się"
   },
-  "loginvalidation" : {
-    "pass1" : " Hasło musi mieć co najmniej 8 znaków i jeden znak specjalny (!@#$%^&*)",
-    "pass2" : "Hasło musi zawierać co najmniej jeden znak specjalny (!@#$%^&*)",
-    "email1" : "Field required",
-    "email2" : "Wrong email adress"
+  "loginvalidation": {
+    "pass1": " Hasło musi mieć co najmniej 8 znaków i jeden znak specjalny (!@#$%^&*)",
+    "pass2": "Hasło musi zawierać co najmniej jeden znak specjalny (!@#$%^&*)",
+    "email1": "Field required",
+    "email2": "Wrong email adress"
   },
-  "signup" : {
-    "headerA" : "Stwórz",
-    "headerB" : "konto",
-    "info" : "Stwórz konto i dołącz do społeczności!",
-    "email" : "Email",
-    "nick" : "Nazwa użytkownika",
-    "password1" : "Hasło",
-    "password2" : "Potwierdź hasło",
-    "cta" : "Stwórz konto",
-    "acc1" : "Posiadasz już konto?",
-    "acc2" : "Log in",
-    "success" : "Rejestracja zakończona sukcesem, aktywuj swoje konto poprzez email."  
+  "signup": {
+    "headerA": "Stwórz",
+    "headerB": "konto",
+    "info": "Stwórz konto i dołącz do społeczności!",
+    "email": "Email",
+    "nick": "Nazwa użytkownika",
+    "password1": "Hasło",
+    "password2": "Potwierdź hasło",
+    "cta": "Stwórz konto",
+    "acc1": "Posiadasz już konto?",
+    "acc2": "Log in",
+    "success": "Rejestracja zakończona sukcesem, aktywuj swoje konto poprzez email."
   },
-  "signupvalidation" : {
-    "error1" : "Adres email jest już zajęty.",
-    "error2" : "Nazwa użytkownika jest już zajęta.",
-    "error3" : "Wystąpił błąd podczas rejestracji."
+  "signupvalidation": {
+    "error1": "Adres e-mail już zajęty",
+    "error2": "Nazwa użytkownika jest już zajęta",
+    "error3": "Wystąpił błąd podczas rejestracji."
+  },
+  "passreset": {
+    "success": "Twoje hasło zostało zmienione",
+    "error": "Kod został zużyty lub się przedawnił",
+    "newpass": "Nowe hasło",
+    "confirmNP": "Potwierdź nowe hasło",
+    "status": "Wysyłanie..."
+  },
+  "newpass": {
+    "success": "Instrukcja resetowania hasła została wysłana na podany email.",
+    "passA": "Zapomniałeś",
+    "passB": "hasła",
+    "noemail": "Brak emaila w systemie"
+  },
+  "resetpass": {
+    "success": "Twoje hasło zostało zmienione.",
+    "error": "Kod został zużyty lub się przedawnił.",
+    "passA": "Zmień",
+    "passB": "hasło"
   }
 }

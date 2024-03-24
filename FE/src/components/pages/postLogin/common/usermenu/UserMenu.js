@@ -5,10 +5,13 @@ import { useState } from 'react'
 import { BiSolidMessageDetail } from 'react-icons/bi'
 import NewMessages from './newmessages/NewMessages'
 import './usermenu.css'
+import { useTranslation } from 'react-i18next'
 
 import GraphQLDataFetcher from './gglDataFetcher/GraphQLDataFetcher'
 
 function UserMenu () {
+  const { t } = useTranslation()
+
   const { data } = GraphQLDataFetcher()
   const { userProfile } = useUser()
   const [showUserMenu, setUserMenu] = useState(false)
@@ -93,7 +96,7 @@ function UserMenu () {
             style={darkMode ? { color: 'white' } : { color: 'black' }}
             to='/panel/schedule'
           >
-            Terminarz
+            {t('panelFooter.schedule')}
           </Link>
         </li>
         <li className='panel-item'>
@@ -101,7 +104,7 @@ function UserMenu () {
             style={darkMode ? { color: 'white' } : { color: 'black' }}
             to='/panel/profile'
           >
-            Mój profil
+            {t('panelUM.MP')}
           </Link>
         </li>
 
@@ -117,7 +120,7 @@ function UserMenu () {
 
         <li className='panel-item'>
           <button className='panel-logout-btn' onClick={handleLogout}>
-            Wyloguj
+            {t('panelUM.logout')}
           </button>
         </li>
       </ul>
