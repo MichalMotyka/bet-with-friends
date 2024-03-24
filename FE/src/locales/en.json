@@ -103,6 +103,38 @@
     "error1" : "Email adress already taken",
     "error2" : "Username is already taken",
     "error3" : "There was an error during registration."
-  }
-}
- 
+  },
+  "passreset" : {
+    "success": "Your password has been changed",
+    "error" : "The code has been used or has expired",
+    "newpass" : "New password",
+    "confirmNP" : "Confirm new password",
+    "status" : "Sending..."
+  },
+  "newpass" : {
+    "success" : "The password reset instruction has been sent to the provided email.",
+    "passA" : "Forgot",
+    "passB" : "password",
+    "noemail" : "No email found in the system"
+  },
+  "resetpass" : {
+    "success" : "Your password has been changed.",
+    "error" : "The code has been used or has expired.",
+    "passA" : "Change",
+    "passB" : "password"
+  },
+  "panelFooter" : {
+    "table" : "Table",
+    "schedule" : "Schedule",
+    "profile" : "Profile"
+  },
+  "panelNav" : {
+    "typing" : "Typing"  
+  },
+  "panelUM" : {
+    "MP" : "My profile",
+    "logout" : "Logout"
+  } 
+} 
+
+

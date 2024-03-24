@@ -3,9 +3,15 @@ import UserMenu from '../usermenu/UserMenu'
 import { useAuth } from '../../../../auth/authcontext/AuthContext'
 import './panelnav.css'
 // import RakunLogo from './images/raccoonlogo.png'
+import { useTranslation } from 'react-i18next'
 
 function PanelNav () {
   const { darkMode } = useAuth()
+  const { t, i18n } = useTranslation()
+
+  const changeLanguage = language => {
+    i18n.changeLanguage(language)
+  }
 
   return (
     <>
@@ -22,6 +28,16 @@ function PanelNav () {
             <span className='showOnDesktop'>
               Bet With <span className='span-brand'>Friends</span>
             </span>
+
+            <select
+              aria-label='Language change'
+              className='lang-btn'
+              value={i18n.language}
+              onChange={e => changeLanguage(e.target.value)}
+            >
+              <option value='en'>EN</option>
+              <option value='pl'>PL</option>
+            </select>
             {/* <img
               src={RakunLogo}
               width={80}
@@ -45,7 +61,7 @@ function PanelNav () {
                 to='/panel/'
                 style={darkMode ? { color: 'white' } : { color: 'black' }}
               >
-                Typowanie
+                {t('panelNav.typing')}
               </Link>
             </li>
             <li className='panel-item'>
@@ -61,7 +77,7 @@ function PanelNav () {
                 style={darkMode ? { color: 'white' } : { color: 'black' }}
                 to='/panel/schedule'
               >
-                Terminarz
+                {t('panelFooter.schedule')}
               </Link>
             </li>
             <li className='panel-item'>
@@ -69,7 +85,7 @@ function PanelNav () {
                 style={darkMode ? { color: 'white' } : { color: 'black' }}
                 to='/panel/profile'
               >
-                Profil
+                {t('panelFooter.profile')}
               </Link>
             </li>
           </ul>
