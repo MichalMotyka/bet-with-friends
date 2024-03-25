@@ -7,11 +7,10 @@ import { useTranslation } from 'react-i18next'
 
 function PanelNav () {
   const { darkMode } = useAuth()
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
-  const changeLanguage = language => {
-    i18n.changeLanguage(language)
-  }
+
+
 
   return (
     <>
@@ -29,15 +28,7 @@ function PanelNav () {
               Bet With <span className='span-brand'>Friends</span>
             </span>
 
-            <select
-              aria-label='Language change'
-              className='lang-btn'
-              value={i18n.language}
-              onChange={e => changeLanguage(e.target.value)}
-            >
-              <option value='en'>EN</option>
-              <option value='pl'>PL</option>
-            </select>
+       
             {/* <img
               src={RakunLogo}
               width={80}

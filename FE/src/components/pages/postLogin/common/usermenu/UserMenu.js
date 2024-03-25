@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 import GraphQLDataFetcher from './gglDataFetcher/GraphQLDataFetcher'
 
 function UserMenu () {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const { data } = GraphQLDataFetcher()
   const { userProfile } = useUser()
@@ -32,6 +32,10 @@ function UserMenu () {
 
   const handleUserMenu = () => {
     setUserMenu(!showUserMenu)
+  }
+
+  const changeLanguage = language => {
+    i18n.changeLanguage(language)
   }
 
   return (
@@ -99,6 +103,30 @@ function UserMenu () {
             {t('panelFooter.schedule')}
           </Link>
         </li>
+
+        <li className='panel-item'>
+          <div aria-label='Language change' className='lang-btn'>
+            <label>
+              <input
+                type='radio'
+                value='en'
+                checked={i18n.language === 'en'}
+                onChange={e => changeLanguage(e.target.value)}
+              />
+              EN
+            </label>
+            <label>
+              <input
+                type='radio'
+                value='pl'
+                checked={i18n.language === 'pl'}
+                onChange={e => changeLanguage(e.target.value)}
+              />
+              PL
+            </label>
+          </div>
+        </li>
+
         <li className='panel-item'>
           <Link
             style={darkMode ? { color: 'white' } : { color: 'black' }}

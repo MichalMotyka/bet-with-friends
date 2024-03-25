@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useQuery, useMutation, useSubscription } from '@apollo/client'
 import { gql } from '@apollo/client'
 import { useAuth } from '../../../../../auth/authcontext/AuthContext'
-
+import { useTranslation } from 'react-i18next'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
 
 const GET_MESSAGES = gql`
@@ -45,6 +45,7 @@ const SEND_MESSAGE = gql`
 `
 
 const DisplayMessages = () => {
+  const { t } = useTranslation()
   const [inputMessage, setInputMessage] = useState('')
   const messagesEndRef = useRef()
   const { darkMode } = useAuth()
@@ -190,7 +191,7 @@ const DisplayMessages = () => {
             onChange={e => setInputMessage(e.target.value)}
           />
           <button className='chat-button' type='submit'>
-            Wyślij
+            {t('chat.chatbtn')}
           </button>
         </form>
       </div>

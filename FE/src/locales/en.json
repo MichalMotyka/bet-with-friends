@@ -41,7 +41,12 @@
     "host": "Host",
     "guest": "Guest",
     "result": "Result",
-    "date": "Date"
+    "date": "Date",
+    "bet" : "Bet",
+    "send" : "Send",
+    "await" : "Waiting for upcoming matches...",
+    "scheduleA" : "Schedule of",
+    "scheduleB" : "matches"
   },
   "leaderboard": {
     "headerA": "Leader",
@@ -134,7 +139,70 @@
   "panelUM" : {
     "MP" : "My profile",
     "logout" : "Logout"
-  } 
+  },
+  "panelAD" : {
+    "adA" : "Your",
+    "adB" : "Ad"
+  },
+  "chat" : {
+    "chatbtn" : "Send"
+  },
+  "panelTopTyper" : {
+    "headerA" : "Top",
+    "headerB" : "Typer",
+    "your" : "Your",
+    "place" : "Place",
+    "nick": "Nickname",
+    "profile" : "profile",
+    "points" : "Points",
+    "bets" : "Bets",
+    "wins" : "Wins",
+    "rating" : "Rating",
+    "stats" : "Global statistics",
+    "statsL" : "Statistics by league"
+  },
+  "panelLeaders" : {
+    "browse" : "Browse"    
+  },
+  "panelLB" : {
+    "global" : "Global rankng",
+    "topP" : "Top predictors",
+    "waiting" : "Waiting for the matches..."
+  },
+  "achiv": {
+    "achiv" : "Achievements"
+  },
+  "avatar" : {
+    "avatar" : "Select a new avatar",
+    "choice" : "Your choice",
+    "changed" : "Avatar changed"
+  },
+  "history" : {
+    "history" : "No betting history..",
+    "bet" : "Your bet",
+    "result" : "Result"
+  },
+  "panelProfile" : {
+    "hi" : "Hi",
+    "stats" : "Statistics",
+    "achiv" : "Achievements",
+    "history" : "History",
+    "settings" : "settings"
+  },
+  "type" : {
+    "headerA" : "Predicting match",
+    "headerB" : "results",
+    "how" : "How to predict match results?",
+    "info1" : "You can predict matches up to 3 weeks in advance, until the start of the game.",
+    "info2" : "You predict matches only once. There is no possibility to edit predictions later." ,
+    "info3" : "For correctly predicting the exact result, you will receive 100 points. ",
+    "info4" : "For predicting the winner or a draw, you will receive 20 points.",
+    "desc1" : "Predict the results of selected football matches. You bet on each match separately.",
+    "desc2" : "Remember, you only have one opportunity to submit your prediction, and there is no possibility to edit it later.",
+    "desc3" :  "You can predict matches up to 3 weeks in advance.",
+    "desc4" : 
+    "The following list of leagues includes only currently ongoing competitions.",
+    "gl": "Good luck"
+  }
 } 
-
 

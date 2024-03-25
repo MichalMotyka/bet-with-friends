@@ -6,8 +6,10 @@ import MyHistory from './myhistory/MyHistory'
 import MyConfig from './myconfig/MyConfig'
 import './myprofile.css'
 import { useAuth } from '../../../../auth/authcontext/AuthContext'
+import { useTranslation } from 'react-i18next'
 
 function MyProfile () {
+  const { t } = useTranslation()
   const { userProfile } = useUser()
   const [activeTab, setActiveTab] = useState('Statystyki')
   const { darkMode } = useAuth()
@@ -31,7 +33,7 @@ function MyProfile () {
           <img src={userProfile.avatar} alt='' className='avatar ' width={80} />
 
           <p className='your-name'>
-            Witaj, {userProfile.name} (lvl {level})
+            {t('panelProfile.hi')}, {userProfile.name} (lvl {level})
           </p>
 
           <p
@@ -44,44 +46,50 @@ function MyProfile () {
         <div className='tabs'>
           <button
             className={`tabs-btn ${
-              activeTab === 'Statystyki' ? 'active-btn' : ''
+              activeTab === `${t('panelProfile.stats')}` ? 'active-btn' : ''
             }`}
             onClick={() => handleTabClick('Statystyki')}
           >
-            Statystyki
+            {t('panelProfile.stats')}
           </button>
           <button
             className={`tabs-btn ${
-              activeTab === 'Osiągnięcia' ? 'active-btn' : ''
+              activeTab === `${t('panelProfile.achiv')}` ? 'active-btn' : ''
             }`}
             onClick={() => handleTabClick('Osiągnięcia')}
           >
-            Osiągnięcia
+            {t('panelProfile.achiv')}
           </button>
           <button
             className={`tabs-btn ${
-              activeTab === 'Historia' ? 'active-btn' : ''
+              activeTab === `${t('panelProfile.history')}` ? 'active-btn' : ''
             }`}
             onClick={() => handleTabClick('Historia')}
           >
-            Historia
+            {t('panelProfile.history')}
           </button>
           <button
             className={`tabs-btn ${
-              activeTab === 'Ustawienia' ? 'active-btn' : ''
+              activeTab === `${t('panelProfile.settings')}` ? 'active-btn' : ''
             }`}
             onClick={() => handleTabClick('Ustawienia')}
           >
-            Ustawienia
+            {t('panelProfile.settings')}
           </button>
         </div>
 
         <div className='tab-content wave-box '>
           <hr className='hr-panel' />
-          {activeTab === 'Statystyki' && <MyStats props={userProfile} />}
-          {activeTab === 'Osiągnięcia' && <MyAchiv props={userProfile} />}
-          {activeTab === 'Historia' && <MyHistory props={userProfile} />}
-          {activeTab === 'Ustawienia' && <MyConfig />}
+          {activeTab === `${t('panelProfile.stats')}` && (
+            <MyStats props={userProfile} />
+          )}
+          {activeTab === `${t('panelProfile.achiv')}` && (
+            <MyAchiv props={userProfile} />
+          )}
+          {activeTab === `${t('panelProfile.history')}` && (
+            <MyHistory props={userProfile} />
+          )}
+          {activeTab === `${t('panelProfile.settings')}` && <MyConfig />}
         </div>
       </div>
     </section>
