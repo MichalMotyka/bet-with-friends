@@ -29,10 +29,10 @@ export const PredictionLogic = () => {
           const competitionsData = await competitionsResponse.json()
           setCompetitions(competitionsData)
         } else {
-          console.error('Błąd podczas pobierania danych')
+          console.error('Error')
         }
       } catch (error) {
-        console.error('Błąd podczas wysyłania żądania:', error)
+        console.error('Error', error)
       }
     }
 
@@ -59,10 +59,10 @@ export const PredictionLogic = () => {
           setMatchList(matchesData)
           setTotalMatches(matchesResponse.headers.get('X-Total-Count'))
         } else {
-          console.error('Błąd podczas pobierania danych')
+          console.error('Error')
         }
       } catch (error) {
-        console.error('Błąd podczas wysyłania żądania:', error)
+        console.error('Error:', error)
       }
     }
 
