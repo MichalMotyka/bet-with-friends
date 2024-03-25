@@ -105,26 +105,24 @@ function UserMenu () {
         </li>
 
         <li className='panel-item'>
-          <div aria-label='Language change' className='lang-btn'>
-            <label>
-              <input
-                type='radio'
-                value='en'
-                checked={i18n.language === 'en'}
-                onChange={e => changeLanguage(e.target.value)}
-              />
-              EN
-            </label>
-            <label>
-              <input
-                type='radio'
-                value='pl'
-                checked={i18n.language === 'pl'}
-                onChange={e => changeLanguage(e.target.value)}
-              />
-              PL
-            </label>
-          </div>
+          <label>
+            <input
+              type='radio'
+              value='en'
+              checked={i18n.language === 'en'}
+              onChange={e => changeLanguage(e.target.value)}
+            />
+            ENG
+          </label>
+          <label>
+            <input
+              type='radio'
+              value='pl'
+              checked={i18n.language === 'pl'}
+              onChange={e => changeLanguage(e.target.value)}
+            />
+            PL
+          </label>
         </li>
 
         <li className='panel-item'>

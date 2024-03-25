@@ -80,7 +80,7 @@ function MyProfile () {
 
         <div className='tab-content wave-box '>
           <hr className='hr-panel' />
-          {activeTab === `'Statystyki'` && <MyStats props={userProfile} />}
+          {activeTab === 'Statystyki' && <MyStats props={userProfile} />}
           {activeTab === 'Osiągnięcia' && <MyAchiv props={userProfile} />}
           {activeTab === 'Historia' && <MyHistory props={userProfile} />}
           {activeTab === 'Ustawienia' && <MyConfig />}

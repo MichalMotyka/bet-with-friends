@@ -134,7 +134,7 @@
     "profile" : "Profile"
   },
   "panelNav" : {
-    "typing" : "Typing"  
+    "typing" : "Predict"  
   },
   "panelUM" : {
     "MP" : "My profile",
@@ -153,7 +153,7 @@
     "your" : "Your",
     "place" : "Place",
     "nick": "Nickname",
-    "profile" : "profile",
+    "profile" : "Profile",
     "points" : "Points",
     "bets" : "Bets",
     "wins" : "Wins",
@@ -165,8 +165,8 @@
     "browse" : "Browse"    
   },
   "panelLB" : {
-    "global" : "Global rankng",
-    "topP" : "Top predictors",
+    "global" : "Global ranking",
+    "topP" : "Top Predictors",
     "waiting" : "Waiting for the matches..."
   },
   "achiv": {

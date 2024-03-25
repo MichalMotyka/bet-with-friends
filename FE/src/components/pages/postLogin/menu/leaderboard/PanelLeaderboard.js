@@ -120,7 +120,7 @@ function PanelLeaderboard () {
           }`}
         >
           <FcGlobe className='fc-globe' />
-          <p>{t('panelLB.gloval')}</p>
+          <p>{t('panelLB.global')}</p>
         </button>
 
         {buttonCompetitions.map(competition => (
