@@ -133,8 +133,68 @@
   "panelUM": {
     "MP": "Mój profil",
     "logout": "Wyloguj się"
+  },
+  "panelAD": {
+    "adA": "Twoje",
+    "adB": "Ogłoszenie"
+  },
+  "chat": {
+    "chatbtn": "Wyślij"
+  },
+  "panelTopTyper": {
+    "headerA": "Najlepszy",
+    "headerB": "Typujący",
+    "your": "Twoje",
+    "place": "Miejsce",
+    "nick": "Pseudonim",
+    "profile": "Profil",
+    "points": "Punkty",
+    "bets": "Zakłady",
+    "wins": "Wygrane",
+    "rating": "Ocena",
+    "stats": "Statystyki globalne",
+    "statsL": "Statystyki ligowe"
+  },
+  "panelLeaders": {
+    "browse": "Przeglądaj"
+  },
+  "panelLB": {
+    "global": "Ranking globalny",
+    "topP": "Najlepsi typujący",
+    "waiting": "Oczekiwanie na mecze..."
+  },
+  "achiv": {
+    "achiv": "Osiągnięcia"
+  },
+  "avatar": {
+    "avatar": "Wybierz nowe awatar",
+    "choice": "Twój wybór",
+    "changed": "Awatar zmieniony"
+  },
+  "history": {
+    "history": "Brak historii zakładów..",
+    "bet": "Twój zakład",
+    "result": "Wynik"
+  },
+  "panelProfile": {
+    "hi": "Cześć",
+    "stats": "Statystyki",
+    "achiv": "Osiągnięcia",
+    "history": "Historia",
+    "settings": "Ustawienia"
+  },
+  "type": {
+    "headerA": "Prognozowanie meczu",
+    "headerB": "wyników",
+    "how": "Jak przewidywać wyniki meczów?",
+    "info1": "Możesz przewidywać wyniki meczów nawet do 3 tygodni przed rozpoczęciem gry.",
+    "info2": "Przewidujesz wyniki meczów tylko raz. Nie ma możliwości edycji przewidywań później.",
+    "info3": "Za poprawne przewidzenie dokładnego wyniku otrzymasz 100 punktów.",
+    "info4": "Za przewidzenie zwycięzcy lub remisu otrzymasz 20 punktów.",
+    "desc1": "Przewiduj wyniki wybranych meczów piłkarskich. Stawiasz zakład na każdy mecz osobno.",
+    "desc2": "Pamiętaj, że masz tylko jedną szansę na przesłanie swojej prognozy, a później nie ma możliwości jej edycji.",
+    "desc3": "Możesz przewidywać wyniki meczów nawet do 3 tygodni wcześniej.",
+    "desc4": "Poniższa lista lig obejmuje tylko obecnie trwające rozgrywki.",
+    "gl": "Powodzenia"
   }
 }
-
-
-

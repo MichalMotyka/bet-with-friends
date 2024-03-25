@@ -112,7 +112,7 @@ function UserMenu () {
               checked={i18n.language === 'en'}
               onChange={e => changeLanguage(e.target.value)}
             />
-            EN
+            ENG
           </label>
           <label>
             <input
