@@ -9,9 +9,6 @@ function PanelNav () {
   const { darkMode } = useAuth()
   const { t } = useTranslation()
 
-
-
-
   return (
     <>
       <nav className={`nav-panel ${darkMode && 'darkmode-on'}`}>
@@ -28,7 +25,6 @@ function PanelNav () {
               Bet With <span className='span-brand'>Friends</span>
             </span>
 
-       
             {/* <img
               src={RakunLogo}
               width={80}
