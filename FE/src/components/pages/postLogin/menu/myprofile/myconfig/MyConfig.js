@@ -3,10 +3,12 @@ import { FaSpinner } from 'react-icons/fa'
 import { useUser } from '../../../context/UserContext'
 import PanelPassReset from '../../../../../auth/panelpassreset/PanelPassReset'
 import { ImArrowDown } from 'react-icons/im'
+import { useTranslation } from 'react-i18next'
 
 import './myconfig.css'
 
 function MyConfig () {
+  const { t } = useTranslation()
   const [changeAvatar, setChangeAvatar] = useState([])
   const [selectedAvatar, setSelectedAvatar] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -69,14 +71,14 @@ function MyConfig () {
 
       if (avatarResponse.ok) {
         setStatus(true)
-        console.log('Zmiana avatara udana')
+
         // Tutaj możesz dodać logikę, która aktualizuje UI w odpowiedzi na udaną zmianę avatara
         updateUserProfile()
       } else {
-        console.error('Błąd podczas zmiany avatara')
+        console.error('Error')
       }
     } catch (error) {
-      console.error('Błąd podczas wysyłania żądania:', error)
+      console.error('Error:', error)
     }
   }
 
@@ -90,7 +92,7 @@ function MyConfig () {
             className='config-btn avatar-btn'
             onClick={() => setNewAvatar(!newAvatar)}
           >
-            Wybierz nowy avatar <ImArrowDown />
+            {t('avatar.avatar')} <ImArrowDown />
           </button>
 
           {newAvatar && (
@@ -110,7 +112,7 @@ function MyConfig () {
                 ))}
               </div>
 
-              <p>Twój wybór:</p>
+              <p> {t('avatar.choice')}:</p>
               {selectedAvatar && (
                 <>
                   <img
@@ -123,13 +125,13 @@ function MyConfig () {
                     {loading ? (
                       <>
                         <FaSpinner className='spinner-icon' />
-                        Przesyłanie...
+                        Sending...
                       </>
                     ) : (
-                      '  Zmień avatar'
+                      '  Change avatar'
                     )}
                   </button>
-                  {status ? <p>Avatar zmieniony</p> : null}
+                  {status ? <p>{t('avatar.changed')}</p> : null}
                 </>
               )}
             </>
