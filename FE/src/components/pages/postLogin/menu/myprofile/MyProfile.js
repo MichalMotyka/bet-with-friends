@@ -46,7 +46,7 @@ function MyProfile () {
         <div className='tabs'>
           <button
             className={`tabs-btn ${
-              activeTab === `${t('panelProfile.stats')}` ? 'active-btn' : ''
+              activeTab === 'Statystyki' ? 'active-btn' : ''
             }`}
             onClick={() => handleTabClick('Statystyki')}
           >
@@ -54,7 +54,7 @@ function MyProfile () {
           </button>
           <button
             className={`tabs-btn ${
-              activeTab === `${t('panelProfile.achiv')}` ? 'active-btn' : ''
+              activeTab === 'Osiągnięcia' ? 'active-btn' : ''
             }`}
             onClick={() => handleTabClick('Osiągnięcia')}
           >
@@ -62,7 +62,7 @@ function MyProfile () {
           </button>
           <button
             className={`tabs-btn ${
-              activeTab === `${t('panelProfile.history')}` ? 'active-btn' : ''
+              activeTab === 'Historia' ? 'active-btn' : ''
             }`}
             onClick={() => handleTabClick('Historia')}
           >
@@ -70,7 +70,7 @@ function MyProfile () {
           </button>
           <button
             className={`tabs-btn ${
-              activeTab === `${t('panelProfile.settings')}` ? 'active-btn' : ''
+              activeTab === 'Ustawienia' ? 'active-btn' : ''
             }`}
             onClick={() => handleTabClick('Ustawienia')}
           >
@@ -80,16 +80,10 @@ function MyProfile () {
 
         <div className='tab-content wave-box '>
           <hr className='hr-panel' />
-          {activeTab === `${t('panelProfile.stats')}` && (
-            <MyStats props={userProfile} />
-          )}
-          {activeTab === `${t('panelProfile.achiv')}` && (
-            <MyAchiv props={userProfile} />
-          )}
-          {activeTab === `${t('panelProfile.history')}` && (
-            <MyHistory props={userProfile} />
-          )}
-          {activeTab === `${t('panelProfile.settings')}` && <MyConfig />}
+          {activeTab === `'Statystyki'` && <MyStats props={userProfile} />}
+          {activeTab === 'Osiągnięcia' && <MyAchiv props={userProfile} />}
+          {activeTab === 'Historia' && <MyHistory props={userProfile} />}
+          {activeTab === 'Ustawienia' && <MyConfig />}
         </div>
       </div>
     </section>
