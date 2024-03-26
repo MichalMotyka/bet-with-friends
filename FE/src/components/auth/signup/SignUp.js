@@ -50,7 +50,7 @@ function SignUp () {
           }
         })
         setFormError(null)
-        setSuccessMessage(`${t('signup.sucess')}`)
+        setSuccessMessage(`${t('signup.success')}`)
       } else {
         const errorData = await response.json()
 
