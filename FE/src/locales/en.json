@@ -18,9 +18,9 @@
     "desc": "Join the prediction community! Predict match outcomes, compete with others, and earn points. [Bet With Friends 2024] All rights reserved."
   },
   "header": {
-    "top": "Bet on the results of the",
-    "mid": "most popular football leagues",
-    "bot": "and compete with friends!",
+    "top": "Bet on the results of the", 
+    "mid": "most popular football leagues ",
+    "bot": " and compete with friends!",
     "info": "Predict match outcomes and other game-related events, earn points for accurate predictions. After the matches, check your score and see where you stand on the winners' leaderboard.",
     "cta": "Join now"
   },
