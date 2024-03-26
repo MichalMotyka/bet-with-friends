@@ -55,13 +55,13 @@ function Login () {
         const errorData = await response.json()
 
         if (errorData.code === 'L1') {
-          throw new Error(`Błędne hasło lub nazwa użytkownika.`)
+          throw new Error(`Wrong password or username.`)
         } else {
-          throw new Error(`Przed logowaniem aktywuj swoje konto.`)
+          throw new Error(`Activate your account first.`)
         }
       }
     } catch (error) {
-      setLoginError(error.message || 'Wystąpił błąd podczas logowania.')
+      setLoginError(error.message || 'Error.')
     }
   }
 

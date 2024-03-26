@@ -105,7 +105,7 @@ function NewPassword () {
                       {t('passreset.status')}
                     </>
                   ) : (
-                    'Reset hasła'
+                    'Reset password'
                   )}
                 </button>
                 {successMessage && (
