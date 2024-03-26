@@ -50,7 +50,7 @@ function MyConfig () {
 
   const handleAvatarChange = async () => {
     if (!selectedAvatar) {
-      console.error('Nie wybrano avatara')
+      console.error('Select new avatar')
       return
     }
 
