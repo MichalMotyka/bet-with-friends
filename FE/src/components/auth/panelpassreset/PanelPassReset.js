@@ -113,7 +113,7 @@ function PanelPassReset () {
                   {t('passreset.status')}
                 </>
               ) : (
-                'Zmień hasło'
+                'Change password'
               )}
             </button>
 

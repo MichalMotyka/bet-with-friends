@@ -119,7 +119,7 @@ function SignUp () {
                 id='name'
                 name='name'
                 maxLength={20}
-                placeholder='Nazwa użytkownika'
+                placeholder='Nickname'
                 className={
                   touched.name && errors.name ? 'signup-input-error' : ''
                 }
@@ -174,7 +174,7 @@ function SignUp () {
                 {loading ? (
                   <>
                     <FaSpinner className='spinner-icon' />
-                    Wysyłanie...
+                    Sending...
                   </>
                 ) : (
                   `${t('signup.cta')}`
