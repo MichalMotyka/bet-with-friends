@@ -187,7 +187,7 @@ const DisplayMessages = () => {
             maxLength={150}
             value={inputMessage}
             className='chat-input'
-            placeholder='Wiadomość...'
+            placeholder='Message...'
             onChange={e => setInputMessage(e.target.value)}
           />
           <button className='chat-button' type='submit'>
