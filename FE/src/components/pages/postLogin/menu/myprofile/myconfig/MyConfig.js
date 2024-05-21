@@ -22,7 +22,7 @@ function MyConfig () {
       try {
         setLoading(true)
         const response = await fetch(
-          'http://130.162.44.103:5000/api/v1/avatar',
+          'http://138.2.142.138:5000/api/v1/avatar',
           {
             method: 'GET',
             credentials: 'include',
@@ -55,7 +55,7 @@ function MyConfig () {
     }
 
     try {
-      const profileEndpoint = 'http://130.162.44.103:5000/api/v1/profile'
+      const profileEndpoint = 'http://138.2.142.138:5000/api/v1/profile'
       const requestBody = {
         avatar: selectedAvatar
       }
@@ -102,7 +102,7 @@ function MyConfig () {
                   <img
                     width={75}
                     key={avatar.avatar}
-                    src={`http://130.162.44.103:5000/api/v1/avatar/${avatar.avatar}`}
+                    src={`http://138.2.142.138:5000/api/v1/avatar/${avatar.avatar}`}
                     alt={`Avatar ${avatar.id}`}
                     className={`avatar-item ${
                       selectedAvatar === avatar.id ? 'selected' : ''
@@ -116,7 +116,7 @@ function MyConfig () {
               {selectedAvatar && (
                 <>
                   <img
-                    src={`http://130.162.44.103:5000/api/v1/avatar/${selectedAvatar}`}
+                    src={`http://138.2.142.138:5000/api/v1/avatar/${selectedAvatar}`}
                     alt='Selected Avatar'
                     className='selected-avatar'
                     width={130}

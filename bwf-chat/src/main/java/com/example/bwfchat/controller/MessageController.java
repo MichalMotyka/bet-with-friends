@@ -29,7 +29,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:3000","http://130.162.44.103:3000","http://130.162.44.103:5000","http://localhost:5000"},allowCredentials = "include", maxAge = 3600)
+@CrossOrigin(origins = {"http://localhost:3000","http://138.2.142.138:3000","http://138.2.142.138:5000","http://localhost:5000"},allowCredentials = "include", maxAge = 3600)
 public class MessageController {
 
     private final MessageMediator messageMediator;

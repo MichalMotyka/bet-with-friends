@@ -116,7 +116,7 @@ function TotalLeaders () {
                     className={`${
                       leader.ranking.place <= 3 ? 'top-avatar' : ''
                     }`}
-                    src={`http://130.162.44.103:5000/api/v1/avatar/${leader.avatar}`}
+                    src={`http://138.2.142.138:5000/api/v1/avatar/${leader.avatar}`}
                     alt=''
                   />
                 </td>
@@ -172,7 +172,7 @@ function TotalLeaders () {
                       className={` top-leader-box-item leader-box-img ${
                         leader.ranking.place <= 3 ? 'top-avatar' : ''
                       }`}
-                      src={`http://130.162.44.103:5000/api/v1/avatar/${leader.avatar}`}
+                      src={`http://138.2.142.138:5000/api/v1/avatar/${leader.avatar}`}
                       alt=''
                       width={40}
                     />
