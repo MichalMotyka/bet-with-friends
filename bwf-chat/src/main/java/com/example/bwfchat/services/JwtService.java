@@ -17,7 +17,7 @@ public class JwtService {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Cookie","Authorization="+auth+";Refresh="+refresh);
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<Response> response = restTemplate.exchange("http://138.2.142.138:5000/api/v1/auto-login", HttpMethod.GET, entity, Response.class);
+        ResponseEntity<Response> response = restTemplate.exchange("http://141.147.38.6:5000/api/v1/auto-login", HttpMethod.GET, entity, Response.class);
         if(response.getStatusCode().is2xxSuccessful()){
             return response.getBody().getMessage();
         } else if (response.getStatusCode().is4xxClientError()) {

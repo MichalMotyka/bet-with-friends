@@ -4,10 +4,10 @@
     "email": "betwithfriends.noreply@gmail.com"
   },
   "external": {
-    "url": "http://138.2.142.138:5000",
-    "url-systeminfo": "http://138.2.142.138:8081/api/v1/system_info",
-    "frontend_login": "http://138.2.142.138/login",
-    "frontend_reset": "http://138.2.142.138/resetpass"
+    "url": "http://141.147.38.6:5000",
+    "url-systeminfo": "http://141.147.38.6:8081/api/v1/system_info",
+    "frontend_login": "http://141.147.38.6/login",
+    "frontend_reset": "http://141.147.38.6/resetpass"
   },
   "SECRET_KEY": "8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb",
   "jwt": {
@@ -21,7 +21,7 @@
     "password": "RsnSVveeUY8Pxrq",
     "name": "postgres",
     "port": "5432",
-    "host": "138.2.142.138"
+    "host": "141.147.38.6"
   },
   "jobs": {
     "updateProfile": 300,
