@@ -18,7 +18,7 @@
   },
   "database": {
     "user": "postgres",
-    "password": "RsnSVveeUY8Pxrq",
+    "password": "postgres",
     "name": "postgres",
     "port": "5432",
     "host": "141.147.38.6"
