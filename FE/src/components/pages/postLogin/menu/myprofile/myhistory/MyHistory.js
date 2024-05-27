@@ -25,7 +25,7 @@ function MyHistory () {
     const getCompetitions = async () => {
       try {
         const competitionsResponse = await fetch(
-          `http://130.162.44.103:5000/api/v1/competetition`,
+          `http://141.147.38.6:5000/api/v1/competetition`,
           {
             method: 'GET',
             credentials: 'include',

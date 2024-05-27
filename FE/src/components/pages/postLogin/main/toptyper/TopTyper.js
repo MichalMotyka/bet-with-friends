@@ -17,7 +17,7 @@ function TopTyper (props) {
       </h2>
       <div className='top-typer'>
         <img
-          src={`http://130.162.44.103:5000/api/v1/avatar/${topTyper.avatar}`}
+          src={`http://141.147.38.6:5000/api/v1/avatar/${topTyper.avatar}`}
           alt=''
           className='avatar top-typer-avatar'
           height={110}

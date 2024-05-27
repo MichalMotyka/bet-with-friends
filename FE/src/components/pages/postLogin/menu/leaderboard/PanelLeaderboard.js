@@ -68,7 +68,7 @@ function PanelLeaderboard () {
     const getCompetitions = async () => {
       try {
         const competitionsResponse = await fetch(
-          `http://130.162.44.103:5000/api/v1/competetition`,
+          `http://141.147.38.6:5000/api/v1/competetition`,
           {
             method: 'GET',
             credentials: 'include',
@@ -243,7 +243,7 @@ function PanelLeaderboard () {
                 <td className='th-hide'>
                   <img
                     className={`${leader.place <= 3 ? 'top-avatar' : ''}`}
-                    src={`http://130.162.44.103:5000/api/v1/avatar/${leader.profile.avatar}`}
+                    src={`http://141.147.38.6:5000/api/v1/avatar/${leader.profile.avatar}`}
                     alt='user avatar'
                     loading='lazy'
                   />
@@ -305,7 +305,7 @@ function PanelLeaderboard () {
                       className={` top-leader-box-item leader-box-img ${
                         leader.place <= 3 ? 'top-avatar' : ''
                       }`}
-                      src={`http://130.162.44.103:5000/api/v1/avatar/${leader.profile.avatar}`}
+                      src={`http://141.147.38.6:5000/api/v1/avatar/${leader.profile.avatar}`}
                       alt=''
                       width={40}
                       loading='lazy'

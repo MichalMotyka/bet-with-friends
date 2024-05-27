@@ -14,7 +14,7 @@ function Matches () {
     const getCompetitions = async () => {
       try {
         const competitionsResponse = await fetch(
-          `http://130.162.44.103:5000/api/v1/competetition`,
+          `http://141.147.38.6:5000/api/v1/competetition`,
           {
             method: 'GET',
             headers: {
@@ -45,7 +45,7 @@ function Matches () {
     const getMatches = async () => {
       try {
         const pubMatchesResponse = await fetch(
-          `http://130.162.44.103:5000/api/v1/matches?competetition=${currentCompetition}`,
+          `http://141.147.38.6:5000/api/v1/matches?competetition=${currentCompetition}`,
           {
             method: 'GET',
             headers: {
