@@ -266,7 +266,7 @@ def generate_100_bets_correct(profile_id:int) -> Achivments:
     return Achivments(
         uuid=uuid.uuid4(),
         achivment_type_uuid='141e4aba-54d0-410e-b059-65f9f9e6c20f',
-        achiv_name='It's not a coincidence.',
+        achiv_name="It's not a coincidence.",
         profile_id=profile_id,
         description='Correctly predict the outcome of 100 matches.',
         image_url='',
