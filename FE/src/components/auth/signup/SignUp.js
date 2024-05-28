@@ -26,14 +26,17 @@ function SignUp () {
         email: userData.email
       }
 
-      const response = await fetch('http://141.147.38.6:5000/api/v1/register', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userDataSending)
-      })
+      const response = await fetch(
+        'http://4.184.219.209:5000/api/v1/register',
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(userDataSending)
+        }
+      )
 
       setLoading(false) // Zakończenie ładowania po otrzymaniu odpowiedzi
 
