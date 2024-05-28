@@ -10,7 +10,7 @@ function Leaderboard () {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          'http://141.147.38.6:5000/api/v1/ranking',
+          'http://4.184.219.209:5000/api/v1/ranking',
           {
             method: 'GET', // Metoda GET
             headers: {
@@ -57,7 +57,7 @@ function Leaderboard () {
                 <td className='leader-name'>{leader.name}</td>
                 <td className='th-hide'>
                   <img
-                    src={`http://141.147.38.6:5000/api/v1/avatar/${leader.avatar}`}
+                    src={`http://4.184.219.209:5000/api/v1/avatar/${leader.avatar}`}
                     alt=''
                     className='avatar'
                   />

@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext()
 
-const ipMan = '141.147.38.6'
+const ipMan = '4.184.219.209'
 // const ipMan = 'localhost'
 
 export const AuthProvider = ({ children }) => {

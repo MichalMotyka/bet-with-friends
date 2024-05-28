@@ -9,7 +9,7 @@ function TopParent () {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          'http://141.147.38.6:5000/api/v1/ranking',
+          'http://4.184.219.209:5000/api/v1/ranking',
           {
             method: 'GET',
             headers: {
