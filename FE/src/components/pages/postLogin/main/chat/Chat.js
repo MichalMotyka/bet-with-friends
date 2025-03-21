@@ -1,18 +1,20 @@
-import DisplayMessages from './chatdata/DisplayMessages'
-import { useAuth } from '../../../../auth/authcontext/AuthContext'
+import DisplayMessages from "./chatdata/DisplayMessages";
+import { useAuth } from "../../../../auth/authcontext/AuthContext";
 
-import './chat.css'
+import "./chat.css";
 
-function Chat () {
-  const { darkMode } = useAuth()
+function Chat() {
+  const { darkMode } = useAuth();
 
   return (
-    <div className={`panel-side-box ${darkMode && 'darkmode-on'}`}>
-      <div className='chat'>
-        <DisplayMessages />
+    <div className={`panel-side-box ${darkMode && "darkmode-on"}`}>
+      <div className="chat">
+        {/* <DisplayMessages />
+         */}
+        Maybe Layter Aligaitor
       </div>
     </div>
-  )
+  );
 }
 
-export default Chat
+export default Chat;
